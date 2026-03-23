@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subjects | GTUAcademy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#080e1f;--navy-card:#111d40;--navy-light:#162249;--gold:#f0b429;--gold-pale:rgba(240,180,41,0.12);--teal:#00b4d8;--teal-dim:rgba(0,180,216,0.15);--white:#f0f4ff;--muted:#7a8ab0;--border:rgba(240,180,41,0.18);--green:#4caf7d;--red:#e05252;--orange:#fb923c;--purple:#8b5cf6;--pink:#f472b6;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 15% 20%,rgba(255,255,255,.3) 0%,transparent 100%),radial-gradient(1px 1px at 40% 70%,rgba(255,255,255,.2) 0%,transparent 100%),radial-gradient(1px 1px at 70% 30%,rgba(255,255,255,.25) 0%,transparent 100%),radial-gradient(1px 1px at 85% 60%,rgba(255,255,255,.2) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 55% 45%,rgba(240,180,41,.2) 0%,transparent 100%);pointer-events:none;z-index:0;}
+.navbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(8,14,31,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.nav-logo{width:38px;height:38px;border-radius:9px;background:var(--navy-light);border:1.5px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;color:var(--gold);}
+.nav-logo img{width:100%;height:100%;object-fit:cover;}
+.nav-name{font-family:'Playfair Display',serif;font-size:1.32em;font-weight:800;color:var(--white);}
+.nav-name span{color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-links a{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:9px;color:var(--muted);text-decoration:none;font-size:.86em;font-weight:500;transition:all .2s;}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.05);}
+.nav-links a.active{color:var(--gold);background:var(--gold-pale);border:1px solid rgba(240,180,41,.25);}
+.page-hero{position:relative;z-index:1;padding:52px 40px 36px;max-width:1200px;margin:0 auto;}
+.page-eyebrow{display:inline-flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:.68em;color:var(--teal);letter-spacing:.14em;text-transform:uppercase;background:var(--teal-dim);padding:5px 14px;border-radius:20px;border:1px solid rgba(0,180,216,.3);margin-bottom:16px;}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:2.4em;font-weight:800;line-height:1.2;margin-bottom:10px;}
+.page-hero h1 span{color:var(--gold);}
+.page-hero p{font-size:.95em;color:var(--muted);max-width:560px;line-height:1.7;}
+.main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:10px 40px 80px;}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px;padding:14px 18px;background:var(--navy-card);border:1px solid var(--border);border-radius:14px;align-items:center;}
+.fl{font-family:'Space Mono',monospace;font-size:.67em;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;margin-right:4px;}
+.fb{padding:7px 18px;border-radius:20px;font-size:.82em;font-weight:600;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.fb:hover{border-color:var(--gold);color:var(--gold);}
+.fb.active{background:var(--gold-pale);border-color:var(--gold);color:var(--gold);}
+.fsep{width:1px;height:24px;background:var(--border);margin:0 2px;}
+.fsrch{display:flex;align-items:center;gap:8px;background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:7px 13px;flex:1;min-width:160px;}
+.fsrch input{background:transparent;border:none;outline:none;color:var(--white);font-size:.83em;font-family:'DM Sans',sans-serif;width:100%;}
+.fsrch input::placeholder{color:var(--muted);}
+.sem-sec{margin-bottom:44px;animation:fup .4s ease both;}
+.sem-sec.hidden{display:none;}
+.sem-hdr{display:flex;align-items:center;gap:12px;margin-bottom:18px;padding:13px 18px;background:var(--navy-card);border-radius:10px;border-left:4px solid var(--gold);}
+.snb{width:36px;height:36px;border-radius:8px;background:var(--gold-pale);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.78em;font-weight:700;color:var(--gold);}
+.sh-info .st{font-family:'Playfair Display',serif;font-size:1.1em;font-weight:700;}
+.sh-info .sd{font-size:.77em;color:var(--muted);margin-top:2px;}
+.sh-right{margin-left:auto;display:flex;gap:7px;}
+.spill{font-size:.67em;padding:3px 9px;border-radius:9px;font-weight:600;}
+.subs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:15px;}
+.sc{background:var(--navy-card);border:1.5px solid var(--border);border-radius:15px;padding:18px;transition:all .28s;position:relative;overflow:hidden;}
+.sc::after{content:'';position:absolute;inset:0;border-radius:15px;background:linear-gradient(135deg,rgba(240,180,41,.03),transparent 60%);pointer-events:none;}
+.sc:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.4),0 0 0 1px rgba(240,180,41,.18);}
+.sc.avail{border-color:rgba(76,175,125,.28);}
+.sc.avail:hover{border-color:rgba(76,175,125,.5);}
+.sc-top{display:flex;align-items:flex-start;gap:13px;margin-bottom:13px;}
+.sc-ico{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.25em;flex-shrink:0;}
+.sc-code{font-family:'Space Mono',monospace;font-size:.64em;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px;}
+.sc-name{font-weight:700;font-size:.93em;color:var(--white);line-height:1.3;}
+.sc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:13px;}
+.stag{font-size:.68em;padding:3px 8px;border-radius:7px;font-weight:600;border:1px solid;}
+.sc-acts{display:flex;gap:7px;flex-wrap:wrap;}
+.sbtn{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:8px;font-size:.77em;font-weight:600;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+.sbtn-p{background:var(--gold-pale);border:1.5px solid var(--gold);color:var(--gold);}
+.sbtn-p:hover{background:var(--gold);color:var(--navy);}
+.sbtn-g{background:transparent;border:1.5px solid var(--border);color:var(--muted);}
+.sbtn-g:hover{border-color:var(--teal);color:var(--teal);}
+.sbtn-s{background:rgba(251,146,60,.07);border:1.5px solid rgba(251,146,60,.2);color:var(--orange);cursor:default;}
+@keyframes fup{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:700px){.navbar{padding:0 14px;}.page-hero,.main{padding-left:14px;padding-right:14px;}.nav-links a span{display:none;}}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--navy);}::-webkit-scrollbar-thumb{background:var(--navy-light);border-radius:3px;}
+.footer{position:relative;z-index:1;text-align:center;padding:26px 40px;border-top:1px solid var(--border);color:var(--muted);font-size:.8em;}
+.footer .fbr{font-family:'Playfair Display',serif;font-size:1.05em;color:var(--gold);display:block;margin-bottom:4px;}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="GTUAcademy_Homepage.html" class="nav-brand">
+    <div class="nav-logo"><img src="GTUAcademy_Logo.svg" alt="G" onerror="this.outerHTML='G'"></div>
+    <span class="nav-name">GTU<span>Academy</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="GTUAcademy_Homepage.html">🏠 Home</a></li>
+    <li><a href="GTUAcademy_Subjects.html" class="active">📚 Subjects</a></li>
+    <li><a href="GTUAcademy_PYQs.html">📋 PYQs</a></li>
+    <li><a href="GTUAcademy_About.html">ℹ About</a></li>
+  </ul>
+</nav>
+<div class="page-hero">
+  <div class="page-eyebrow">📚 All 8 Semesters</div>
+  <h1>Browse All <span>Subjects</span></h1>
+  <p>Every subject across all 8 semesters of GTU B.E. Click any available subject to access study material and PYQs.</p>
+</div>
+<main class="main">
+  <div class="filter-bar">
+    <span class="fl">Semester:</span>
+    <button class="fb active" onclick="filterSem('all',this)">All</button>
+    <button class="fb" onclick="filterSem('1',this)">Sem 1</button>
+    <button class="fb" onclick="filterSem('2',this)">Sem 2</button>
+    <button class="fb" onclick="filterSem('3',this)">Sem 3</button>
+    <button class="fb" onclick="filterSem('4',this)">Sem 4</button>
+    <button class="fb" onclick="filterSem('5',this)">Sem 5</button>
+    <button class="fb" onclick="filterSem('6',this)">Sem 6</button>
+    <button class="fb" onclick="filterSem('7',this)">Sem 7</button>
+    <button class="fb" onclick="filterSem('8',this)">Sem 8</button>
+    <div class="fsep"></div>
+    <div class="fsrch">
+      <span style="color:var(--muted)">🔍</span>
+      <input type="text" id="srch" placeholder="Search subject..." oninput="searchSubj()">
+    </div>
+  </div>
+
+  <!-- SEM 1 -->
+  <div class="sem-sec" data-sem="1">
+    <div class="sem-hdr">
+      <div class="snb">S1</div>
+      <div class="sh-info"><div class="st">Semester 1</div><div class="sd">Foundation · Common for all branches</div></div>
+      <div class="sh-right">
+        <span class="spill" style="background:rgba(76,175,125,.12);color:var(--green);border:1px solid rgba(76,175,125,.3);">1 Available</span>
+        <span class="spill" style="background:rgba(251,146,60,.1);color:var(--orange);border:1px solid rgba(251,146,60,.25);">4 Coming Soon</span>
+      </div>
+    </div>
+    <div class="subs-grid">
+      <div class="sc avail" data-name="mathematics maths calculus">
+        <div class="sc-top"><div class="sc-ico" style="background:rgba(240,180,41,.15);color:var(--gold);">∫</div><div><div class="sc-code">BE01R00041 · 4 Credits</div><div class="sc-name">Mathematics – I</div></div></div>
+        <div class="sc-tags">
+          <span class="stag" style="background:rgba(76,175,125,.1);color:var(--green);border-color:rgba(76,175,125,.3);">✓ Available</span>
+          <span class="stag" style="background:rgba(240,180,41,.1);color:var(--gold);border-color:rgba(240,180,41,.3);">5 Modules</span>
+          <span class="stag" style="background:rgba(224,82,82,.1);color:var(--red);border-color:rgba(224,82,82,.25);">7 PYQs</span>
+        </div>
+        <div class="sc-acts"><a class="sbtn sbtn-p" href="GTUAcademy_Homepage.html">📖 Study Material</a><a class="sbtn sbtn-g" href="GTUAcademy_Maths1_PYQs.html">📋 PYQs</a></div>
+      </div>
+      <div class="sc" data-name="physics"><div class="sc-top"><div class="sc-ico" style="background:rgba(0,180,216,.14);color:var(--teal);">⚛</div><div><div class="sc-code">BE01R00042 · 4 Credits</div><div class="sc-name">Physics</div></div></div><div class="sc-tags"><span class="stag" style="background:rgba(251,146,60,.1);color:var(--orange);border-color:rgba(251,146,60,.25);">⏳ Coming Soon</span></div><div class="sc-acts"><span class="sbtn sbtn-s">Notify Me</span></div></div>
+      <div class="sc" data-name="chemistry"><div class="sc-top"><div class="sc-ico" style="background:rgba(139,92,246,.14);color:var(--purple);">⚗</div><div><div class="sc-code">BE01R00043 · 4 Credits</div><div class="sc-name">Engineering Chemistry</div></div></div><div class="sc-tags"><span class="stag" style="background:rgba(251,146,60,.1);color:var(--orange);border-color:rgba(251,146,60,.25);">⏳ Coming Soon</span></div><div class="sc-acts"><span class="sbtn sbtn-s">Notify Me</span></div></div>
+      <div class="sc" data-name="drawing graphics"><div class="sc-top"><div class="sc-ico" style="background:rgba(244,114,182,.12);color:var(--pink);">📐</div><div><div class="sc-code">BE01R00044 · 3 Credits</div><div class="sc-name">Engineering Drawing &amp; Graphics</div></div></div><div class="sc-tags"><span class="stag" style="background:rgba(251,146,60,.1);color:var(--orange);border-color:rgba(251,146,60,.25);">⏳ Coming Soon</span></div><div class="sc-acts"><span class="sbtn sbtn-s">Notify Me</span></div></div>
+      <div class="sc" data-name="python programming"><div class="sc-top"><div class="sc-ico" style="background:rgba(76,175,125,.12);color:var(--green);">💻</div><div><div class="sc-code">BE01R00045 · 2 Credits</div><div class="sc-name">Problem Solving using Python</div></div></div><div class="sc-tags"><span class="stag" style="background:rgba(251,146,60,.1);color:var(--orange);border-color:rgba(251,146,60,.25);">⏳ Coming Soon</span></div><div class="sc-acts"><span class="sbtn sbtn-s">Notify Me</span></div></div>
+    </div>
+  </div>
+
+  <!-- SEM 2 -->
+  <div class="sem-sec" data-sem="2">
+    <div class="sem-hdr"><div class="snb">S2</div><div class="sh-info"><div class="st">Semester 2</div><div class="sd">Foundation continuation · Common for all branches</div></div><div class="sh-right"><span class="spill" style="background:rgba(251,146,60,.1);color:var(--orange);border:1px solid rgba(251,146,60,.25);">5 Coming Soon</span></div></div>
+    <div class="subs-grid" id="g2"></div>
+  </div>
+
+  <!-- SEMS 3-8 -->
+  <div class="sem-sec" data-sem="3"><div class="sem-hdr"><div class="snb">S3</div><div class="sh-info"><div class="st">Semester 3</div><div class="sd">Branch-specific subjects begin</div></div><div class="sh-right"><span class="spill" style="background:rgba(251,146,60,.1);color:var(--orange);border:1px solid rgba(251,146,60,.25);">Coming Soon</span></div></div><div class="subs-grid" id="g3"></div></div>
+  <div class="sem-sec" data-sem="4"><div class="sem-hdr"><div class="snb">S4</div><div class="sh-info"><div class="st">Semester 4</div><div class="sd">Advanced core subjects</div></div><div class="sh-right"><span class="spill" style="background:rgba(251,146,60,.1);color:var(--orange);border:1px solid rgba(251,146,60,.25);">Coming Soon</span></div></div><div class="subs-grid" id="g4"></div></div>
+  <div class="sem-sec" data-sem="5"><div class="sem-hdr"><div class="snb">S5</div><div class="sh-info"><div class="st">Semester 5</div><div class="sd">Electives · Mini-project</div></div><div class="sh-right"><span class="spill" style="background:rgba(251,146,60,.1);color:var(--orange);border:1px solid rgba(251,146,60,.25);">Coming Soon</span></div></div><div class="subs-grid" id="g5"></div></div>
+  <div class="sem-sec" data-sem="6"><div class="sem-hdr"><div class="snb">S6</div><div class="sh-info"><div class="st">Semester 6</div><div class="sd">Professional electives</div></div><div class="sh-right"><span class="spill" style="background:rgba(251,146,60,.1);color:var(--orange);border:1px solid rgba(251,146,60,.25);">Coming Soon</span></div></div><div class="subs-grid" id="g6"></div></div>
+  <div class="sem-sec" data-sem="7"><div class="sem-hdr"><div class="snb">S7</div><div class="sh-info"><div class="st">Semester 7</div><div class="sd">Advanced electives · Major project prep</div></div><div class="sh-right"><span class="spill" style="background:rgba(251,146,60,.1);color:var(--orange);border:1px solid rgba(251,146,60,.25);">Coming Soon</span></div></div><div class="subs-grid" id="g7"></div></div>
+  <div class="sem-sec" data-sem="8"><div class="sem-hdr"><div class="snb">S8</div><div class="sh-info"><div class="st">Semester 8</div><div class="sd">Major Project · Internship · Electives</div></div><div class="sh-right"><span class="spill" style="background:rgba(251,146,60,.1);color:var(--orange);border:1px solid rgba(251,146,60,.25);">Coming Soon</span></div></div><div class="subs-grid" id="g8"></div></div>
+</main>
+<footer class="footer"><span class="fbr">GTUAcademy</span><p>Free study material for all GTU Engineering students</p></footer>
+<script>
+const sd={2:[['∑','rgba(240,180,41,.15)','var(--gold)','BE02R00041 · 4 Cr','Mathematics – II'],['🔌','rgba(0,180,216,.14)','var(--teal)','BE02R00042 · 4 Cr','Basic Electronics'],['🌿','rgba(139,92,246,.14)','var(--purple)','BE02R00043 · 3 Cr','Environmental Science'],['⚙','rgba(76,175,125,.12)','var(--green)','BE02R00044 · 3 Cr','Engineering Mechanics'],['🗣','rgba(251,146,60,.12)','var(--orange)','BE02R00045 · 2 Cr','Communication Skills']],3:[['🔢','rgba(240,180,41,.15)','var(--gold)','CS/IT Branch','Data Structures & Algorithms'],['⚡','rgba(0,180,216,.14)','var(--teal)','EC/EE Branch','Circuit Theory & Networks'],['🌡','rgba(139,92,246,.14)','var(--purple)','Mech Branch','Thermodynamics'],['🏗','rgba(244,114,182,.12)','var(--pink)','Civil Branch','Strength of Materials'],['🧮','rgba(76,175,125,.12)','var(--green)','All Branches','Mathematics – III']],4:[['🖥','rgba(240,180,41,.15)','var(--gold)','CS/IT Branch','Operating Systems'],['📡','rgba(0,180,216,.14)','var(--teal)','EC Branch','Signals & Systems'],['🔩','rgba(139,92,246,.14)','var(--purple)','Mech Branch','Machine Design'],['🌊','rgba(244,114,182,.12)','var(--pink)','Civil/Mech','Fluid Mechanics'],['📊','rgba(76,175,125,.12)','var(--green)','All Branches','Probability & Statistics']],5:[['🤖','rgba(240,180,41,.15)','var(--gold)','CS/IT Branch','Artificial Intelligence'],['📻','rgba(0,180,216,.14)','var(--teal)','EC Branch','Communication Systems'],['🔋','rgba(139,92,246,.14)','var(--purple)','EE Branch','Power Systems'],['🏛','rgba(244,114,182,.12)','var(--pink)','Civil Branch','Structural Analysis'],['🎛','rgba(251,146,60,.12)','var(--orange)','All Branches','Control Systems']],6:[['☁','rgba(240,180,41,.15)','var(--gold)','CS/IT Branch','Cloud Computing'],['📱','rgba(0,180,216,.14)','var(--teal)','EC Branch','Embedded Systems'],['⚡','rgba(139,92,246,.14)','var(--purple)','EE Branch','Power Electronics'],['🏘','rgba(244,114,182,.12)','var(--pink)','Civil Branch','Environmental Engineering'],['🛠','rgba(76,175,125,.12)','var(--green)','Mech Branch','Industrial Engineering']],7:[['🧠','rgba(240,180,41,.15)','var(--gold)','CS/IT Branch','Machine Learning'],['📡','rgba(0,180,216,.14)','var(--teal)','EC Branch','Wireless Networks'],['⚡','rgba(139,92,246,.14)','var(--purple)','EE Branch','High Voltage Engineering'],['🌉','rgba(244,114,182,.12)','var(--pink)','Civil Branch','Bridge Engineering'],['🤖','rgba(76,175,125,.12)','var(--green)','Mech Branch','Robotics & Automation']],8:[['🎓','rgba(240,180,41,.15)','var(--gold)','All Branches','Major Project'],['💼','rgba(0,180,216,.14)','var(--teal)','All Branches','Internship / Industrial Training'],['📋','rgba(139,92,246,.14)','var(--purple)','All Branches','Open Elective'],['🔬','rgba(244,114,182,.12)','var(--pink)','All Branches','Research Publication'],['📈','rgba(76,175,125,.12)','var(--green)','All Branches','Entrepreneurship']]};
+for(let s=2;s<=8;s++){const g=document.getElementById('g'+s);if(!g)continue;sd[s].forEach(([ic,bg,cl,code,nm])=>{g.innerHTML+=`<div class="sc" data-name="${nm.toLowerCase()}"><div class="sc-top"><div class="sc-ico" style="background:${bg};color:${cl};">${ic}</div><div><div class="sc-code">${code}</div><div class="sc-name">${nm}</div></div></div><div class="sc-tags"><span class="stag" style="background:rgba(251,146,60,.1);color:var(--orange);border-color:rgba(251,146,60,.25);">⏳ Coming Soon</span></div><div class="sc-acts"><span class="sbtn sbtn-s">Notify Me</span></div></div>`;});}
+function filterSem(v,btn){document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.sem-sec').forEach(s=>s.classList.toggle('hidden',v!=='all'&&s.dataset.sem!==v));}
+function searchSubj(){const q=document.getElementById('srch').value.toLowerCase();document.querySelectorAll('.sc').forEach(c=>{c.style.display=(q===''||c.dataset.name?.includes(q)||c.querySelector('.sc-name').textContent.toLowerCase().includes(q))?'':'none';});}
+</script>
+</body>
+</html>

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTUAcademy — Gujarat Technological University Study Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════
+   CSS VARIABLES & RESET
+════════════════════════════════ */
+:root {
+  --navy:      #080e1f;
+  --navy-mid:  #0d1835;
+  --navy-card: #111d40;
+  --navy-light:#162249;
+  --gold:      #f0b429;
+  --gold-dim:  #c8920a;
+  --gold-pale: rgba(240,180,41,0.12);
+  --teal:      #00b4d8;
+  --teal-dim:  rgba(0,180,216,0.15);
+  --white:     #f0f4ff;
+  --muted:     #7a8ab0;
+  --border:    rgba(240,180,41,0.18);
+  --red:       #e05252;
+  --green:     #4caf7d;
+  --purple:    #8b5cf6;
+  --orange:    #fb923c;
+  --pink:      #f472b6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ════════════════════════════════
+   STARFIELD BACKGROUND
+════════════════════════════════ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 30%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 80%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 10%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 90%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 45%, rgba(240,180,41,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 80% 75%, rgba(0,180,216,0.25) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ════════════════════════════════
+   HEADER / NAVBAR
+════════════════════════════════ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 70px;
+  background: rgba(8,14,31,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--navy-light);
+  border: 1.5px solid var(--border);
+}
+
+.nav-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+.nav-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45em;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+
+.nav-name span { color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.88em;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-badge {
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.72em;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ════════════════════════════════
+   HERO
+════════════════════════════════ */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 80px 40px 60px;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72em;
+  color: var(--teal);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  background: var(--teal-dim);
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(0,180,216,0.3);
+  animation: fadeDown 0.6s ease both;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4em, 5vw, 4em);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+  animation: fadeDown 0.7s 0.1s ease both;
+}
+
+.hero h1 .highlight {
+  color: var(--gold);
+  position: relative;
+}
+
+.hero p {
+  font-size: 1.05em;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto 36px;
+  line-height: 1.75;
+  animation: fadeDown 0.7s 0.2s ease both;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  animation: fadeDown 0.7s 0.3s ease both;
+}
+
+.stat { text-align: center; }
+.stat .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+}
+.stat .label { font-size: 0.8em; color: var(--muted); margin-top: 2px; }
+
+/* ════════════════════════════════
+   SECTION TITLE
+════════════════════════════════ */
+.section-title {
+  text-align: center;
+  margin-bottom: 48px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.section-title .tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7em;
+  color: var(--gold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.section-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--white);
+}
+
+/* ════════════════════════════════
+   MAIN CONTENT AREA
+════════════════════════════════ */
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 32px 80px;
+}
+
+/* ════════════════════════════════
+   SEMESTER TABS
+════════════════════════════════ */
+.sem-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.sem-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 40px;
+  border: 1.5px solid var(--border);
+  background: var(--navy-card);
+  color: var(--muted);
+  font-size: 0.88em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.sem-tab .sem-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--navy-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78em;
+  font-family: 'Space Mono', monospace;
+  transition: background 0.25s;
+}
+
+.sem-tab:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.sem-tab:hover .sem-num { background: var(--gold-pale); }
+
+.sem-tab.active {
+  background: var(--gold-pale);
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 20px rgba(240,180,41,0.15);
+}
+
+.sem-tab.active .sem-num {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+/* ════════════════════════════════
+   SEMESTER CONTENT PANEL
+════════════════════════════════ */
+.sem-panel { display: none; }
+.sem-panel.active {
+  display: block;
+  animation: panelIn 0.35s ease both;
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Semester Info Row */
+.sem-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding: 16px 24px;
+  background: var(--navy-card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.sem-info-row .sem-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.sem-info-row .sem-desc {
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
+.sem-info-row .sem-count {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78em;
+  color: var(--gold);
+  background: var(--gold-pale);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+}
+
+/* ════════════════════════════════
+   SUBJECTS GRID
+════════════════════════════════ */
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+/* Subject Card */
+.subject-card {
+  background: var(--navy-card);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.subject-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(240,180,41,0.3);
+}
+
+.subject-card.has-modules:hover {
+  border-color: var(--gold);
+}
+
+.subject-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+}
+
+.subject-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3em;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+
+.subject-card:hover .subject-icon { transform: scale(1.1) rotate(-4deg); }
+
+.subject-info { flex: 1; min-width: 0; }
+
+.subject-code {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68em;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.subject-name {
+  font-weight: 600;
+  font-size: 0.95em;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.subject-arrow {
+  color: var(--muted);
+  font-size: 1em;
+  transition: all 0.3s;
+}
+
+.subject-card.open .subject-arrow { transform: rotate(90deg); color: var(--gold); }
+
+.subject-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px 14px;
+}
+
+.subject-badge {
+  font-size: 0.7em;
+  padding: 3px 9px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.badge-available { background: rgba(76,175,125,0.15); color: var(--green); border: 1px solid rgba(76,175,125,0.3); }
+.badge-soon { background: rgba(251,146,60,0.12); color: var(--orange); border: 1px solid rgba(251,146,60,0.25); }
+.badge-credits { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,180,216,0.25); }
+
+/* ════════════════════════════════
+   MODULES DROPDOWN
+════════════════════════════════ */
+.modules-panel {
+  display: none;
+  border-top: 1px solid var(--border);
+  background: var(--navy);
+  padding: 16px;
+}
+
+.modules-panel.open {
+  display: block;
+  animation: moduleSlide 0.3s ease both;
+}
+
+@keyframes moduleSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modules-header {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68em;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-left: 4px;
+}
+
+.module-list { display: flex; flex-direction: column; gap: 8px; }
+
+.module-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--navy-card);
+  border: 1px solid rgba(240,180,41,0.1);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  group: '';
+}
+
+.module-item:hover {
+  background: var(--gold-pale);
+  border-color: var(--gold);
+  transform: translateX(4px);
+}
+
+.module-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--gold-pale);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72em;
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.module-item:hover .module-num {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.module-text { flex: 1; min-width: 0; }
+
+.module-title {
+  font-weight: 600;
+  font-size: 0.85em;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.module-subtitle {
+  font-size: 0.72em;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.module-go {
+  color: var(--muted);
+  font-size: 0.9em;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.module-item:hover .module-go { color: var(--gold); transform: translateX(2px); }
+
+/* ════════════════════════════════
+   COMING SOON OVERLAY for other sems
+════════════════════════════════ */
+.coming-soon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72em;
+  color: var(--orange);
+  background: rgba(251,146,60,0.1);
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(251,146,60,0.25);
+}
+
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.82em;
+}
+
+.footer .footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ════════════════════════════════
+   ANIMATIONS
+════════════════════════════════ */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════
+   SCROLLBAR
+════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dim); }
+
+/* ════════════════════════════════
+   RESPONSIVE
+════════════════════════════════ */
+@media (max-width: 700px) {
+  .navbar { padding: 0 20px; }
+  .hero { padding: 50px 20px 40px; }
+  .main { padding: 10px 16px 60px; }
+  .hero-stats { gap: 24px; }
+  .nav-links { display: none; }
+  .subjects-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="navbar">
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">
+      <img src="gtuacademy_logo.svg" alt="GTUAcademy Logo" onerror="this.parentNode.innerHTML='<svg viewBox=\'0 0 44 44\' xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'44\' height=\'44\' fill=\'#0d1835\'/><text x=\'22\' y=\'28\' font-family=\'serif\' font-size=\'14\' font-weight=\'bold\' fill=\'#f0b429\' text-anchor=\'middle\'>G</text></svg>'">
+    </div>
+    <span class="nav-name">GTU<span>Academy</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="GTUAcademy_Homepage.html" class="active">🏠 Home</a></li>
+    <li><a href="GTUAcademy_Subjects.html">📚 Subjects</a></li>
+    <li><a href="GTUAcademy_PYQs.html">📋 PYQs</a></li>
+    <li><a href="GTUAcademy_About.html">ℹ About</a></li>
+    
+  </ul>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+    Gujarat Technological University · Study Portal
+  </div>
+  <h1>Your Complete<br><span class="highlight">GTU Study</span> Companion</h1>
+  <p>Structured notes, solved PYQs, and full syllabus coverage — organised semester-by-semester for every GTU engineering student.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="num">8</span><div class="label">Semesters</div></div>
+    <div class="stat"><span class="num">5</span><div class="label">Modules Live</div></div>
+    <div class="stat"><span class="num">40+</span><div class="label">PYQs Solved</div></div>
+    <div class="stat"><span class="num">Free</span><div class="label">Always</div></div>
+  </div>
+</section>
+
+<!-- ══════════════ MAIN CONTENT ══════════════ -->
+<main class="main">
+  <div class="section-title">
+    <span class="tag">◆ Browse by Semester</span>
+    <h2>Select Your Semester</h2>
+  </div>
+
+  <!-- ── SEMESTER TABS ── -->
+  <div class="sem-tabs">
+    <button class="sem-tab active" onclick="showSem(1, this)">
+      <span class="sem-num">1</span> Semester 1
+    </button>
+    <button class="sem-tab" onclick="showSem(2, this)">
+      <span class="sem-num">2</span> Semester 2
+    </button>
+    <button class="sem-tab" onclick="showSem(3, this)">
+      <span class="sem-num">3</span> Semester 3
+    </button>
+    <button class="sem-tab" onclick="showSem(4, this)">
+      <span class="sem-num">4</span> Semester 4
+    </button>
+    <button class="sem-tab" onclick="showSem(5, this)">
+      <span class="sem-num">5</span> Semester 5
+    </button>
+    <button class="sem-tab" onclick="showSem(6, this)">
+      <span class="sem-num">6</span> Semester 6
+    </button>
+    <button class="sem-tab" onclick="showSem(7, this)">
+      <span class="sem-num">7</span> Semester 7
+    </button>
+    <button class="sem-tab" onclick="showSem(8, this)">
+      <span class="sem-num">8</span> Semester 8
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SEMESTER 1 PANEL
+  ══════════════════════════════════ -->
+  <div class="sem-panel active" id="sem-1">
+    <div class="sem-info-row">
+      <div>
+        <div class="sem-label">First Semester</div>
+        <div class="sem-desc">Foundation subjects · Common for all branches · BE Programme</div>
+      </div>
+      <span class="sem-count">5 Subjects</span>
+    </div>
+    <div class="subjects-grid">
+
+      <!-- ★★★ MATHEMATICS-I — FULL MODULES ★★★ -->
+      <div class="subject-card has-modules" onclick="toggleModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(240,180,41,0.15); color:var(--gold);">∫</div>
+          <div class="subject-info">
+            <div class="subject-code">BE01R00041 · 4 Credits</div>
+            <div class="subject-name">Mathematics – I</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-available">✓ Available</span>
+          <span class="subject-badge badge-credits">5 Modules</span>
+          <a class="subject-badge" href="GTUAcademy_Maths1_PYQs.html" onclick="event.stopPropagation()" style="background:rgba(224,82,82,0.12);color:#e05252;border:1px solid rgba(224,82,82,0.3);text-decoration:none;">📋 7 PYQs</a>
+        </div>
+        <div class="modules-panel">
+          <div class="modules-header">📚 All 5 Modules — Click to Open</div>
+          <div class="module-list">
+            <a class="module-item" href="GTU_Maths1_Module1_BasicCalculus.html" target="_blank">
+              <span class="module-num">M1</span>
+              <div class="module-text">
+                <div class="module-title">Module 1: Basic Calculus</div>
+                <div class="module-subtitle">Improper Integrals · Beta &amp; Gamma Functions · Applications</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+            <a class="module-item" href="GTU_Maths1_Module2_SingleVarCalculus.html" target="_blank">
+              <span class="module-num">M2</span>
+              <div class="module-text">
+                <div class="module-title">Module 2: Single-Variable Calculus</div>
+                <div class="module-subtitle">L'Hôpital's Rule · Taylor &amp; Maclaurin Series · Extreme Values</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+            <a class="module-item" href="GTU_Maths1_Module3_SequencesAndSeries.html" target="_blank">
+              <span class="module-num">M3</span>
+              <div class="module-text">
+                <div class="module-title">Module 3: Sequences and Series</div>
+                <div class="module-subtitle">8 Convergence Tests · Alternating Series · Power Series · Radius of Convergence</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+            <a class="module-item" href="GTU_Maths1_Module4_MultivariableCalcDiff.html" target="_blank">
+              <span class="module-num">M4</span>
+              <div class="module-text">
+                <div class="module-title">Module 4: Multivariable Calculus (Differentiation)</div>
+                <div class="module-subtitle">Limits · Gradient · Directional Derivatives · Tangent Planes · Lagrange Multipliers</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+            <a class="module-item" href="GTU_Maths1_Module5_MultivariableCalcInteg.html" target="_blank">
+              <span class="module-num">M5</span>
+              <div class="module-text">
+                <div class="module-title">Module 5: Multivariable Calculus (Integration)</div>
+                <div class="module-subtitle">Double Integrals · Polar Coordinates · Change of Order · Triple Integrals</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physics -->
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(0,180,216,0.15); color:var(--teal);">⚛</div>
+          <div class="subject-info">
+            <div class="subject-code">BE01R00042 · 4 Credits</div>
+            <div class="subject-name">Physics</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+          <span class="subject-badge badge-credits">4 Credits</span>
+        </div>
+      </div>
+
+      <!-- Chemistry -->
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(139,92,246,0.15); color:var(--purple);">⚗</div>
+          <div class="subject-info">
+            <div class="subject-code">BE01R00043 · 4 Credits</div>
+            <div class="subject-name">Engineering Chemistry</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+          <span class="subject-badge badge-credits">4 Credits</span>
+        </div>
+      </div>
+
+      <!-- Engineering Drawing -->
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(244,114,182,0.12); color:var(--pink);">📐</div>
+          <div class="subject-info">
+            <div class="subject-code">BE01R00044 · 3 Credits</div>
+            <div class="subject-name">Engineering Drawing &amp; Graphics</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+          <span class="subject-badge badge-credits">3 Credits</span>
+        </div>
+      </div>
+
+      <!-- Workshop / Programming -->
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(76,175,125,0.12); color:var(--green);">💻</div>
+          <div class="subject-info">
+            <div class="subject-code">BE01R00045 · 2 Credits</div>
+            <div class="subject-name">Problem Solving using Python</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+          <span class="subject-badge badge-credits">2 Credits</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       SEMESTER 2 PANEL
+  ══════════════════════════════════ -->
+  <div class="sem-panel" id="sem-2">
+    <div class="sem-info-row">
+      <div>
+        <div class="sem-label">Second Semester</div>
+        <div class="sem-desc">Foundation continuation · Common for all branches</div>
+      </div>
+      <span class="sem-count">5 Subjects</span>
+    </div>
+    <div class="subjects-grid">
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(240,180,41,0.15); color:var(--gold);">∑</div>
+          <div class="subject-info">
+            <div class="subject-code">BE02R00041 · 4 Credits</div>
+            <div class="subject-name">Mathematics – II</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+        </div>
+      </div>
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(0,180,216,0.15); color:var(--teal);">🔌</div>
+          <div class="subject-info">
+            <div class="subject-code">BE02R00042 · 4 Credits</div>
+            <div class="subject-name">Basic Electronics</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+        </div>
+      </div>
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(139,92,246,0.15); color:var(--purple);">🌿</div>
+          <div class="subject-info">
+            <div class="subject-code">BE02R00043 · 3 Credits</div>
+            <div class="subject-name">Environmental Science</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+        </div>
+      </div>
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(76,175,125,0.12); color:var(--green);">⚙</div>
+          <div class="subject-info">
+            <div class="subject-code">BE02R00044 · 3 Credits</div>
+            <div class="subject-name">Engineering Mechanics</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+        </div>
+      </div>
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:rgba(251,146,60,0.12); color:var(--orange);">🗣</div>
+          <div class="subject-info">
+            <div class="subject-code">BE02R00045 · 2 Credits</div>
+            <div class="subject-name">Communication Skills</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SEMESTERS 3–8 (Generated) ══════════ -->
+  <div class="sem-panel" id="sem-3">
+    <div class="sem-info-row">
+      <div>
+        <div class="sem-label">Third Semester</div>
+        <div class="sem-desc">Branch-specific subjects begin · Core Engineering</div>
+      </div>
+      <span class="sem-count">Branch Specific</span>
+    </div>
+    <div class="subjects-grid" id="grid-3"></div>
+  </div>
+
+  <div class="sem-panel" id="sem-4">
+    <div class="sem-info-row">
+      <div>
+        <div class="sem-label">Fourth Semester</div>
+        <div class="sem-desc">Advanced core subjects · Branch-specific electives</div>
+      </div>
+      <span class="sem-count">Branch Specific</span>
+    </div>
+    <div class="subjects-grid" id="grid-4"></div>
+  </div>
+
+  <div class="sem-panel" id="sem-5">
+    <div class="sem-info-row">
+      <div>
+        <div class="sem-label">Fifth Semester</div>
+        <div class="sem-desc">Elective subjects · Mini-project begins</div>
+      </div>
+      <span class="sem-count">Branch Specific</span>
+    </div>
+    <div class="subjects-grid" id="grid-5"></div>
+  </div>
+
+  <div class="sem-panel" id="sem-6">
+    <div class="sem-info-row">
+      <div>
+        <div class="sem-label">Sixth Semester</div>
+        <div class="sem-desc">Professional electives · Industry-oriented subjects</div>
+      </div>
+      <span class="sem-count">Branch Specific</span>
+    </div>
+    <div class="subjects-grid" id="grid-6"></div>
+  </div>
+
+  <div class="sem-panel" id="sem-7">
+    <div class="sem-info-row">
+      <div>
+        <div class="sem-label">Seventh Semester</div>
+        <div class="sem-desc">Advanced electives · Major project preparation</div>
+      </div>
+      <span class="sem-count">Branch Specific</span>
+    </div>
+    <div class="subjects-grid" id="grid-7"></div>
+  </div>
+
+  <div class="sem-panel" id="sem-8">
+    <div class="sem-info-row">
+      <div>
+        <div class="sem-label">Eighth Semester</div>
+        <div class="sem-desc">Major project · Open electives · Internship</div>
+      </div>
+      <span class="sem-count">Branch Specific</span>
+    </div>
+    <div class="subjects-grid" id="grid-8"></div>
+  </div>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <span class="footer-brand">GTUAcademy</span>
+  <p>Built for GTU Engineering Students · All study material is free · Content expanding every week</p>
+  <p style="margin-top:6px; opacity:0.5;">Gujarat Technological University · Bachelor of Engineering · All Branches</p>
+</footer>
+
+<!-- ══════════ JAVASCRIPT ══════════ -->
+<script>
+// ── Semester switching ──
+function showSem(num, btn) {
+  document.querySelectorAll('.sem-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sem-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('sem-' + num).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── Toggle module panel on subject card ──
+function toggleModules(card) {
+  const panel = card.querySelector('.modules-panel');
+  const isOpen = panel.classList.contains('open');
+
+  // close all others
+  document.querySelectorAll('.modules-panel.open').forEach(p => {
+    p.classList.remove('open');
+    p.closest('.subject-card').classList.remove('open');
+  });
+
+  if (!isOpen) {
+    panel.classList.add('open');
+    card.classList.add('open');
+  }
+}
+
+// ── No modules (coming soon) ──
+function noModules(card) {
+  card.style.borderColor = 'rgba(251,146,60,0.4)';
+  setTimeout(() => { card.style.borderColor = ''; }, 600);
+  // show a small shake
+  card.style.animation = 'none';
+  card.style.transform = 'translateX(-4px)';
+  setTimeout(() => { card.style.transform = 'translateX(4px)'; }, 80);
+  setTimeout(() => { card.style.transform = ''; }, 160);
+}
+
+// ── Generate placeholder cards for sems 3-8 ──
+const semData = {
+  3: [
+    { icon:'🔢', color:'gold', name:'Data Structures & Algorithms', code:'CS/IT Branch' },
+    { icon:'⚡', color:'teal', name:'Circuit Analysis', code:'EC/EE Branch' },
+    { icon:'🌡', color:'purple', name:'Thermodynamics', code:'Mech Branch' },
+    { icon:'🏗', color:'pink', name:'Strength of Materials', code:'Civil Branch' },
+    { icon:'🧮', color:'green', name:'Mathematics – III', code:'All Branches' },
+  ],
+  4: [
+    { icon:'🖥', color:'gold', name:'Operating Systems', code:'CS/IT Branch' },
+    { icon:'📡', color:'teal', name:'Signals & Systems', code:'EC Branch' },
+    { icon:'🔩', color:'purple', name:'Machine Design', code:'Mech Branch' },
+    { icon:'🌊', color:'pink', name:'Fluid Mechanics', code:'Civil/Mech' },
+    { icon:'📊', color:'green', name:'Probability & Statistics', code:'All Branches' },
+  ],
+  5: [
+    { icon:'🤖', color:'gold', name:'Artificial Intelligence', code:'CS/IT Branch' },
+    { icon:'📻', color:'teal', name:'Communication Systems', code:'EC Branch' },
+    { icon:'🔋', color:'purple', name:'Power Systems', code:'EE Branch' },
+    { icon:'🏗', color:'pink', name:'Structural Analysis', code:'Civil Branch' },
+    { icon:'🎛', color:'orange', name:'Control Systems', code:'All Branches' },
+  ],
+  6: [
+    { icon:'☁', color:'gold', name:'Cloud Computing', code:'CS/IT Branch' },
+    { icon:'📱', color:'teal', name:'Embedded Systems', code:'EC Branch' },
+    { icon:'⚡', color:'purple', name:'Power Electronics', code:'EE Branch' },
+    { icon:'🏘', color:'pink', name:'Environmental Engg.', code:'Civil Branch' },
+    { icon:'🛠', color:'green', name:'Industrial Engg.', code:'Mech Branch' },
+  ],
+  7: [
+    { icon:'🧠', color:'gold', name:'Machine Learning', code:'CS/IT Branch' },
+    { icon:'📡', color:'teal', name:'Wireless Networks', code:'EC Branch' },
+    { icon:'⚡', color:'purple', name:'High Voltage Engg.', code:'EE Branch' },
+    { icon:'🌉', color:'pink', name:'Bridge Engineering', code:'Civil Branch' },
+    { icon:'🤖', color:'green', name:'Robotics & Automation', code:'Mech Branch' },
+  ],
+  8: [
+    { icon:'🎓', color:'gold', name:'Major Project', code:'All Branches' },
+    { icon:'💼', color:'teal', name:'Internship / Industrial Training', code:'All Branches' },
+    { icon:'📋', color:'purple', name:'Open Elective', code:'All Branches' },
+    { icon:'🔬', color:'pink', name:'Research Publication', code:'All Branches' },
+    { icon:'📈', color:'green', name:'Entrepreneurship', code:'All Branches' },
+  ],
+};
+
+const colorMap = {
+  gold: 'rgba(240,180,41,0.15); color:var(--gold)',
+  teal: 'rgba(0,180,216,0.15); color:var(--teal)',
+  purple: 'rgba(139,92,246,0.15); color:var(--purple)',
+  pink: 'rgba(244,114,182,0.12); color:var(--pink)',
+  green: 'rgba(76,175,125,0.12); color:var(--green)',
+  orange: 'rgba(251,146,60,0.12); color:var(--orange)',
+};
+
+for (let s = 3; s <= 8; s++) {
+  const grid = document.getElementById('grid-' + s);
+  if (!grid) continue;
+  semData[s].forEach(sub => {
+    const col = colorMap[sub.color] || colorMap.gold;
+    grid.innerHTML += `
+      <div class="subject-card" onclick="noModules(this)">
+        <div class="subject-header">
+          <div class="subject-icon" style="background:${col.split(';')[0]}; ${col.split(';')[1]}">${sub.icon}</div>
+          <div class="subject-info">
+            <div class="subject-code">${sub.code}</div>
+            <div class="subject-name">${sub.name}</div>
+          </div>
+          <span class="subject-arrow">›</span>
+        </div>
+        <div class="subject-footer">
+          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
+        </div>
+      </div>`;
+  });
+}
+</script>
+
+</body>
+</html>

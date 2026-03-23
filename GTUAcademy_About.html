@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | GTUAcademy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#080e1f;--navy-card:#111d40;--navy-light:#162249;--gold:#f0b429;--gold-pale:rgba(240,180,41,0.12);--teal:#00b4d8;--teal-dim:rgba(0,180,216,0.15);--white:#f0f4ff;--muted:#7a8ab0;--border:rgba(240,180,41,0.18);--green:#4caf7d;--red:#e05252;--orange:#fb923c;--purple:#8b5cf6;--pink:#f472b6;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 20% 20%,rgba(255,255,255,.3) 0%,transparent 100%),radial-gradient(1px 1px at 50% 70%,rgba(255,255,255,.2) 0%,transparent 100%),radial-gradient(1px 1px at 80% 30%,rgba(255,255,255,.25) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 60% 50%,rgba(240,180,41,.18) 0%,transparent 100%),radial-gradient(1px 1px at 35% 85%,rgba(0,180,216,.15) 0%,transparent 100%);pointer-events:none;z-index:0;}
+.navbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;background:rgba(8,14,31,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
+.nav-logo{width:38px;height:38px;border-radius:9px;background:var(--navy-light);border:1.5px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:800;color:var(--gold);}
+.nav-logo img{width:100%;height:100%;object-fit:cover;}
+.nav-name{font-family:'Playfair Display',serif;font-size:1.32em;font-weight:800;color:var(--white);}
+.nav-name span{color:var(--gold);}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;}
+.nav-links a{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:9px;color:var(--muted);text-decoration:none;font-size:.86em;font-weight:500;transition:all .2s;}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.05);}
+.nav-links a.active{color:var(--gold);background:var(--gold-pale);border:1px solid rgba(240,180,41,.25);}
+.main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:56px 40px 80px;}
+/* HERO */
+.about-hero{text-align:center;margin-bottom:64px;}
+.logo-big{width:96px;height:96px;border-radius:20px;background:var(--navy-light);border:2px solid var(--border);overflow:hidden;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2em;font-weight:800;color:var(--gold);}
+.logo-big img{width:100%;height:100%;object-fit:cover;}
+.about-hero h1{font-family:'Playfair Display',serif;font-size:2.8em;font-weight:800;margin-bottom:8px;}
+.about-hero h1 span{color:var(--gold);}
+.about-hero .tagline{font-size:1.1em;color:var(--muted);line-height:1.7;max-width:540px;margin:0 auto;}
+/* MISSION */
+.mission-card{background:linear-gradient(135deg,rgba(13,24,53,.9),rgba(22,34,73,.8));border:1px solid var(--border);border-radius:18px;padding:36px 40px;margin-bottom:40px;position:relative;overflow:hidden;}
+.mission-card::before{content:'"';position:absolute;top:-10px;left:24px;font-family:'Playfair Display',serif;font-size:8em;color:rgba(240,180,41,.07);line-height:1;pointer-events:none;}
+.mission-card h2{font-family:'Playfair Display',serif;font-size:1.4em;font-weight:700;color:var(--gold);margin-bottom:16px;}
+.mission-card p{font-size:.97em;color:var(--white);line-height:1.8;margin-bottom:12px;}
+.mission-card p:last-child{margin-bottom:0;color:var(--muted);font-size:.9em;}
+/* FEATURES GRID */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;margin-bottom:48px;}
+.feat-card{background:var(--navy-card);border:1.5px solid var(--border);border-radius:16px;padding:24px;transition:all .28s;}
+.feat-card:hover{transform:translateY(-4px);border-color:rgba(240,180,41,.3);box-shadow:0 12px 32px rgba(0,0,0,.35);}
+.feat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4em;margin-bottom:16px;}
+.feat-title{font-family:'Playfair Display',serif;font-size:1.05em;font-weight:700;color:var(--white);margin-bottom:8px;}
+.feat-desc{font-size:.84em;color:var(--muted);line-height:1.65;}
+/* WHAT'S INSIDE */
+.inside-section{margin-bottom:48px;}
+.inside-section h2{font-family:'Playfair Display',serif;font-size:1.5em;font-weight:700;margin-bottom:20px;}
+.inside-section h2 span{color:var(--gold);}
+.inside-list{display:flex;flex-direction:column;gap:10px;}
+.inside-item{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:var(--navy-card);border:1px solid var(--border);border-radius:12px;transition:all .2s;}
+.inside-item:hover{border-color:rgba(240,180,41,.25);}
+.ii-ico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1em;flex-shrink:0;}
+.ii-title{font-weight:700;font-size:.93em;color:var(--white);margin-bottom:3px;}
+.ii-desc{font-size:.78em;color:var(--muted);line-height:1.55;}
+.ii-badge{font-size:.66em;padding:2px 8px;border-radius:8px;font-weight:600;margin-left:6px;border:1px solid;}
+/* CREDITS */
+.credits-card{background:var(--navy-card);border:1px solid var(--border);border-radius:18px;padding:28px 32px;margin-bottom:40px;}
+.credits-card h2{font-family:'Playfair Display',serif;font-size:1.3em;font-weight:700;color:var(--gold);margin-bottom:18px;}
+.credits-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+.credits-row:last-child{border-bottom:none;padding-bottom:0;}
+.cr-ico{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1em;flex-shrink:0;}
+.cr-name{font-weight:600;font-size:.88em;color:var(--white);}
+.cr-role{font-size:.75em;color:var(--muted);margin-top:2px;}
+/* CTA */
+.cta-strip{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:16px;}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:12px;font-size:.9em;font-weight:600;text-decoration:none;transition:all .25s;font-family:'DM Sans',sans-serif;}
+.cta-primary{background:var(--gold);color:var(--navy);border:2px solid var(--gold);}
+.cta-primary:hover{background:#d4a020;border-color:#d4a020;transform:translateY(-2px);}
+.cta-ghost{background:transparent;color:var(--white);border:2px solid var(--border);}
+.cta-ghost:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);}
+@media(max-width:700px){.navbar{padding:0 14px;}.main{padding:36px 16px 60px;}.mission-card{padding:24px 20px;}}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--navy);}::-webkit-scrollbar-thumb{background:var(--navy-light);border-radius:3px;}
+.footer{position:relative;z-index:1;text-align:center;padding:26px 40px;border-top:1px solid var(--border);color:var(--muted);font-size:.8em;}
+.footer .fbr{font-family:'Playfair Display',serif;font-size:1.05em;color:var(--gold);display:block;margin-bottom:4px;}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="GTUAcademy_Homepage.html" class="nav-brand">
+    <div class="nav-logo"><img src="GTUAcademy_Logo.svg" alt="G" onerror="this.outerHTML='G'"></div>
+    <span class="nav-name">GTU<span>Academy</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="GTUAcademy_Homepage.html">🏠 Home</a></li>
+    <li><a href="GTUAcademy_Subjects.html">📚 Subjects</a></li>
+    <li><a href="GTUAcademy_PYQs.html">📋 PYQs</a></li>
+    <li><a href="GTUAcademy_About.html" class="active">ℹ About</a></li>
+  </ul>
+</nav>
+<main class="main">
+
+  <!-- HERO -->
+  <div class="about-hero">
+    <div class="logo-big"><img src="GTUAcademy_Logo.svg" alt="GTUAcademy" onerror="this.outerHTML='G'"></div>
+    <h1>GTU<span>Academy</span></h1>
+    <p class="tagline">A free, complete study portal built specifically for Gujarat Technological University engineering students.</p>
+  </div>
+
+  <!-- MISSION -->
+  <div class="mission-card">
+    <h2>Our Mission</h2>
+    <p>GTUAcademy was created with one goal: give every GTU student access to the best possible study material — completely free, forever.</p>
+    <p>We believe quality education resources shouldn't sit behind paywalls. Every student deserves well-structured notes, solved PYQs, and clear explanations — regardless of their background or access to coaching.</p>
+    <p>Built by students, for students. Powered by a passion for making GTU exams less stressful and more approachable.</p>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(240,180,41,.14);color:var(--gold);">📖</div>
+      <div class="feat-title">Textbook-Quality Notes</div>
+      <div class="feat-desc">Every module is written like a proper textbook — definitions, formulas, step-by-step methods, and intuition. No shortcuts in explanation.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(224,82,82,.12);color:var(--red);">🎯</div>
+      <div class="feat-title">PYQ-Integrated Learning</div>
+      <div class="feat-desc">Every concept is linked to real exam questions from 2022–2025. You learn the theory AND see exactly how it appears in GTU exams.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(76,175,125,.12);color:var(--green);">⭐</div>
+      <div class="feat-title">Priority Tagging</div>
+      <div class="feat-desc">Topics are tagged by exam frequency — 🔥 Most Important, ⭐ High Priority — so you always know where to focus your time before exams.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(0,180,216,.14);color:var(--teal);">📋</div>
+      <div class="feat-title">Complete PYQ Bank</div>
+      <div class="feat-desc">All available previous year papers in one place. View them in-browser or download as PDF. 7 papers for Maths-I and growing.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(139,92,246,.14);color:var(--purple);">🆓</div>
+      <div class="feat-title">Free Forever</div>
+      <div class="feat-desc">No subscriptions. No paywalls. No ads. GTUAcademy will always remain free for every GTU student, no exceptions.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(251,146,60,.12);color:var(--orange);">📈</div>
+      <div class="feat-title">Growing Fast</div>
+      <div class="feat-desc">Starting with Maths-I and expanding to every subject across all 8 semesters. New material added regularly.</div>
+    </div>
+  </div>
+
+  <!-- WHAT'S INSIDE -->
+  <div class="inside-section">
+    <h2>What's <span>Inside</span> Each Module</h2>
+    <div class="inside-list">
+      <div class="inside-item">
+        <div class="ii-ico" style="background:rgba(240,180,41,.14);color:var(--gold);">📝</div>
+        <div><div class="ii-title">Simple Explanations <span class="ii-badge" style="background:rgba(76,175,125,.1);color:var(--green);border-color:rgba(76,175,125,.3);">All Topics</span></div><div class="ii-desc">Beginner-friendly language. Every concept explained from scratch with real intuition before the formulas.</div></div>
+      </div>
+      <div class="inside-item">
+        <div class="ii-ico" style="background:rgba(0,180,216,.14);color:var(--teal);">⭐</div>
+        <div><div class="ii-title">Formula Boxes <span class="ii-badge" style="background:rgba(0,180,216,.1);color:var(--teal);border-color:rgba(0,180,216,.3);">Highlighted</span></div><div class="ii-desc">Every important formula is isolated in a clearly visible box — easy to scan during last-minute revision.</div></div>
+      </div>
+      <div class="inside-item">
+        <div class="ii-ico" style="background:rgba(76,175,125,.12);color:var(--green);">✅</div>
+        <div><div class="ii-title">Step-by-Step Solved PYQs <span class="ii-badge" style="background:rgba(224,82,82,.1);color:var(--red);border-color:rgba(224,82,82,.25);">40+ Questions</span></div><div class="ii-desc">Every PYQ from 2022–2025 is fully solved with concept notes, each step explained, and shortcuts highlighted.</div></div>
+      </div>
+      <div class="inside-item">
+        <div class="ii-ico" style="background:rgba(139,92,246,.14);color:var(--purple);">⚠️</div>
+        <div><div class="ii-title">Common Mistakes Section</div><div class="ii-desc">For every subtopic, the most common exam errors are listed — with the wrong approach shown alongside the correct one.</div></div>
+      </div>
+      <div class="inside-item">
+        <div class="ii-ico" style="background:rgba(251,146,60,.12);color:var(--orange);">📌</div>
+        <div><div class="ii-title">Quick Revision Notes</div><div class="ii-desc">Each topic ends with a compact revision summary — all formulas, key concepts, and most repeated PYQs in one place.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURRENT COVERAGE -->
+  <div class="credits-card">
+    <h2>📚 Current Coverage</h2>
+    <div class="credits-row">
+      <div class="cr-ico" style="background:rgba(240,180,41,.14);color:var(--gold);">∫</div>
+      <div><div class="cr-name">Mathematics – I (BE01R00041) <span style="font-size:.72em;padding:2px 8px;border-radius:7px;background:rgba(76,175,125,.1);color:var(--green);border:1px solid rgba(76,175,125,.3);margin-left:6px;">✓ Complete</span></div><div class="cr-role">5 Modules · 40+ PYQs solved · 2022–2025 papers · All topics from GTU syllabus</div></div>
+    </div>
+    <div class="credits-row">
+      <div class="cr-ico" style="background:rgba(0,180,216,.14);color:var(--teal);">⚛</div>
+      <div><div class="cr-name">Physics (BE01R00042) <span style="font-size:.72em;padding:2px 8px;border-radius:7px;background:rgba(251,146,60,.1);color:var(--orange);border:1px solid rgba(251,146,60,.25);margin-left:6px;">In Progress</span></div><div class="cr-role">Module notes being prepared · Coming soon</div></div>
+    </div>
+    <div class="credits-row">
+      <div class="cr-ico" style="background:rgba(139,92,246,.14);color:var(--purple);">⚗</div>
+      <div><div class="cr-name">Engineering Chemistry + More <span style="font-size:.72em;padding:2px 8px;border-radius:7px;background:rgba(122,138,176,.15);color:var(--muted);border:1px solid rgba(122,138,176,.2);margin-left:6px;">Planned</span></div><div class="cr-role">All Semester 1 subjects → then expanding to Semester 2 and beyond</div></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="text-align:center;">
+    <p style="color:var(--muted);font-size:.88em;margin-bottom:20px;">Start studying now — it's completely free</p>
+    <div class="cta-strip">
+      <a href="GTUAcademy_Homepage.html" class="cta-btn cta-primary">🏠 Go to Home</a>
+      <a href="GTUAcademy_Subjects.html" class="cta-btn cta-ghost">📚 Browse Subjects</a>
+      <a href="GTUAcademy_PYQs.html" class="cta-btn cta-ghost">📋 View PYQs</a>
+    </div>
+  </div>
+
+</main>
+<footer class="footer"><span class="fbr">GTUAcademy</span><p>Free forever · Built for GTU students · All branches · All semesters</p></footer>
+</body>
+</html>
