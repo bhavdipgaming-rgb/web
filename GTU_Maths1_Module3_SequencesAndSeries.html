@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Mathematics-I | Module 3: Sequences and Series</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --primary: #4a148c;
+    --secondary: #6a1b9a;
+    --accent: #e53935;
+    --gold: #f9a825;
+    --green: #2e7d32;
+    --teal: #00695c;
+    --blue: #1565c0;
+    --light-bg: #f3e5f5;
+    --card-bg: #ffffff;
+    --border: #ce93d8;
+    --text: #1a1a2e;
+    --muted: #7b1fa2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f3e5f5; color: var(--text); line-height: 1.75; font-size: 15px; }
+
+  /* COVER */
+  .cover { background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 50%, #7b1fa2 100%); color: white; text-align: center; padding: 60px 30px; border-bottom: 6px solid var(--gold); }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+
+  /* TOC */
+  .toc { background: var(--card-bg); border: 1px solid var(--border); border-left: 5px solid var(--primary); border-radius: 8px; padding: 24px 28px; margin-bottom: 32px; }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 5px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* TOPIC HEADER */
+  .topic-header { background: linear-gradient(90deg, #4a148c, #6a1b9a); color: white; padding: 16px 24px; border-radius: 8px 8px 0 0; margin-top: 36px; }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+
+  /* SUBTOPIC */
+  .subtopic { background: var(--card-bg); border: 1px solid var(--border); border-top: none; padding: 26px 28px; margin-bottom: 2px; }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 { font-size: 1.1em; color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .priority-tag { font-size: 0.82em; padding: 2px 10px; border-radius: 12px; font-weight: 600; margin-left: auto; white-space: nowrap; }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .medium { background: #e8f5e9; color: #1b5e20; }
+  .low { background: #f5f5f5; color: #616161; }
+
+  /* CONTENT BOXES */
+  .definition { background: #f3e5f5; border-left: 4px solid var(--primary); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e8eaf6; border-left: 4px solid var(--blue); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .method-box strong { color: var(--blue); display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .mistake-box { background: #ffebee; border: 1px solid #ef9a9a; border-left: 4px solid var(--accent); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .mistake-box strong { color: var(--accent); display: block; margin-bottom: 8px; font-size: 0.85em; letter-spacing: 1px; }
+  .tip-box { background: #e8f5e9; border-left: 4px solid var(--green); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .tip-box strong { color: var(--green); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+
+  /* TEST CARD - special design for each convergence test */
+  .test-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 18px 0; }
+  .test-card .test-header { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; padding: 10px 18px; font-weight: 700; font-size: 1em; display: flex; align-items: center; gap: 10px; }
+  .test-card .test-body { padding: 16px 18px; background: white; }
+  .test-number { background: var(--gold); color: #333; padding: 2px 8px; border-radius: 10px; font-size: 0.85em; font-weight: 800; }
+
+  /* PYQ */
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 { background: var(--primary); color: white; padding: 8px 14px; border-radius: 6px 6px 0 0; font-size: 0.9em; letter-spacing: 1px; }
+  .pyq-card { border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; margin-bottom: 16px; overflow: hidden; }
+  .pyq-standalone { border: 1px solid var(--border); border-radius: 6px; margin-top: 12px; overflow: hidden; }
+  .pyq-question { background: var(--light-bg); padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .concept-note { background: #fff8e1; border-left: 3px solid var(--gold); padding: 8px 12px; margin-bottom: 10px; font-size: 0.92em; color: #5d4037; }
+  .step { margin: 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid #ce93d8; border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #f3e5f5; border: 1px solid #ce93d8; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--primary); }
+  .shortcut { background: #e8f5e9; border-left: 3px solid var(--green); padding: 8px 12px; margin-top: 8px; font-size: 0.9em; border-radius: 0 4px 4px 0; }
+  .shortcut::before { content: "⚡ SHORTCUT/TIP: "; font-weight: 700; color: var(--green); }
+
+  /* EOT */
+  .eot { background: linear-gradient(135deg, #4a148c 0%, #6a1b9a 100%); color: white; border-radius: 8px; padding: 24px 28px; margin: 28px 0 40px 0; }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width:600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+
+  /* MISC */
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+  .note { color: #7b1fa2; font-style: italic; font-size: 0.92em; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+
+  /* TEST SELECTOR TABLE */
+  .selector-table th { background: #4a148c; }
+  .selector-table td:first-child { font-weight: 700; color: #4a148c; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Mathematics – I</h1>
+  <div class="module-title">MODULE 3: Sequences and Series</div>
+  <p style="opacity:0.85">Convergence Tests · Power Series · Radius &amp; Interval of Convergence</p>
+  <div class="badges">
+    <span class="badge">📚 All 8 Convergence Tests</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- TOC -->
+<div class="toc">
+  <h2>📋 MODULE 3 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Sequences — Definition and Convergence</a>
+      <ol>
+        <li><a href="#t1s1">1.1 Sequences — Definition, Bounded, Monotonic</a></li>
+        <li><a href="#t1s2">1.2 Convergence of Sequences</a></li>
+        <li><a href="#t1s3">1.3 Sandwich (Squeeze) Theorem for Sequences</a></li>
+        <li><a href="#t1s4">1.4 PYQs on Sequences</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Infinite Series — Introduction and Basic Tests</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Infinite Series — Definition and Partial Sums</a></li>
+        <li><a href="#t2s2">2.2 Telescoping Series</a></li>
+        <li><a href="#t2s3">2.3 Geometric Series Test</a></li>
+        <li><a href="#t2s4">2.4 n-th Term Test (Divergence Test)</a></li>
+        <li><a href="#t2s5">2.5 PYQs on Basic Series</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Advanced Convergence Tests</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Integral Test and p-Series Test</a></li>
+        <li><a href="#t3s2">3.2 Comparison Test and Limit Comparison Test</a></li>
+        <li><a href="#t3s3">3.3 D'Alembert's Ratio Test</a></li>
+        <li><a href="#t3s4">3.4 Cauchy's Root Test</a></li>
+        <li><a href="#t3s5">3.5 How to Choose the Right Test</a></li>
+        <li><a href="#t3s6">3.6 PYQs on Advanced Tests</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic4">Topic 4: Alternating Series and Absolute Convergence</a>
+      <ol>
+        <li><a href="#t4s1">4.1 Alternating Series Test (Leibniz's Test)</a></li>
+        <li><a href="#t4s2">4.2 Absolute and Conditional Convergence</a></li>
+        <li><a href="#t4s3">4.3 PYQs on Alternating Series</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic5">Topic 5: Power Series, Radius and Interval of Convergence</a>
+      <ol>
+        <li><a href="#t5s1">5.1 Power Series — Definition</a></li>
+        <li><a href="#t5s2">5.2 Radius of Convergence</a></li>
+        <li><a href="#t5s3">5.3 Interval of Convergence</a></li>
+        <li><a href="#t5s4">5.4 PYQs on Power Series</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom3">End of Module 3: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 1 — SEQUENCES
+══════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Sequences — Definition and Convergence</h2>
+</div>
+
+<!-- 1.1 -->
+<div class="subtopic" id="t1s1">
+  <h3>1.1 Sequences — Definition, Bounded, Monotonic <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 KEY DEFINITIONS</strong>
+    <p><strong>Sequence:</strong> An ordered list of numbers \(a_1, a_2, a_3, \ldots\) written as \(\{a_n\}\).</p>
+    <p><strong>Bounded Above:</strong> \(\exists\, M\) such that \(a_n \leq M\) for all \(n\).</p>
+    <p><strong>Bounded Below:</strong> \(\exists\, m\) such that \(a_n \geq m\) for all \(n\).</p>
+    <p><strong>Bounded:</strong> Both bounded above and below.</p>
+    <p><strong>Monotonically Increasing:</strong> \(a_{n+1} \geq a_n\) for all \(n\).</p>
+    <p><strong>Monotonically Decreasing:</strong> \(a_{n+1} \leq a_n\) for all \(n\).</p>
+    <p><strong>Monotonic Sequence:</strong> Either monotonically increasing OR monotonically decreasing.</p>
+  </div>
+</div>
+
+<!-- 1.2 -->
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Convergence of Sequences <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 CONVERGENCE DEFINITION</strong>
+    <p>A sequence \(\{a_n\}\) <strong>converges</strong> to limit \(L\) if:
+    \[\lim_{n\to\infty} a_n = L\quad\text{(L is finite)}\]
+    If the limit does not exist or is \(\pm\infty\), the sequence <strong>diverges</strong>.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ USEFUL LIMITS FOR SEQUENCES (Memorize)</strong>
+    <table>
+      <tr><th>Sequence</th><th>Limit</th><th>Notes</th></tr>
+      <tr><td>\(\frac{1}{n^p}\)</td><td>\(0\)</td><td>\(p>0\)</td></tr>
+      <tr><td>\(r^n\)</td><td>\(0\)</td><td>\(|r|<1\)</td></tr>
+      <tr><td>\(n^{1/n}\)</td><td>\(1\)</td><td>Classic result</td></tr>
+      <tr><td>\(\frac{\ln n}{n}\)</td><td>\(0\)</td><td>Log grows slower than \(n\)</td></tr>
+      <tr><td>\(\frac{n^k}{e^n}\)</td><td>\(0\)</td><td>Exp grows faster than any power</td></tr>
+      <tr><td>\(\left(1+\frac{1}{n}\right)^n\)</td><td>\(e\)</td><td>Definition of \(e\)</td></tr>
+      <tr><td>\(\frac{\sin n}{n}\)</td><td>\(0\)</td><td>Bounded/\(n\)</td></tr>
+      <tr><td>\(\frac{\cos n}{n}\)</td><td>\(0\)</td><td>Bounded/\(n\)</td></tr>
+    </table>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION: Growth Hierarchy</strong>
+    From fastest to slowest growth: \(n! \gg e^n \gg n^k \gg \ln n \gg 1\). So any sequence where the denominator grows faster than numerator → converges to 0.
+  </div>
+</div>
+
+<!-- 1.3 -->
+<div class="subtopic" id="t1s3">
+  <h3>1.3 Sandwich (Squeeze) Theorem for Sequences <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 SANDWICH THEOREM</strong>
+    <p>If \(b_n \leq a_n \leq c_n\) for all \(n\geq N\), and if
+    \[\lim_{n\to\infty} b_n = \lim_{n\to\infty} c_n = L\]
+    then \(\lim_{n\to\infty} a_n = L\) also.</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 HOW TO USE SANDWICH THEOREM</strong>
+    <p>When \(a_n\) involves \(\sin\) or \(\cos\) (bounded functions), use:</p>
+    <p>\(-1 \leq \sin n \leq 1\) and \(-1 \leq \cos n \leq 1\)</p>
+    <p>Divide by \(n\) (or whatever grows): \(\frac{-1}{n} \leq \frac{\sin n}{n} \leq \frac{1}{n}\). Both sides \(\to 0\), so middle \(\to 0\).</p>
+  </div>
+</div>
+
+<!-- 1.4 PYQs -->
+<div class="subtopic" id="t1s4">
+  <h3>1.4 PYQs — Sequences <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — SEQUENCES</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Show that the sequence \(\{u_n\}\), where \(u_n = \dfrac{\sin n}{n}\), converges to zero.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic Sandwich</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept:</strong> Sandwich (Squeeze) Theorem. Since \(|\sin n|\leq 1\), trap \(u_n\) between \(-1/n\) and \(1/n\).</div>
+        <div class="step"><span class="step-num">STEP 1 — Bound \(\sin n\):</span> For all \(n\), \(-1 \leq \sin n \leq 1\).</div>
+        <div class="step"><span class="step-num">STEP 2 — Divide by \(n>0\):</span>
+        \[\frac{-1}{n} \leq \frac{\sin n}{n} \leq \frac{1}{n}\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Take limit:</span>
+        \[\lim_{n\to\infty}\frac{-1}{n} = 0 \quad\text{and}\quad \lim_{n\to\infty}\frac{1}{n} = 0\]</div>
+        <div class="step"><span class="step-num">STEP 4 — Apply Sandwich Theorem:</span> Since both bounds tend to 0, by Sandwich Theorem: \(\lim_{n\to\infty}\frac{\sin n}{n} = 0\).</div>
+        <div class="answer-box">∴ The sequence converges to \(0\). ✓</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: State the Sandwich theorem for sequences and discuss the convergence of \(\left\{\dfrac{\cos n}{n}\right\}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024 / Summer 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Identical method to above — just with \(\cos n\) instead of \(\sin n\). State the theorem first (easy marks), then apply.</div>
+        <div class="step"><span class="step-num">SANDWICH THEOREM STATEMENT:</span> If \(b_n\leq a_n\leq c_n\) for all \(n\geq N\), and \(\lim b_n = \lim c_n = L\), then \(\lim a_n = L\).</div>
+        <div class="step"><span class="step-num">APPLICATION:</span>
+        \[-1\leq\cos n\leq 1 \implies \frac{-1}{n}\leq\frac{\cos n}{n}\leq\frac{1}{n}\]
+        Both \(\frac{-1}{n}\to 0\) and \(\frac{1}{n}\to 0\). By Sandwich Theorem:
+        \[\lim_{n\to\infty}\frac{\cos n}{n} = 0\]</div>
+        <div class="answer-box">∴ The sequence \(\left\{\frac{\cos n}{n}\right\}\) converges to \(0\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Define monotonic sequence. Is the sequence \(\left\{\dfrac{1}{n^2}\right\}\) monotonic?</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">DEFINITION:</span> A sequence \(\{a_n\}\) is monotonic if it is either monotonically increasing (\(a_{n+1}\geq a_n\) for all \(n\)) or monotonically decreasing (\(a_{n+1}\leq a_n\) for all \(n\)).</div>
+        <div class="step"><span class="step-num">CHECK for \(a_n = \frac{1}{n^2}\):</span>
+        \[a_n = \frac{1}{n^2},\quad a_{n+1} = \frac{1}{(n+1)^2}\]
+        Since \((n+1)^2 > n^2\) for all \(n\geq 1\): \(\frac{1}{(n+1)^2} < \frac{1}{n^2}\), i.e., \(a_{n+1} < a_n\).</div>
+        <div class="answer-box">∴ Yes, \(\left\{\frac{1}{n^2}\right\}\) is <strong>monotonically decreasing</strong>, hence monotonic.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="eot">
+  <h3>📝 Quick Revision — Topic 1: Sequences</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Facts</h4>
+      <ul>
+        <li>Converges: \(\lim_{n\to\infty}a_n = L\) (finite)</li>
+        <li>Sandwich: trap between two sequences with same limit</li>
+        <li>\(\frac{\sin n}{n}\to 0\), \(\frac{\cos n}{n}\to 0\)</li>
+        <li>\(\frac{1}{n^p}\to 0\) for \(p>0\)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>PYQ Summary</h4>
+      <ul>
+        <li>🔥 Show \(\frac{\sin n}{n}\to 0\) (Sandwich)</li>
+        <li>🔥 State Sandwich + show \(\frac{\cos n}{n}\to 0\)</li>
+        <li>⭐ Define monotonic + check \(\{1/n^2\}\)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end topic1 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 2 — INFINITE SERIES BASICS
+══════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Infinite Series — Introduction and Basic Tests</h2>
+</div>
+
+<!-- 2.1 -->
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Infinite Series — Definition and Partial Sums <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITIONS</strong>
+    <p><strong>Infinite Series:</strong> \(\displaystyle\sum_{n=1}^\infty a_n = a_1 + a_2 + a_3 + \cdots\)</p>
+    <p><strong>Partial Sum:</strong> \(S_n = a_1 + a_2 + \cdots + a_n\)</p>
+    <p><strong>Convergence:</strong> If \(\lim_{n\to\infty} S_n = S\) (finite), the series <strong>converges</strong> to sum \(S\).</p>
+    <p><strong>Divergence:</strong> If \(\lim_{n\to\infty} S_n = \pm\infty\) or the limit doesn't exist, the series <strong>diverges</strong>.</p>
+  </div>
+</div>
+
+<!-- 2.2 -->
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Telescoping Series <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 TELESCOPING SERIES</strong>
+    <p>A series where consecutive terms cancel each other like a collapsing telescope. Usually comes from partial fractions.</p>
+    <p>General form: \(\sum_{n=1}^\infty (b_n - b_{n+1})\) → \(S_n = b_1 - b_{n+1}\)</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 METHOD FOR TELESCOPING</strong>
+    <ol>
+      <li>Use partial fractions to write \(a_n = \frac{A}{f(n)} - \frac{A}{f(n+1)}\) (or similar)</li>
+      <li>Write out several terms and observe cancellations</li>
+      <li>Find \(S_n\) (the surviving terms)</li>
+      <li>Take \(\lim_{n\to\infty} S_n\)</li>
+    </ol>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ STANDARD TELESCOPING RESULT</strong>
+    \[\sum_{n=1}^\infty\frac{1}{n(n+1)} = 1\quad\text{(Very frequently asked!)}\]
+    Proof: \(\frac{1}{n(n+1)} = \frac{1}{n}-\frac{1}{n+1}\), so \(S_n = 1 - \frac{1}{n+1} \to 1\).
+  </div>
+</div>
+
+<!-- 2.3 -->
+<div class="subtopic" id="t2s3">
+  <h3>2.3 Geometric Series Test <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 GEOMETRIC SERIES</strong>
+    <p>A series of the form \(\displaystyle\sum_{n=0}^\infty ar^n = a + ar + ar^2 + \cdots\)</p>
+    <p>where \(a\) is the first term and \(r\) is the common ratio.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ GEOMETRIC SERIES RULE (MUST MEMORIZE)</strong>
+    \[\sum_{n=0}^\infty ar^n = \begin{cases} \dfrac{a}{1-r} & \text{if } |r| < 1 \quad\text{(CONVERGES)} \\[8pt] \text{Diverges} & \text{if } |r| \geq 1 \end{cases}\]
+    <p><strong>Key:</strong> Always identify \(a\) (first term) and \(r\) (ratio = \(\frac{a_{n+1}}{a_n}\)) first.</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    If \(|r|<1\): each term is smaller than the previous, so the sum converges to a finite value. If \(|r|\geq 1\): terms don't shrink (or grow!), so the sum blows up.
+  </div>
+</div>
+
+<!-- 2.4 -->
+<div class="subtopic" id="t2s4">
+  <h3>2.4 n-th Term Test (Divergence Test) <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 n-TH TERM TEST (DIVERGENCE TEST)</strong>
+    <p>If \(\lim_{n\to\infty} a_n \neq 0\), then \(\displaystyle\sum a_n\) <strong>DIVERGES</strong>.</p>
+    <p><strong>Contrapositive:</strong> If \(\displaystyle\sum a_n\) converges, then \(\lim_{n\to\infty} a_n = 0\).</p>
+  </div>
+
+  <div class="mistake-box">
+    <strong>⚠️ CRITICAL WARNING — Most common mistake!</strong>
+    <p>The n-th term test can only PROVE DIVERGENCE, NEVER CONVERGENCE.</p>
+    <p>❌ WRONG: "Since \(\lim a_n = 0\), the series converges." — THIS IS FALSE!</p>
+    <p>✅ Correct: \(\lim a_n = 0\) is NECESSARY but NOT SUFFICIENT for convergence.</p>
+    <p>Example: \(\sum \frac{1}{n}\) has \(\lim \frac{1}{n}=0\) but still DIVERGES (harmonic series)!</p>
+  </div>
+</div>
+
+<!-- 2.5 PYQs -->
+<div class="subtopic" id="t2s5">
+  <h3>2.5 PYQs — Basic Series Tests <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 PYQs — Geometric, Telescoping, Sum of Series</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Show that the series \(\displaystyle\sum_{n=0}^\infty\left(\frac{e}{\pi}\right)^n\) is convergent and find its sum.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept:</strong> Geometric series with \(r = e/\pi\). Since \(e\approx 2.718\) and \(\pi\approx 3.14159\), we have \(r<1\).</div>
+        <div class="step"><span class="step-num">STEP 1 — Identify geometric series:</span> This is \(\sum_{n=0}^\infty ar^n\) with \(a=1\) and \(r=\dfrac{e}{\pi}\).</div>
+        <div class="step"><span class="step-num">STEP 2 — Check ratio:</span> \(\dfrac{e}{\pi} = \dfrac{2.718\ldots}{3.14159\ldots} \approx 0.865 < 1\). So \(|r|<1\). ✓</div>
+        <div class="step"><span class="step-num">STEP 3 — Convergence and sum:</span> Since \(|r|<1\), the series converges with sum:
+        \[S = \frac{a}{1-r} = \frac{1}{1-e/\pi} = \frac{1}{\dfrac{\pi-e}{\pi}} = \frac{\pi}{\pi-e}\]</div>
+        <div class="answer-box">∴ The series converges with sum \(\dfrac{\pi}{\pi-e}\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Show that series \(\displaystyle\sum_{n=0}^\infty\left(\frac{1}{\sqrt{n}}-\frac{1}{\sqrt{n+1}}\right)\) is convergent and find its sum.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Telescoping</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept:</strong> Telescoping series — write out partial sums and observe cancellations.</div>
+        <div class="step"><span class="step-num">STEP 1 — Partial sum \(S_n\):</span>
+        \[S_n = \sum_{k=0}^n\left(\frac{1}{\sqrt{k}}-\frac{1}{\sqrt{k+1}}\right)\]
+        Note: at \(k=0\), \(\frac{1}{\sqrt{0}}\) is undefined. The series starts at \(n=1\):
+        \[S_n = \left(\frac{1}{\sqrt{1}}-\frac{1}{\sqrt{2}}\right)+\left(\frac{1}{\sqrt{2}}-\frac{1}{\sqrt{3}}\right)+\cdots+\left(\frac{1}{\sqrt{n}}-\frac{1}{\sqrt{n+1}}\right)\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Cancel (telescope):</span>
+        \[S_n = 1 - \frac{1}{\sqrt{n+1}}\quad\text{(all middle terms cancel)}\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Take limit:</span>
+        \[\lim_{n\to\infty}S_n = \lim_{n\to\infty}\left(1-\frac{1}{\sqrt{n+1}}\right) = 1 - 0 = 1\]</div>
+        <div class="answer-box">∴ The series <strong>converges</strong> with sum \(= 1\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the sum of series \(\displaystyle\sum_{n=1}^\infty\frac{1}{n(n+1)}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024 / Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated — Classic</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept:</strong> Telescoping via partial fractions. \(\frac{1}{n(n+1)} = \frac{1}{n}-\frac{1}{n+1}\).</div>
+        <div class="step"><span class="step-num">PARTIAL FRACTIONS:</span>
+        \[\frac{1}{n(n+1)} = \frac{1}{n}-\frac{1}{n+1}\]</div>
+        <div class="step"><span class="step-num">PARTIAL SUM:</span>
+        \[S_n = \left(1-\frac{1}{2}\right)+\left(\frac{1}{2}-\frac{1}{3}\right)+\cdots+\left(\frac{1}{n}-\frac{1}{n+1}\right) = 1-\frac{1}{n+1}\]</div>
+        <div class="step"><span class="step-num">LIMIT:</span>
+        \[\sum_{n=1}^\infty\frac{1}{n(n+1)} = \lim_{n\to\infty}\left(1-\frac{1}{n+1}\right) = 1\]</div>
+        <div class="answer-box">∴ Sum \(= 1\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the sum of the series \(\displaystyle\sum_{n=0}^\infty\frac{2^n-1}{3^n}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Split into two geometric series.</div>
+        <div class="step"><span class="step-num">SPLIT:</span>
+        \[\sum_{n=0}^\infty\frac{2^n-1}{3^n} = \sum_{n=0}^\infty\left(\frac{2}{3}\right)^n - \sum_{n=0}^\infty\frac{1}{3^n} = \sum_{n=0}^\infty\left(\frac{2}{3}\right)^n - \sum_{n=0}^\infty\left(\frac{1}{3}\right)^n\]</div>
+        <div class="step"><span class="step-num">APPLY GEOMETRIC SUM FORMULA:</span>
+        \[= \frac{1}{1-2/3} - \frac{1}{1-1/3} = \frac{1}{1/3} - \frac{1}{2/3} = 3 - \frac{3}{2} = \frac{3}{2}\]</div>
+        <div class="answer-box">∴ Sum \(= \dfrac{3}{2}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test convergence of \(\displaystyle\sum_{n=0}^\infty\left(\frac{4}{n+3}\cdot\frac{5}{n}\right)^n\) and find sum if convergent</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Recognise this as geometric-type with ratio \(\left(\frac{4}{5}\right)^n\cdot\left(\frac{5}{n+3}\right)^n \cdot\ldots\) — actually rewrite: \(\left(\frac{4}{n+3}\cdot\frac{5}{n}\right)^n = \left(\frac{20}{n^2+3n}\right)^n\). Use Cauchy's root test or observe as geometric with \(r=0\).</div>
+        <div class="step"><span class="step-num">ROOT TEST:</span> \(\lim_{n\to\infty}\left(\frac{20}{n^2+3n}\right) = \lim_{n\to\infty}\frac{20}{n^2+3n} = 0 < 1\). Converges.</div>
+        <div class="step"><span class="step-num">SUM:</span> The series is NOT a standard geometric, so we note it converges but its exact sum requires more work. Most exams only ask for convergence here.</div>
+        <div class="answer-box">∴ Series <strong>converges</strong> (by root test, \(L=0<1\)).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- end topic2 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 3 — ADVANCED CONVERGENCE TESTS
+══════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Advanced Convergence Tests</h2>
+</div>
+
+<!-- 3.1 Integral and p-test -->
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Integral Test and p-Series Test <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="test-card">
+    <div class="test-header"><span class="test-number">TEST 1</span> Integral Test</div>
+    <div class="test-body">
+      <p><strong>Statement:</strong> If \(f(x)\) is positive, continuous, and decreasing for \(x\geq 1\), with \(a_n = f(n)\), then:
+      \[\sum_{n=1}^\infty a_n \text{ converges} \iff \int_1^\infty f(x)dx \text{ converges}\]</p>
+      <p><strong>Use when:</strong> \(a_n\) is a "nice" function of \(n\) that's easy to integrate (like \(\frac{1}{n^p}\), \(\frac{\ln n}{n^2}\), etc.)</p>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ p-SERIES TEST (Derived from Integral Test — MEMORIZE)</strong>
+    \[\sum_{n=1}^\infty\frac{1}{n^p}\text{ converges if }p>1\text{ and diverges if }p\leq 1\]
+    <table>
+      <tr><th>Series</th><th>p</th><th>Verdict</th></tr>
+      <tr><td>\(\sum\frac{1}{n}\) (harmonic)</td><td>1</td><td>DIVERGES</td></tr>
+      <tr><td>\(\sum\frac{1}{n^2}\)</td><td>2</td><td>CONVERGES</td></tr>
+      <tr><td>\(\sum\frac{1}{\sqrt{n}}\)</td><td>1/2</td><td>DIVERGES</td></tr>
+      <tr><td>\(\sum\frac{1}{n^{3/2}}\)</td><td>3/2</td><td>CONVERGES</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 3.2 Comparison Tests -->
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Comparison Test and Limit Comparison Test <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="test-card">
+    <div class="test-header"><span class="test-number">TEST 2</span> Direct Comparison Test</div>
+    <div class="test-body">
+      <p>If \(0 \leq a_n \leq b_n\) for all large \(n\):</p>
+      <ul>
+        <li>If \(\sum b_n\) converges → \(\sum a_n\) converges (smaller is also finite)</li>
+        <li>If \(\sum a_n\) diverges → \(\sum b_n\) diverges (bigger is also infinite)</li>
+      </ul>
+      <p><strong>Use when:</strong> You can clearly bound \(a_n\) above or below by a known series.</p>
+    </div>
+  </div>
+
+  <div class="test-card">
+    <div class="test-header"><span class="test-number">TEST 3</span> Limit Comparison Test</div>
+    <div class="test-body">
+      <p>If \(a_n, b_n > 0\) and \(\lim_{n\to\infty}\dfrac{a_n}{b_n} = c\) where \(0 < c < \infty\), then \(\sum a_n\) and \(\sum b_n\) both converge or both diverge.</p>
+      <p><strong>Use when:</strong> \(a_n\) looks like \(b_n\) for large \(n\), but direct comparison is hard. Typically compare with a p-series.</p>
+      <p><strong>Strategy:</strong> Keep only the highest power of \(n\) in numerator and denominator to find the comparison series \(b_n\).</p>
+    </div>
+  </div>
+</div>
+
+<!-- 3.3 Ratio Test -->
+<div class="subtopic" id="t3s3">
+  <h3>3.3 D'Alembert's Ratio Test <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="test-card">
+    <div class="test-header"><span class="test-number">TEST 4</span> D'Alembert's Ratio Test</div>
+    <div class="test-body">
+      <p>Let \(L = \lim_{n\to\infty}\left|\dfrac{a_{n+1}}{a_n}\right|\). Then:</p>
+      <table>
+        <tr><th>Value of \(L\)</th><th>Conclusion</th></tr>
+        <tr><td>\(L < 1\)</td><td>Series <strong>CONVERGES absolutely</strong></td></tr>
+        <tr><td>\(L > 1\)</td><td>Series <strong>DIVERGES</strong></td></tr>
+        <tr><td>\(L = 1\)</td><td><strong>INCONCLUSIVE</strong> — use another test</td></tr>
+      </table>
+      <p><strong>Best for:</strong> Series with factorials (\(n!\)), exponentials (\(r^n\)), or products like \(n\cdot r^n\).</p>
+    </div>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 HOW TO APPLY RATIO TEST</strong>
+    <ol>
+      <li>Write \(a_{n+1}\) (replace \(n\) with \(n+1\) everywhere)</li>
+      <li>Form \(\dfrac{a_{n+1}}{a_n}\) and simplify</li>
+      <li>Take \(\lim_{n\to\infty}\)</li>
+      <li>Compare with 1</li>
+    </ol>
+    <p><strong>Key simplifications:</strong> \(\dfrac{(n+1)!}{n!} = n+1\), \(\dfrac{n!}{(n+1)!} = \dfrac{1}{n+1}\), \(\dfrac{(n+1)^k}{n^k}\to 1\)</p>
+  </div>
+</div>
+
+<!-- 3.4 Root Test -->
+<div class="subtopic" id="t3s4">
+  <h3>3.4 Cauchy's Root Test <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="test-card">
+    <div class="test-header"><span class="test-number">TEST 5</span> Cauchy's Root Test</div>
+    <div class="test-body">
+      <p>Let \(L = \lim_{n\to\infty}\sqrt[n]{|a_n|} = \lim_{n\to\infty}|a_n|^{1/n}\). Then:</p>
+      <table>
+        <tr><th>Value of \(L\)</th><th>Conclusion</th></tr>
+        <tr><td>\(L < 1\)</td><td>Series <strong>CONVERGES</strong></td></tr>
+        <tr><td>\(L > 1\)</td><td>Series <strong>DIVERGES</strong></td></tr>
+        <tr><td>\(L = 1\)</td><td><strong>INCONCLUSIVE</strong></td></tr>
+      </table>
+      <p><strong>Best for:</strong> Series where \(a_n = (f(n))^n\) — the \(n\)-th root cancels the power.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 3.5 How to choose -->
+<div class="subtopic" id="t3s5">
+  <h3>3.5 How to Choose the Right Test <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ TEST SELECTION GUIDE (Use this in exams!)</strong>
+    <table class="selector-table">
+      <tr><th>If \(a_n\) looks like...</th><th>Use this test</th></tr>
+      <tr><td>\(\dfrac{1}{n^p}\) or similar power</td><td>p-Series Test directly</td></tr>
+      <tr><td>Contains \(n!\) or \(r^n\)</td><td>Ratio Test (D'Alembert)</td></tr>
+      <tr><td>Is of form \((f(n))^n\)</td><td>Root Test (Cauchy)</td></tr>
+      <tr><td>Looks like a p-series but messier</td><td>Limit Comparison Test</td></tr>
+      <tr><td>Has alternating \((-1)^n\) signs</td><td>Alternating Series Test</td></tr>
+      <tr><td>Can clearly be bounded above/below</td><td>Direct Comparison Test</td></tr>
+      <tr><td>\(\lim_{n\to\infty}a_n\neq 0\)</td><td>n-th Term Test (immediate divergence)</td></tr>
+      <tr><td>Looks like geometric \(\sum ar^n\)</td><td>Geometric Series Test</td></tr>
+      <tr><td>Partial fractions possible</td><td>Telescoping (partial sums)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 3.6 PYQs -->
+<div class="subtopic" id="t3s6">
+  <h3>3.6 PYQs — All Advanced Convergence Tests <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — CONVERGENCE TESTS</h4>
+
+    <!-- RATIO TEST PYQs -->
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Using ratio test, discuss convergence of \(\displaystyle\sum_{n=1}^\infty\frac{(n+3)!}{3!\,n!\,3^n}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Ratio Test</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Contains \(n!\) → use Ratio Test. Key simplification: \(\frac{(n+4)!}{(n+3)!}=n+4\) and \(\frac{n!}{(n+1)!}=\frac{1}{n+1}\).</div>
+        <div class="step"><span class="step-num">STEP 1 — Write \(a_n\):</span>
+        \[a_n = \frac{(n+3)!}{3!\cdot n!\cdot 3^n}\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Write \(a_{n+1}\):</span>
+        \[a_{n+1} = \frac{(n+4)!}{3!\cdot(n+1)!\cdot 3^{n+1}}\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Compute ratio:</span>
+        \[\frac{a_{n+1}}{a_n} = \frac{(n+4)!}{(n+3)!}\cdot\frac{n!}{(n+1)!}\cdot\frac{3^n}{3^{n+1}} = (n+4)\cdot\frac{1}{n+1}\cdot\frac{1}{3} = \frac{n+4}{3(n+1)}\]</div>
+        <div class="step"><span class="step-num">STEP 4 — Take limit:</span>
+        \[L = \lim_{n\to\infty}\frac{n+4}{3(n+1)} = \lim_{n\to\infty}\frac{1+4/n}{3(1+1/n)} = \frac{1}{3} < 1\]</div>
+        <div class="answer-box">∴ \(L = \frac{1}{3} < 1\) → Series <strong>CONVERGES</strong> by Ratio Test.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test the convergence of \(\displaystyle\sum_{n=1}^\infty n e^{-n^2}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Contains \(e^{-n^2}\) — use Ratio Test or Comparison with known convergent series.</div>
+        <div class="step"><span class="step-num">USING RATIO TEST:</span>
+        \[a_n = ne^{-n^2}, \quad a_{n+1} = (n+1)e^{-(n+1)^2}\]
+        \[\frac{a_{n+1}}{a_n} = \frac{n+1}{n}\cdot e^{-(n+1)^2+n^2} = \frac{n+1}{n}\cdot e^{-2n-1}\]</div>
+        <div class="step"><span class="step-num">LIMIT:</span>
+        \[L = \lim_{n\to\infty}\frac{n+1}{n}\cdot e^{-2n-1} = 1\cdot 0 = 0 < 1\]
+        (since \(e^{-2n-1}\to 0\) much faster than \(\frac{n+1}{n}\to 1\))</div>
+        <div class="answer-box">∴ \(L=0<1\) → Series <strong>CONVERGES</strong> by Ratio Test.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test convergence of \(\displaystyle\sum_{n=1}^\infty\left(\frac{1}{1+n}\right)^n\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Root Test</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Form \((f(n))^n\) → perfect for Cauchy's Root Test.</div>
+        <div class="step"><span class="step-num">ROOT TEST:</span>
+        \[a_n = \left(\frac{1}{1+n}\right)^n\]
+        \[L = \lim_{n\to\infty}\sqrt[n]{a_n} = \lim_{n\to\infty}\frac{1}{1+n} = 0 < 1\]</div>
+        <div class="answer-box">∴ \(L=0<1\) → Series <strong>CONVERGES</strong> by Root Test.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test the convergence of \(\displaystyle\sum_{n=1}^\infty\frac{2n+1}{n^2+n+1}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Limit Comparison</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 For large \(n\): \(\frac{2n+1}{n^2+n+1}\approx\frac{2n}{n^2}=\frac{2}{n}\). Compare with \(\sum\frac{1}{n}\) (harmonic, diverges). Use Limit Comparison Test.</div>
+        <div class="step"><span class="step-num">COMPARISON SERIES:</span> Let \(b_n = \dfrac{1}{n}\).</div>
+        <div class="step"><span class="step-num">LIMIT COMPARISON:</span>
+        \[\lim_{n\to\infty}\frac{a_n}{b_n} = \lim_{n\to\infty}\frac{2n+1}{n^2+n+1}\cdot n = \lim_{n\to\infty}\frac{2n^2+n}{n^2+n+1} = \lim_{n\to\infty}\frac{2+1/n}{1+1/n+1/n^2} = 2\]</div>
+        <div class="step"><span class="step-num">CONCLUSION:</span> \(L=2\in(0,\infty)\). Since \(\sum\frac{1}{n}\) diverges (p=1), by Limit Comparison Test, \(\sum\frac{2n+1}{n^2+n+1}\) also diverges.</div>
+        <div class="answer-box">∴ Series <strong>DIVERGES</strong> by Limit Comparison Test.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test the convergence of \(\displaystyle\sum_{n=1}^\infty\frac{2n+1}{n^2(n+1)^2}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 For large \(n\): numerator \(\sim 2n\), denominator \(\sim n^4\), so \(a_n\sim\frac{2}{n^3}\). Compare with p-series \(p=3>1\) → converges.</div>
+        <div class="step"><span class="step-num">LIMIT COMPARISON with \(b_n=\frac{1}{n^3}\):</span>
+        \[\lim_{n\to\infty}\frac{a_n}{b_n} = \lim_{n\to\infty}\frac{(2n+1)n^3}{n^2(n+1)^2} = \lim_{n\to\infty}\frac{(2n+1)n}{(n+1)^2} = \lim_{n\to\infty}\frac{2n^2+n}{n^2+2n+1} = 2\]</div>
+        <div class="step"><span class="step-num">CONCLUSION:</span> \(L=2\in(0,\infty)\). Since \(\sum\frac{1}{n^3}\) converges (\(p=3>1\)), \(\sum\frac{2n+1}{n^2(n+1)^2}\) also <strong>converges</strong>.</div>
+        <div class="answer-box">∴ Series <strong>CONVERGES</strong> by Limit Comparison Test.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test convergence of \(\displaystyle\sum_{n=1}^\infty\frac{1}{n\sqrt{n}}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 \(\frac{1}{n\sqrt{n}} = \frac{1}{n^{3/2}}\) → direct p-series test with \(p=3/2\).</div>
+        <div class="step"><span class="step-num">IDENTIFY:</span> \(\frac{1}{n\sqrt{n}} = \frac{1}{n^{3/2}} = \frac{1}{n^p}\) with \(p = \frac{3}{2} > 1\).</div>
+        <div class="answer-box">∴ By p-series test, \(p=\frac{3}{2}>1\) → Series <strong>CONVERGES</strong>.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test convergence of \(\displaystyle\sum_{n=1}^\infty\frac{1}{4n^2-1}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Can use partial fractions (telescoping) OR Limit Comparison with \(1/n^2\).</div>
+        <div class="step"><span class="step-num">METHOD 1 — Limit Comparison with \(b_n=\frac{1}{n^2}\):</span>
+        \[\lim_{n\to\infty}\frac{1/(4n^2-1)}{1/n^2} = \lim_{n\to\infty}\frac{n^2}{4n^2-1} = \frac{1}{4}\in(0,\infty)\]
+        Since \(\sum\frac{1}{n^2}\) converges (\(p=2>1\)), series converges.</div>
+        <div class="step"><span class="step-num">METHOD 2 — Partial Fractions (also finds sum):</span>
+        \[\frac{1}{4n^2-1}=\frac{1}{(2n-1)(2n+1)}=\frac{1}{2}\left(\frac{1}{2n-1}-\frac{1}{2n+1}\right)\]
+        This is telescoping! \(S_n = \frac{1}{2}\left(1-\frac{1}{2n+1}\right)\to\frac{1}{2}\).</div>
+        <div class="answer-box">∴ Series <strong>CONVERGES</strong> with sum \(= \dfrac{1}{2}\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test convergence of \(\displaystyle\sum_{n=1}^\infty\frac{(n+1)\sin\!\left(\dfrac{(2n-1)\pi}{2}\right)}{n\log(n+1)}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022 (OR)</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Note: \(\sin\!\left(\frac{(2n-1)\pi}{2}\right) = \sin\!\left(n\pi-\frac{\pi}{2}\right) = -\cos(n\pi) = (-1)^{n+1}\). So this is an alternating series!</div>
+        <div class="step"><span class="step-num">SIMPLIFY \(\sin\):</span>
+        \[\sin\!\left(\frac{(2n-1)\pi}{2}\right) = (-1)^{n+1}\]
+        So the series becomes \(\displaystyle\sum_{n=1}^\infty\frac{(-1)^{n+1}(n+1)}{n\log(n+1)}\).</div>
+        <div class="step"><span class="step-num">n-TH TERM TEST:</span>
+        \[\lim_{n\to\infty}\frac{n+1}{n\log(n+1)} = \lim_{n\to\infty}\frac{1+1/n}{\log(n+1)} = \frac{1}{\infty} = 0\]
+        Wait — let me recheck: \(\frac{n+1}{n\log(n+1)} = \frac{(1+1/n)}{\log(n+1)}\). As \(n\to\infty\), numerator \(\to 1\), denominator \(\to\infty\), so \(\to 0\). ✓ n-th term test is inconclusive.</div>
+        <div class="step"><span class="step-num">ALTERNATING SERIES TEST on \(b_n=\frac{n+1}{n\log(n+1)}\):</span>
+        Need: (1) \(b_n\geq 0\) ✓, (2) \(b_n\) decreasing ✓ (numerator grows slower than denominator log), (3) \(b_n\to 0\) ✓ (shown above). → Converges.</div>
+        <div class="answer-box">∴ Series <strong>CONVERGES</strong> (conditionally) by Alternating Series Test.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Investigate the convergence of \(\displaystyle\sum_{n=1}^\infty\frac{2^n}{n!}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Contains \(n!\) and \(2^n\) → perfect for Ratio Test.</div>
+        <div class="step"><span class="step-num">RATIO TEST:</span>
+        \[\frac{a_{n+1}}{a_n} = \frac{2^{n+1}}{(n+1)!}\cdot\frac{n!}{2^n} = \frac{2}{n+1}\]
+        \[L = \lim_{n\to\infty}\frac{2}{n+1} = 0 < 1\]</div>
+        <div class="answer-box">∴ \(L=0<1\) → Series <strong>CONVERGES</strong> by Ratio Test.</div>
+        <div class="shortcut">This is actually \(e^2\) (from the Maclaurin series \(e^x=\sum\frac{x^n}{n!}\) at \(x=2\)), so \(\sum_{n=0}^\infty\frac{2^n}{n!}=e^2\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test convergence of \(\displaystyle\sum_{n=1}^\infty\frac{2n+1}{n^2(n+1)^2}\) [also S2025]<br>
+        and \(\displaystyle\sum_{n=1}^\infty n\sin\!\left(\dfrac{1}{n}\right)\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">3 Marks each</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 For \(n\sin(1/n)\): as \(n\to\infty\), \(n\sin(1/n)\to n\cdot(1/n)=1\neq 0\). Use n-th term test → DIVERGES.</div>
+        <div class="step"><span class="step-num">For \(\sum n\sin(1/n)\) — n-th term test:</span>
+        \[\lim_{n\to\infty}n\sin\!\left(\frac{1}{n}\right) = \lim_{n\to\infty}\frac{\sin(1/n)}{1/n} = 1 \neq 0\]
+        (This is the standard limit \(\lim_{t\to 0}\frac{\sin t}{t}=1\) with \(t=1/n\))</div>
+        <div class="answer-box">∴ \(\sum n\sin(1/n)\) <strong>DIVERGES</strong> by n-th Term Test (limit \(\neq 0\)).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test convergence of \(\displaystyle\sum_{n=1}^\infty\frac{4^n\cdot n!\cdot n!}{(2n)!}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024 (OR)</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Has factorials → Ratio Test.</div>
+        <div class="step"><span class="step-num">RATIO:</span>
+        \[\frac{a_{n+1}}{a_n} = \frac{4^{n+1}(n+1)!(n+1)!}{(2n+2)!}\cdot\frac{(2n)!}{4^n\cdot n!\cdot n!} = \frac{4(n+1)^2}{(2n+2)(2n+1)} = \frac{4(n+1)^2}{2(n+1)(2n+1)} = \frac{2(n+1)}{2n+1}\]</div>
+        <div class="step"><span class="step-num">LIMIT:</span>
+        \[L = \lim_{n\to\infty}\frac{2(n+1)}{2n+1} = \lim_{n\to\infty}\frac{2n+2}{2n+1} = 1\]
+        \(L=1\) → Ratio Test is INCONCLUSIVE. Use another test.</div>
+        <div class="step"><span class="step-num">USE RAABE'S TEST (or Limit Comparison):</span>
+        For this, note \(\frac{a_{n+1}}{a_n} = \frac{2n+2}{2n+1} > 1\) for all \(n\), meaning \(a_{n+1}>a_n\) — the terms are INCREASING. Combined with the n-th term test, the terms grow → series diverges.</div>
+        <div class="answer-box">∴ Since terms are increasing and don't go to 0, Series <strong>DIVERGES</strong>.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- end topic3 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 4 — ALTERNATING SERIES
+══════════════════════════════════════ -->
+<div id="topic4">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 4</div>
+  <h2>Alternating Series and Absolute Convergence</h2>
+</div>
+
+<!-- 4.1 -->
+<div class="subtopic" id="t4s1">
+  <h3>4.1 Alternating Series Test (Leibniz's Test) <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 ALTERNATING SERIES</strong>
+    <p>A series whose terms alternate in sign: \(\displaystyle\sum_{n=1}^\infty(-1)^{n-1}a_n = a_1-a_2+a_3-a_4+\cdots\) where \(a_n>0\).</p>
+  </div>
+
+  <div class="test-card">
+    <div class="test-header"><span class="test-number">TEST 6</span> Alternating Series Test (Leibniz's Test)</div>
+    <div class="test-body">
+      <p>The series \(\displaystyle\sum_{n=1}^\infty(-1)^{n-1}a_n\) converges if ALL THREE conditions hold:</p>
+      <ol>
+        <li>\(a_n > 0\) for all \(n\)</li>
+        <li>\(a_n\) is decreasing: \(a_{n+1}\leq a_n\) for all \(n\)</li>
+        <li>\(\lim_{n\to\infty}a_n = 0\)</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 HOW TO APPLY ALTERNATING SERIES TEST</strong>
+    <ol>
+      <li>Strip the \((-1)^{n-1}\) factor to get \(a_n\) (the positive part)</li>
+      <li>Check: \(a_n > 0\) ✓</li>
+      <li>Check: \(a_{n+1}\leq a_n\) (decreasing). Compare \(\frac{a_{n+1}}{a_n}<1\), or show \(f(x)\) is decreasing using \(f'(x)<0\)</li>
+      <li>Check: \(\lim_{n\to\infty}a_n = 0\)</li>
+      <li>All three hold → CONVERGES</li>
+    </ol>
+  </div>
+</div>
+
+<!-- 4.2 -->
+<div class="subtopic" id="t4s2">
+  <h3>4.2 Absolute and Conditional Convergence <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITIONS (Very frequently asked in exams)</strong>
+    <p><strong>Absolutely Convergent:</strong> \(\displaystyle\sum a_n\) is absolutely convergent if \(\displaystyle\sum|a_n|\) converges.</p>
+    <p><strong>Conditionally Convergent:</strong> \(\displaystyle\sum a_n\) converges but \(\displaystyle\sum|a_n|\) diverges.</p>
+    <p><strong>Key Fact:</strong> Absolutely convergent \(\Rightarrow\) convergent (but NOT vice versa).</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ STANDARD EXAMPLES TO REMEMBER</strong>
+    <table>
+      <tr><th>Series</th><th>Converges?</th><th>Absolutely?</th><th>Type</th></tr>
+      <tr><td>\(\sum\frac{(-1)^{n-1}}{n^2}\)</td><td>Yes</td><td>Yes (\(\sum\frac{1}{n^2}\) converges)</td><td>Absolutely convergent</td></tr>
+      <tr><td>\(\sum\frac{(-1)^{n-1}}{n}\)</td><td>Yes (AST)</td><td>No (\(\sum\frac{1}{n}\) diverges)</td><td>Conditionally convergent</td></tr>
+      <tr><td>\(\sum\frac{(-1)^{n-1}}{\sqrt{n}}\)</td><td>Yes (AST)</td><td>No</td><td>Conditionally convergent</td></tr>
+    </table>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 HOW TO DETERMINE ABSOLUTE/CONDITIONAL CONVERGENCE</strong>
+    <ol>
+      <li>Check convergence of \(\sum|a_n|\) (remove \((-1)^n\) and test)</li>
+      <li>If \(\sum|a_n|\) converges → <strong>Absolutely convergent</strong></li>
+      <li>If \(\sum|a_n|\) diverges but \(\sum a_n\) converges → <strong>Conditionally convergent</strong></li>
+      <li>If both diverge → <strong>Diverges</strong></li>
+    </ol>
+  </div>
+</div>
+
+<!-- 4.3 PYQs -->
+<div class="subtopic" id="t4s3">
+  <h3>4.3 PYQs — Alternating Series and Absolute/Conditional Convergence <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — ALTERNATING SERIES</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Test the convergence of \(\displaystyle\sum_{n=1}^\infty\frac{(-1)^{n-1}}{n^2}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 For 7 marks: check absolute convergence first, then state the type.</div>
+        <div class="step"><span class="step-num">STEP 1 — Check absolute convergence:</span>
+        \[\sum_{n=1}^\infty\left|\frac{(-1)^{n-1}}{n^2}\right| = \sum_{n=1}^\infty\frac{1}{n^2}\]
+        This is a p-series with \(p=2>1\). → <strong>CONVERGES</strong>.</div>
+        <div class="step"><span class="step-num">STEP 2 — Conclusion:</span> Since \(\sum|a_n|\) converges, the original series converges <strong>absolutely</strong>.</div>
+        <div class="step"><span class="step-num">VERIFY with AST (for completeness):</span>
+        \(a_n=\frac{1}{n^2}>0\) ✓, decreasing ✓, \(\lim\frac{1}{n^2}=0\) ✓. Converges by AST also.</div>
+        <div class="answer-box">∴ Series is <strong>ABSOLUTELY CONVERGENT</strong> (since \(\sum\frac{1}{n^2}\) converges).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Test convergence of \(\displaystyle\sum_{n=1}^\infty\frac{(-1)^{n+1}}{n}\) [alternating harmonic series]</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Very Standard</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 The most classic alternating series — converges conditionally. Must show both parts.</div>
+        <div class="step"><span class="step-num">AST CHECK (let \(a_n=\frac{1}{n}\)):</span>
+        (1) \(a_n=\frac{1}{n}>0\) ✓ (2) \(\frac{1}{n+1}<\frac{1}{n}\) → decreasing ✓ (3) \(\lim\frac{1}{n}=0\) ✓. 
+        By AST → <strong>CONVERGES</strong>.</div>
+        <div class="step"><span class="step-num">ABSOLUTE CONVERGENCE CHECK:</span>
+        \(\sum\left|\frac{(-1)^{n+1}}{n}\right|=\sum\frac{1}{n}\) = harmonic series → <strong>DIVERGES</strong> (p=1).</div>
+        <div class="answer-box">∴ Series is <strong>CONDITIONALLY CONVERGENT</strong> (converges by AST, but NOT absolutely).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Define alternating series. Verify whether \(\displaystyle\sum_{n=1}^\infty\frac{(-1)^n n^2}{n^3+1}\) is conditionally convergent or not.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Recent — Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Define alternating series (easy marks), then test absolute and conditional convergence.</div>
+        <div class="step"><span class="step-num">DEFINITION:</span> An alternating series is one whose terms alternate in sign: \(\sum(-1)^n a_n\) or \(\sum(-1)^{n+1}a_n\) where \(a_n>0\).</div>
+        <div class="step"><span class="step-num">Let \(a_n = \frac{n^2}{n^3+1}\).</span></div>
+        <div class="step"><span class="step-num">ABSOLUTE CONVERGENCE — test \(\sum\frac{n^2}{n^3+1}\):</span>
+        For large \(n\): \(\frac{n^2}{n^3+1}\approx\frac{1}{n}\). Limit Comparison with \(b_n=\frac{1}{n}\):
+        \[L=\lim_{n\to\infty}\frac{n^2/(n^3+1)}{1/n}=\lim\frac{n^3}{n^3+1}=1\in(0,\infty)\]
+        Since \(\sum\frac{1}{n}\) diverges, \(\sum\frac{n^2}{n^3+1}\) also <strong>diverges</strong>. → NOT absolutely convergent.</div>
+        <div class="step"><span class="step-num">ALTERNATING SERIES TEST:</span>
+        (1) \(a_n>0\) ✓ (2) Need to check \(a_n\) is decreasing. \(f(x)=\frac{x^2}{x^3+1}\), \(f'(x)=\frac{2x(x^3+1)-x^2\cdot 3x^2}{(x^3+1)^2}=\frac{x(2-x^3)}{(x^3+1)^2}\). For \(x>2^{1/3}\approx 1.26\), \(f'(x)<0\) → decreasing ✓ (3) \(\lim a_n = \lim\frac{n^2}{n^3+1}=0\) ✓ → <strong>CONVERGES</strong> by AST.</div>
+        <div class="answer-box">∴ Series <strong>CONVERGES</strong> by AST but \(\sum|a_n|\) diverges → <strong>CONDITIONALLY CONVERGENT</strong>. ✓</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Define absolutely convergent series and conditionally convergent series. Investigate convergence of \(\displaystyle\sum_{n=1}^\infty\frac{\sin n}{n^2}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Not strictly alternating (sin n is not simply \((-1)^n\)), but we can test absolute convergence using the bound \(|\sin n|\leq 1\).</div>
+        <div class="step"><span class="step-num">DEFINITIONS:</span> (see section 4.2 above)</div>
+        <div class="step"><span class="step-num">ABSOLUTE CONVERGENCE TEST:</span>
+        \[\sum_{n=1}^\infty\left|\frac{\sin n}{n^2}\right|\leq\sum_{n=1}^\infty\frac{1}{n^2}\]
+        Since \(\sum\frac{1}{n^2}\) converges (\(p=2>1\)), by comparison test, \(\sum\frac{|\sin n|}{n^2}\) also converges.</div>
+        <div class="answer-box">∴ Series is <strong>ABSOLUTELY CONVERGENT</strong> (hence also convergent).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="eot">
+  <h3>📝 Quick Revision — Topics 2, 3, 4: Infinite Series</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>All Tests Summary</h4>
+      <ul>
+        <li>Geometric: \(|r|&lt;1\) → sum \(\frac{a}{1-r}\)</li>
+        <li>p-Series: \(p>1\) → converges</li>
+        <li>Ratio: \(L&lt;1\) converges, \(L>1\) diverges</li>
+        <li>Root: \(L&lt;1\) converges, \(L>1\) diverges</li>
+        <li>Limit Comparison: compare with known series</li>
+        <li>AST: \(a_n\downarrow 0\) → converges</li>
+        <li>Absolute: \(\sum|a_n|\) converges → absolutely convergent</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Most Repeated PYQs</h4>
+      <ul>
+        <li>🔥 \(\sum\frac{1}{n(n+1)}=1\) (telescoping)</li>
+        <li>🔥 \(\sum\frac{(n+3)!}{3!n!3^n}\) (ratio test)</li>
+        <li>🔥 \(\sum\frac{(-1)^{n-1}}{n^2}\) (abs. convergent)</li>
+        <li>🔥 \(\sum\frac{(-1)^n n^2}{n^3+1}\) (conditional) W2025</li>
+        <li>⭐ \(\sum\frac{\sin n}{n^2}\) (abs. convergent)</li>
+        <li>⭐ \(\sum\frac{2n+1}{n^2+n+1}\) (diverges, LCT)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end topic4 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 5 — POWER SERIES
+══════════════════════════════════════ -->
+<div id="topic5">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 5</div>
+  <h2>Power Series — Radius and Interval of Convergence</h2>
+</div>
+
+<!-- 5.1 -->
+<div class="subtopic" id="t5s1">
+  <h3>5.1 Power Series — Definition <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITION OF POWER SERIES</strong>
+    <p>A power series centered at \(x = a\) is:
+    \[\sum_{n=0}^\infty c_n(x-a)^n = c_0 + c_1(x-a) + c_2(x-a)^2 + \cdots\]
+    where \(c_n\) are constants (coefficients).</p>
+    <p>Special case centered at \(a=0\):
+    \[\sum_{n=0}^\infty c_n x^n = c_0 + c_1 x + c_2 x^2 + \cdots\]</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 KEY FACT</strong>
+    A power series converges for some values of \(x\) and diverges for others. The set of all \(x\) for which it converges is called the <strong>interval of convergence</strong>, and the "half-width" of this interval is the <strong>radius of convergence</strong> \(R\).
+  </div>
+</div>
+
+<!-- 5.2 -->
+<div class="subtopic" id="t5s2">
+  <h3>5.2 Radius of Convergence <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ RADIUS OF CONVERGENCE FORMULAS</strong>
+    <p><strong>Using Ratio Test (most common):</strong>
+    \[R = \lim_{n\to\infty}\left|\frac{c_n}{c_{n+1}}\right| = \frac{1}{\lim_{n\to\infty}\left|\dfrac{c_{n+1}}{c_n}\right|}\]</p>
+    <p><strong>Using Root Test:</strong>
+    \[R = \frac{1}{\lim_{n\to\infty}\sqrt[n]{|c_n|}}\]</p>
+    <p><strong>Special cases:</strong></p>
+    <ul>
+      <li>If \(R=0\): converges only at \(x=a\)</li>
+      <li>If \(R=\infty\): converges for all \(x\)</li>
+      <li>If \(0&lt;R&lt;\infty\): converges for \(|x-a|&lt;R\), diverges for \(|x-a|&gt;R\)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 5.3 -->
+<div class="subtopic" id="t5s3">
+  <h3>5.3 Interval of Convergence <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="method-box">
+    <strong>🔧 COMPLETE METHOD: Finding Radius AND Interval of Convergence</strong>
+    <ol>
+      <li><strong>Apply Ratio Test</strong> to the power series. Let \(L = \lim_{n\to\infty}\left|\dfrac{a_{n+1}}{a_n}\right|\) where \(a_n = c_n(x-a)^n\).</li>
+      <li><strong>Set \(L &lt; 1\)</strong> and solve for \(|x-a|&lt;R\) to find the Radius of Convergence \(R\).</li>
+      <li><strong>Open interval of convergence:</strong> \((a-R,\; a+R)\)</li>
+      <li><strong>Check endpoints separately:</strong> Substitute \(x = a\pm R\) into the original series and test convergence using AST, p-test, etc.</li>
+      <li><strong>State the interval</strong> (include endpoints if they converge, exclude if they diverge).</li>
+    </ol>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ STANDARD INTERVALS OF CONVERGENCE (Memorize)</strong>
+    <table>
+      <tr><th>Series</th><th>Radius \(R\)</th><th>Interval of Convergence</th></tr>
+      <tr><td>\(\sum x^n\)</td><td>1</td><td>\((-1,1)\) — both endpoints diverge</td></tr>
+      <tr><td>\(\sum\frac{x^n}{n}\)</td><td>1</td><td>\((-1,1]\) — left diverges, right converges by AST</td></tr>
+      <tr><td>\(\sum\frac{(-1)^n x^n}{n}\) i.e. \(\ln(1+x)\)</td><td>1</td><td>\((-1,1]\)</td></tr>
+      <tr><td>\(\sum\frac{x^n}{n^2}\)</td><td>1</td><td>\([-1,1]\) — both endpoints converge (p-series, p=2)</td></tr>
+      <tr><td>\(\sum\frac{x^n}{n!}\)</td><td>\(\infty\)</td><td>\((-\infty,\infty)\)</td></tr>
+    </table>
+  </div>
+
+  <div class="mistake-box">
+    <strong>⚠️ COMMON MISTAKES in Power Series</strong>
+    <ul>
+      <li><strong>Mistake 1:</strong> Forgetting to check the ENDPOINTS after finding R — always check both!</li>
+      <li><strong>Mistake 2:</strong> Writing interval as \((-R,R)\) when it should be \((a-R, a+R)\) for series centered at \(a\neq 0\)</li>
+      <li><strong>Mistake 3:</strong> Not using absolute values when applying ratio test to power series</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 5.4 PYQs -->
+<div class="subtopic" id="t5s4">
+  <h3>5.4 PYQs — Power Series: Radius and Interval of Convergence <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — POWER SERIES</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Find the interval of convergence of the series \(x - \dfrac{x^2}{2} + \dfrac{x^3}{3} - \cdots\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic \(\ln(1+x)\)</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 This is \(\displaystyle\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}\) — the Maclaurin series for \(\ln(1+x)\). Find R by ratio test, then check endpoints carefully.</div>
+        <div class="step"><span class="step-num">STEP 1 — General term:</span>
+        \[a_n = \frac{(-1)^{n-1}x^n}{n}\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Ratio Test:</span>
+        \[\left|\frac{a_{n+1}}{a_n}\right| = \left|\frac{(-1)^n x^{n+1}}{n+1}\cdot\frac{n}{(-1)^{n-1}x^n}\right| = \frac{n}{n+1}|x|\]
+        \[L = \lim_{n\to\infty}\frac{n}{n+1}|x| = |x|\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Convergence condition:</span>
+        \(L < 1 \Rightarrow |x| < 1\). So \(R = 1\), open interval \((-1,1)\).</div>
+        <div class="step"><span class="step-num">STEP 4 — Check endpoints:</span>
+        <ul>
+          <li>\(x=1\): Series becomes \(1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots = \sum\frac{(-1)^{n-1}}{n}\). By AST: converges (alternating harmonic). ✓ <strong>Includes \(x=1\).</strong></li>
+          <li>\(x=-1\): Series becomes \(-1-\frac{1}{2}-\frac{1}{3}-\cdots = -\sum\frac{1}{n}\). Harmonic series → DIVERGES. ✗ <strong>Excludes \(x=-1\).</strong></li>
+        </ul></div>
+        <div class="answer-box">∴ Radius of convergence \(R=1\). Interval of convergence: \((-1,\;1]\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find radius and interval of convergence of \(\displaystyle\sum_{n=0}^\infty\frac{nx^n}{2^n}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Recent</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Use Ratio Test. General term \(a_n = \frac{n x^n}{2^n} = n\left(\frac{x}{2}\right)^n\).</div>
+        <div class="step"><span class="step-num">RATIO TEST:</span>
+        \[\left|\frac{a_{n+1}}{a_n}\right| = \left|\frac{(n+1)x^{n+1}}{2^{n+1}}\cdot\frac{2^n}{nx^n}\right| = \frac{n+1}{n}\cdot\frac{|x|}{2}\]
+        \[L = \lim_{n\to\infty}\frac{n+1}{n}\cdot\frac{|x|}{2} = 1\cdot\frac{|x|}{2} = \frac{|x|}{2}\]</div>
+        <div class="step"><span class="step-num">RADIUS:</span> \(L<1 \Rightarrow \frac{|x|}{2}<1 \Rightarrow |x|<2\). So \(R=2\), open interval \((-2,2)\).</div>
+        <div class="step"><span class="step-num">ENDPOINT \(x=2\):</span>
+        \(\sum\frac{n\cdot 2^n}{2^n} = \sum n\). Since \(\lim n=\infty\neq 0\), diverges by n-th term test.</div>
+        <div class="step"><span class="step-num">ENDPOINT \(x=-2\):</span>
+        \(\sum\frac{n(-2)^n}{2^n} = \sum n(-1)^n\). Since \(\lim n(-1)^n\) does not exist, diverges.</div>
+        <div class="answer-box">∴ Radius of convergence \(R=2\). Interval of convergence: \((-2,\;2)\) (both endpoints excluded).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Apply appropriate test to find interval and radius of convergence of \(\displaystyle\sum_{n=0}^\infty\frac{(x-5)^n}{n^2}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">⭐ Centered at \(a=5\)</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Power series centered at \(a=5\). Apply ratio test, then check both endpoints.</div>
+        <div class="step"><span class="step-num">RATIO TEST:</span>
+        \[a_n = \frac{(x-5)^n}{n^2},\quad a_{n+1}=\frac{(x-5)^{n+1}}{(n+1)^2}\]
+        \[\left|\frac{a_{n+1}}{a_n}\right| = |x-5|\cdot\frac{n^2}{(n+1)^2}\]
+        \[L = |x-5|\cdot\lim_{n\to\infty}\frac{n^2}{(n+1)^2} = |x-5|\cdot 1 = |x-5|\]</div>
+        <div class="step"><span class="step-num">RADIUS:</span> \(L<1\Rightarrow|x-5|<1\). So \(R=1\), open interval \((4,6)\).</div>
+        <div class="step"><span class="step-num">ENDPOINT \(x=6\) (i.e. \(x-5=1\)):</span>
+        \(\sum\frac{1}{n^2}\) — p-series, \(p=2>1\) → <strong>converges</strong>. ✓</div>
+        <div class="step"><span class="step-num">ENDPOINT \(x=4\) (i.e. \(x-5=-1\)):</span>
+        \(\sum\frac{(-1)^n}{n^2}\) — alternating series with \(a_n=\frac{1}{n^2}\to 0\), decreasing → <strong>converges</strong> (also absolutely). ✓</div>
+        <div class="answer-box">∴ Radius of convergence \(R=1\). Interval of convergence: \([4,\;6]\) (both endpoints included).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find interval of convergence of \(\displaystyle\sum_{n=0}^\infty\frac{(-1)^n x^n}{3^n(n+1)}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024 (OR)</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Rewrite as \(\sum\frac{(-x/3)^n}{n+1}\). Ratio test gives R=3.</div>
+        <div class="step"><span class="step-num">RATIO TEST:</span>
+        \[a_n=\frac{(-1)^n x^n}{3^n(n+1)},\quad\left|\frac{a_{n+1}}{a_n}\right|=\frac{|x|}{3}\cdot\frac{n+1}{n+2}\]
+        \[L=\frac{|x|}{3}\cdot 1=\frac{|x|}{3}\]
+        \(L<1\Rightarrow|x|<3\), so \(R=3\), open interval \((-3,3)\).</div>
+        <div class="step"><span class="step-num">ENDPOINT \(x=3\):</span>
+        \(\displaystyle\sum\frac{(-1)^n}{n+1}\) — AST: \(a_n=\frac{1}{n+1}\downarrow 0\) → <strong>converges</strong>. ✓</div>
+        <div class="step"><span class="step-num">ENDPOINT \(x=-3\):</span>
+        \(\displaystyle\sum\frac{(-1)^n(-1)^n}{n+1}=\sum\frac{1}{n+1}\) — harmonic type → <strong>diverges</strong>. ✗</div>
+        <div class="answer-box">∴ \(R=3\). Interval of convergence: \((-3,\;3]\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Define radius of convergence of power series. Find it for \(\displaystyle\sum_{n=1}^\infty\frac{(x-1)^n}{n^3\cdot 3^n}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Define R (easy marks), then apply ratio test.</div>
+        <div class="step"><span class="step-num">DEFINITION:</span> The radius of convergence of a power series \(\sum c_n(x-a)^n\) is the number \(R\geq 0\) such that the series converges for \(|x-a|&lt;R\) and diverges for \(|x-a|>R\).</div>
+        <div class="step"><span class="step-num">RATIO TEST:</span>
+        \[\left|\frac{a_{n+1}}{a_n}\right| = \frac{|x-1|^{n+1}}{(n+1)^3\cdot 3^{n+1}}\cdot\frac{n^3\cdot 3^n}{|x-1|^n} = \frac{|x-1|}{3}\cdot\left(\frac{n}{n+1}\right)^3\]
+        \[L = \frac{|x-1|}{3}\cdot 1 = \frac{|x-1|}{3}\]
+        \(L<1\Rightarrow|x-1|<3\), so \(R=3\).</div>
+        <div class="answer-box">∴ Radius of convergence \(R=3\). (Series converges for \(-2&lt;x&lt;4\).)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Determine all positive values of \(x\) for which \(\dfrac{1}{1\cdot 2\cdot 3}+\dfrac{x}{4\cdot 5\cdot 6}+\dfrac{x^2}{7\cdot 8\cdot 9}+\cdots\) converges.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 General term: \(a_n = \frac{x^n}{(3n+1)(3n+2)(3n+3)}\). Apply ratio test.</div>
+        <div class="step"><span class="step-num">GENERAL TERM (starting \(n=0\)):</span>
+        \[a_n = \frac{x^n}{(3n+1)(3n+2)(3n+3)}\]</div>
+        <div class="step"><span class="step-num">RATIO TEST:</span>
+        \[\frac{a_{n+1}}{a_n} = x\cdot\frac{(3n+1)(3n+2)(3n+3)}{(3n+4)(3n+5)(3n+6)}\]
+        \[L = x\cdot\lim_{n\to\infty}\frac{(3n+1)(3n+2)(3n+3)}{(3n+4)(3n+5)(3n+6)} = x\cdot 1 = x\]</div>
+        <div class="step"><span class="step-num">CONVERGENCE:</span> \(L&lt;1\Rightarrow x&lt;1\). At \(x=1\): \(\sum\frac{1}{(3n+1)(3n+2)(3n+3)}\lesssim\frac{1}{n^3}\) converges. So includes \(x=1\).</div>
+        <div class="answer-box">∴ Series converges for all \(x\in(0,\;1]\) (i.e., \(0&lt;x\leq 1\)).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: For what values of \(x\) does \(\displaystyle\sum_{n=1}^\infty\frac{(x-3)^n}{n}\) converge?</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Centered at \(a=3\). Apply ratio test, then check both endpoints.</div>
+        <div class="step"><span class="step-num">RATIO TEST:</span>
+        \[L=\lim\left|\frac{(x-3)^{n+1}}{n+1}\cdot\frac{n}{(x-3)^n}\right|=|x-3|\cdot\lim\frac{n}{n+1}=|x-3|\]
+        \(L<1\Rightarrow|x-3|<1\Rightarrow 2&lt;x&lt;4\). \(R=1\).</div>
+        <div class="step"><span class="step-num">ENDPOINT \(x=4\):</span>
+        \(\sum\frac{1}{n}\) = harmonic → DIVERGES. ✗</div>
+        <div class="step"><span class="step-num">ENDPOINT \(x=2\) (i.e. \(x-3=-1\)):</span>
+        \(\sum\frac{(-1)^n}{n}\) — AST: \(a_n=\frac{1}{n}\downarrow 0\) → CONVERGES. ✓</div>
+        <div class="answer-box">∴ Series converges for \(x\in[2,\;4)\).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="eot">
+  <h3>📝 Quick Revision — Topic 5: Power Series</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Steps</h4>
+      <ul>
+        <li>Apply ratio test to find R</li>
+        <li>\(L&lt;1\Rightarrow|x-a|&lt;R\)</li>
+        <li>ALWAYS check both endpoints</li>
+        <li>Include endpoint if test shows convergence</li>
+        <li>Exclude endpoint if test shows divergence</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Most Repeated PYQs</h4>
+      <ul>
+        <li>🔥 \(x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots\): \((-1,1]\) (W2023)</li>
+        <li>🔥 \(\sum\frac{nx^n}{2^n}\): \(R=2\), \((-2,2)\) (W2025)</li>
+        <li>⭐ \(\sum\frac{(x-5)^n}{n^2}\): \(R=1\), \([4,6]\) (W2024)</li>
+        <li>⭐ \(\sum\frac{(x-3)^n}{n}\): \([2,4)\) (S2025)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end topic5 -->
+
+
+<!-- ══════════════════════════════════════
+     END OF MODULE 3 SUMMARY
+══════════════════════════════════════ -->
+<div id="eom3" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 3 — COMPLETE QUICK REVISION</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>All Tests at a Glance</h4>
+      <ul>
+        <li>Geometric: \(|r|&lt;1\) → converges to \(\frac{a}{1-r}\)</li>
+        <li>p-Series: \(p>1\) converge, \(p\leq 1\) diverge</li>
+        <li>n-th Term: \(\lim a_n\neq 0\) → DIVERGES</li>
+        <li>Ratio: compare \(\lim|\frac{a_{n+1}}{a_n}|\) with 1</li>
+        <li>Root: compare \(\lim\sqrt[n]{|a_n|}\) with 1</li>
+        <li>LCT: compare with known series</li>
+        <li>AST: alternating, decreasing, \(\to 0\)</li>
+        <li>Abs Conv: \(\sum|a_n|\) converges</li>
+        <li>Power series: ratio test → R, check endpoints</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Module 3 Hot PYQs</h4>
+      <ul>
+        <li>🔥 Sequences: Sandwich Theorem (\(\frac{\sin n}{n}\to 0\))</li>
+        <li>🔥 Telescoping: \(\sum\frac{1}{n(n+1)}=1\)</li>
+        <li>🔥 Ratio Test: \(\sum\frac{(n+3)!}{3!n!3^n}\) → converges</li>
+        <li>🔥 Alternating: \(\sum\frac{(-1)^n n^2}{n^3+1}\) conditional (W2025)</li>
+        <li>🔥 Power Series: interval of convergence for \(\sum\frac{nx^n}{2^n}\)</li>
+        <li>⭐ LCT: \(\sum\frac{2n+1}{n^2+n+1}\) diverges</li>
+        <li>⭐ Absolute: \(\sum\frac{\sin n}{n^2}\) absolutely conv.</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:18px;padding:14px;background:rgba(255,255,255,0.1);border-radius:6px;font-size:0.95em;">
+    <strong style="color:var(--gold);">📌 COMMON MISTAKES — MODULE 3:</strong>
+    <ul style="margin-top:8px;">
+      <li>\(\lim a_n=0\) does NOT mean series converges (harmonic series proves this!)</li>
+      <li>Ratio Test gives \(L=1\) → use a DIFFERENT test, don't guess</li>
+      <li>Power series: ALWAYS check both endpoints after finding R</li>
+      <li>Alternating Series Test: need ALL THREE conditions (positive, decreasing, \(\to 0\))</li>
+      <li>Conditional ≠ Diverges — it CONVERGES, just not absolutely</li>
+      <li>For series centered at \(a\neq 0\): interval is \((a-R,a+R)\) not \((-R,R)\)</li>
+    </ul>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 3 Complete ✓</strong> · GTU Mathematics-I Self-Study Book<br>
+  <em>When ready, say "Continue to next module" for Module 4: Multivariable Calculus (Differentiation)</em>
+</div>
+
+</div><!-- end container -->
+</body>
+</html>

@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Mathematics-I | Module 5: Multivariable Calculus (Integration)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --primary: #004d40;
+    --secondary: #00695c;
+    --accent: #e53935;
+    --gold: #f9a825;
+    --green: #2e7d32;
+    --blue: #1565c0;
+    --orange: #e65100;
+    --light-bg: #e0f2f1;
+    --card-bg: #ffffff;
+    --border: #80cbc4;
+    --text: #1a1a2e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #e0f2f1; color: var(--text); line-height: 1.75; font-size: 15px; }
+
+  /* COVER */
+  .cover { background: linear-gradient(135deg, #002622 0%, #004d40 50%, #00695c 100%); color: white; text-align: center; padding: 60px 30px; border-bottom: 6px solid var(--gold); }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+
+  /* TOC */
+  .toc { background: var(--card-bg); border: 1px solid var(--border); border-left: 5px solid var(--primary); border-radius: 8px; padding: 24px 28px; margin-bottom: 32px; }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 5px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* TOPIC HEADER */
+  .topic-header { background: linear-gradient(90deg, #002622, #004d40); color: white; padding: 16px 24px; border-radius: 8px 8px 0 0; margin-top: 36px; }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+
+  /* SUBTOPIC */
+  .subtopic { background: var(--card-bg); border: 1px solid var(--border); border-top: none; padding: 26px 28px; margin-bottom: 2px; }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 { font-size: 1.1em; color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .priority-tag { font-size: 0.82em; padding: 2px 10px; border-radius: 12px; font-weight: 600; margin-left: auto; white-space: nowrap; }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .medium { background: #e8f5e9; color: #1b5e20; }
+  .low { background: #f5f5f5; color: #616161; }
+
+  /* BOXES */
+  .definition { background: #e0f2f1; border-left: 4px solid var(--primary); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e3f2fd; border-left: 4px solid var(--blue); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .method-box strong { color: #0d47a1; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .mistake-box { background: #fff9c4; border: 1px solid #f9a825; border-left: 4px solid #f57f17; border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .mistake-box strong { color: #e65100; display: block; margin-bottom: 8px; font-size: 0.85em; letter-spacing: 1px; }
+
+  /* PYQ */
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 { background: #002622; color: white; padding: 8px 14px; border-radius: 6px 6px 0 0; font-size: 0.9em; letter-spacing: 1px; }
+  .pyq-card { border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; margin-bottom: 16px; overflow: hidden; }
+  .pyq-standalone { border: 1px solid var(--border); border-radius: 6px; margin-top: 12px; overflow: hidden; }
+  .pyq-question { background: var(--light-bg); padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .concept-note { background: #fff8e1; border-left: 3px solid var(--gold); padding: 8px 12px; margin-bottom: 10px; font-size: 0.92em; color: #5d4037; }
+  .step { margin: 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid #80cbc4; border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #e0f2f1; border: 1px solid #80cbc4; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--primary); }
+  .shortcut { background: #fff8e1; border-left: 3px solid var(--gold); padding: 8px 12px; margin-top: 8px; font-size: 0.9em; border-radius: 0 4px 4px 0; }
+  .shortcut::before { content: "⚡ TIP: "; font-weight: 700; color: var(--orange); }
+
+  /* EOT */
+  .eot { background: linear-gradient(135deg, #002622 0%, #004d40 100%); color: white; border-radius: 8px; padding: 24px 28px; margin: 28px 0 40px 0; }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width:600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+
+  /* GRAND FINALE */
+  .grand-finale { background: linear-gradient(135deg, #1a237e, #4a148c, #004d40); color: white; border-radius: 12px; padding: 32px; margin-top: 40px; text-align: center; }
+  .grand-finale h2 { font-size: 1.8em; color: var(--gold); margin-bottom: 16px; }
+  .grand-finale .mod-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin: 20px 0; }
+  @media(max-width:600px) { .grand-finale .mod-grid { grid-template-columns: repeat(2,1fr); } }
+  .mod-card { background: rgba(255,255,255,0.12); padding: 14px 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); }
+  .mod-card .num { font-size: 1.4em; font-weight: 800; color: var(--gold); }
+  .mod-card .name { font-size: 0.78em; margin-top: 4px; opacity: 0.9; }
+
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+  .note { color: var(--secondary); font-style: italic; font-size: 0.92em; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Mathematics – I</h1>
+  <div class="module-title">MODULE 5: Multivariable Calculus (Integration)</div>
+  <p style="opacity:0.85">Double Integrals · Polar Coordinates · Change of Order · Triple Integrals · Applications</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- TOC -->
+<div class="toc">
+  <h2>📋 MODULE 5 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Double Integrals Over Rectangular Regions</a>
+      <ol>
+        <li><a href="#t1s1">1.1 Double Integral — Definition and Fubini's Theorem</a></li>
+        <li><a href="#t1s2">1.2 Evaluating Double Integrals (Iterated Integrals)</a></li>
+        <li><a href="#t1s3">1.3 PYQs on Rectangular Double Integrals</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Double Integrals Over General Regions</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Non-Rectangular Regions — Setup</a></li>
+        <li><a href="#t2s2">2.2 Sketching the Region of Integration</a></li>
+        <li><a href="#t2s3">2.3 PYQs on General Region Double Integrals</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Change of Order of Integration</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Why Change Order?</a></li>
+        <li><a href="#t3s2">3.2 Step-by-Step Method for Changing Order</a></li>
+        <li><a href="#t3s3">3.3 PYQs on Change of Order</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic4">Topic 4: Double Integrals in Polar Coordinates</a>
+      <ol>
+        <li><a href="#t4s1">4.1 Polar Coordinate Transformation</a></li>
+        <li><a href="#t4s2">4.2 Setting Up Polar Integrals</a></li>
+        <li><a href="#t4s3">4.3 PYQs on Polar Double Integrals</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic5">Topic 5: Applications — Area, Volume, Centre of Mass</a>
+      <ol>
+        <li><a href="#t5s1">5.1 Area Using Double Integrals</a></li>
+        <li><a href="#t5s2">5.2 Volume Under a Surface</a></li>
+        <li><a href="#t5s3">5.3 Centre of Mass and Gravity</a></li>
+        <li><a href="#t5s4">5.4 PYQs on Applications</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic6">Topic 6: Triple Integrals</a>
+      <ol>
+        <li><a href="#t6s1">6.1 Triple Integrals — Setup and Evaluation</a></li>
+        <li><a href="#t6s2">6.2 Change of Variables — Cylindrical and Spherical Coordinates</a></li>
+        <li><a href="#t6s3">6.3 PYQs on Triple Integrals</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom5">End of Module 5 + Complete Book Summary</a></li>
+  </ol>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 1 — DOUBLE INTEGRALS: RECTANGULAR
+══════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Double Integrals Over Rectangular Regions</h2>
+</div>
+
+<div class="subtopic" id="t1s1">
+  <h3>1.1 Double Integral — Definition and Fubini's Theorem <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DOUBLE INTEGRAL</strong>
+    <p>The double integral of \(f(x,y)\) over a region \(R\) is:
+    \[\iint_R f(x,y)\,dA\]
+    It represents the <strong>signed volume</strong> between the surface \(z=f(x,y)\) and the \(xy\)-plane over region \(R\).</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ FUBINI'S THEOREM (How to evaluate a double integral)</strong>
+    <p>For a rectangular region \(R: a\leq x\leq b,\; c\leq y\leq d\):
+    \[\iint_R f(x,y)\,dA = \int_a^b\int_c^d f(x,y)\,dy\,dx = \int_c^d\int_a^b f(x,y)\,dx\,dy\]</p>
+    <p><strong>Key:</strong> Integrate the inner integral first (treat outer variable as constant), then integrate the result.</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    Think of a double integral as slicing a 3D solid into thin slabs — integrate first in one direction (getting area of each slab), then in the other direction (adding up all slabs). The order doesn't matter for rectangular regions.
+  </div>
+</div>
+
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Evaluating Double Integrals — Step by Step <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="method-box">
+    <strong>🔧 STANDARD METHOD</strong>
+    <ol>
+      <li>Identify limits for inner and outer integrals from the region \(R\)</li>
+      <li>Evaluate inner integral (treating outer variable as constant)</li>
+      <li>Evaluate outer integral on the result</li>
+    </ol>
+    <p><strong>Example:</strong> \(\int_0^2\int_{-1}^1 (100-6x^2y)\,dy\,dx\)</p>
+    <p>Inner: \(\int_{-1}^1(100-6x^2y)\,dy = [100y-3x^2y^2]_{-1}^1 = (100-3x^2)-(- 100-3x^2) = 200\)</p>
+    <p>Outer: \(\int_0^2 200\,dx = 400\)</p>
+  </div>
+</div>
+
+<!-- 1.3 PYQs -->
+<div class="subtopic" id="t1s3">
+  <h3>1.3 PYQs — Rectangular Double Integrals <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 PYQs — DOUBLE INTEGRALS (RECTANGULAR REGIONS)</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Calculate \(\displaystyle\iint_R f(x,y)\,dA\) for \(f(x,y)=100-6x^2y\) and \(R: 0\leq x\leq 2,\; -1\leq y\leq 1\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INNER INTEGRAL (w.r.t. \(y\)):</span>
+        \[\int_{-1}^1(100-6x^2y)\,dy = \Big[100y-3x^2y^2\Big]_{-1}^1 = (100-3x^2)-(-100-3x^2) = 200\]</div>
+        <div class="step"><span class="step-num">OUTER INTEGRAL (w.r.t. \(x\)):</span>
+        \[\int_0^2 200\,dx = \Big[200x\Big]_0^2 = 400\]</div>
+        <div class="answer-box">∴ \(\displaystyle\iint_R (100-6x^2y)\,dA = 400\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\int_0^3\int_0^1 (x^2+3y^2)\,dy\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INNER (w.r.t. \(y\), 0 to 1):</span>
+        \[\int_0^1(x^2+3y^2)\,dy = \Big[x^2y+y^3\Big]_0^1 = x^2+1\]</div>
+        <div class="step"><span class="step-num">OUTER (w.r.t. \(x\), 0 to 3):</span>
+        \[\int_0^3(x^2+1)\,dx = \Big[\frac{x^3}{3}+x\Big]_0^3 = 9+3 = 12\]</div>
+        <div class="answer-box">∴ Answer \(= 12\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\iint_R(x+y)^2\,dA\) where \(R=[0,1]\times[0,2]\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">SET UP:</span>
+        \[\int_0^1\int_0^2(x+y)^2\,dy\,dx\]</div>
+        <div class="step"><span class="step-num">INNER (w.r.t. \(y\)):</span>
+        \[\int_0^2(x+y)^2\,dy = \left[\frac{(x+y)^3}{3}\right]_0^2 = \frac{(x+2)^3-(x)^3}{3}\]</div>
+        <div class="step"><span class="step-num">OUTER (w.r.t. \(x\), 0 to 1):</span>
+        \[\int_0^1\frac{(x+2)^3-x^3}{3}\,dx = \frac{1}{3}\left[\frac{(x+2)^4}{4}-\frac{x^4}{4}\right]_0^1 = \frac{1}{12}\left[(3^4-2^4)-(1^4-0)\right]=\frac{1}{12}(81-16-1)=\frac{64}{12}=\frac{16}{3}\]</div>
+        <div class="answer-box">∴ \(\displaystyle\iint_R(x+y)^2\,dA = \dfrac{16}{3}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\iint_R(3x+4y^2)\,dA\) where \(R\) is the upper half-plane bounded by \(x^2+y^2=1\) and \(x^2+y^2=4\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Polar needed</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Region is annular (between two semicircles) → use polar coordinates. \(1\leq r\leq 2\), \(0\leq\theta\leq\pi\).</div>
+        <div class="step"><span class="step-num">POLAR TRANSFORM: \(x=r\cos\theta\), \(y=r\sin\theta\), \(dA=r\,dr\,d\theta\):</span>
+        \[\int_0^\pi\int_1^2(3r\cos\theta+4r^2\sin^2\theta)\,r\,dr\,d\theta = \int_0^\pi\int_1^2(3r^2\cos\theta+4r^3\sin^2\theta)\,dr\,d\theta\]</div>
+        <div class="step"><span class="step-num">INNER (w.r.t. \(r\)):</span>
+        \[\int_1^2(3r^2\cos\theta+4r^3\sin^2\theta)\,dr = \Big[r^3\cos\theta+r^4\sin^2\theta\Big]_1^2 = 7\cos\theta+15\sin^2\theta\]</div>
+        <div class="step"><span class="step-num">OUTER (w.r.t. \(\theta\)):</span>
+        \[\int_0^\pi(7\cos\theta+15\sin^2\theta)\,d\theta = \Big[7\sin\theta\Big]_0^\pi+15\int_0^\pi\sin^2\theta\,d\theta\]
+        \[= 0+15\cdot\frac{\pi}{2} = \frac{15\pi}{2}\]</div>
+        <div class="answer-box">∴ \(\displaystyle\iint_R(3x+4y^2)\,dA = \dfrac{15\pi}{2}\)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- end topic1 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 2 — DOUBLE INTEGRALS: GENERAL REGIONS
+══════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Double Integrals Over General (Non-Rectangular) Regions</h2>
+</div>
+
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Non-Rectangular Regions — Setup <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ TWO TYPES OF REGIONS</strong>
+    <p><strong>Type I (x-simple):</strong> \(a\leq x\leq b\), \(g_1(x)\leq y\leq g_2(x)\)
+    \[\iint_R f\,dA = \int_a^b\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx\]
+    (Inner integral: \(y\) from curve to curve, \(x\) is constant)</p>
+    <p><strong>Type II (y-simple):</strong> \(c\leq y\leq d\), \(h_1(y)\leq x\leq h_2(y)\)
+    \[\iint_R f\,dA = \int_c^d\int_{h_1(y)}^{h_2(y)} f(x,y)\,dx\,dy\]</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 HOW TO SET UP LIMITS FROM A REGION</strong>
+    <ol>
+      <li><strong>Sketch</strong> the region (draw all boundary curves)</li>
+      <li><strong>Choose order</strong> of integration (dx dy or dy dx)</li>
+      <li><strong>Outer limits:</strong> constant values (numbers)</li>
+      <li><strong>Inner limits:</strong> express one variable's bounds in terms of the other</li>
+    </ol>
+    <p><strong>Example:</strong> Region bounded by \(y=x\) and \(y=x^2\):</p>
+    <p>Intersection: \(x=x^2\Rightarrow x=0,1\). For \(0\leq x\leq 1\): \(x^2\leq y\leq x\).</p>
+    <p>Setup: \(\int_0^1\int_{x^2}^x f(x,y)\,dy\,dx\)</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Sketching the Region of Integration <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 HOW TO SKETCH FROM GIVEN LIMITS</strong>
+    <p>Given \(\displaystyle\int_a^b\int_{g_1(x)}^{g_2(x)} f\,dy\,dx\):</p>
+    <ol>
+      <li>The outer limits \(a\leq x\leq b\) give vertical bounds</li>
+      <li>The inner limits \(g_1(x)\leq y\leq g_2(x)\) give the upper and lower curves</li>
+      <li>Sketch these curves and shade the enclosed region</li>
+    </ol>
+  </div>
+
+  <div class="mistake-box">
+    <strong>⚠️ COMMON MISTAKES IN SETTING UP LIMITS</strong>
+    <ul>
+      <li>Mixing up which is the outer variable and which is inner — outer limits must be CONSTANTS</li>
+      <li>Getting upper and lower curves reversed — always check: which curve is on top in the region?</li>
+      <li>Forgetting to find intersection points of boundary curves</li>
+      <li>For Type II integrals: express \(x\) as a function of \(y\) (solve for \(x\))</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 2.3 PYQs -->
+<div class="subtopic" id="t2s3">
+  <h3>2.3 PYQs — General Region Double Integrals <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 PYQs — NON-RECTANGULAR REGIONS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Calculate \(\displaystyle\iint_R \frac{\sin x}{x}\,dA\) where \(R\) is the triangle bounded by the \(x\)-axis, \(y=x\) and \(x=1\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic — change of order needed</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 The region is: \(0\leq x\leq 1\), \(0\leq y\leq x\). As given, \(\int_0^1\int_0^x\frac{\sin x}{x}\,dy\,dx\) — \(\frac{\sin x}{x}\) does NOT depend on \(y\), so inner integral is simple!</div>
+        <div class="step"><span class="step-num">INNER INTEGRAL (w.r.t. \(y\), 0 to \(x\)):</span>
+        \[\int_0^x\frac{\sin x}{x}\,dy = \frac{\sin x}{x}\cdot[y]_0^x = \frac{\sin x}{x}\cdot x = \sin x\]</div>
+        <div class="step"><span class="step-num">OUTER INTEGRAL (w.r.t. \(x\), 0 to 1):</span>
+        \[\int_0^1\sin x\,dx = [-\cos x]_0^1 = -\cos 1+\cos 0 = 1-\cos 1\]</div>
+        <div class="answer-box">∴ \(\displaystyle\iint_R\frac{\sin x}{x}\,dA = 1-\cos 1 \approx 0.4597\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Sketch region for \(\displaystyle\int_0^2\int_{x^2}^{2x}(4x+2)\,dy\,dx\) and write equivalent integral with reversed order.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Sketch + reverse order</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Original: \(0\leq x\leq 2\), \(x^2\leq y\leq 2x\). Region bounded by parabola \(y=x^2\) (bottom) and line \(y=2x\) (top). Intersect: \(x=0,2\).</div>
+        <div class="step"><span class="step-num">EVALUATE ORIGINAL:</span>
+        \[\int_0^2(4x+2)[y]_{x^2}^{2x}dx = \int_0^2(4x+2)(2x-x^2)\,dx = \int_0^2(8x^2-4x^3+4x-2x^2)\,dx\]
+        \[= \int_0^2(6x^2-4x^3+4x)\,dx = [2x^3-x^4+2x^2]_0^2 = 16-16+8 = 8\]</div>
+        <div class="step"><span class="step-num">REVERSE ORDER — describe region in terms of \(y\) first:</span>
+        From \(y=x^2\): \(x=\sqrt{y}\); from \(y=2x\): \(x=y/2\). For \(0\leq y\leq 4\): \(y/2\leq x\leq\sqrt{y}\).
+        \[\int_0^4\int_{y/2}^{\sqrt{y}}(4x+2)\,dx\,dy\]</div>
+        <div class="answer-box">Reversed integral: \(\displaystyle\int_0^4\int_{y/2}^{\sqrt{y}}(4x+2)\,dx\,dy\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find area of region \(R\) bounded by \(y=x\) and \(y=x^2\) in the first quadrant.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Standard area</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INTERSECTION: \(y=x\) and \(y=x^2\): \(x=x^2\Rightarrow x=0,1\).</span></div>
+        <div class="step"><span class="step-num">For \(0\leq x\leq 1\): \(x^2\leq y\leq x\). Area:</span>
+        \[\text{Area}=\iint_R dA=\int_0^1\int_{x^2}^x dy\,dx=\int_0^1(x-x^2)\,dx=\left[\frac{x^2}{2}-\frac{x^3}{3}\right]_0^1=\frac{1}{2}-\frac{1}{3}=\frac{1}{6}\]</div>
+        <div class="answer-box">∴ Area \(= \dfrac{1}{6}\) square units.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\int_{\ln 1}^{\ln 8}\int_0^{\ln y} e^{x+y}\,dx\,dy\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023 (OR)</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INNER (w.r.t. \(x\), 0 to \(\ln y\)):</span>
+        \[\int_0^{\ln y}e^{x+y}\,dx = e^y[e^x]_0^{\ln y} = e^y(y-1)\]</div>
+        <div class="step"><span class="step-num">OUTER (w.r.t. \(y\), 1 to 8; note \(\ln 1=0,\ln 8=\ln 8\)):</span>
+        \[\int_1^8 e^y(y-1)\,dy\]
+        Integration by parts: \(u=y-1\), \(dv=e^y dy\Rightarrow v=e^y\):
+        \[= [e^y(y-1)]_1^8 - \int_1^8 e^y\,dy = (7e^8-0)-[e^y]_1^8 = 7e^8-(e^8-e) = 6e^8+e\]</div>
+        <div class="answer-box">∴ Answer \(= 6e^8+e\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\iint_R y(x-y^2)\,dy\,dx\) where \(R\) is bounded by \(y=\sqrt{x}\) and \(y=x^3\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INTERSECTION: \(\sqrt{x}=x^3\Rightarrow x^{1/2}=x^3\Rightarrow x=0,1\).</span>
+        For \(0\leq x\leq 1\): \(x^3\leq y\leq\sqrt{x}\) (since \(\sqrt{x}\geq x^3\) on \([0,1]\)).</div>
+        <div class="step"><span class="step-num">INTEGRAL:</span>
+        \[\int_0^1\int_{x^3}^{\sqrt{x}}y(x-y^2)\,dy\,dx = \int_0^1\int_{x^3}^{\sqrt{x}}(xy-y^3)\,dy\,dx\]</div>
+        <div class="step"><span class="step-num">INNER:</span>
+        \[\int_{x^3}^{\sqrt{x}}(xy-y^3)\,dy=\left[\frac{xy^2}{2}-\frac{y^4}{4}\right]_{x^3}^{\sqrt{x}}=\left(\frac{x^2}{2}-\frac{x^2}{4}\right)-\left(\frac{x^7}{2}-\frac{x^{12}}{4}\right)=\frac{x^2}{4}-\frac{x^7}{2}+\frac{x^{12}}{4}\]</div>
+        <div class="step"><span class="step-num">OUTER:</span>
+        \[\int_0^1\left(\frac{x^2}{4}-\frac{x^7}{2}+\frac{x^{12}}{4}\right)dx=\frac{1}{12}-\frac{1}{16}+\frac{1}{52}=\frac{52-39+12}{624}\cdot... \]
+        Computing: \(\frac{1}{12}-\frac{1}{16}+\frac{1}{52} = \frac{52-39+12}{624}=\frac{25}{624}\)</div>
+        <div class="answer-box">∴ \(\displaystyle\iint_R y(x-y^2)\,dA = \dfrac{25}{624}\)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- end topic2 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 3 — CHANGE OF ORDER
+══════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Change of Order of Integration</h2>
+</div>
+
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Why Change Order? <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="intuition-box">
+    <strong>💡 MOTIVATION</strong>
+    Sometimes \(\int f\,dy\) has no closed form but \(\int f\,dx\) is easy (e.g., \(\int e^{-y^2}\,dy\) has no elementary form, but after changing order we get a solvable integral). Changing the order of integration can turn an impossible integral into a simple one.
+  </div>
+</div>
+
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Step-by-Step Method for Changing Order <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="method-box">
+    <strong>🔧 COMPLETE METHOD — Change Order from dy dx to dx dy</strong>
+    <ol>
+      <li><strong>Read the original limits:</strong> \(x\) from \(a\) to \(b\), \(y\) from \(g_1(x)\) to \(g_2(x)\)</li>
+      <li><strong>Sketch the region</strong> using those limits — plot all boundary curves</li>
+      <li><strong>Re-describe the region</strong> with \(y\) as outer variable: find \(y\) range (constants), express \(x\) limits as functions of \(y\)</li>
+      <li><strong>Write the new integral:</strong> \(\int_c^d\int_{h_1(y)}^{h_2(y)} f(x,y)\,dx\,dy\)</li>
+      <li><strong>Evaluate</strong></li>
+    </ol>
+    <p><strong>Key Rule:</strong> The region of integration is fixed — you're just describing it differently.</p>
+  </div>
+</div>
+
+<!-- 3.3 PYQs -->
+<div class="subtopic" id="t3s3">
+  <h3>3.3 PYQs — Change of Order of Integration <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — CHANGE OF ORDER</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Sketch the region, change the order of integration and evaluate \(\displaystyle\int_0^\infty\int_x^\infty e^{-y^2}\,dy\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic — Gaussian integral</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Cannot integrate \(e^{-y^2}\) w.r.t. \(y\). Must change order first. The region is \(0\leq x&lt;\infty\), \(x\leq y&lt;\infty\) — this is the region above the line \(y=x\) in the first quadrant.</div>
+        <div class="step"><span class="step-num">STEP 1 — Identify region:</span>
+        Original: outer \(x: 0\to\infty\), inner \(y: x\to\infty\). Region: \(\{(x,y): 0\leq x, x\leq y\} = \{0\leq x\leq y, 0\leq y&lt;\infty\}\).</div>
+        <div class="step"><span class="step-num">STEP 2 — Re-describe:</span>
+        Fix \(y\): \(x\) ranges from \(0\) to \(y\); \(y\) ranges from \(0\) to \(\infty\).</div>
+        <div class="step"><span class="step-num">STEP 3 — New integral:</span>
+        \[\int_0^\infty\int_0^y e^{-y^2}\,dx\,dy\]</div>
+        <div class="step"><span class="step-num">STEP 4 — Evaluate (inner w.r.t. \(x\)):</span>
+        \[\int_0^y e^{-y^2}\,dx = e^{-y^2}[x]_0^y = ye^{-y^2}\]</div>
+        <div class="step"><span class="step-num">STEP 5 — Outer:</span>
+        \[\int_0^\infty ye^{-y^2}\,dy = \left[-\frac{e^{-y^2}}{2}\right]_0^\infty = 0+\frac{1}{2} = \frac{1}{2}\]</div>
+        <div class="answer-box">∴ \(\displaystyle\int_0^\infty\int_x^\infty e^{-y^2}\,dy\,dx = \dfrac{1}{2}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Change order and evaluate \(\displaystyle\int_0^4\int_{\sqrt{x}}^2\frac{1}{y^3+1}\,dy\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated pattern</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Cannot integrate \(\frac{1}{y^3+1}\) w.r.t. \(y\) easily. Change order to integrate w.r.t. \(x\) first.</div>
+        <div class="step"><span class="step-num">IDENTIFY REGION:</span>
+        Original: \(0\leq x\leq 4\), \(\sqrt{x}\leq y\leq 2\). So region is above \(y=\sqrt{x}\) (i.e. \(x\leq y^2\)), below \(y=2\), right of \(x=0\).</div>
+        <div class="step"><span class="step-num">RE-DESCRIBE with \(y\) outer:</span>
+        Fix \(y\in[0,2]\): \(x\) goes from \(0\) to \(y^2\) (since \(x\leq y^2\)).
+        \[\int_0^2\int_0^{y^2}\frac{1}{y^3+1}\,dx\,dy\]</div>
+        <div class="step"><span class="step-num">INNER (w.r.t. \(x\)):</span>
+        \[\int_0^{y^2}\frac{1}{y^3+1}\,dx = \frac{y^2}{y^3+1}\]</div>
+        <div class="step"><span class="step-num">OUTER (w.r.t. \(y\)):</span>
+        \[\int_0^2\frac{y^2}{y^3+1}\,dy = \frac{1}{3}\Big[\ln(y^3+1)\Big]_0^2 = \frac{1}{3}(\ln 9-\ln 1) = \frac{\ln 9}{3} = \frac{2\ln 3}{3}\]</div>
+        <div class="answer-box">∴ Answer \(= \dfrac{2\ln 3}{3}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Change order and evaluate \(\displaystyle\int_0^1\int_x^1\sin(y^2)\,dy\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025 / Winter 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 \(\int\sin(y^2)\,dy\) has no closed form — must change order first.</div>
+        <div class="step"><span class="step-num">REGION: \(0\leq x\leq 1\), \(x\leq y\leq 1\). This is the triangle below \(y=1\), above \(y=x\).</span></div>
+        <div class="step"><span class="step-num">RE-DESCRIBE: Fix \(y\in[0,1]\): \(x\) from \(0\) to \(y\).</span>
+        \[\int_0^1\int_0^y\sin(y^2)\,dx\,dy\]</div>
+        <div class="step"><span class="step-num">INNER:</span>
+        \[\int_0^y\sin(y^2)\,dx = y\sin(y^2)\]</div>
+        <div class="step"><span class="step-num">OUTER:</span>
+        \[\int_0^1 y\sin(y^2)\,dy = \left[-\frac{\cos(y^2)}{2}\right]_0^1 = -\frac{\cos 1}{2}+\frac{1}{2} = \frac{1-\cos 1}{2}\]</div>
+        <div class="answer-box">∴ Answer \(= \dfrac{1-\cos 1}{2}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Change order and evaluate \(\displaystyle\int_0^2\int_{2x}^4\sin\!\left(\frac{\pi y^2}{4}\right)\,dy\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">REGION: \(0\leq x\leq 2\), \(2x\leq y\leq 4\) → above line \(y=2x\), below \(y=4\).</span></div>
+        <div class="step"><span class="step-num">RE-DESCRIBE: Fix \(y\in[0,4]\): \(x\) from \(0\) to \(y/2\).</span>
+        \[\int_0^4\int_0^{y/2}\sin\!\left(\frac{\pi y^2}{4}\right)\,dx\,dy\]</div>
+        <div class="step"><span class="step-num">INNER: \(\displaystyle\int_0^{y/2}\sin\!\left(\frac{\pi y^2}{4}\right)dx = \frac{y}{2}\sin\!\left(\frac{\pi y^2}{4}\right)\)</span></div>
+        <div class="step"><span class="step-num">OUTER: Let \(u=\frac{\pi y^2}{4}\Rightarrow du=\frac{\pi y}{2}dy\Rightarrow y\,dy=\frac{2}{\pi}du\):</span>
+        \[\int_0^4\frac{y}{2}\sin\!\left(\frac{\pi y^2}{4}\right)dy = \frac{1}{\pi}\int_0^{4\pi}\sin u\,du = \frac{1}{\pi}[-\cos u]_0^{4\pi}=\frac{1}{\pi}(-1+1)=0\]
+        Wait: at \(y=4\), \(u=\frac{\pi\cdot 16}{4}=4\pi\). So \(\frac{1}{\pi}[-\cos u]_0^{4\pi}=\frac{1}{\pi}(-\cos 4\pi+\cos 0)=\frac{1}{\pi}(-1+1)=0\).</div>
+        <div class="answer-box">∴ Answer \(= 0\)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- end topic3 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 4 — POLAR COORDINATES
+══════════════════════════════════════ -->
+<div id="topic4">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 4</div>
+  <h2>Double Integrals in Polar Coordinates</h2>
+</div>
+
+<div class="subtopic" id="t4s1">
+  <h3>4.1 Polar Coordinate Transformation <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ POLAR TRANSFORMATION — MUST MEMORIZE</strong>
+    <table>
+      <tr><th>Cartesian</th><th>Polar</th></tr>
+      <tr><td>\(x = r\cos\theta\)</td><td>\(r^2 = x^2+y^2\)</td></tr>
+      <tr><td>\(y = r\sin\theta\)</td><td>\(\tan\theta = y/x\)</td></tr>
+      <tr><td>\(dA = dx\,dy\)</td><td>\(dA = r\,dr\,d\theta\) ← don't forget \(r\)!</td></tr>
+    </table>
+    <p style="margin-top:8px"><strong>The Jacobian factor \(r\) is CRITICAL — forgetting it is the most common mistake!</strong></p>
+    \[\iint_R f(x,y)\,dA = \iint_{R'} f(r\cos\theta, r\sin\theta)\cdot r\,dr\,d\theta\]
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 WHEN TO USE POLAR COORDINATES</strong>
+    <ul>
+      <li>Region is a <strong>circle, annulus, or sector</strong></li>
+      <li>Integrand contains \(x^2+y^2\) (replace with \(r^2\))</li>
+      <li>Integrand contains \(\sqrt{x^2+y^2}\) (replace with \(r\))</li>
+      <li>Region is bounded by \(x^2+y^2=a^2\)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t4s2">
+  <h3>4.2 Setting Up Polar Integrals <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="method-box">
+    <strong>🔧 STANDARD POLAR LIMITS FOR COMMON REGIONS</strong>
+    <table>
+      <tr><th>Region</th><th>\(r\) limits</th><th>\(\theta\) limits</th></tr>
+      <tr><td>Full circle \(x^2+y^2\leq a^2\)</td><td>\(0\to a\)</td><td>\(0\to 2\pi\)</td></tr>
+      <tr><td>Upper semicircle</td><td>\(0\to a\)</td><td>\(0\to \pi\)</td></tr>
+      <tr><td>First quadrant circle</td><td>\(0\to a\)</td><td>\(0\to \pi/2\)</td></tr>
+      <tr><td>Annulus \(a^2\leq x^2+y^2\leq b^2\)</td><td>\(a\to b\)</td><td>\(0\to 2\pi\)</td></tr>
+      <tr><td>Upper half annulus</td><td>\(a\to b\)</td><td>\(0\to \pi\)</td></tr>
+    </table>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ KEY TRIGONOMETRIC INTEGRALS (needed in polar integration)</strong>
+    \[\int_0^{2\pi}\sin\theta\,d\theta=0,\quad\int_0^\pi\sin\theta\,d\theta=2,\quad\int_0^\pi\cos\theta\,d\theta=0\]
+    \[\int_0^{2\pi}\sin^2\theta\,d\theta=\pi,\quad\int_0^\pi\sin^2\theta\,d\theta=\frac{\pi}{2}\]
+    \[\int_0^{2\pi}\cos^2\theta\,d\theta=\pi,\quad\int_0^{2\pi}\cos\theta\sin\theta\,d\theta=0\]
+  </div>
+</div>
+
+<!-- 4.3 PYQs -->
+<div class="subtopic" id="t4s3">
+  <h3>4.3 PYQs — Polar Double Integrals <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — POLAR COORDINATES</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\int_0^1\int_0^{\sqrt{1-x^2}}(x^2+y^2)\,dy\,dx\) by changing to polar coordinates.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic polar conversion</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 The region is the first-quadrant part of the unit circle (\(0\leq x\leq 1\), \(0\leq y\leq\sqrt{1-x^2}\)). Integrand is \(x^2+y^2=r^2\). Perfect for polar.</div>
+        <div class="step"><span class="step-num">POLAR LIMITS: First-quadrant unit circle: \(0\leq r\leq 1\), \(0\leq\theta\leq\pi/2\).</span></div>
+        <div class="step"><span class="step-num">TRANSFORM:</span>
+        \[x^2+y^2 = r^2,\quad dA = r\,dr\,d\theta\]
+        \[\int_0^{\pi/2}\int_0^1 r^2\cdot r\,dr\,d\theta = \int_0^{\pi/2}\int_0^1 r^3\,dr\,d\theta\]</div>
+        <div class="step"><span class="step-num">INNER:</span>
+        \[\int_0^1 r^3\,dr = \left[\frac{r^4}{4}\right]_0^1 = \frac{1}{4}\]</div>
+        <div class="step"><span class="step-num">OUTER:</span>
+        \[\int_0^{\pi/2}\frac{1}{4}\,d\theta = \frac{1}{4}\cdot\frac{\pi}{2} = \frac{\pi}{8}\]</div>
+        <div class="answer-box">∴ Answer \(= \dfrac{\pi}{8}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\int_0^2\int_0^{\sqrt{2x-x^2}}\frac{x}{\sqrt{x^2+y^2}}\,dy\,dx\) by changing to polar coordinates.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 \(y=\sqrt{2x-x^2}\Rightarrow y^2=2x-x^2\Rightarrow x^2-2x+y^2=0\Rightarrow(x-1)^2+y^2=1\). This is a circle of radius 1 centred at \((1,0)\). In polar: \(r=2\cos\theta\), \(0\leq\theta\leq\pi/2\).</div>
+        <div class="step"><span class="step-num">POLAR REGION:</span>
+        Circle \((x-1)^2+y^2=1\): in polar, \(r^2-2r\cos\theta=0\Rightarrow r=2\cos\theta\). So \(0\leq r\leq 2\cos\theta\), \(0\leq\theta\leq\pi/2\).</div>
+        <div class="step"><span class="step-num">TRANSFORM: \(x=r\cos\theta\), \(\sqrt{x^2+y^2}=r\), \(dA=r\,dr\,d\theta\):</span>
+        \[\int_0^{\pi/2}\int_0^{2\cos\theta}\frac{r\cos\theta}{r}\cdot r\,dr\,d\theta = \int_0^{\pi/2}\int_0^{2\cos\theta}r\cos\theta\,dr\,d\theta\]</div>
+        <div class="step"><span class="step-num">INNER:</span>
+        \[\cos\theta\int_0^{2\cos\theta}r\,dr = \cos\theta\cdot\frac{4\cos^2\theta}{2} = 2\cos^3\theta\]</div>
+        <div class="step"><span class="step-num">OUTER:</span>
+        \[\int_0^{\pi/2}2\cos^3\theta\,d\theta = 2\cdot\frac{2}{3} = \frac{4}{3}\]
+        (Using Wallis: \(\int_0^{\pi/2}\cos^3\theta\,d\theta=\frac{2}{3}\))</div>
+        <div class="answer-box">∴ Answer \(= \dfrac{4}{3}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\iint_R r\sqrt{a^2-r^2}\,dr\,d\theta\) over the upper half of the circle \(r=a\cos\theta\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">LIMITS: Upper half of \(r=a\cos\theta\): \(0\leq r\leq a\cos\theta\), \(0\leq\theta\leq\pi/2\).</span></div>
+        <div class="step"><span class="step-num">INNER (w.r.t. \(r\)):</span>
+        \[\int_0^{a\cos\theta}r\sqrt{a^2-r^2}\,dr\]
+        Let \(u=a^2-r^2\Rightarrow du=-2r\,dr\): at \(r=0\), \(u=a^2\); at \(r=a\cos\theta\), \(u=a^2\sin^2\theta\).
+        \[=-\frac{1}{2}\int_{a^2}^{a^2\sin^2\theta}\sqrt{u}\,du = \frac{1}{2}\int_{a^2\sin^2\theta}^{a^2}u^{1/2}\,du = \frac{1}{3}\Big[u^{3/2}\Big]_{a^2\sin^2\theta}^{a^2} = \frac{a^3}{3}(1-\sin^3\theta)\]</div>
+        <div class="step"><span class="step-num">OUTER:</span>
+        \[\int_0^{\pi/2}\frac{a^3}{3}(1-\sin^3\theta)\,d\theta = \frac{a^3}{3}\left[\frac{\pi}{2}-\frac{2}{3}\right] = \frac{a^3}{3}\cdot\frac{3\pi-4}{6} = \frac{a^3(3\pi-4)}{18}\]</div>
+        <div class="answer-box">∴ Answer \(= \dfrac{a^3(3\pi-4)}{18}\)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- end topic4 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 5 — APPLICATIONS
+══════════════════════════════════════ -->
+<div id="topic5">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 5</div>
+  <h2>Applications — Area, Volume, and Centre of Mass</h2>
+</div>
+
+<div class="subtopic" id="t5s1">
+  <h3>5.1 Area Using Double Integrals <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ AREA FORMULAS</strong>
+    \[\text{Area of }R = \iint_R dA = \iint_R 1\,dA\]
+    <p>In Cartesian: set \(f=1\) and integrate.</p>
+    <p>In Polar: \(\text{Area} = \int\int r\,dr\,d\theta\)</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t5s2">
+  <h3>5.2 Volume Under a Surface <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ VOLUME FORMULAS</strong>
+    <p>Volume under \(z=f(x,y)\) above region \(R\):
+    \[V = \iint_R f(x,y)\,dA\]</p>
+    <p>Volume between two surfaces \(z_1\leq z\leq z_2\):
+    \[V = \iint_R [z_2(x,y)-z_1(x,y)]\,dA\]</p>
+    <p>Volume using polar:
+    \[V = \int\int f(r\cos\theta,r\sin\theta)\cdot r\,dr\,d\theta\]</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t5s3">
+  <h3>5.3 Centre of Mass and Gravity <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ CENTRE OF MASS FORMULAS</strong>
+    <p>For a lamina with density \(\delta(x,y)\):</p>
+    <table>
+      <tr><th>Quantity</th><th>Formula</th></tr>
+      <tr><td>Mass \(M\)</td><td>\(\displaystyle M = \iint_R\delta(x,y)\,dA\)</td></tr>
+      <tr><td>First moment about \(y\)-axis</td><td>\(\displaystyle M_y = \iint_R x\cdot\delta(x,y)\,dA\)</td></tr>
+      <tr><td>First moment about \(x\)-axis</td><td>\(\displaystyle M_x = \iint_R y\cdot\delta(x,y)\,dA\)</td></tr>
+      <tr><td>Centre of mass \((\bar{x},\bar{y})\)</td><td>\(\bar{x}=M_y/M,\quad\bar{y}=M_x/M\)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 5.4 PYQs -->
+<div class="subtopic" id="t5s4">
+  <h3>5.4 PYQs — Applications <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 PYQs — AREA, VOLUME, CENTRE OF MASS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Find the area of region \(R\) bounded by \(y=2x^2\) and \(y^2=4x\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INTERSECTION: \(y=2x^2\) and \(y^2=4x\Rightarrow(2x^2)^2=4x\Rightarrow 4x^4=4x\Rightarrow x=0,1\). Points: \((0,0)\) and \((1,2)\).</span></div>
+        <div class="step"><span class="step-num">REGION for \(0\leq x\leq 1\): from \(y=2x^2\) (bottom) to \(y=2\sqrt{x}\) (top).</span></div>
+        <div class="step"><span class="step-num">AREA:</span>
+        \[\int_0^1(2\sqrt{x}-2x^2)\,dx=\left[\frac{4x^{3/2}}{3}-\frac{2x^3}{3}\right]_0^1=\frac{4}{3}-\frac{2}{3}=\frac{2}{3}\]</div>
+        <div class="answer-box">∴ Area \(= \dfrac{2}{3}\) square units.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find volume of solid that lies under paraboloid \(z=x^2+y^2\) above region bounded by \(y=2x\) and \(y=x^2\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Important application</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">REGION: \(y=2x\) and \(y=x^2\): intersection at \(x=0,2\). For \(0\leq x\leq 2\): \(x^2\leq y\leq 2x\).</span></div>
+        <div class="step"><span class="step-num">VOLUME:</span>
+        \[V=\int_0^2\int_{x^2}^{2x}(x^2+y^2)\,dy\,dx\]</div>
+        <div class="step"><span class="step-num">INNER:</span>
+        \[\int_{x^2}^{2x}(x^2+y^2)\,dy = \left[x^2y+\frac{y^3}{3}\right]_{x^2}^{2x} = \left(2x^3+\frac{8x^3}{3}\right)-\left(x^4+\frac{x^6}{3}\right) = \frac{14x^3}{3}-x^4-\frac{x^6}{3}\]</div>
+        <div class="step"><span class="step-num">OUTER:</span>
+        \[\int_0^2\left(\frac{14x^3}{3}-x^4-\frac{x^6}{3}\right)dx = \left[\frac{14x^4}{12}-\frac{x^5}{5}-\frac{x^7}{21}\right]_0^2 = \frac{224}{12}-\frac{32}{5}-\frac{128}{21}\]
+        \[= \frac{56}{3}-\frac{32}{5}-\frac{128}{21} = \frac{1960-672-384}{105} \cdot\frac{105}{105}= \frac{216}{35}\]</div>
+        <div class="answer-box">∴ Volume \(= \dfrac{216}{35}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: A thin plate covers the triangular region bounded by \(x\)-axis, \(x=1\) and \(y=2x\). Density \(\delta(x,y)=6x+6y+6\). Find plate's mass, first moments and centre of mass.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Centre of Mass</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Region: \(0\leq x\leq 1\), \(0\leq y\leq 2x\).</div>
+        <div class="step"><span class="step-num">MASS \(M\):</span>
+        \[M=\int_0^1\int_0^{2x}(6x+6y+6)\,dy\,dx=\int_0^1\left[6xy+3y^2+6y\right]_0^{2x}dx\]
+        \[=\int_0^1(12x^2+12x^2+12x)\,dx=\int_0^1(24x^2+12x)\,dx=\left[8x^3+6x^2\right]_0^1=14\]</div>
+        <div class="step"><span class="step-num">MOMENT \(M_y=\iint x\delta\,dA\):</span>
+        \[=\int_0^1\int_0^{2x}x(6x+6y+6)\,dy\,dx=\int_0^1 x\left[6xy+3y^2+6y\right]_0^{2x}dx\]
+        \[=\int_0^1 x(24x^2+12x)\,dx=\int_0^1(24x^3+12x^2)\,dx=6+4=10\]</div>
+        <div class="step"><span class="step-num">MOMENT \(M_x=\iint y\delta\,dA\):</span>
+        \[=\int_0^1\int_0^{2x}y(6x+6y+6)\,dy\,dx=\int_0^1\left[3xy^2+2y^3+3y^2\right]_0^{2x}dx\]
+        \[=\int_0^1(12x^3+16x^3+12x^2)\,dx=\int_0^1(28x^3+12x^2)\,dx=7+4=11\]</div>
+        <div class="step"><span class="step-num">CENTRE OF MASS:</span>
+        \[\bar{x}=\frac{M_y}{M}=\frac{10}{14}=\frac{5}{7},\quad\bar{y}=\frac{M_x}{M}=\frac{11}{14}\]</div>
+        <div class="answer-box">Mass \(=14\), \(M_y=10\), \(M_x=11\). Centre of mass: \(\left(\dfrac{5}{7},\dfrac{11}{14}\right)\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find volume of solid bounded by paraboloid \(z=1-x^2-y^2\), plane \(z=1\) and XY-plane.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Paraboloid \(z=1-r^2\) meets XY-plane at \(z=0\Rightarrow r=1\). Use polar coordinates.</div>
+        <div class="step"><span class="step-num">REGION: \(x^2+y^2\leq 1\) (where paraboloid is above XY-plane). Polar: \(0\leq r\leq 1\), \(0\leq\theta\leq 2\pi\).</span></div>
+        <div class="step"><span class="step-num">VOLUME (height \(= z = 1-r^2\)):</span>
+        \[V=\int_0^{2\pi}\int_0^1(1-r^2)\cdot r\,dr\,d\theta=2\pi\int_0^1(r-r^3)\,dr=2\pi\left[\frac{r^2}{2}-\frac{r^4}{4}\right]_0^1=2\pi\cdot\frac{1}{4}=\frac{\pi}{2}\]</div>
+        <div class="answer-box">∴ Volume \(= \dfrac{\pi}{2}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Sketch region bounded by \(x=0,x=2,y=x,y=x+2\). Find area by double integrals.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">REGION: \(0\leq x\leq 2\), \(x\leq y\leq x+2\).</span></div>
+        <div class="step"><span class="step-num">AREA:</span>
+        \[A=\int_0^2\int_x^{x+2}dy\,dx=\int_0^2 2\,dx=4\]</div>
+        <div class="answer-box">∴ Area \(=4\) square units.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- end topic5 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 6 — TRIPLE INTEGRALS
+══════════════════════════════════════ -->
+<div id="topic6">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 6</div>
+  <h2>Triple Integrals</h2>
+</div>
+
+<div class="subtopic" id="t6s1">
+  <h3>6.1 Triple Integrals — Setup and Evaluation <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 TRIPLE INTEGRAL</strong>
+    \[\iiint_E f(x,y,z)\,dV = \int_a^b\int_{g_1(x)}^{g_2(x)}\int_{h_1(x,y)}^{h_2(x,y)} f(x,y,z)\,dz\,dy\,dx\]
+    <p>Evaluate from innermost to outermost: first integrate w.r.t. \(z\) (treating \(x,y\) as constants), then \(y\), then \(x\).</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 METHOD FOR RECTANGULAR BOX</strong>
+    <p>For \(B=[a,b]\times[c,d]\times[e,f]\), all limits are constants:
+    \[\iiint_B f\,dV = \int_a^b\int_c^d\int_e^f f(x,y,z)\,dz\,dy\,dx\]</p>
+    <p>Evaluate three single integrals from inside out.</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t6s2">
+  <h3>6.2 Cylindrical and Spherical Coordinates <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ CYLINDRICAL COORDINATES</strong>
+    <table>
+      <tr><th>Variable</th><th>Relation</th></tr>
+      <tr><td>\(x = r\cos\theta\)</td><td>\(r^2=x^2+y^2\)</td></tr>
+      <tr><td>\(y = r\sin\theta\)</td><td>\(\tan\theta=y/x\)</td></tr>
+      <tr><td>\(z = z\)</td><td>\(z=z\)</td></tr>
+      <tr><td>\(dV\)</td><td>\(= r\,dr\,d\theta\,dz\)</td></tr>
+    </table>
+    <p><strong>Use when:</strong> region has circular cross-sections (cylinders, cones).</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ SPHERICAL COORDINATES</strong>
+    <table>
+      <tr><th>Variable</th><th>Relation</th></tr>
+      <tr><td>\(x = \rho\sin\phi\cos\theta\)</td><td>\(\rho\) = distance from origin</td></tr>
+      <tr><td>\(y = \rho\sin\phi\sin\theta\)</td><td>\(\phi\) = angle from \(z\)-axis</td></tr>
+      <tr><td>\(z = \rho\cos\phi\)</td><td>\(\theta\) = angle in \(xy\)-plane</td></tr>
+      <tr><td>\(dV\)</td><td>\(=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta\)</td></tr>
+    </table>
+    <p><strong>Use when:</strong> region involves spheres, \(\rho^2=x^2+y^2+z^2\).</p>
+  </div>
+</div>
+
+<!-- 6.3 PYQs -->
+<div class="subtopic" id="t6s3">
+  <h3>6.3 PYQs — Triple Integrals <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — TRIPLE INTEGRALS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\int_0^1\int_x^1\int_0^{y-x}dz\,dy\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022 / Winter 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INNER (w.r.t. \(z\), 0 to \(y-x\)):</span>
+        \[\int_0^{y-x}dz = y-x\]</div>
+        <div class="step"><span class="step-num">MIDDLE (w.r.t. \(y\), \(x\) to 1):</span>
+        \[\int_x^1(y-x)\,dy = \left[\frac{y^2}{2}-xy\right]_x^1 = \left(\frac{1}{2}-x\right)-\left(\frac{x^2}{2}-x^2\right) = \frac{1}{2}-x+\frac{x^2}{2}\]</div>
+        <div class="step"><span class="step-num">OUTER (w.r.t. \(x\), 0 to 1):</span>
+        \[\int_0^1\left(\frac{1}{2}-x+\frac{x^2}{2}\right)dx = \left[\frac{x}{2}-\frac{x^2}{2}+\frac{x^3}{6}\right]_0^1 = \frac{1}{2}-\frac{1}{2}+\frac{1}{6} = \frac{1}{6}\]</div>
+        <div class="answer-box">∴ Answer \(= \dfrac{1}{6}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\iiint_B xyz^2\,dV\) where \(B=\{(x,y,z): 0\leq x\leq 1,\;-1\leq y\leq 2,\;0\leq z\leq 3\}\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Rectangular box — all limits constant, so the triple integral separates into a product of three single integrals!</div>
+        <div class="step"><span class="step-num">SEPARATE (since \(f=xyz^2 = x\cdot y\cdot z^2\)):</span>
+        \[\iiint_B xyz^2\,dV = \left(\int_0^1 x\,dx\right)\left(\int_{-1}^2 y\,dy\right)\left(\int_0^3 z^2\,dz\right)\]</div>
+        <div class="step"><span class="step-num">EVALUATE EACH:</span>
+        \[\int_0^1 x\,dx=\frac{1}{2},\quad\int_{-1}^2 y\,dy=\left[\frac{y^2}{2}\right]_{-1}^2=2-\frac{1}{2}=\frac{3}{2},\quad\int_0^3 z^2\,dz=9\]</div>
+        <div class="answer-box">∴ Answer \(= \dfrac{1}{2}\times\dfrac{3}{2}\times 9 = \dfrac{27}{4}\)</div>
+        <div class="shortcut">For product-form integrands over rectangular boxes: split into product of 1D integrals — saves a lot of time!</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\int_0^2\int_1^2\int_0^{yz} xyz\,dx\,dy\,dz\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025 (OR)</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INNER (w.r.t. \(x\), 0 to \(yz\)):</span>
+        \[\int_0^{yz}xyz\,dx = yz\cdot\frac{x^2}{2}\bigg]_0^{yz} = yz\cdot\frac{y^2z^2}{2} = \frac{y^3z^3}{2}\]</div>
+        <div class="step"><span class="step-num">MIDDLE (w.r.t. \(y\), 1 to 2):</span>
+        \[\int_1^2\frac{y^3z^3}{2}\,dy = \frac{z^3}{2}\cdot\frac{y^4}{4}\bigg]_1^2 = \frac{z^3}{2}\cdot\frac{15}{4} = \frac{15z^3}{8}\]</div>
+        <div class="step"><span class="step-num">OUTER (w.r.t. \(z\), 0 to 2):</span>
+        \[\int_0^2\frac{15z^3}{8}\,dz = \frac{15}{8}\cdot\frac{z^4}{4}\bigg]_0^2 = \frac{15}{8}\cdot 4 = \frac{15}{2}\]</div>
+        <div class="answer-box">∴ Answer \(= \dfrac{15}{2}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\int_0^1\int_0^1\int_{\sqrt{x^2+y^2}}^2 z\,dz\,dy\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INNER (w.r.t. \(z\)):</span>
+        \[\int_{\sqrt{x^2+y^2}}^2 z\,dz = \left[\frac{z^2}{2}\right]_{\sqrt{x^2+y^2}}^2 = 2-\frac{x^2+y^2}{2}\]</div>
+        <div class="step"><span class="step-num">REMAINING DOUBLE INTEGRAL:</span>
+        \[\int_0^1\int_0^1\left(2-\frac{x^2+y^2}{2}\right)dy\,dx\]
+        Inner (w.r.t. \(y\)): \(\int_0^1\left(2-\frac{x^2+y^2}{2}\right)dy = \left[2y-\frac{x^2y}{2}-\frac{y^3}{6}\right]_0^1 = 2-\frac{x^2}{2}-\frac{1}{6}\)
+        Outer (w.r.t. \(x\)): \(\int_0^1\left(\frac{11}{6}-\frac{x^2}{2}\right)dx = \frac{11}{6}-\frac{1}{6}=\frac{10}{6}=\frac{5}{3}\)</div>
+        <div class="answer-box">∴ Answer \(= \dfrac{5}{3}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\int_0^2\int_0^{2x}\int_0^{2xy}2xyz\,dz\,dy\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">INNER (w.r.t. \(z\), 0 to \(2xy\)):</span>
+        \[\int_0^{2xy}2xyz\,dz = 2xy\cdot\frac{z^2}{2}\bigg]_0^{2xy} = 2xy\cdot 2x^2y^2 = 4x^3y^3\]</div>
+        <div class="step"><span class="step-num">MIDDLE (w.r.t. \(y\), 0 to \(2x\)):</span>
+        \[\int_0^{2x}4x^3y^3\,dy = 4x^3\cdot\frac{y^4}{4}\bigg]_0^{2x} = x^3\cdot 16x^4 = 16x^7\]</div>
+        <div class="step"><span class="step-num">OUTER (w.r.t. \(x\), 0 to 2):</span>
+        \[\int_0^2 16x^7\,dx = 16\cdot\frac{x^8}{8}\bigg]_0^2 = 2\cdot 256 = 512\]</div>
+        <div class="answer-box">∴ Answer \(= 512\)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- end topic6 -->
+
+
+<!-- ══════════════════════════════════════
+     END OF MODULE 5
+══════════════════════════════════════ -->
+<div id="eom5" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 5 — COMPLETE QUICK REVISION</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>All Key Formulas</h4>
+      <ul>
+        <li>Double integral: integrate inside-out</li>
+        <li>Polar: \(dA=r\,dr\,d\theta\) (never forget \(r\)!)</li>
+        <li>Change order: sketch → re-describe → new limits</li>
+        <li>Area \(=\iint dA\); Volume \(=\iint f\,dA\)</li>
+        <li>Mass \(=\iint\delta\,dA\); \(\bar{x}=M_y/M\)</li>
+        <li>Cylindrical: \(dV=r\,dr\,d\theta\,dz\)</li>
+        <li>Spherical: \(dV=\rho^2\sin\phi\,d\rho\,d\phi\,d\theta\)</li>
+        <li>Product integral separates over box</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Module 5 Hot PYQs</h4>
+      <ul>
+        <li>🔥 Change order + evaluate \(\int\int e^{-y^2}\) (S2025)</li>
+        <li>🔥 Change order + \(\int\int\sin(y^2)\) (S2025/W2025)</li>
+        <li>🔥 Polar: \(\int\int(x^2+y^2)\) over quarter circle (W2023)</li>
+        <li>🔥 Triple \(\int\int\int dz\,dy\,dx\) (W2022/W2024)</li>
+        <li>⭐ Volume under paraboloid (S2025/W2025)</li>
+        <li>⭐ Centre of mass of triangular plate (W2024)</li>
+        <li>⭐ Area bounded by two curves</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     GRAND FINALE — COMPLETE BOOK SUMMARY
+══════════════════════════════════════ -->
+<div class="grand-finale">
+  <h2>🎓 COMPLETE BOOK — ALL 5 MODULES DONE!</h2>
+  <p style="opacity:0.9; font-size:1.05em; margin-bottom:20px;">GTU Mathematics-I · Full Self-Study Material · All PYQs (2022–2025) Solved</p>
+
+  <div class="mod-grid">
+    <div class="mod-card">
+      <div class="num">M1</div>
+      <div class="name">Basic Calculus<br><span style="opacity:0.75;font-size:0.9em">Improper Integrals · Beta/Gamma · Applications</span></div>
+    </div>
+    <div class="mod-card">
+      <div class="num">M2</div>
+      <div class="name">Single Var. Calculus<br><span style="opacity:0.75;font-size:0.9em">L'Hôpital · Taylor/Maclaurin · Extrema</span></div>
+    </div>
+    <div class="mod-card">
+      <div class="num">M3</div>
+      <div class="name">Sequences &amp; Series<br><span style="opacity:0.75;font-size:0.9em">8 Tests · Alternating · Power Series</span></div>
+    </div>
+    <div class="mod-card">
+      <div class="num">M4</div>
+      <div class="name">Multivar. Diff.<br><span style="opacity:0.75;font-size:0.9em">Gradient · Dir. Deriv · Extrema · Lagrange</span></div>
+    </div>
+    <div class="mod-card">
+      <div class="num">M5</div>
+      <div class="name">Multivar. Integ.<br><span style="opacity:0.75;font-size:0.9em">Double · Polar · Change Order · Triple</span></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(255,255,255,0.12); border-radius:8px; padding:20px; text-align:left; margin-top:10px;">
+    <p style="color:var(--gold); font-weight:700; font-size:1em; margin-bottom:12px;">🔥 TOP 20 MOST EXAM-CRITICAL TOPICS (across all modules)</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px 20px; font-size:0.88em;">
+      <div>1. Beta/Gamma relationship + evaluation</div>
+      <div>2. Volume of revolution (disk method)</div>
+      <div>3. L'Hôpital: \(\infty-\infty\) and \(0\cdot\infty\) forms</div>
+      <div>4. Taylor polynomial expansion in \((x-a)\)</div>
+      <div>5. Prove \(\tan^{-1}x\) series via integration</div>
+      <div>6. Sandwich theorem for sequences</div>
+      <div>7. Telescoping series sum</div>
+      <div>8. Ratio test on factorial series</div>
+      <div>9. Alternating series: conditional convergence</div>
+      <div>10. Power series: radius + interval of convergence</div>
+      <div>11. Two-path test (limit DNE)</div>
+      <div>12. Directional derivative (given direction → unit vector)</div>
+      <div>13. Tangent plane + normal line to surface</div>
+      <div>14. Extreme values of \(f(x,y)\): discriminant test</div>
+      <div>15. Lagrange multipliers (circle constraint)</div>
+      <div>16. Double integral: change of order</div>
+      <div>17. Polar double integral (circular region)</div>
+      <div>18. Area and volume via double integrals</div>
+      <div>19. Triple integral (rectangular + variable limits)</div>
+      <div>20. Centre of mass of 2D region</div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px; padding:16px; background:rgba(249,168,37,0.15); border: 1px solid rgba(249,168,37,0.4); border-radius:8px; font-size:0.9em;">
+    <strong style="color:var(--gold);">📋 EXAM STRATEGY:</strong>
+    <p style="margin-top:8px; opacity:0.95;">• Q1(a) 3 marks: Usually limits/improper integrals/simple definition — attempt first</p>
+    <p style="margin-top:4px; opacity:0.95;">• Q1(c) 7 marks: Major topic — Beta/Gamma, Fourier series, eigenvalues — prepare thoroughly</p>
+    <p style="margin-top:4px; opacity:0.95;">• Every Q has an OR option — always attempt the easier one</p>
+    <p style="margin-top:4px; opacity:0.95;">• Write formula boxes first in 7-mark answers — earns step marks even if final answer wrong</p>
+    <p style="margin-top:4px; opacity:0.95;">• For "show that" / "prove that" proofs: write LHS separately, RHS separately, then show equality</p>
+  </div>
+
+  <p style="margin-top:24px; font-size:0.95em; opacity:0.85;">This book covers the <strong>complete GTU Mathematics-I syllabus (BE01R00041)</strong> with all PYQs from Winter 2022 through Winter 2025 fully solved. Good luck! 🍀</p>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>📚 GTU Mathematics-I Complete Self-Study Book</strong><br>
+  Modules 1–5 · All PYQs Solved · Full Syllabus Coverage
+</div>
+
+</div><!-- end container -->
+</body>
+</html>

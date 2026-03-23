@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Mathematics-I | Module 1: Basic Calculus</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --primary: #1a237e;
+    --secondary: #283593;
+    --accent: #e53935;
+    --gold: #f9a825;
+    --green: #2e7d32;
+    --light-bg: #f5f7ff;
+    --card-bg: #ffffff;
+    --border: #c5cae9;
+    --text: #1a1a2e;
+    --muted: #5c6bc0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #eef0fb;
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 30px;
+    border-bottom: 6px solid var(--gold);
+  }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+           padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+
+  /* ── TABLE OF CONTENTS ── */
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--primary);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* ── TOPIC HEADER ── */
+  .topic-header {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px 8px 0 0;
+    margin-top: 36px;
+  }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+
+  /* ── SUBTOPIC ── */
+  .subtopic {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 26px 28px;
+    margin-bottom: 2px;
+  }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 {
+    font-size: 1.1em;
+    color: var(--secondary);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .priority-tag {
+    font-size: 0.85em;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-left: auto;
+  }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .medium { background: #e8f5e9; color: #1b5e20; }
+  .low { background: #f5f5f5; color: #616161; }
+
+  /* ── CONTENT BOXES ── */
+  .definition, .formula-box, .method-box, .intuition-box, .mistake-box {
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .definition { background: #e8eaf6; border-left: 4px solid var(--primary); }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e8f5e9; border-left: 4px solid var(--green); }
+  .method-box strong { color: var(--green); display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .mistake-box { background: #ffebee; border: 1px solid #ef9a9a; border-left: 4px solid var(--accent); }
+  .mistake-box strong { color: var(--accent); display: block; margin-bottom: 8px; font-size: 0.85em; letter-spacing: 1px; }
+
+  /* ── PYQ ── */
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 {
+    background: var(--primary);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px 6px 0 0;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+  }
+  .pyq-card {
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .pyq-card + .pyq-card { border-top: 1px solid var(--border); border-radius: 6px; margin-top: 10px; }
+  .pyq-question {
+    background: #f5f7ff;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .pyq-body .concept-note {
+    background: #fff8e1;
+    border-left: 3px solid var(--gold);
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 0.92em;
+    color: #5d4037;
+  }
+  .step { margin: 8px 0 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid var(--border); border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--green); }
+  .shortcut { background: #ede7f6; border-left: 3px solid #7b1fa2; padding: 8px 12px; margin-top: 8px; font-size: 0.9em; border-radius: 0 4px 4px 0; }
+  .shortcut::before { content: "⚡ SHORTCUT: "; font-weight: 700; color: #7b1fa2; }
+
+  /* ── END OF TOPIC ── */
+  .eot {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 28px 0 40px 0;
+  }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width: 600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+
+  /* ── MISC ── */
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  .math-display { overflow-x: auto; padding: 4px 0; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+  .warning { color: var(--accent); font-weight: 600; }
+  .note { color: var(--muted); font-style: italic; font-size: 0.92em; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+</style>
+</head>
+<body>
+
+<!-- ═══ COVER ═══ -->
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Mathematics – I</h1>
+  <div class="module-title">MODULE 1: Basic Calculus</div>
+  <p style="opacity:0.85">Complete Self-Study Material · PYQ-Integrated · Exam-Focused</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step Solutions</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══ TABLE OF CONTENTS ═══ -->
+<div class="toc">
+  <h2>📋 MODULE 1 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Improper Integrals (Type I and Type II)</a>
+      <ol>
+        <li><a href="#t1s1">1.1 What is an Improper Integral?</a></li>
+        <li><a href="#t1s2">1.2 Type I — Infinite Limits of Integration</a></li>
+        <li><a href="#t1s3">1.3 Type II — Discontinuous Integrands</a></li>
+        <li><a href="#t1s4">1.4 Convergence and Divergence Tests</a></li>
+        <li><a href="#t1s5">1.5 PYQs on Improper Integrals</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Beta and Gamma Functions</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Gamma Function — Definition and Properties</a></li>
+        <li><a href="#t2s2">2.2 Beta Function — Definition and Properties</a></li>
+        <li><a href="#t2s3">2.3 Relationship Between Beta and Gamma Functions</a></li>
+        <li><a href="#t2s4">2.4 Important Reduction Formulas</a></li>
+        <li><a href="#t2s5">2.5 PYQs on Beta and Gamma Functions</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Applications of Definite Integrals</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Arc Length of a Curve</a></li>
+        <li><a href="#t3s2">3.2 Volume of Solid of Revolution (Disk/Washer Method)</a></li>
+        <li><a href="#t3s3">3.3 Surface Area of Solid of Revolution</a></li>
+        <li><a href="#t3s4">3.4 PYQs on Applications</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom1">End of Module 1: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     TOPIC 1 — IMPROPER INTEGRALS
+════════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Improper Integrals (Type I and Type II)</h2>
+</div>
+
+<!-- 1.1 -->
+<div class="subtopic" id="t1s1">
+  <h3>1.1 What is an Improper Integral? <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <p>A <strong>normal definite integral</strong> \(\int_a^b f(x)\,dx\) requires:</p>
+  <ul>
+    <li>Finite limits \(a\) and \(b\)</li>
+    <li>Function \(f(x)\) is continuous on \([a,b]\)</li>
+  </ul>
+  <p>When <strong>either condition fails</strong>, the integral is called an <strong>Improper Integral</strong>.</p>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    Think of a normal integral as measuring area of a rectangle-shaped region (bounded on all 4 sides). An improper integral measures area of a region that either stretches to infinity or has a "hole" (vertical asymptote) — yet the area can still be finite!
+  </div>
+
+  <table>
+    <tr><th>Type</th><th>Problem</th><th>Example</th></tr>
+    <tr><td><strong>Type I</strong></td><td>Infinite limit(s)</td><td>\(\int_1^\infty \frac{1}{x^2}dx\)</td></tr>
+    <tr><td><strong>Type II</strong></td><td>Discontinuity in \([a,b]\)</td><td>\(\int_0^1 \frac{1}{\sqrt{x}}dx\)</td></tr>
+  </table>
+</div>
+
+<!-- 1.2 -->
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Type I — Infinite Limits of Integration <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITIONS</strong>
+    <p>Case 1 — Upper limit infinite: \[\int_a^\infty f(x)\,dx = \lim_{t\to\infty}\int_a^t f(x)\,dx\]</p>
+    <p>Case 2 — Lower limit infinite: \[\int_{-\infty}^b f(x)\,dx = \lim_{t\to-\infty}\int_t^b f(x)\,dx\]</p>
+    <p>Case 3 — Both limits infinite: \[\int_{-\infty}^\infty f(x)\,dx = \int_{-\infty}^c f(x)\,dx + \int_c^\infty f(x)\,dx\quad \text{(for any } c\text{)}\]</p>
+    <p>If the limit <strong>exists and is finite</strong> → integral <strong>CONVERGES</strong>.<br>
+    If the limit is \(\pm\infty\) or does not exist → integral <strong>DIVERGES</strong>.</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 STEP-BY-STEP METHOD (Type I)</strong>
+    <ol>
+      <li>Replace \(\infty\) with a parameter \(t\)</li>
+      <li>Evaluate the integral normally (find antiderivative)</li>
+      <li>Apply limits of integration</li>
+      <li>Take \(\lim_{t\to\infty}\) of the result</li>
+      <li>State: converges (if finite) or diverges (if not)</li>
+    </ol>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ p-TEST FOR \(\int_1^\infty \frac{1}{x^p}dx\) (VERY IMPORTANT)</strong>
+    <ul>
+      <li>If \(p > 1\): Integral <strong>CONVERGES</strong> to \(\dfrac{1}{p-1}\)</li>
+      <li>If \(p \leq 1\): Integral <strong>DIVERGES</strong></li>
+    </ul>
+    <p><em>Remember: "Greater than 1 → Converges"</em></p>
+  </div>
+</div>
+
+<!-- 1.3 -->
+<div class="subtopic" id="t1s3">
+  <h3>1.3 Type II — Discontinuous Integrands <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITIONS</strong>
+    <p>If \(f(x)\) has a discontinuity (vertical asymptote) at \(x = b\) (right endpoint):
+    \[\int_a^b f(x)\,dx = \lim_{t\to b^-}\int_a^t f(x)\,dx\]</p>
+    <p>If discontinuity is at \(x = a\) (left endpoint):
+    \[\int_a^b f(x)\,dx = \lim_{t\to a^+}\int_t^b f(x)\,dx\]</p>
+    <p>If discontinuity is at interior point \(x = c\) where \(a &lt; c &lt; b\):
+    \[\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx\]
+    Both parts must converge.</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 STEP-BY-STEP METHOD (Type II)</strong>
+    <ol>
+      <li>Identify where the discontinuity (infinite value) occurs</li>
+      <li>Replace that endpoint with parameter \(t\)</li>
+      <li>Evaluate the integral normally</li>
+      <li>Take the appropriate one-sided limit</li>
+      <li>State convergence or divergence</li>
+    </ol>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ p-TEST FOR \(\int_0^1 \frac{1}{x^p}dx\) (discontinuity at 0)</strong>
+    <ul>
+      <li>If \(p &lt; 1\): Integral <strong>CONVERGES</strong> to \(\dfrac{1}{1-p}\)</li>
+      <li>If \(p \geq 1\): Integral <strong>DIVERGES</strong></li>
+    </ul>
+    <p><em>Note: This is the OPPOSITE of the Type I rule!</em></p>
+  </div>
+
+  <div class="mistake-box">
+    <strong>⚠️ COMMON MISTAKES</strong>
+    <ul>
+      <li><strong>Mistake 1:</strong> Treating \(\int_0^1 \frac{1}{x^2}dx\) as normal. It diverges (Type II, \(p=2\geq 1\))</li>
+      <li><strong>Mistake 2:</strong> Applying Type I p-test to Type II integrals — they have opposite rules!</li>
+      <li><strong>Mistake 3:</strong> Not identifying the discontinuity before integrating</li>
+      <li><strong>Mistake 4:</strong> Forgetting to check BOTH parts when discontinuity is interior</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 1.4 -->
+<div class="subtopic" id="t1s4">
+  <h3>1.4 Convergence Tests Summary <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="formula-box">
+    <strong>📋 COMPARISON TEST</strong>
+    <p>Suppose \(0 \leq f(x) \leq g(x)\) for all \(x \geq a\):</p>
+    <ul>
+      <li>If \(\int_a^\infty g(x)dx\) converges → \(\int_a^\infty f(x)dx\) also <strong>converges</strong></li>
+      <li>If \(\int_a^\infty f(x)dx\) diverges → \(\int_a^\infty g(x)dx\) also <strong>diverges</strong></li>
+    </ul>
+    <p><em>Tip: Compare with \(\frac{1}{x^p}\), \(e^{-x}\), etc.</em></p>
+  </div>
+
+  <div class="formula-box">
+    <strong>📋 KEY STANDARD RESULTS TO REMEMBER</strong>
+    <table>
+      <tr><th>Integral</th><th>Result</th><th>Condition</th></tr>
+      <tr><td>\(\int_1^\infty \frac{1}{x^p}dx\)</td><td>\(\frac{1}{p-1}\)</td><td>Converges if \(p>1\)</td></tr>
+      <tr><td>\(\int_0^1 \frac{1}{x^p}dx\)</td><td>\(\frac{1}{1-p}\)</td><td>Converges if \(p&lt;1\)</td></tr>
+      <tr><td>\(\int_0^\infty e^{-ax}dx\)</td><td>\(\frac{1}{a}\)</td><td>\(a>0\), always converges</td></tr>
+      <tr><td>\(\int_{-\infty}^\infty \frac{1}{1+x^2}dx\)</td><td>\(\pi\)</td><td>Always converges</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 1.5 PYQs -->
+<div class="subtopic" id="t1s5">
+  <h3>1.5 PYQs — Improper Integrals <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — IMPROPER INTEGRALS</h4>
+
+    <!-- PYQ 1 -->
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Define Improper Integral of Second Kind (Type II) and test the convergence of \(\displaystyle\int_0^1 \frac{5\,dx}{(x-1)^2}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 New Pattern</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept Used:</strong> Type II Improper Integral — discontinuity at right endpoint \(x=1\). The function \(\frac{5}{(x-1)^2} \to \infty\) as \(x\to 1^-\).</div>
+
+        <div class="step"><span class="step-num">DEFINITION:</span> An improper integral of the second kind is an integral where the integrand becomes unbounded (infinite) at one or more points in the interval of integration.</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Identify discontinuity:</span> \(f(x)=\frac{5}{(x-1)^2}\) is discontinuous at \(x=1\) (right endpoint of \([0,1]\)).</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Apply definition:</span>
+        \[\int_0^1 \frac{5\,dx}{(x-1)^2} = \lim_{t\to 1^-}\int_0^t \frac{5\,dx}{(x-1)^2}\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Evaluate antiderivative:</span>
+        \[\int \frac{5}{(x-1)^2}dx = 5\cdot\frac{(x-1)^{-1}}{-1} = \frac{-5}{x-1}\]</div>
+
+        <div class="step"><span class="step-num">STEP 4 — Apply limits:</span>
+        \[\lim_{t\to 1^-}\left[\frac{-5}{x-1}\right]_0^t = \lim_{t\to 1^-}\left(\frac{-5}{t-1} - \frac{-5}{0-1}\right) = \lim_{t\to 1^-}\left(\frac{-5}{t-1} - 5\right)\]</div>
+
+        <div class="step"><span class="step-num">STEP 5 — Take limit:</span> As \(t\to 1^-\), \(t-1\to 0^-\), so \(\frac{-5}{t-1}\to \frac{-5}{0^-}\to +\infty\). The limit is \(+\infty\).</div>
+
+        <div class="answer-box">∴ The integral <strong>DIVERGES</strong> (the limit is \(+\infty\)).</div>
+
+        <p class="note">Note: This matches the p-test: \(f(x)=\frac{5}{(x-1)^2}\) behaves like \(\frac{1}{(1-x)^p}\) with \(p=2\geq 1\) near \(x=1\), so it diverges.</p>
+      </div>
+    </div>
+
+    <!-- PYQ 2 -->
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Investigate the convergence of \(\displaystyle\int_0^1 \frac{1}{1-x}\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept Used:</strong> Type II — discontinuity at \(x=1\) (right endpoint). Behaves like \(\frac{1}{(1-x)^1}\), i.e., p-test with \(p=1\).</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Identify discontinuity:</span> \(f(x)=\frac{1}{1-x}\to\infty\) as \(x\to 1^-\).</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Apply definition:</span>
+        \[\int_0^1 \frac{dx}{1-x} = \lim_{t\to 1^-}\int_0^t \frac{dx}{1-x}\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Evaluate:</span>
+        \[\int\frac{dx}{1-x} = -\ln|1-x| + C\]
+        \[\lim_{t\to 1^-}\big[-\ln|1-x|\big]_0^t = \lim_{t\to 1^-}\big(-\ln(1-t)+\ln 1\big) = \lim_{t\to 1^-}\big(-\ln(1-t)\big)\]</div>
+
+        <div class="step"><span class="step-num">STEP 4 — Take limit:</span> As \(t\to 1^-\), \((1-t)\to 0^+\), so \(-\ln(1-t)\to +\infty\).</div>
+
+        <div class="answer-box">∴ The integral <strong>DIVERGES</strong>.</div>
+        <div class="shortcut">p-test: \(\frac{1}{1-x}\) near \(x=1\) is \(\frac{1}{(1-x)^1}\), so \(p=1\geq 1\) → DIVERGES.</div>
+      </div>
+    </div>
+
+    <!-- PYQ 3 -->
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Define Improper Integrals of Type-I. Evaluate \(\displaystyle\int_{-1}^\infty \frac{dt}{t^2+5t+6}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept Used:</strong> Type I Improper Integral (upper limit = \(\infty\)). Partial fractions needed to evaluate.</div>
+
+        <div class="definition" style="margin-bottom:10px;">
+          <strong>📖 TYPE I DEFINITION</strong>
+          An improper integral of the first kind has infinite limits of integration: \(\int_a^\infty f(x)dx = \lim_{t\to\infty}\int_a^t f(x)dx\).
+        </div>
+
+        <div class="step"><span class="step-num">STEP 1 — Factor denominator:</span>
+        \[t^2+5t+6 = (t+2)(t+3)\]</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Partial fractions:</span>
+        \[\frac{1}{(t+2)(t+3)} = \frac{A}{t+2}+\frac{B}{t+3}\]
+        Solving: \(A=1,\ B=-1\). So: \[\frac{1}{(t+2)(t+3)} = \frac{1}{t+2}-\frac{1}{t+3}\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Apply Type I definition:</span>
+        \[\int_{-1}^\infty \frac{dt}{t^2+5t+6} = \lim_{b\to\infty}\int_{-1}^b\left(\frac{1}{t+2}-\frac{1}{t+3}\right)dt\]</div>
+
+        <div class="step"><span class="step-num">STEP 4 — Integrate:</span>
+        \[= \lim_{b\to\infty}\Big[\ln|t+2|-\ln|t+3|\Big]_{-1}^b = \lim_{b\to\infty}\left[\ln\frac{t+2}{t+3}\right]_{-1}^b\]</div>
+
+        <div class="step"><span class="step-num">STEP 5 — Apply limits:</span>
+        \[= \lim_{b\to\infty}\ln\frac{b+2}{b+3} - \ln\frac{1}{2} = \ln(1) + \ln 2 = 0 + \ln 2\]
+        (since \(\frac{b+2}{b+3}\to 1\) as \(b\to\infty\))</div>
+
+        <div class="answer-box">∴ The integral converges to \(\ln 2\).</div>
+      </div>
+    </div>
+
+    <!-- PYQ 4 -->
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Discuss the convergence of \(\displaystyle\int_{-\infty}^\infty \frac{1}{1+x^2}\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Standard</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept Used:</strong> Type I, both limits infinite. Split at \(c=0\): both halves must converge. \(\int \frac{dx}{1+x^2} = \arctan x\).</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Split:</span>
+        \[\int_{-\infty}^\infty \frac{dx}{1+x^2} = \int_{-\infty}^0 \frac{dx}{1+x^2} + \int_0^\infty \frac{dx}{1+x^2}\]</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Evaluate right half:</span>
+        \[\int_0^\infty \frac{dx}{1+x^2} = \lim_{t\to\infty}\Big[\arctan x\Big]_0^t = \lim_{t\to\infty}\arctan t - \arctan 0 = \frac{\pi}{2} - 0 = \frac{\pi}{2}\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Evaluate left half:</span>
+        \[\int_{-\infty}^0 \frac{dx}{1+x^2} = \lim_{t\to-\infty}\Big[\arctan x\Big]_t^0 = 0 - \left(-\frac{\pi}{2}\right) = \frac{\pi}{2}\]</div>
+
+        <div class="step"><span class="step-num">STEP 4 — Add:</span>
+        \[\int_{-\infty}^\infty \frac{dx}{1+x^2} = \frac{\pi}{2}+\frac{\pi}{2} = \pi\]</div>
+
+        <div class="answer-box">∴ The integral <strong>converges</strong> to \(\pi\).</div>
+      </div>
+    </div>
+
+    <!-- PYQ 5 -->
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Check the convergence of \(\displaystyle\int_0^5 \frac{1}{x^2}\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept Used:</strong> Type II — discontinuity at \(x=0\) (left endpoint). This looks like \(\int_0^5\) but \(f(0)=\infty\). p-test: \(p=2\geq 1\) → diverges.</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Identify discontinuity:</span> \(f(x)=\frac{1}{x^2}\to\infty\) as \(x\to 0^+\).</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Apply Type II definition:</span>
+        \[\int_0^5 \frac{dx}{x^2} = \lim_{t\to 0^+}\int_t^5 \frac{dx}{x^2}\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Integrate and evaluate:</span>
+        \[= \lim_{t\to 0^+}\left[\frac{x^{-1}}{-1}\right]_t^5 = \lim_{t\to 0^+}\left(-\frac{1}{5}+\frac{1}{t}\right)\]</div>
+
+        <div class="step"><span class="step-num">STEP 4 — Limit:</span> As \(t\to 0^+\), \(\frac{1}{t}\to +\infty\).</div>
+
+        <div class="answer-box">∴ The integral <strong>DIVERGES</strong> (limit is \(+\infty\)).</div>
+        <div class="shortcut">p-test: \(\int_0^5 \frac{1}{x^2}dx\) — discontinuity at 0, \(p=2\geq 1\) → DIVERGES.</div>
+      </div>
+    </div>
+
+  </div><!-- end pyq-section -->
+</div><!-- end subtopic 1.5 -->
+
+<!-- End of Topic 1 -->
+<div class="eot">
+  <h3>📝 QUICK REVISION — Topic 1: Improper Integrals</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Formulas</h4>
+      <ul>
+        <li>Type I: Replace \(\infty\) with \(t\), take \(t\to\infty\)</li>
+        <li>Type II: Replace bad endpoint with \(t\), take one-sided limit</li>
+        <li>\(\int_1^\infty x^{-p}dx\): converges iff \(p>1\)</li>
+        <li>\(\int_0^1 x^{-p}dx\): converges iff \(p&lt;1\)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Most Repeated PYQs</h4>
+      <ul>
+        <li>\(\int_0^1 \frac{5\,dx}{(x-1)^2}\) → Diverges (W2025)</li>
+        <li>\(\int_0^1 \frac{1}{1-x}dx\) → Diverges (S2025)</li>
+        <li>\(\int_{-1}^\infty \frac{dt}{t^2+5t+6}\) → \(\ln 2\) (S2023)</li>
+        <li>\(\int_{-\infty}^\infty \frac{dx}{1+x^2}\) → \(\pi\) (W2024)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     TOPIC 2 — BETA AND GAMMA FUNCTIONS
+════════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Beta and Gamma Functions</h2>
+</div>
+
+<!-- 2.1 -->
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Gamma Function — Definition and Properties <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITION OF GAMMA FUNCTION</strong>
+    <p>The Gamma function \(\Gamma(n)\) is defined for \(n > 0\) as:
+    \[\Gamma(n) = \int_0^\infty e^{-x} x^{n-1}\,dx\]</p>
+    <p>It is an improper integral of Type I that always converges for \(n > 0\).</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    The Gamma function is a generalization of the factorial. For positive integers: \(\Gamma(n) = (n-1)!\). So \(\Gamma(5)=4!=24\). It "fills in" factorials for non-integer and even complex values.
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ PROPERTIES OF GAMMA FUNCTION (MUST MEMORIZE)</strong>
+    <table>
+      <tr><th>Property</th><th>Formula</th></tr>
+      <tr><td>Recurrence relation</td><td>\(\Gamma(n+1) = n\,\Gamma(n)\)</td></tr>
+      <tr><td>Factorial relation</td><td>\(\Gamma(n+1) = n!\) for positive integers</td></tr>
+      <tr><td>Value at 1</td><td>\(\Gamma(1) = 1\)</td></tr>
+      <tr><td>Value at 1/2</td><td>\(\Gamma\!\left(\tfrac{1}{2}\right) = \sqrt{\pi}\)</td></tr>
+      <tr><td>Alternate form</td><td>\(\Gamma(n) = 2\displaystyle\int_0^\infty e^{-x^2}x^{2n-1}\,dx\)</td></tr>
+      <tr><td>Standard Gaussian</td><td>\(\displaystyle\int_0^\infty e^{-x^2}dx = \frac{\sqrt{\pi}}{2}\)</td></tr>
+    </table>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 PROOF: Γ(n) = 2∫₀^∞ e^(−x²) x^(2n−1) dx (PYQ Winter 2025)</strong>
+    <div class="step"><span class="step-num">Start with definition:</span> \(\Gamma(n) = \int_0^\infty e^{-t}t^{n-1}dt\)</div>
+    <div class="step"><span class="step-num">Substitute \(t = x^2\) so \(dt = 2x\,dx\):</span>
+    When \(t=0\), \(x=0\); when \(t=\infty\), \(x=\infty\). Also \(t^{n-1} = x^{2(n-1)} = x^{2n-2}\).</div>
+    <div class="step"><span class="step-num">Substitute:</span>
+    \[\Gamma(n) = \int_0^\infty e^{-x^2}\cdot x^{2n-2}\cdot 2x\,dx = 2\int_0^\infty e^{-x^2}x^{2n-1}\,dx\]</div>
+    <div class="answer-box">∴ \(\Gamma(n) = 2\displaystyle\int_0^\infty e^{-x^2}x^{2n-1}\,dx\) ✓ Proved</div>
+  </div>
+</div>
+
+<!-- 2.2 -->
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Beta Function — Definition and Properties <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITION OF BETA FUNCTION</strong>
+    <p>The Beta function \(\beta(m,n)\) is defined for \(m>0,\; n>0\) as:
+    \[\beta(m,n) = \int_0^1 x^{m-1}(1-x)^{n-1}\,dx\]</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ PROPERTIES OF BETA FUNCTION (MUST MEMORIZE)</strong>
+    <table>
+      <tr><th>Property</th><th>Formula</th></tr>
+      <tr><td>Symmetry</td><td>\(\beta(m,n) = \beta(n,m)\)</td></tr>
+      <tr><td>Alternate form (1)</td><td>\(\beta(m,n) = \displaystyle\int_0^\infty \frac{t^{m-1}}{(1+t)^{m+n}}\,dt\)</td></tr>
+      <tr><td>Alternate form (2)</td><td>\(\beta(m,n) = 2\displaystyle\int_0^{\pi/2}\sin^{2m-1}\theta\cos^{2n-1}\theta\,d\theta\)</td></tr>
+      <tr><td>Trigonometric</td><td>\(\displaystyle\int_0^{\pi/2}\sin^p\theta\cos^q\theta\,d\theta = \frac{1}{2}\beta\!\left(\frac{p+1}{2},\frac{q+1}{2}\right)\)</td></tr>
+    </table>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 PROOF: β(m,n) = β(n,m)</strong>
+    <div class="step">Substitute \(x = 1-t\) so \(dx = -dt\). When \(x=0\), \(t=1\); when \(x=1\), \(t=0\).</div>
+    <div class="step">
+    \[\beta(m,n) = \int_0^1 x^{m-1}(1-x)^{n-1}dx = \int_1^0 (1-t)^{m-1}t^{n-1}(-dt) = \int_0^1 t^{n-1}(1-t)^{m-1}dt = \beta(n,m)\]
+    </div>
+    <div class="answer-box">∴ \(\beta(m,n) = \beta(n,m)\) ✓ Proved</div>
+  </div>
+</div>
+
+<!-- 2.3 -->
+<div class="subtopic" id="t2s3">
+  <h3>2.3 Relationship Between Beta and Gamma Functions <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ THE KEY RELATIONSHIP (MOST IMPORTANT FORMULA IN MODULE 1)</strong>
+    \[\boxed{\beta(m,n) = \frac{\Gamma(m)\,\Gamma(n)}{\Gamma(m+n)}}\]
+    <p>This is the MOST USED formula for evaluating definite integrals involving \(x^p(1-x)^q\).</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 WHY THIS IS POWERFUL</strong>
+    Any integral of the form \(\int_0^1 x^a(1-x)^b\,dx\) can be written as \(\beta(a+1, b+1) = \frac{\Gamma(a+1)\Gamma(b+1)}{\Gamma(a+b+2)}\). This converts a hard integral into simple factorial arithmetic!
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 HOW TO USE β-Γ RELATIONSHIP</strong>
+    <p>To evaluate \(\int_0^1 x^m(1-x)^n\,dx\):</p>
+    <ol>
+      <li>Identify \(a = m+1\) (power of \(x\) + 1) and \(b = n+1\) (power of \((1-x)\) + 1)</li>
+      <li>Write \(= \beta(m+1, n+1)\)</li>
+      <li>Apply formula: \(= \dfrac{\Gamma(m+1)\,\Gamma(n+1)}{\Gamma(m+n+2)}\)</li>
+      <li>Simplify using \(\Gamma(k+1)=k!\) for integers</li>
+    </ol>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ DUPLICATION FORMULA (Sometimes needed)</strong>
+    \[\Gamma(n)\,\Gamma\!\left(n+\tfrac{1}{2}\right) = \frac{\sqrt{\pi}}{2^{2n-1}}\,\Gamma(2n)\]
+  </div>
+</div>
+
+<!-- 2.4 -->
+<div class="subtopic" id="t2s4">
+  <h3>2.4 Important Reduction Formulas <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ WALLI'S FORMULAS (Very useful for Beta function problems)</strong>
+    \[\int_0^{\pi/2}\sin^n x\,dx = \int_0^{\pi/2}\cos^n x\,dx = \begin{cases}
+    \dfrac{(n-1)(n-3)\cdots 2}{n(n-2)\cdots 3}\cdot 1 & n \text{ odd}\\[6pt]
+    \dfrac{(n-1)(n-3)\cdots 1}{n(n-2)\cdots 2}\cdot\dfrac{\pi}{2} & n \text{ even}
+    \end{cases}\]
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ SUBSTITUTION TRICKS FOR NON-STANDARD FORMS</strong>
+    <table>
+      <tr><th>Integral form</th><th>Substitution</th><th>Result</th></tr>
+      <tr><td>\(\int_0^1 x^m(1-\sqrt{x})^n dx\)</td><td>\(\sqrt{x}=t \Rightarrow x=t^2\)</td><td>Convert to Beta form</td></tr>
+      <tr><td>\(\int_0^\infty \frac{x^{m-1}}{1+x}dx\)</td><td>Direct</td><td>\(\beta(m,1-m)=\frac{\pi}{\sin(m\pi)}\)</td></tr>
+      <tr><td>\(\int_0^\infty e^{-ax^n}dx\)</td><td>\(ax^n=t\)</td><td>\(\frac{1}{na^{1/n}}\Gamma(1/n)\)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 2.5 PYQs -->
+<div class="subtopic" id="t2s5">
+  <h3>2.5 PYQs — Beta and Gamma Functions <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — BETA & GAMMA FUNCTIONS</h4>
+
+    <!-- PYQ BG1 -->
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Define beta and gamma functions. What is the relationship between beta and gamma functions?</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2025 / Winter 2023</span>
+          <span class="tag tag-marks">3–4 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated 3 Times</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 This definition question appears almost every exam. Write definitions clearly + state the formula.</div>
+
+        <div class="step"><span class="step-num">GAMMA FUNCTION:</span>
+        \[\Gamma(n) = \int_0^\infty e^{-x}x^{n-1}dx, \quad n>0\]
+        Key properties: \(\Gamma(1)=1\), \(\Gamma(n+1)=n\,\Gamma(n)\), \(\Gamma(n+1)=n!\), \(\Gamma(1/2)=\sqrt{\pi}\).</div>
+
+        <div class="step"><span class="step-num">BETA FUNCTION:</span>
+        \[\beta(m,n) = \int_0^1 x^{m-1}(1-x)^{n-1}dx, \quad m>0,\; n>0\]
+        Key properties: \(\beta(m,n)=\beta(n,m)\) (symmetric).</div>
+
+        <div class="step"><span class="step-num">RELATIONSHIP:</span>
+        \[\boxed{\beta(m,n) = \frac{\Gamma(m)\,\Gamma(n)}{\Gamma(m+n)}}\]</div>
+
+        <div class="answer-box">Write all three items above for full marks (3-4 marks question).</div>
+      </div>
+    </div>
+
+    <!-- PYQ BG2 -->
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Define Beta function and evaluate \(\displaystyle\int_0^1 x^3(1-\sqrt{x})^5\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Very Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept Used:</strong> Beta function. The \((1-\sqrt{x})^5\) term needs substitution \(\sqrt{x}=t\) to convert to standard Beta form.</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Substitution:</span> Let \(\sqrt{x}=t \Rightarrow x=t^2 \Rightarrow dx=2t\,dt\). Limits: \(x=0\Rightarrow t=0\); \(x=1\Rightarrow t=1\).</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Transform integral:</span>
+        \[\int_0^1 x^3(1-\sqrt{x})^5 dx = \int_0^1 t^6(1-t)^5 \cdot 2t\,dt = 2\int_0^1 t^7(1-t)^5\,dt\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Write as Beta:</span>
+        \[= 2\beta(8,6) = 2\cdot\frac{\Gamma(8)\Gamma(6)}{\Gamma(14)}\]</div>
+
+        <div class="step"><span class="step-num">STEP 4 — Compute factorials:</span>
+        \[\Gamma(8)=7!=5040,\quad \Gamma(6)=5!=120,\quad \Gamma(14)=13!\]
+        \[13! = 6227020800\]
+        \[= 2\cdot\frac{5040\times120}{6227020800} = 2\cdot\frac{604800}{6227020800} = \frac{1209600}{6227020800} = \frac{1}{5148}\]</div>
+
+        <div class="answer-box">∴ \(\displaystyle\int_0^1 x^3(1-\sqrt{x})^5\,dx = \dfrac{1}{5148}\)</div>
+
+        <div class="shortcut">Shortcut: \(2\beta(8,6) = \frac{2\cdot 7!\cdot 5!}{13!} = \frac{2\cdot 5040\cdot 120}{6227020800} = \frac{1}{5148}\)</div>
+      </div>
+    </div>
+
+    <!-- PYQ BG3 -->
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Define Beta function. Evaluate \(\displaystyle\int_0^1 x^4(1-\sqrt{x})^5\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Almost same as S2024</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Identical method to previous PYQ, only the power of \(x\) differs.</div>
+
+        <div class="step"><span class="step-num">STEP 1:</span> Let \(\sqrt{x}=t\), so \(x=t^2\), \(dx=2t\,dt\).</div>
+        <div class="step"><span class="step-num">STEP 2:</span>
+        \[\int_0^1 t^8(1-t)^5\cdot 2t\,dt = 2\int_0^1 t^9(1-t)^5\,dt = 2\beta(10,6)\]</div>
+        <div class="step"><span class="step-num">STEP 3:</span>
+        \[= 2\cdot\frac{\Gamma(10)\Gamma(6)}{\Gamma(16)} = 2\cdot\frac{9!\cdot 5!}{15!} = 2\cdot\frac{362880\times120}{1307674368000}\]</div>
+        <div class="answer-box">∴ \(\displaystyle\int_0^1 x^4(1-\sqrt{x})^5\,dx = 2\cdot\frac{9!\cdot 5!}{15!} = \frac{1}{9009}\)</div>
+      </div>
+    </div>
+
+    <!-- PYQ BG4 -->
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\int_0^\infty 3^{-4x^2}\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept Used:</strong> Gamma function in alternate form. Rewrite \(3^{-4x^2}=e^{-4x^2\ln 3}\), then substitute to get Gaussian integral form.</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Rewrite:</span>
+        \[3^{-4x^2} = e^{-4x^2\ln 3}\]
+        So \(\int_0^\infty e^{-4x^2\ln 3}\,dx\)</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Substitute:</span> Let \(t^2 = 4x^2\ln 3 \Rightarrow t = 2x\sqrt{\ln 3} \Rightarrow x = \frac{t}{2\sqrt{\ln 3}} \Rightarrow dx = \frac{dt}{2\sqrt{\ln 3}}\)</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Transform:</span>
+        \[\int_0^\infty e^{-t^2}\cdot\frac{dt}{2\sqrt{\ln 3}} = \frac{1}{2\sqrt{\ln 3}}\int_0^\infty e^{-t^2}\,dt = \frac{1}{2\sqrt{\ln 3}}\cdot\frac{\sqrt{\pi}}{2}\]</div>
+
+        <div class="answer-box">∴ \(\displaystyle\int_0^\infty 3^{-4x^2}\,dx = \dfrac{\sqrt{\pi}}{4\sqrt{\ln 3}}\)</div>
+      </div>
+    </div>
+
+    <!-- PYQ BG5 -->
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Define Beta and Gamma functions and evaluate \(\displaystyle\int_0^\infty \frac{x^3(1+x^2)}{(1+x)^{10}}\,dx\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Use the alternate form of Beta: \(\beta(m,n)=\int_0^\infty \frac{t^{m-1}}{(1+t)^{m+n}}dt\). Expand numerator.</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Expand:</span>
+        \[\int_0^\infty \frac{x^3+x^5}{(1+x)^{10}}dx = \int_0^\infty \frac{x^3}{(1+x)^{10}}dx + \int_0^\infty \frac{x^5}{(1+x)^{10}}dx\]</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Use alternate Beta form:</span>
+        \(\int_0^\infty \frac{x^{m-1}}{(1+x)^{m+n}}dx = \beta(m,n)\). So:
+        <ul>
+          <li>\(\int_0^\infty \frac{x^3}{(1+x)^{10}}dx = \int_0^\infty \frac{x^{4-1}}{(1+x)^{10}}dx = \beta(4,6) = \frac{\Gamma(4)\Gamma(6)}{\Gamma(10)} = \frac{3!\cdot 5!}{9!} = \frac{6\times120}{362880} = \frac{1}{504}\)</li>
+          <li>\(\int_0^\infty \frac{x^5}{(1+x)^{10}}dx = \beta(6,4) = \beta(4,6) = \frac{1}{504}\)</li>
+        </ul></div>
+
+        <div class="answer-box">∴ Total \(= \dfrac{1}{504}+\dfrac{1}{504} = \dfrac{1}{252}\)</div>
+      </div>
+    </div>
+
+  </div><!-- end pyq-section -->
+</div><!-- end subtopic 2.5 -->
+
+<!-- End of Topic 2 -->
+<div class="eot">
+  <h3>📝 QUICK REVISION — Topic 2: Beta and Gamma Functions</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Must-Know Formulas</h4>
+      <ul>
+        <li>\(\Gamma(n)=\int_0^\infty e^{-x}x^{n-1}dx\)</li>
+        <li>\(\Gamma(n+1)=n\,\Gamma(n)\); \(\Gamma(1)=1\); \(\Gamma(\tfrac{1}{2})=\sqrt{\pi}\)</li>
+        <li>\(\beta(m,n)=\int_0^1 x^{m-1}(1-x)^{n-1}dx\)</li>
+        <li>\(\beta(m,n)=\frac{\Gamma(m)\Gamma(n)}{\Gamma(m+n)}\)</li>
+        <li>\(\int_0^\infty e^{-x^2}dx = \frac{\sqrt{\pi}}{2}\)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Key Trick: Non-Standard Forms</h4>
+      <ul>
+        <li>\(\int_0^1 x^m(1-\sqrt{x})^n dx\): sub \(\sqrt{x}=t\)</li>
+        <li>\(\int_0^\infty \frac{x^{m-1}}{(1+x)^{m+n}}dx = \beta(m,n)\)</li>
+        <li>\(\int_0^\infty e^{-ax^n}dx\): sub \(ax^n=t\)</li>
+        <li>Always get \(\Gamma(k)\) from \((k-1)!\)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- end topic2 -->
+
+
+<!-- ════════════════════════════════════════
+     TOPIC 3 — APPLICATIONS OF INTEGRALS
+════════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Applications of Definite Integrals</h2>
+</div>
+
+<!-- 3.1 Arc Length -->
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Arc Length of a Curve <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 ARC LENGTH — CONCEPT</strong>
+    <p>To find the actual curved length of a graph \(y=f(x)\) from \(x=a\) to \(x=b\), we cannot use straight-line distance. We use integration to sum up infinitely many tiny straight pieces.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ ARC LENGTH FORMULAS</strong>
+    <table>
+      <tr><th>Form</th><th>Formula</th></tr>
+      <tr><td>\(y = f(x)\)</td><td>\(L = \displaystyle\int_a^b\sqrt{1+\left(\frac{dy}{dx}\right)^2}\,dx\)</td></tr>
+      <tr><td>\(x = g(y)\)</td><td>\(L = \displaystyle\int_c^d\sqrt{1+\left(\frac{dx}{dy}\right)^2}\,dy\)</td></tr>
+      <tr><td>Parametric: \(x=x(t),y=y(t)\)</td><td>\(L = \displaystyle\int_{t_1}^{t_2}\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}\,dt\)</td></tr>
+      <tr><td>Polar: \(r=f(\theta)\)</td><td>\(L = \displaystyle\int_{\alpha}^{\beta}\sqrt{r^2+\left(\frac{dr}{d\theta}\right)^2}\,d\theta\)</td></tr>
+    </table>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 STANDARD METHOD</strong>
+    <ol>
+      <li>Find \(\frac{dy}{dx}\) and compute \(1+\left(\frac{dy}{dx}\right)^2\)</li>
+      <li>Simplify — often a perfect square appears under the root!</li>
+      <li>Integrate with given limits</li>
+    </ol>
+  </div>
+
+  <!-- Arc Length PYQs -->
+  <div class="pyq-section" style="margin-top:18px;">
+    <h4>🎯 PYQs — Arc Length</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Find the length of the arc of the curve \(y = \ln\!\left(\dfrac{e^x-1}{e^x+1}\right)\) from \(x=1\) to \(x=2\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Simplify the log expression first using log rules, then differentiate. The key is that the expression under the root simplifies to a perfect square.</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Simplify \(y\):</span>
+        \[y = \ln(e^x-1) - \ln(e^x+1)\]</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Differentiate:</span>
+        \[\frac{dy}{dx} = \frac{e^x}{e^x-1} - \frac{e^x}{e^x+1} = e^x\cdot\frac{(e^x+1)-(e^x-1)}{(e^x-1)(e^x+1)} = \frac{2e^x}{e^{2x}-1}\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Compute \(1+(dy/dx)^2\):</span>
+        \[\left(\frac{dy}{dx}\right)^2 = \frac{4e^{2x}}{(e^{2x}-1)^2}\]
+        \[1+\frac{4e^{2x}}{(e^{2x}-1)^2} = \frac{(e^{2x}-1)^2+4e^{2x}}{(e^{2x}-1)^2} = \frac{e^{4x}+2e^{2x}+1}{(e^{2x}-1)^2} = \frac{(e^{2x}+1)^2}{(e^{2x}-1)^2}\]</div>
+
+        <div class="step"><span class="step-num">STEP 4 — Arc length:</span>
+        \[L = \int_1^2\frac{e^{2x}+1}{e^{2x}-1}\,dx = \int_1^2\frac{e^{2x}+1}{e^{2x}-1}\,dx\]
+        Divide numerator and denominator by \(e^x\):
+        \[= \int_1^2\frac{e^x+e^{-x}}{e^x-e^{-x}}\,dx = \int_1^2\coth x\,dx\]</div>
+
+        <div class="step"><span class="step-num">STEP 5 — Integrate:</span>
+        \[= \Big[\ln(\sinh x)\Big]_1^2 = \ln(\sinh 2)-\ln(\sinh 1)\]
+        where \(\sinh x = \frac{e^x-e^{-x}}{2}\).</div>
+
+        <div class="answer-box">∴ \(L = \ln\!\left(\dfrac{\sinh 2}{\sinh 1}\right) = \ln\!\left(\dfrac{e^2-e^{-2}}{e-e^{-1}}\right)\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Find the arc length of \(f(x) = \ln(\cos x),\ 0 \leq x \leq \pi/4\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 The derivative of \(\ln(\cos x)\) is \(-\tan x\). Then \(1+\tan^2 x = \sec^2 x\) — a perfect square!</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Differentiate:</span>
+        \[\frac{dy}{dx} = \frac{-\sin x}{\cos x} = -\tan x\]</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Simplify under root:</span>
+        \[1+\left(\frac{dy}{dx}\right)^2 = 1+\tan^2 x = \sec^2 x\]
+        \[\sqrt{\sec^2 x} = |\sec x| = \sec x\quad (\text{since } 0\leq x\leq\pi/4,\ \sec x > 0)\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Integrate:</span>
+        \[L = \int_0^{\pi/4}\sec x\,dx = \Big[\ln|\sec x+\tan x|\Big]_0^{\pi/4}\]</div>
+
+        <div class="step"><span class="step-num">STEP 4 — Evaluate:</span>
+        At \(x=\pi/4\): \(\sec(\pi/4)+\tan(\pi/4) = \sqrt{2}+1\). At \(x=0\): \(1+0=1\).
+        \[L = \ln(\sqrt{2}+1)-\ln(1) = \ln(\sqrt{2}+1)\]</div>
+
+        <div class="answer-box">∴ \(L = \ln(\sqrt{2}+1)\)</div>
+        <div class="shortcut">Note: \(\int\sec x\,dx = \ln|\sec x+\tan x|\) — must memorize!</div>
+      </div>
+    </div>
+
+  </div><!-- end arc length pyqs -->
+</div><!-- end 3.1 -->
+
+<!-- 3.2 Volume of Revolution -->
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Volume of Solid of Revolution <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 CONCEPT</strong>
+    When a region is rotated about an axis, it sweeps out a 3D solid. We compute its volume by integrating cross-sectional areas.
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ DISK METHOD (Rotation about x-axis)</strong>
+    \[V = \pi\int_a^b [f(x)]^2\,dx\]
+    <p>Cross-sections are circles (disks) with radius \(f(x)\).</p>
+
+    <strong>⭐ WASHER METHOD (When hole exists)</strong>
+    \[V = \pi\int_a^b \left([R(x)]^2 - [r(x)]^2\right)dx\]
+    where \(R(x)\) = outer radius, \(r(x)\) = inner radius.
+
+    <strong>⭐ ROTATION ABOUT y-AXIS</strong>
+    \[V = \pi\int_c^d [g(y)]^2\,dy\]
+    where \(x = g(y)\) is the curve expressed in terms of \(y\).
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 STEP-BY-STEP METHOD</strong>
+    <ol>
+      <li>Sketch the region (identify which axis it rotates about)</li>
+      <li>Write the formula for disk/washer radius</li>
+      <li>Set up the integral \(V = \pi\int [r(x)]^2 dx\)</li>
+      <li>Evaluate</li>
+    </ol>
+  </div>
+
+  <!-- Volume PYQs -->
+  <div class="pyq-section" style="margin-top:18px;">
+    <h4>🎯 PYQs — Volume of Revolution</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: The region between \(y=\sqrt{x},\ 0\leq x\leq 4\) and the \(x\)-axis is revolved about the \(x\)-axis. Find its volume.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Also in Winter 2025</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Concept Used:</strong> Disk method — rotation about x-axis. Radius of each disk = \(y = \sqrt{x}\).</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Identify:</span> \(f(x)=\sqrt{x}\), \(a=0\), \(b=4\), rotating about x-axis.</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Set up:</span>
+        \[V = \pi\int_0^4 [\sqrt{x}]^2\,dx = \pi\int_0^4 x\,dx\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Integrate:</span>
+        \[V = \pi\left[\frac{x^2}{2}\right]_0^4 = \pi\cdot\frac{16}{2} = 8\pi\]</div>
+
+        <div class="answer-box">∴ Volume \(= 8\pi\) cubic units</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Find the volume of the solid generated by revolving the region bounded by \(y=x^2, y=0, x=2\) about the \(x\)-axis.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Standard</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Disk method — radius = \(y = x^2\), revolving about x-axis.</div>
+        <div class="step"><span class="step-num">SETUP:</span>
+        \[V = \pi\int_0^2 [x^2]^2\,dx = \pi\int_0^2 x^4\,dx\]</div>
+        <div class="step"><span class="step-num">INTEGRATE:</span>
+        \[V = \pi\left[\frac{x^5}{5}\right]_0^2 = \pi\cdot\frac{32}{5}\]</div>
+        <div class="answer-box">∴ Volume \(= \dfrac{32\pi}{5}\) cubic units</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: The circle \(x^2+y^2=a^2\) is rotated about the \(x\)-axis to generate a sphere. Find its volume and sketch the region.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">⭐ Classic</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Express upper semicircle as \(y=\sqrt{a^2-x^2}\), rotate about x-axis using disk method.</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Express \(y\):</span> Upper semicircle: \(y = \sqrt{a^2-x^2}\), \(-a \leq x \leq a\).</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Volume formula:</span>
+        \[V = \pi\int_{-a}^a [\sqrt{a^2-x^2}]^2\,dx = \pi\int_{-a}^a (a^2-x^2)\,dx\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Use symmetry:</span>
+        \[= 2\pi\int_0^a (a^2-x^2)\,dx = 2\pi\left[a^2 x - \frac{x^3}{3}\right]_0^a = 2\pi\left(a^3-\frac{a^3}{3}\right) = 2\pi\cdot\frac{2a^3}{3}\]</div>
+
+        <div class="answer-box">∴ Volume of sphere \(= \dfrac{4}{3}\pi a^3\) ✓ (Standard result!)</div>
+      </div>
+    </div>
+
+  </div><!-- end volume pyqs -->
+</div><!-- end 3.2 -->
+
+<!-- 3.3 Surface Area -->
+<div class="subtopic" id="t3s3">
+  <h3>3.3 Surface Area of Solid of Revolution <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ SURFACE AREA FORMULAS</strong>
+    <table>
+      <tr><th>Rotation about</th><th>Formula</th></tr>
+      <tr><td>x-axis, \(y=f(x)\)</td><td>\(S = 2\pi\displaystyle\int_a^b f(x)\sqrt{1+(f'(x))^2}\,dx\)</td></tr>
+      <tr><td>y-axis, \(y=f(x)\)</td><td>\(S = 2\pi\displaystyle\int_a^b x\sqrt{1+(f'(x))^2}\,dx\)</td></tr>
+      <tr><td>x-axis, polar \(r=f(\theta)\)</td><td>\(S = 2\pi\displaystyle\int_\alpha^\beta r\sin\theta\sqrt{r^2+(r')^2}\,d\theta\)</td></tr>
+    </table>
+    <p><em>Key: Compare with arc length — surface area just adds \(2\pi f(x)\) (circumference) as a factor.</em></p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    Surface area = (arc length of each circular strip) × (circumference of that strip), integrated over all strips. Each strip has circumference \(2\pi r\) where \(r = f(x)\) is the distance from axis.
+  </div>
+
+  <!-- Surface Area PYQs -->
+  <div class="pyq-section" style="margin-top:18px;">
+    <h4>🎯 PYQs — Surface Area of Revolution</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Find the area generated by revolving the curve \(y = x,\ x\in[0,1]\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Revolving \(y=x\) (a line) about the x-axis gives a cone. Use surface area formula.</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Differentiate:</span> \(y=x\), so \(dy/dx=1\).</div>
+        <div class="step"><span class="step-num">STEP 2 — Set up:</span>
+        \[S = 2\pi\int_0^1 x\sqrt{1+1^2}\,dx = 2\pi\sqrt{2}\int_0^1 x\,dx\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Integrate:</span>
+        \[= 2\pi\sqrt{2}\cdot\left[\frac{x^2}{2}\right]_0^1 = 2\pi\sqrt{2}\cdot\frac{1}{2} = \pi\sqrt{2}\]</div>
+        <div class="answer-box">∴ Surface Area \(= \pi\sqrt{2}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Find the volumes of solids generated by revolving \(y=\sqrt{x}\) over \([1,4]\) about the x-axis.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 (OR)</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">SETUP:</span>
+        \[V = \pi\int_1^4 (\sqrt{x})^2\,dx = \pi\int_1^4 x\,dx = \pi\left[\frac{x^2}{2}\right]_1^4 = \pi\left(\frac{16}{2}-\frac{1}{2}\right) = \frac{15\pi}{2}\]</div>
+        <div class="answer-box">∴ Volume \(= \dfrac{15\pi}{2}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Find the surface area of a solid generated by the revolution of circle \(r=2a\cos\theta\) about the initial line (x-axis).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Polar form. Circle \(r=2a\cos\theta\) goes from \(\theta=-\pi/2\) to \(\pi/2\). Surface area about initial line (x-axis).</div>
+
+        <div class="step"><span class="step-num">STEP 1 — Formula for polar:</span>
+        \[S = 2\pi\int_\alpha^\beta r\sin\theta\sqrt{r^2+\left(\frac{dr}{d\theta}\right)^2}\,d\theta\]</div>
+
+        <div class="step"><span class="step-num">STEP 2 — Compute:</span>
+        \[r=2a\cos\theta,\quad \frac{dr}{d\theta}=-2a\sin\theta\]
+        \[r^2+\left(\frac{dr}{d\theta}\right)^2 = 4a^2\cos^2\theta+4a^2\sin^2\theta = 4a^2\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Setup:</span>
+        \[S = 2\pi\int_0^{\pi/2}(2a\cos\theta)\sin\theta\cdot 2a\,d\theta\quad (\text{upper half, doubled})\]
+        Actually for the complete circle, integrate \(\theta\) from \(-\pi/2\) to \(\pi/2\):
+        \[S = 2\pi\int_{-\pi/2}^{\pi/2}(2a\cos\theta)\sin\theta\cdot 2a\,d\theta = 8\pi a^2\int_{-\pi/2}^{\pi/2}\cos\theta\sin\theta\,d\theta\]</div>
+
+        <div class="step"><span class="step-num">STEP 4 — Using symmetry and evaluating:</span>
+        \[= 8\pi a^2\cdot 2\int_0^{\pi/2}\cos\theta\sin\theta\,d\theta = 16\pi a^2\cdot\frac{1}{2}\int_0^{\pi/2}\sin 2\theta\,d\theta = 8\pi a^2\left[-\frac{\cos 2\theta}{2}\right]_0^{\pi/2}\]
+        \[= 8\pi a^2\cdot\left(-\frac{-1}{2}+\frac{1}{2}\right) = 8\pi a^2\cdot 1 = 8\pi a^2\]</div>
+
+        <div class="answer-box">∴ Surface area \(= 4\pi a^2\) 
+        <br><span style="font-size:0.9em">Note: This is the surface area of a sphere of radius \(a\), as expected since \(r=2a\cos\theta\) is a circle of diameter \(2a\)!</span></div>
+      </div>
+    </div>
+
+  </div><!-- end surface area pyqs -->
+</div><!-- end 3.3 -->
+
+</div><!-- end topic3 -->
+
+
+<!-- ════════════════════════════════════════
+     END OF MODULE 1 SUMMARY
+════════════════════════════════════════ -->
+<div id="eom1" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 1 — COMPLETE QUICK REVISION SUMMARY</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>All Key Formulas</h4>
+      <ul>
+        <li>Type I: \(\int_a^\infty = \lim_{t\to\infty}\int_a^t\)</li>
+        <li>Type II: limit at bad endpoint</li>
+        <li>\(\int_1^\infty x^{-p}\): converges iff \(p>1\)</li>
+        <li>\(\int_0^1 x^{-p}\): converges iff \(p&lt;1\)</li>
+        <li>\(\Gamma(n)=\int_0^\infty e^{-x}x^{n-1}dx\)</li>
+        <li>\(\Gamma(n+1)=n!\); \(\Gamma(\tfrac{1}{2})=\sqrt{\pi}\)</li>
+        <li>\(\beta(m,n)=\frac{\Gamma(m)\Gamma(n)}{\Gamma(m+n)}\)</li>
+        <li>Arc length: \(\int\sqrt{1+(y')^2}dx\)</li>
+        <li>Volume (disk): \(\pi\int[f(x)]^2dx\)</li>
+        <li>Surface area: \(2\pi\int f(x)\sqrt{1+(f')^2}dx\)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Priority PYQs (Most Likely in Exam)</h4>
+      <ul>
+        <li>🔥 Test convergence of improper integrals</li>
+        <li>🔥 Define Gamma & Beta + relationship</li>
+        <li>🔥 Evaluate \(\int_0^1 x^m(1-\sqrt{x})^n dx\)</li>
+        <li>🔥 Volume: revolve \(y=\sqrt{x}\) about x-axis</li>
+        <li>⭐ \(\int_{-\infty}^\infty \frac{dx}{1+x^2}\)</li>
+        <li>⭐ Arc length of \(\ln(\cos x)\)</li>
+        <li>⭐ Prove \(\Gamma(n)=2\int_0^\infty e^{-x^2}x^{2n-1}dx\)</li>
+        <li>⭐ Prove \(\beta(m,n)=\beta(n,m)\)</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:18px; padding:14px; background:rgba(255,255,255,0.1); border-radius:6px; font-size:0.95em;">
+    <strong style="color:var(--gold);">📌 COMMON MISTAKES CHECKLIST:</strong>
+    <ul style="margin-top:8px;">
+      <li>Don't confuse Type I p-test with Type II p-test (they are OPPOSITE)</li>
+      <li>Always check ALL points of discontinuity in Type II</li>
+      <li>Remember \(\Gamma(1/2) = \sqrt{\pi}\) (not 1)</li>
+      <li>For \(\int x^m(1-\sqrt{x})^n dx\): always substitute \(\sqrt{x}=t\) first</li>
+      <li>Volume formula uses \([f(x)]^2\), NOT \([f(x)]^3\)</li>
+      <li>Surface area needs the \(2\pi\) factor — don't forget it!</li>
+    </ul>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 1 Complete ✓</strong> · GTU Mathematics-I Self-Study Book<br>
+  <em>When ready, say "Continue to next module" for Module 2</em>
+</div>
+
+</div><!-- end container -->
+</body>
+</html>

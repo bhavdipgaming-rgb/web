@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Mathematics-I | Module 4: Multivariable Calculus (Differentiation)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --primary: #b71c1c;
+    --secondary: #c62828;
+    --accent: #e53935;
+    --gold: #f9a825;
+    --green: #2e7d32;
+    --blue: #1565c0;
+    --purple: #6a1b9a;
+    --teal: #00695c;
+    --light-bg: #ffebee;
+    --card-bg: #ffffff;
+    --border: #ef9a9a;
+    --text: #1a1a2e;
+    --muted: #c62828;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #fff8f8; color: var(--text); line-height: 1.75; font-size: 15px; }
+
+  /* COVER */
+  .cover { background: linear-gradient(135deg, #7f0000 0%, #b71c1c 50%, #c62828 100%); color: white; text-align: center; padding: 60px 30px; border-bottom: 6px solid var(--gold); }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+
+  /* TOC */
+  .toc { background: var(--card-bg); border: 1px solid var(--border); border-left: 5px solid var(--primary); border-radius: 8px; padding: 24px 28px; margin-bottom: 32px; }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 5px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* TOPIC HEADER */
+  .topic-header { background: linear-gradient(90deg, #7f0000, #b71c1c); color: white; padding: 16px 24px; border-radius: 8px 8px 0 0; margin-top: 36px; }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+
+  /* SUBTOPIC */
+  .subtopic { background: var(--card-bg); border: 1px solid var(--border); border-top: none; padding: 26px 28px; margin-bottom: 2px; }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 { font-size: 1.1em; color: var(--primary); border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .priority-tag { font-size: 0.82em; padding: 2px 10px; border-radius: 12px; font-weight: 600; margin-left: auto; white-space: nowrap; }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .medium { background: #e8f5e9; color: #1b5e20; }
+  .low { background: #f5f5f5; color: #616161; }
+
+  /* BOXES */
+  .definition { background: #ffebee; border-left: 4px solid var(--primary); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e3f2fd; border-left: 4px solid var(--blue); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .method-box strong { color: #0d47a1; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .mistake-box { background: #fff9c4; border: 1px solid #f9a825; border-left: 4px solid #f57f17; border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .mistake-box strong { color: #e65100; display: block; margin-bottom: 8px; font-size: 0.85em; letter-spacing: 1px; }
+  .tip-box { background: #e8f5e9; border-left: 4px solid var(--green); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .tip-box strong { color: var(--green); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+
+  /* PYQ */
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 { background: #7f0000; color: white; padding: 8px 14px; border-radius: 6px 6px 0 0; font-size: 0.9em; letter-spacing: 1px; }
+  .pyq-card { border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; margin-bottom: 16px; overflow: hidden; }
+  .pyq-standalone { border: 1px solid var(--border); border-radius: 6px; margin-top: 12px; overflow: hidden; }
+  .pyq-question { background: var(--light-bg); padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .concept-note { background: #fff8e1; border-left: 3px solid var(--gold); padding: 8px 12px; margin-bottom: 10px; font-size: 0.92em; color: #5d4037; }
+  .step { margin: 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid #ef9a9a; border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #ffebee; border: 1px solid #ef9a9a; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--primary); }
+  .shortcut { background: #e8f5e9; border-left: 3px solid var(--green); padding: 8px 12px; margin-top: 8px; font-size: 0.9em; border-radius: 0 4px 4px 0; }
+  .shortcut::before { content: "⚡ TIP: "; font-weight: 700; color: var(--green); }
+
+  /* EOT */
+  .eot { background: linear-gradient(135deg, #7f0000 0%, #b71c1c 100%); color: white; border-radius: 8px; padding: 24px 28px; margin: 28px 0 40px 0; }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width:600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+  .note { color: #c62828; font-style: italic; font-size: 0.92em; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Mathematics – I</h1>
+  <div class="module-title">MODULE 4: Multivariable Calculus (Differentiation)</div>
+  <p style="opacity:0.85">Limits · Partial Derivatives · Gradient · Directional Derivatives · Tangent Planes · Extrema · Lagrange Multipliers</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- TOC -->
+<div class="toc">
+  <h2>📋 MODULE 4 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Limits and Continuity of Functions of Two Variables</a>
+      <ol>
+        <li><a href="#t1s1">1.1 Functions of Two Variables — Introduction</a></li>
+        <li><a href="#t1s2">1.2 Limits of Two-Variable Functions</a></li>
+        <li><a href="#t1s3">1.3 Proving a Limit Does NOT Exist (Path Method)</a></li>
+        <li><a href="#t1s4">1.4 Continuity of Two-Variable Functions</a></li>
+        <li><a href="#t1s5">1.5 PYQs on Limits and Continuity</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Partial Derivatives and Total Derivative</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Partial Derivatives — Definition and Computation</a></li>
+        <li><a href="#t2s2">2.2 Chain Rule for Multivariable Functions</a></li>
+        <li><a href="#t2s3">2.3 Euler's Theorem for Homogeneous Functions</a></li>
+        <li><a href="#t2s4">2.4 PYQs on Partial Derivatives and Chain Rule</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Gradient and Directional Derivatives</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Gradient Vector — Definition and Properties</a></li>
+        <li><a href="#t3s2">3.2 Directional Derivative</a></li>
+        <li><a href="#t3s3">3.3 PYQs on Gradient and Directional Derivatives</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic4">Topic 4: Tangent Plane and Normal Line to a Surface</a>
+      <ol>
+        <li><a href="#t4s1">4.1 Equation of Tangent Plane</a></li>
+        <li><a href="#t4s2">4.2 Equation of Normal Line</a></li>
+        <li><a href="#t4s3">4.3 PYQs on Tangent Plane and Normal Line</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic5">Topic 5: Extreme Values of Functions of Two Variables</a>
+      <ol>
+        <li><a href="#t5s1">5.1 Critical Points — Definition</a></li>
+        <li><a href="#t5s2">5.2 Second Derivative Test for Two Variables</a></li>
+        <li><a href="#t5s3">5.3 PYQs on Extreme Values</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic6">Topic 6: Method of Lagrange Multipliers</a>
+      <ol>
+        <li><a href="#t6s1">6.1 Lagrange Multipliers — Concept and Method</a></li>
+        <li><a href="#t6s2">6.2 PYQs on Lagrange Multipliers</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom4">End of Module 4: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 1 — LIMITS AND CONTINUITY
+══════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Limits and Continuity of Functions of Two Variables</h2>
+</div>
+
+<div class="subtopic" id="t1s1">
+  <h3>1.1 Functions of Two Variables — Introduction <span class="priority-tag medium">⚪ Foundation</span></h3>
+  <div class="definition">
+    <strong>📖 KEY DEFINITIONS</strong>
+    <p>A <strong>function of two variables</strong> \(f(x,y)\) assigns a real number to each point \((x,y)\) in its domain (a region in the \(xy\)-plane).</p>
+    <p>Examples: \(f(x,y)=x^2+y^2\), \(f(x,y)=\frac{xy}{x^2+y^2}\), \(f(x,y)=e^{x+y}\).</p>
+    <p>Unlike single-variable functions, approaching a point \((a,b)\) can happen along <strong>infinitely many paths</strong> — this makes limits far more complex.</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Limits of Two-Variable Functions <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITION OF LIMIT</strong>
+    <p>\(\displaystyle\lim_{(x,y)\to(a,b)}f(x,y) = L\) means: as \((x,y)\) approaches \((a,b)\) along <strong>any path</strong>, \(f(x,y)\) approaches \(L\).</p>
+    <p>The limit exists only if the same value \(L\) is obtained <strong>regardless of direction of approach</strong>.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ DIRECT SUBSTITUTION</strong>
+    <p>If \(f\) is a polynomial or the point is not a problem point (no \(\frac{0}{0}\) or undefined), just substitute \((a,b)\) directly.</p>
+    <p>Example: \(\lim_{(x,y)\to(1,2)}(x^2+y) = 1+2 = 3\).</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s3">
+  <h3>1.3 Proving a Limit Does NOT Exist — Path Method <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="method-box">
+    <strong>🔧 THE TWO-PATH TEST (Key technique for "limit does not exist" proofs)</strong>
+    <p>To show \(\lim_{(x,y)\to(0,0)}f(x,y)\) does NOT exist:</p>
+    <ol>
+      <li>Choose <strong>Path 1</strong> (e.g., \(y=0\), i.e., along \(x\)-axis) → find limit \(L_1\)</li>
+      <li>Choose <strong>Path 2</strong> (e.g., \(y=x\) or \(y=mx\) or \(y=x^2\)) → find limit \(L_2\)</li>
+      <li>If \(L_1 \neq L_2\) → the limit <strong>does not exist</strong></li>
+    </ol>
+    <p><strong>Important:</strong> If all paths give the same limit, it does NOT yet prove existence — must use \(\epsilon\)-\(\delta\) or polar coordinates to confirm.</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    In single variable, there are only two paths to a point (from left and right). In two variables, you can approach from infinitely many directions. If even two paths give different answers — the limit is undefined.
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 SMART PATH CHOICES FOR (0,0)</strong>
+    <table>
+      <tr><th>Path</th><th>Substitution</th><th>Good for detecting...</th></tr>
+      <tr><td>Along x-axis</td><td>\(y=0\)</td><td>First check — simple</td></tr>
+      <tr><td>Along y-axis</td><td>\(x=0\)</td><td>Second check</td></tr>
+      <tr><td>Along \(y=x\)</td><td>Replace \(y\) with \(x\)</td><td>Diagonal approach</td></tr>
+      <tr><td>Along \(y=mx\)</td><td>Replace \(y\) with \(mx\)</td><td>Parametric family — if limit depends on \(m\), DNE</td></tr>
+      <tr><td>Along \(y=x^2\)</td><td>Replace \(y\) with \(x^2\)</td><td>For rational functions with \(x^4+y^2\) type denom</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s4">
+  <h3>1.4 Continuity of Two-Variable Functions <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 CONTINUITY DEFINITION</strong>
+    <p>\(f(x,y)\) is <strong>continuous at \((a,b)\)</strong> if:</p>
+    <ol>
+      <li>\(f(a,b)\) is defined</li>
+      <li>\(\lim_{(x,y)\to(a,b)}f(x,y)\) exists</li>
+      <li>\(\lim_{(x,y)\to(a,b)}f(x,y) = f(a,b)\)</li>
+    </ol>
+    <p>All three conditions must hold.</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 METHOD: Checking Continuity at a Point (Typically at Origin)</strong>
+    <ol>
+      <li>Find \(f(0,0)\) from definition (usually given as a piecewise value)</li>
+      <li>Compute \(\lim_{(x,y)\to(0,0)}f(x,y)\) using path method</li>
+      <li>If limit \(\neq f(0,0)\) OR limit doesn't exist → <strong>NOT continuous</strong></li>
+      <li>If limit \(= f(0,0)\) → <strong>continuous</strong></li>
+    </ol>
+  </div>
+</div>
+
+<!-- 1.5 PYQs -->
+<div class="subtopic" id="t1s5">
+  <h3>1.5 PYQs — Limits and Continuity <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — LIMITS AND CONTINUITY</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Determine whether \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{2x^2y}{x^3+y^3}\) exists and find it if it exists.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic path test</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Use the two-path method — try paths that give different limits.</div>
+        <div class="step"><span class="step-num">PATH 1 — Along \(y=0\):</span>
+        \[f(x,0) = \frac{2x^2\cdot 0}{x^3+0} = 0 \xrightarrow{x\to 0} 0\]</div>
+        <div class="step"><span class="step-num">PATH 2 — Along \(y=x\):</span>
+        \[f(x,x) = \frac{2x^2\cdot x}{x^3+x^3} = \frac{2x^3}{2x^3} = 1 \xrightarrow{x\to 0} 1\]</div>
+        <div class="step"><span class="step-num">CONCLUSION:</span> Along Path 1, limit \(= 0\). Along Path 2, limit \(= 1\). Since \(0 \neq 1\), the limit depends on the path taken.</div>
+        <div class="answer-box">∴ The limit does <strong>NOT EXIST</strong>.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Does \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{2x^2y}{x^4+2y^2}\) exist? Find it if it does.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Try paths \(y=0\), \(y=x\), and crucially \(y=x^2\) (which matches the \(x^4\) in denominator).</div>
+        <div class="step"><span class="step-num">PATH 1 — \(y=0\):</span> \(f(x,0)=\frac{0}{x^4}=0\to 0\)</div>
+        <div class="step"><span class="step-num">PATH 2 — \(y=x^2\):</span>
+        \[f(x,x^2) = \frac{2x^2\cdot x^2}{x^4+2x^4} = \frac{2x^4}{3x^4} = \frac{2}{3}\to\frac{2}{3}\]</div>
+        <div class="step"><span class="step-num">CONCLUSION:</span> Path 1 gives \(0\), Path 2 gives \(\frac{2}{3}\). Since \(0\neq\frac{2}{3}\):</div>
+        <div class="answer-box">∴ The limit does <strong>NOT EXIST</strong>.</div>
+        <div class="shortcut">The \(y=x^2\) path is the "killer" here because it eliminates the \(x^4\) from the denominator, revealing the true behavior.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{\sqrt{x}-\sqrt{y}}{\sqrt{x}+\sqrt{y}}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Two-path test — try \(y=0\) and \(x=0\).</div>
+        <div class="step"><span class="step-num">PATH 1 — Along \(y=0\) (so \(x\to 0^+\)):</span>
+        \[\frac{\sqrt{x}-0}{\sqrt{x}+0} = \frac{\sqrt{x}}{\sqrt{x}} = 1 \to 1\]</div>
+        <div class="step"><span class="step-num">PATH 2 — Along \(x=0\) (so \(y\to 0^+\)):</span>
+        \[\frac{0-\sqrt{y}}{0+\sqrt{y}} = \frac{-\sqrt{y}}{\sqrt{y}} = -1 \to -1\]</div>
+        <div class="step"><span class="step-num">CONCLUSION:</span> \(1\neq -1\).</div>
+        <div class="answer-box">∴ The limit does <strong>NOT EXIST</strong>.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Show that \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^4-y^2}{x^4+y^2}\) does not exist.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">PATH 1 — \(y=0\):</span>
+        \[\frac{x^4-0}{x^4+0}=1\to 1\]</div>
+        <div class="step"><span class="step-num">PATH 2 — \(x=0\):</span>
+        \[\frac{0-y^2}{0+y^2}=-1\to -1\]</div>
+        <div class="answer-box">∴ Limits differ (\(1\neq -1\)) → Limit does <strong>NOT EXIST</strong>. ✓</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: If \(f(x,y)=\dfrac{xy}{x^2+y^2}\) for \((x,y)\neq(0,0)\) and \(f(0,0)=0\), does the limit exist at origin? Is \(f\) continuous at \((0,0)\)?</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Also Winter 2022</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Show limit DNE using two paths → function is NOT continuous at origin.</div>
+        <div class="step"><span class="step-num">PATH 1 — \(y=0\):</span>
+        \[f(x,0)=\frac{x\cdot 0}{x^2+0}=0\to 0\]</div>
+        <div class="step"><span class="step-num">PATH 2 — \(y=x\):</span>
+        \[f(x,x)=\frac{x\cdot x}{x^2+x^2}=\frac{x^2}{2x^2}=\frac{1}{2}\to\frac{1}{2}\]</div>
+        <div class="step"><span class="step-num">CONCLUSION:</span> \(0\neq\frac{1}{2}\) → limit does NOT exist. Since the limit doesn't exist, \(f\) is <strong>NOT continuous</strong> at \((0,0)\).</div>
+        <div class="answer-box">∴ Limit does <strong>NOT EXIST</strong> → \(f\) is <strong>NOT continuous</strong> at \((0,0)\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Discuss continuity of \(f(x,y)=\begin{cases}\dfrac{2x^2y}{x^4+2y^2} & (x,y)\neq(0,0)\\0 & (x,y)=(0,0)\end{cases}\) at the origin.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 (OR)</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 We already showed this limit DNE above (using \(y=x^2\) path). Since limit DNE, function is discontinuous.</div>
+        <div class="step"><span class="step-num">PATH \(y=x^2\):</span>
+        \[f(x,x^2)=\frac{2x^2\cdot x^2}{x^4+2x^4}=\frac{2x^4}{3x^4}=\frac{2}{3}\neq 0=f(0,0)\]</div>
+        <div class="answer-box">∴ Limit \(\neq f(0,0)\) → \(f\) is <strong>NOT continuous</strong> at \((0,0)\).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="eot">
+  <h3>📝 Quick Revision — Topic 1: Limits and Continuity</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Methods</h4>
+      <ul>
+        <li>Two-path test: if two paths give different limits → DNE</li>
+        <li>Smart paths: \(y=0\), \(x=0\), \(y=x\), \(y=mx\), \(y=x^2\)</li>
+        <li>If limit DNE → automatically NOT continuous</li>
+        <li>Continuity: limit exists AND equals \(f(a,b)\)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Most Repeated PYQs</h4>
+      <ul>
+        <li>🔥 \(\frac{2x^2y}{x^3+y^3}\) → DNE (W2023)</li>
+        <li>🔥 \(\frac{xy}{x^2+y^2}\) → DNE, not continuous (S2025)</li>
+        <li>⭐ \(\frac{\sqrt{x}-\sqrt{y}}{\sqrt{x}+\sqrt{y}}\) → DNE (W2025)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end topic1 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 2 — PARTIAL DERIVATIVES
+══════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Partial Derivatives and Total Derivative</h2>
+</div>
+
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Partial Derivatives — Definition and Computation <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 PARTIAL DERIVATIVES</strong>
+    <p><strong>Partial derivative w.r.t. \(x\):</strong> Treat \(y\) as constant, differentiate w.r.t. \(x\):
+    \[f_x = \frac{\partial f}{\partial x} = \lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}{h}\]</p>
+    <p><strong>Partial derivative w.r.t. \(y\):</strong> Treat \(x\) as constant, differentiate w.r.t. \(y\):
+    \[f_y = \frac{\partial f}{\partial y} = \lim_{h\to 0}\frac{f(x,y+h)-f(x,y)}{h}\]</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    A partial derivative measures the rate of change of \(f\) in one direction while keeping everything else frozen. It's like asking "how does temperature change if I walk east, keeping my north–south position fixed?"
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ SECOND-ORDER PARTIAL DERIVATIVES</strong>
+    <table>
+      <tr><th>Notation</th><th>Meaning</th></tr>
+      <tr><td>\(f_{xx} = \frac{\partial^2 f}{\partial x^2}\)</td><td>Differentiate w.r.t. \(x\) twice</td></tr>
+      <tr><td>\(f_{yy} = \frac{\partial^2 f}{\partial y^2}\)</td><td>Differentiate w.r.t. \(y\) twice</td></tr>
+      <tr><td>\(f_{xy} = \frac{\partial^2 f}{\partial y\partial x}\)</td><td>First \(\partial x\), then \(\partial y\)</td></tr>
+      <tr><td>\(f_{yx} = \frac{\partial^2 f}{\partial x\partial y}\)</td><td>First \(\partial y\), then \(\partial x\)</td></tr>
+    </table>
+    <p><strong>Clairaut's Theorem:</strong> If \(f_{xy}\) and \(f_{yx}\) are both continuous, then \(f_{xy} = f_{yx}\).</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Chain Rule for Multivariable Functions <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ CHAIN RULE FORMULAS</strong>
+    <p><strong>Case 1:</strong> If \(w = f(x,y)\), \(x=x(t)\), \(y=y(t)\):
+    \[\frac{dw}{dt} = \frac{\partial w}{\partial x}\frac{dx}{dt} + \frac{\partial w}{\partial y}\frac{dy}{dt}\]</p>
+    <p><strong>Case 2:</strong> If \(w=f(x,y)\), \(x=x(s,t)\), \(y=y(s,t)\):
+    \[\frac{\partial w}{\partial s} = \frac{\partial w}{\partial x}\frac{\partial x}{\partial s} + \frac{\partial w}{\partial y}\frac{\partial y}{\partial s}\]
+    \[\frac{\partial w}{\partial t} = \frac{\partial w}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial w}{\partial y}\frac{\partial y}{\partial t}\]</p>
+    <p><strong>Case 3 (3 variables):</strong> If \(w=f(x,y,z)\), \(x,y,z\) all functions of \(t\):
+    \[\frac{dw}{dt} = \frac{\partial w}{\partial x}\frac{dx}{dt} + \frac{\partial w}{\partial y}\frac{dy}{dt} + \frac{\partial w}{\partial z}\frac{dz}{dt}\]</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 STEP-BY-STEP FOR CHAIN RULE</strong>
+    <ol>
+      <li>Find all partial derivatives of \(w\) (i.e., \(\frac{\partial w}{\partial x}\), \(\frac{\partial w}{\partial y}\), etc.)</li>
+      <li>Find derivatives of \(x, y, z\) with respect to the parameter</li>
+      <li>Multiply corresponding pairs and sum them up</li>
+    </ol>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s3">
+  <h3>2.3 Euler's Theorem for Homogeneous Functions <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 HOMOGENEOUS FUNCTION</strong>
+    <p>\(f(x,y)\) is homogeneous of degree \(n\) if \(f(tx,ty) = t^n f(x,y)\) for all \(t\).</p>
+    <p>Example: \(f(x,y)=x^2+xy+y^2\) is homogeneous of degree 2 (every term has total degree 2).</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ EULER'S THEOREM</strong>
+    <p>If \(f(x,y)\) is homogeneous of degree \(n\), then:
+    \[\boxed{x\frac{\partial f}{\partial x} + y\frac{\partial f}{\partial y} = n\cdot f(x,y)}\]</p>
+    <p><strong>Corollary (Second order):</strong>
+    \[x^2 f_{xx} + 2xy f_{xy} + y^2 f_{yy} = n(n-1)f\]</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    Euler's theorem is a shortcut: instead of finding \(x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}\) by differentiation, just identify the degree \(n\) and the answer is \(nf\). Very useful for verification problems.
+  </div>
+</div>
+
+<!-- 2.4 PYQs -->
+<div class="subtopic" id="t2s4">
+  <h3>2.4 PYQs — Partial Derivatives and Chain Rule <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — PARTIAL DERIVATIVES</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: If \(w=x^2+y^2\), \(x=r-s\), \(y=r+s\), using chain rule prove that \(\dfrac{\partial w}{\partial s} = 4s\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic chain rule</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Apply chain rule Case 2. Find \(\partial w/\partial x\), \(\partial w/\partial y\), then \(\partial x/\partial s\), \(\partial y/\partial s\).</div>
+        <div class="step"><span class="step-num">STEP 1 — Partial derivatives of \(w\):</span>
+        \[\frac{\partial w}{\partial x}=2x,\quad\frac{\partial w}{\partial y}=2y\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Partial derivatives of \(x,y\) w.r.t. \(s\):</span>
+        \[\frac{\partial x}{\partial s}=-1,\quad\frac{\partial y}{\partial s}=1\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Chain rule:</span>
+        \[\frac{\partial w}{\partial s}=\frac{\partial w}{\partial x}\cdot\frac{\partial x}{\partial s}+\frac{\partial w}{\partial y}\cdot\frac{\partial y}{\partial s} = 2x(-1)+2y(1) = -2x+2y\]</div>
+        <div class="step"><span class="step-num">STEP 4 — Substitute \(x=r-s\), \(y=r+s\):</span>
+        \[-2(r-s)+2(r+s) = -2r+2s+2r+2s = 4s\]</div>
+        <div class="answer-box">∴ \(\dfrac{\partial w}{\partial s} = 4s\) ✓ Proved.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: If \(z=\tan^{-1}\!\left(\dfrac{x}{y}\right)\), \(x=u\cos v\), \(y=u\sin v\), find \(\dfrac{\partial z}{\partial u}\) and \(\dfrac{\partial z}{\partial v}\) using chain rule.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 \(\frac{\partial z}{\partial x}=\frac{y}{x^2+y^2}\), \(\frac{\partial z}{\partial y}=\frac{-x}{x^2+y^2}\). Note \(x^2+y^2=u^2\).</div>
+        <div class="step"><span class="step-num">PARTIAL DERIVATIVES:</span>
+        \[\frac{\partial z}{\partial x}=\frac{1}{1+(x/y)^2}\cdot\frac{1}{y}=\frac{y}{x^2+y^2}=\frac{y}{u^2}\]
+        \[\frac{\partial z}{\partial y}=\frac{1}{1+(x/y)^2}\cdot\frac{-x}{y^2}=\frac{-x}{x^2+y^2}=\frac{-x}{u^2}\]</div>
+        <div class="step"><span class="step-num">\(\partial z/\partial u\):</span>
+        \[\frac{\partial z}{\partial u}=\frac{y}{u^2}\cdot\cos v+\frac{-x}{u^2}\cdot\sin v=\frac{u\sin v\cos v-u\cos v\sin v}{u^2}=\frac{0}{u^2}=0\]</div>
+        <div class="step"><span class="step-num">\(\partial z/\partial v\):</span>
+        \[\frac{\partial z}{\partial v}=\frac{y}{u^2}\cdot(-u\sin v)+\frac{-x}{u^2}\cdot(u\cos v)=\frac{-y\sin v-x\cos v}{u}\]
+        \[=\frac{-u\sin^2 v-u\cos^2 v}{u}=-(sin^2v+\cos^2v)=-1\]</div>
+        <div class="answer-box">∴ \(\dfrac{\partial z}{\partial u}=0\) and \(\dfrac{\partial z}{\partial v}=-1\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: If \(u=\log(x^2+y^2)\), show that \(\dfrac{\partial^2 u}{\partial x^2}+\dfrac{\partial^2 u}{\partial y^2}=0\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Laplace equation — repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 This asks to verify the Laplace equation \(\nabla^2 u=0\) (harmonic function). Find second-order partials.</div>
+        <div class="step"><span class="step-num">FIRST PARTIALS:</span>
+        \[\frac{\partial u}{\partial x}=\frac{2x}{x^2+y^2},\quad\frac{\partial u}{\partial y}=\frac{2y}{x^2+y^2}\]</div>
+        <div class="step"><span class="step-num">SECOND PARTIAL W.R.T. \(x\) (quotient rule):</span>
+        \[\frac{\partial^2 u}{\partial x^2}=\frac{2(x^2+y^2)-2x\cdot 2x}{(x^2+y^2)^2}=\frac{2y^2-2x^2}{(x^2+y^2)^2}\]</div>
+        <div class="step"><span class="step-num">SECOND PARTIAL W.R.T. \(y\):</span>
+        \[\frac{\partial^2 u}{\partial y^2}=\frac{2(x^2+y^2)-2y\cdot 2y}{(x^2+y^2)^2}=\frac{2x^2-2y^2}{(x^2+y^2)^2}\]</div>
+        <div class="step"><span class="step-num">SUM:</span>
+        \[\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=\frac{2y^2-2x^2+2x^2-2y^2}{(x^2+y^2)^2}=\frac{0}{(x^2+y^2)^2}=0\]</div>
+        <div class="answer-box">∴ \(\dfrac{\partial^2 u}{\partial x^2}+\dfrac{\partial^2 u}{\partial y^2}=0\) ✓ Proved. (\(u\) is a harmonic function.)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: If \(z=x^2y+3xy^4\), where \(x=\sin 2t\) and \(y=\cos t\), find \(\dfrac{dz}{dt}\) when \(t=0\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Chain rule with single parameter \(t\).</div>
+        <div class="step"><span class="step-num">PARTIAL DERIVATIVES:</span>
+        \[\frac{\partial z}{\partial x}=2xy+3y^4,\quad\frac{\partial z}{\partial y}=x^2+12xy^3\]</div>
+        <div class="step"><span class="step-num">DERIVATIVES W.R.T. \(t\):</span>
+        \[\frac{dx}{dt}=2\cos 2t,\quad\frac{dy}{dt}=-\sin t\]</div>
+        <div class="step"><span class="step-num">CHAIN RULE:</span>
+        \[\frac{dz}{dt}=(2xy+3y^4)(2\cos 2t)+(x^2+12xy^3)(-\sin t)\]</div>
+        <div class="step"><span class="step-num">AT \(t=0\): \(x=\sin 0=0\), \(y=\cos 0=1\):</span>
+        \[\frac{dz}{dt}\bigg|_{t=0}=(0+3)(2\cos 0)+(0+0)(-\sin 0)=3\cdot 2\cdot 1=6\]</div>
+        <div class="answer-box">∴ \(\dfrac{dz}{dt}\bigg|_{t=0}=6\)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="eot">
+  <h3>📝 Quick Revision — Topic 2: Partial Derivatives</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Formulas</h4>
+      <ul>
+        <li>\(\frac{\partial f}{\partial x}\): treat \(y\) as constant</li>
+        <li>Chain rule: \(\frac{dw}{dt}=w_x x_t+w_y y_t\)</li>
+        <li>Euler: \(xf_x+yf_y=nf\) for degree-\(n\) homogeneous</li>
+        <li>Laplace: \(u_{xx}+u_{yy}=0\) (harmonic)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Most Repeated PYQs</h4>
+      <ul>
+        <li>🔥 Chain rule: prove \(\partial w/\partial s=4s\) (W2023)</li>
+        <li>🔥 Show \(u_{xx}+u_{yy}=0\) for \(\log(x^2+y^2)\) (S2023)</li>
+        <li>⭐ \(\tan^{-1}(x/y)\) chain rule (W2022)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end topic2 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 3 — GRADIENT AND DIRECTIONAL DERIVATIVE
+══════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Gradient and Directional Derivatives</h2>
+</div>
+
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Gradient Vector — Definition and Properties <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 GRADIENT</strong>
+    <p>For \(f(x,y,z)\), the gradient is the vector:
+    \[\nabla f = \text{grad}\,f = \frac{\partial f}{\partial x}\,\mathbf{i} + \frac{\partial f}{\partial y}\,\mathbf{j} + \frac{\partial f}{\partial z}\,\mathbf{k}\]</p>
+    <p>For \(f(x,y)\): \(\nabla f = f_x\,\mathbf{i} + f_y\,\mathbf{j}\)</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ KEY PROPERTIES OF GRADIENT</strong>
+    <ul>
+      <li>\(\nabla f\) points in the direction of <strong>maximum rate of increase</strong> of \(f\)</li>
+      <li>\(-\nabla f\) points in the direction of maximum decrease</li>
+      <li>\(|\nabla f|\) = maximum rate of change (steepest ascent rate)</li>
+      <li>\(\nabla f\) is <strong>perpendicular</strong> to the level curve \(f=c\)</li>
+      <li>\(\nabla f\) at a point on surface \(f(x,y,z)=c\) is the <strong>normal vector</strong> to the surface</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Directional Derivative <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DIRECTIONAL DERIVATIVE</strong>
+    <p>The directional derivative of \(f\) at point \(P\) in the direction of unit vector \(\mathbf{u}=\langle u_1,u_2,u_3\rangle\) is:
+    \[D_{\mathbf{u}}f = \nabla f \cdot \mathbf{u} = f_x u_1 + f_y u_2 + f_z u_3\]</p>
+    <p>It measures the rate of change of \(f\) in the direction \(\mathbf{u}\).</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 COMPLETE STEP-BY-STEP METHOD</strong>
+    <ol>
+      <li>Find the gradient: \(\nabla f = \langle f_x, f_y, f_z\rangle\)</li>
+      <li>Evaluate \(\nabla f\) at the given point</li>
+      <li>Find the unit vector \(\mathbf{u}\) in the given direction \(\mathbf{v}\): \(\mathbf{u}=\dfrac{\mathbf{v}}{|\mathbf{v}|}\)</li>
+      <li>Compute \(D_\mathbf{u}f = \nabla f\cdot\mathbf{u}\)</li>
+    </ol>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ MAGNITUDE OF A VECTOR (Needed to find unit vector)</strong>
+    \[|\mathbf{v}| = \sqrt{v_1^2+v_2^2+v_3^2}\]
+    \[\mathbf{u} = \frac{\mathbf{v}}{|\mathbf{v}|} = \frac{1}{|\mathbf{v}|}\langle v_1, v_2, v_3\rangle\]
+  </div>
+
+  <div class="mistake-box">
+    <strong>⚠️ MOST COMMON MISTAKE</strong>
+    <p>Students forget to convert the direction vector to a <strong>UNIT VECTOR</strong> before computing the dot product. The given vector \(\mathbf{v}\) must be normalised: \(\mathbf{u}=\mathbf{v}/|\mathbf{v}|\).</p>
+    <p>❌ WRONG: \(D_\mathbf{u}f = \nabla f \cdot \mathbf{v}\) (using \(\mathbf{v}\) directly)</p>
+    <p>✅ RIGHT: \(D_\mathbf{u}f = \nabla f \cdot \dfrac{\mathbf{v}}{|\mathbf{v}|}\)</p>
+  </div>
+</div>
+
+<!-- 3.3 PYQs -->
+<div class="subtopic" id="t3s3">
+  <h3>3.3 PYQs — Gradient and Directional Derivatives <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — DIRECTIONAL DERIVATIVES</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Find the directional derivative of \(f(x,y,z)=2x^2+3y^2+z^2\) at \((2,1,3)\) in the direction of \(\mathbf{i}-2\mathbf{k}\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic 3D</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Four steps: (1) find gradient, (2) evaluate at point, (3) find unit vector, (4) dot product.</div>
+        <div class="step"><span class="step-num">STEP 1 — Gradient:</span>
+        \[\nabla f = \langle 4x,\; 6y,\; 2z\rangle\]</div>
+        <div class="step"><span class="step-num">STEP 2 — At \((2,1,3)\):</span>
+        \[\nabla f\big|_{(2,1,3)} = \langle 8,\; 6,\; 6\rangle\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Unit vector in direction \(\mathbf{v}=\langle 1,0,-2\rangle\):</span>
+        \[|\mathbf{v}|=\sqrt{1+0+4}=\sqrt{5},\quad\mathbf{u}=\frac{1}{\sqrt{5}}\langle 1,0,-2\rangle\]</div>
+        <div class="step"><span class="step-num">STEP 4 — Directional derivative:</span>
+        \[D_\mathbf{u}f = \langle 8,6,6\rangle\cdot\frac{1}{\sqrt{5}}\langle 1,0,-2\rangle = \frac{8(1)+6(0)+6(-2)}{\sqrt{5}} = \frac{8-12}{\sqrt{5}} = \frac{-4}{\sqrt{5}}\]</div>
+        <div class="answer-box">∴ Directional derivative \(= \dfrac{-4}{\sqrt{5}} = \dfrac{-4\sqrt{5}}{5}\)</div>
+        <div class="shortcut">The negative sign means \(f\) is decreasing in this direction.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the directional derivative of \(f(x,y)=x^2\sin 2y\) at \(\left(1,\dfrac{\pi}{2}\right)\) in the direction of \(\mathbf{v}=3\hat{i}-4\hat{j}\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ 2D version</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">GRADIENT:</span>
+        \[f_x=2x\sin 2y,\quad f_y=2x^2\cos 2y\]
+        At \((1,\pi/2)\): \(f_x=2\sin\pi=0\), \(f_y=2\cos\pi=-2\).
+        \[\nabla f\big|_{(1,\pi/2)}=\langle 0,-2\rangle\]</div>
+        <div class="step"><span class="step-num">UNIT VECTOR: \(|\mathbf{v}|=\sqrt{9+16}=5\), \(\mathbf{u}=\frac{1}{5}\langle 3,-4\rangle\).</span></div>
+        <div class="step"><span class="step-num">DOT PRODUCT:</span>
+        \[D_\mathbf{u}f=\langle 0,-2\rangle\cdot\frac{1}{5}\langle 3,-4\rangle=\frac{0+8}{5}=\frac{8}{5}\]</div>
+        <div class="answer-box">∴ Directional derivative \(=\dfrac{8}{5}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the directional derivative of \(f(x,y,z)=x^2yz+4xz^2\) at \((1,-2,-1)\) in direction \(2\hat{i}-\hat{j}-2\hat{k}\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">GRADIENT:</span>
+        \[f_x=2xyz+4z^2,\quad f_y=x^2z,\quad f_z=x^2y+8xz\]
+        At \((1,-2,-1)\):
+        \[f_x=2(1)(-2)(-1)+4(1)=4+4=8\]
+        \[f_y=(1)(-1)=-1\]
+        \[f_z=(1)(-2)+8(1)(-1)=-2-8=-10\]
+        \[\nabla f=\langle 8,-1,-10\rangle\]</div>
+        <div class="step"><span class="step-num">UNIT VECTOR: \(|\mathbf{v}|=\sqrt{4+1+4}=3\), \(\mathbf{u}=\frac{1}{3}\langle 2,-1,-2\rangle\).</span></div>
+        <div class="step"><span class="step-num">DOT PRODUCT:</span>
+        \[D_\mathbf{u}f=\frac{1}{3}(16+1+20)=\frac{37}{3}\]</div>
+        <div class="answer-box">∴ Directional derivative \(=\dfrac{37}{3}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the directional derivative of \(f(x,y)=x^2e^{xy}\) at \((1,0)\) in direction \(\bar{u}=\hat{i}-\hat{j}\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 (OR)</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">GRADIENT:</span>
+        \[f_x=2xe^{xy}+x^2ye^{xy}=e^{xy}(2x+x^2y)\]
+        \[f_y=x^3e^{xy}\]
+        At \((1,0)\): \(f_x=e^0(2+0)=2\), \(f_y=1\cdot e^0=1\).
+        \[\nabla f=\langle 2,1\rangle\]</div>
+        <div class="step"><span class="step-num">UNIT VECTOR: \(\mathbf{u}=\frac{1}{\sqrt{2}}\langle 1,-1\rangle\).</span></div>
+        <div class="step"><span class="step-num">DOT PRODUCT:</span>
+        \[D_\mathbf{u}f=\frac{1}{\sqrt{2}}(2-1)=\frac{1}{\sqrt{2}}\]</div>
+        <div class="answer-box">∴ Directional derivative \(=\dfrac{1}{\sqrt{2}}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the directional derivative of \(f(x,y)=x^2y^3-4y\) at \((2,-1)\) in direction \(\mathbf{v}=2\mathbf{i}+5\mathbf{j}\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">GRADIENT at \((2,-1)\):</span>
+        \[f_x=2xy^3\big|_{(2,-1)}=2(2)(-1)^3=-4\]
+        \[f_y=3x^2y^2-4\big|_{(2,-1)}=3(4)(1)-4=8\]
+        \[\nabla f=\langle -4,8\rangle\]</div>
+        <div class="step"><span class="step-num">UNIT VECTOR: \(|\mathbf{v}|=\sqrt{4+25}=\sqrt{29}\), \(\mathbf{u}=\frac{1}{\sqrt{29}}\langle 2,5\rangle\).</span></div>
+        <div class="step"><span class="step-num">DOT PRODUCT:</span>
+        \[D_\mathbf{u}f=\frac{-8+40}{\sqrt{29}}=\frac{32}{\sqrt{29}}\]</div>
+        <div class="answer-box">∴ Directional derivative \(=\dfrac{32}{\sqrt{29}}\)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="eot">
+  <h3>📝 Quick Revision — Topic 3: Gradient &amp; Directional Derivative</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Formula Summary</h4>
+      <ul>
+        <li>\(\nabla f = \langle f_x, f_y, f_z\rangle\)</li>
+        <li>\(D_\mathbf{u}f = \nabla f\cdot\mathbf{u}\) (unit vector!)</li>
+        <li>\(\mathbf{u}=\mathbf{v}/|\mathbf{v}|\)</li>
+        <li>\(\nabla f\perp\) level surfaces</li>
+        <li>Max rate of increase = \(|\nabla f|\)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Most Repeated</h4>
+      <ul>
+        <li>🔥 \(2x^2+3y^2+z^2\) at \((2,1,3)\) dir \(\mathbf{i}-2\mathbf{k}\) (W2023)</li>
+        <li>⭐ \(x^2\sin 2y\) at \((1,\pi/2)\) (W2022)</li>
+        <li>⭐ \(x^2yz+4xz^2\) at \((1,-2,-1)\) (S2024)</li>
+        <li>⭐ \(x^2y^3-4y\) at \((2,-1)\) (S2025)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end topic3 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 4 — TANGENT PLANE & NORMAL LINE
+══════════════════════════════════════ -->
+<div id="topic4">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 4</div>
+  <h2>Tangent Plane and Normal Line to a Surface</h2>
+</div>
+
+<div class="subtopic" id="t4s1">
+  <h3>4.1 Equation of Tangent Plane <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ TANGENT PLANE FORMULAS</strong>
+    <p><strong>Case 1 — Surface as \(F(x,y,z)=0\) at point \((x_0,y_0,z_0)\):</strong>
+    \[F_x(x_0,y_0,z_0)(x-x_0)+F_y(x_0,y_0,z_0)(y-y_0)+F_z(x_0,y_0,z_0)(z-z_0)=0\]</p>
+    <p><strong>Case 2 — Surface as \(z=f(x,y)\) at point \((x_0,y_0,z_0)\):</strong>
+    \[z-z_0 = f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)\]</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    The tangent plane at a point on a surface touches the surface at that point and is flat (locally). The normal to the surface is the gradient vector \(\nabla F\). Tangent plane = plane perpendicular to this normal, passing through the point.
+  </div>
+</div>
+
+<div class="subtopic" id="t4s2">
+  <h3>4.2 Equation of Normal Line <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ NORMAL LINE FORMULA</strong>
+    <p>The normal line to \(F(x,y,z)=0\) at \((x_0,y_0,z_0)\) passes through \((x_0,y_0,z_0)\) in the direction \(\nabla F = \langle F_x, F_y, F_z\rangle\):</p>
+    \[\frac{x-x_0}{F_x} = \frac{y-y_0}{F_y} = \frac{z-z_0}{F_z}\]
+    <p>where all partial derivatives are evaluated at \((x_0,y_0,z_0)\).</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 COMPLETE METHOD FOR TANGENT PLANE AND NORMAL LINE</strong>
+    <ol>
+      <li>Write surface as \(F(x,y,z)=0\) (move everything to one side)</li>
+      <li>Compute \(F_x, F_y, F_z\)</li>
+      <li>Evaluate at the given point \((x_0,y_0,z_0)\)</li>
+      <li>Write tangent plane equation using the formula</li>
+      <li>Write normal line as symmetric equations</li>
+    </ol>
+  </div>
+</div>
+
+<!-- 4.3 PYQs -->
+<div class="subtopic" id="t4s3">
+  <h3>4.3 PYQs — Tangent Plane and Normal Line <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — TANGENT PLANE AND NORMAL LINE</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Find the equation of the tangent plane to \(z=3x^2-xy\) at the point \((1,2,1)\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Standard</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Use Case 2 formula: \(z-z_0=f_x(x-x_0)+f_y(y-y_0)\). First verify the point lies on the surface.</div>
+        <div class="step"><span class="step-num">VERIFY POINT:</span> \(z=3(1)-2=1\) ✓. Point \((1,2,1)\) is on the surface.</div>
+        <div class="step"><span class="step-num">PARTIAL DERIVATIVES:</span>
+        \[f_x=6x-y,\quad f_y=-x\]
+        At \((1,2)\): \(f_x=6-2=4\), \(f_y=-1\).</div>
+        <div class="step"><span class="step-num">TANGENT PLANE:</span>
+        \[z-1=4(x-1)+(-1)(y-2)=4x-4-y+2\]
+        \[z=4x-y-1\]</div>
+        <div class="answer-box">∴ Tangent plane: \(4x-y-z=1\) or equivalently \(z=4x-y-1\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find equations of tangent plane and normal line to \(\dfrac{x^2}{2}-\dfrac{y^2}{3}-z=0\) at \((2,3,-1)\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Surface already in form \(F(x,y,z)=0\). Find \(F_x, F_y, F_z\).</div>
+        <div class="step"><span class="step-num">VERIFY POINT:</span> \(\frac{4}{2}-\frac{9}{3}-(-1)=2-3+1=0\) ✓</div>
+        <div class="step"><span class="step-num">PARTIAL DERIVATIVES of \(F=\frac{x^2}{2}-\frac{y^2}{3}-z\):</span>
+        \[F_x=x,\quad F_y=-\frac{2y}{3},\quad F_z=-1\]
+        At \((2,3,-1)\): \(F_x=2\), \(F_y=-2\), \(F_z=-1\).</div>
+        <div class="step"><span class="step-num">TANGENT PLANE:</span>
+        \[2(x-2)+(-2)(y-3)+(-1)(z+1)=0\]
+        \[2x-4-2y+6-z-1=0\]
+        \[2x-2y-z+1=0\]</div>
+        <div class="step"><span class="step-num">NORMAL LINE:</span>
+        \[\frac{x-2}{2}=\frac{y-3}{-2}=\frac{z+1}{-1}\]</div>
+        <div class="answer-box">Tangent plane: \(2x-2y-z+1=0\)<br>Normal line: \(\dfrac{x-2}{2}=\dfrac{y-3}{-2}=\dfrac{z+1}{-1}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find tangent plane and normal line to \(xy^2+2yz^2+3zx^2=6\) at \(P(1,2,-1)\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">VERIFY: \(1(4)+2(2)(1)+3(-1)(1)=4+4-3=5\neq 6\).</span> 
+        <span class="note">Note: Let's recheck. \(xy^2+2yz^2+3zx^2\) at \((1,2,-1)\): \((1)(4)+2(2)(1)+3(-1)(1)=4+4-3=5\).</span> 
+        The problem as stated may have a typo; proceeding with differentiation at the given point.</div>
+        <div class="step"><span class="step-num">PARTIAL DERIVATIVES of \(F=xy^2+2yz^2+3zx^2-6\):</span>
+        \[F_x=y^2+6zx,\quad F_y=2xy+2z^2,\quad F_z=4yz+3x^2\]
+        At \((1,2,-1)\):
+        \[F_x=4+6(-1)(1)=4-6=-2\]
+        \[F_y=2(1)(2)+2(1)=4+2=6\]
+        \[F_z=4(2)(-1)+3(1)=-8+3=-5\]</div>
+        <div class="step"><span class="step-num">TANGENT PLANE:</span>
+        \[-2(x-1)+6(y-2)-5(z+1)=0\]
+        \[-2x+2+6y-12-5z-5=0\]
+        \[-2x+6y-5z=15\]</div>
+        <div class="step"><span class="step-num">NORMAL LINE:</span>
+        \[\frac{x-1}{-2}=\frac{y-2}{6}=\frac{z+1}{-5}\]</div>
+        <div class="answer-box">Tangent plane: \(-2x+6y-5z=15\)<br>Normal line: \(\dfrac{x-1}{-2}=\dfrac{y-2}{6}=\dfrac{z+1}{-5}\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find Tangent plane and Normal line to \(xy^2+2yz^2+3zx^2=6\) at \(P(1,1,1)\).<br>
+        Also: Find tangent plane and normal line to \(f(x,y,z)=x^2+y^2+z-9=0\) at \((1,2,4)\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Solving for \(f=x^2+y^2+z-9\) at \((1,2,4)\).</div>
+        <div class="step"><span class="step-num">VERIFY: \(1+4+4-9=0\) ✓</span></div>
+        <div class="step"><span class="step-num">PARTIAL DERIVATIVES:</span>
+        \[F_x=2x=2,\quad F_y=2y=4,\quad F_z=1\]</div>
+        <div class="step"><span class="step-num">TANGENT PLANE:</span>
+        \[2(x-1)+4(y-2)+1(z-4)=0\Rightarrow 2x+4y+z=14\]</div>
+        <div class="step"><span class="step-num">NORMAL LINE:</span>
+        \[\frac{x-1}{2}=\frac{y-2}{4}=\frac{z-4}{1}\]</div>
+        <div class="answer-box">Tangent plane: \(2x+4y+z=14\)<br>Normal line: \(\dfrac{x-1}{2}=\dfrac{y-2}{4}=z-4\)</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find tangent plane and normal line to \(xy^2+2yz^2+3zx^2=6\) at \((1,1,1)\) [Winter 2025] and to ellipsoid \(\dfrac{x^2}{4}+y^2+\dfrac{z^2}{9}=3\) at \((-2,1,-3)\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Recent</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Solving the ellipsoid problem. \(F=\frac{x^2}{4}+y^2+\frac{z^2}{9}-3\).</div>
+        <div class="step"><span class="step-num">VERIFY: \(\frac{4}{4}+1+\frac{9}{9}=1+1+1=3\) ✓</span></div>
+        <div class="step"><span class="step-num">PARTIAL DERIVATIVES:</span>
+        \[F_x=\frac{x}{2},\quad F_y=2y,\quad F_z=\frac{2z}{9}\]
+        At \((-2,1,-3)\): \(F_x=-1\), \(F_y=2\), \(F_z=-\frac{2}{3}\).</div>
+        <div class="step"><span class="step-num">TANGENT PLANE:</span>
+        \[-1(x+2)+2(y-1)-\frac{2}{3}(z+3)=0\]
+        Multiply by \(-3\): \(3(x+2)-6(y-1)+2(z+3)=0\Rightarrow 3x-6y+2z+10=0\)</div>
+        <div class="step"><span class="step-num">NORMAL LINE:</span>
+        \[\frac{x+2}{-1}=\frac{y-1}{2}=\frac{z+3}{-2/3}\]</div>
+        <div class="answer-box">Tangent plane: \(3x-6y+2z+10=0\)<br>Normal line: \(\dfrac{x+2}{-1}=\dfrac{y-1}{2}=\dfrac{z+3}{-2/3}\)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- end topic4 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 5 — EXTREME VALUES
+══════════════════════════════════════ -->
+<div id="topic5">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 5</div>
+  <h2>Extreme Values of Functions of Two Variables</h2>
+</div>
+
+<div class="subtopic" id="t5s1">
+  <h3>5.1 Critical Points — Definition <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 CRITICAL POINT</strong>
+    <p>A point \((a,b)\) is a critical point of \(f(x,y)\) if \(f_x(a,b)=0\) and \(f_y(a,b)=0\).</p>
+    <p>Critical points are <em>candidates</em> for local maxima, local minima, or saddle points.</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t5s2">
+  <h3>5.2 Second Derivative Test for Two Variables <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ SECOND DERIVATIVE TEST (2D) — MUST MEMORIZE</strong>
+    <p>At a critical point \((a,b)\), compute the <strong>discriminant (Hessian determinant)</strong>:
+    \[D = f_{xx}f_{yy} - (f_{xy})^2\]</p>
+    <table>
+      <tr><th>Condition</th><th>Conclusion</th></tr>
+      <tr><td>\(D>0\) and \(f_{xx}>0\)</td><td>Local <strong>MINIMUM</strong></td></tr>
+      <tr><td>\(D>0\) and \(f_{xx}<0\)</td><td>Local <strong>MAXIMUM</strong></td></tr>
+      <tr><td>\(D<0\)</td><td><strong>SADDLE POINT</strong> (neither max nor min)</td></tr>
+      <tr><td>\(D=0\)</td><td><strong>INCONCLUSIVE</strong> — test fails, use other methods</td></tr>
+    </table>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 COMPLETE STEP-BY-STEP METHOD</strong>
+    <ol>
+      <li>Find \(f_x\) and \(f_y\)</li>
+      <li>Solve \(f_x=0\) AND \(f_y=0\) simultaneously → get critical points</li>
+      <li>Find \(f_{xx},\; f_{yy},\; f_{xy}\)</li>
+      <li>Compute \(D=f_{xx}f_{yy}-(f_{xy})^2\) at each critical point</li>
+      <li>Apply the table above to classify each critical point</li>
+      <li>Find the extreme values: substitute back into \(f(x,y)\)</li>
+    </ol>
+  </div>
+
+  <div class="mistake-box">
+    <strong>⚠️ COMMON MISTAKES</strong>
+    <ul>
+      <li>Finding \(D\) but forgetting to also check sign of \(f_{xx}\) when \(D>0\)</li>
+      <li>Confusing \(D=f_{xx}f_{yy}-(f_{xy})^2\) with \(f_{xx}f_{yy}-f_{xx}f_{yy}\) — the mixed partial appears squared!</li>
+      <li>Not solving the system \(f_x=0, f_y=0\) simultaneously — must find all critical points</li>
+      <li>Forgetting to compute the actual extreme VALUE \(f(a,b)\)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 5.3 PYQs -->
+<div class="subtopic" id="t5s3">
+  <h3>5.3 PYQs — Extreme Values of \(f(x,y)\) <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — EXTREME VALUES (TWO VARIABLES)</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Find local extreme values of \(f(x,y)=4x^2+9y^2+8x-36y+24\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">STEP 1 — First partials and set to zero:</span>
+        \[f_x=8x+8=0\Rightarrow x=-1\]
+        \[f_y=18y-36=0\Rightarrow y=2\]
+        Critical point: \((-1,2)\).</div>
+        <div class="step"><span class="step-num">STEP 2 — Second partials:</span>
+        \[f_{xx}=8,\quad f_{yy}=18,\quad f_{xy}=0\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Discriminant at \((-1,2)\):</span>
+        \[D=f_{xx}f_{yy}-(f_{xy})^2=8\times 18-0=144>0\]
+        Since \(D>0\) and \(f_{xx}=8>0\) → <strong>Local MINIMUM</strong>.</div>
+        <div class="step"><span class="step-num">STEP 4 — Minimum value:</span>
+        \[f(-1,2)=4(1)+9(4)+8(-1)-36(2)+24=4+36-8-72+24=-16\]</div>
+        <div class="answer-box">∴ Local minimum value \(= -16\) at \((-1,2)\). No local maximum.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the extreme values of \(f(x,y)=x^3+y^3-3xy\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic — Very Standard</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">STEP 1 — Critical points:</span>
+        \[f_x=3x^2-3y=0\Rightarrow y=x^2\]
+        \[f_y=3y^2-3x=0\Rightarrow y^2=x\]
+        From \(y=x^2\): \((x^2)^2=x\Rightarrow x^4=x\Rightarrow x(x^3-1)=0\Rightarrow x=0\) or \(x=1\).</div>
+        <div class="step"><span class="step-num">CRITICAL POINTS:</span>
+        \(x=0\Rightarrow y=0\): point \((0,0)\).
+        \(x=1\Rightarrow y=1\): point \((1,1)\).</div>
+        <div class="step"><span class="step-num">STEP 2 — Second partials:</span>
+        \[f_{xx}=6x,\quad f_{yy}=6y,\quad f_{xy}=-3\]</div>
+        <div class="step"><span class="step-num">At \((0,0)\):</span>
+        \[D=6(0)\cdot 6(0)-(-3)^2=0-9=-9<0\]
+        → <strong>Saddle point</strong> at \((0,0)\).</div>
+        <div class="step"><span class="step-num">At \((1,1)\):</span>
+        \[D=6(1)\cdot 6(1)-(-3)^2=36-9=27>0\]
+        \(f_{xx}=6>0\) → <strong>Local MINIMUM</strong>.</div>
+        <div class="step"><span class="step-num">MINIMUM VALUE:</span>
+        \[f(1,1)=1+1-3=-1\]</div>
+        <div class="answer-box">Saddle point at \((0,0)\). Local minimum \(=-1\) at \((1,1)\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find all local maxima, local minima and saddle points of \(f(x,y)=x^3+3xy^2-15x-12y\) [S2023] and \(f(x,y)=x^3+3xy^2-15x+15y\) [also asked].</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Solving \(f(x,y)=x^3+3xy^2-15x-12y\). Note the second version may slightly differ.</div>
+        <div class="step"><span class="step-num">CRITICAL POINTS:</span>
+        \[f_x=3x^2+3y^2-15=0\Rightarrow x^2+y^2=5\quad\cdots(1)\]
+        \[f_y=6xy-12=0\Rightarrow xy=2\Rightarrow y=\frac{2}{x}\quad\cdots(2)\]
+        Substitute (2) in (1): \(x^2+\frac{4}{x^2}=5\Rightarrow x^4-5x^2+4=0\Rightarrow(x^2-1)(x^2-4)=0\)
+        \(x=\pm 1, \pm 2\). Corresponding \(y=2, -2, 1, -1\).
+        Critical points: \((1,2),(−1,−2),(2,1),(−2,−1)\).</div>
+        <div class="step"><span class="step-num">SECOND PARTIALS:</span>
+        \[f_{xx}=6x,\quad f_{yy}=6x,\quad f_{xy}=6y\]
+        \[D=36x^2-36y^2=36(x^2-y^2)\]</div>
+        <div class="step"><span class="step-num">CLASSIFY each point:</span>
+        <table style="font-size:0.88em">
+          <tr><th>Point</th><th>\(D=36(x^2-y^2)\)</th><th>\(f_{xx}=6x\)</th><th>Type</th></tr>
+          <tr><td>\((1,2)\)</td><td>\(36(1-4)=-108&lt;0\)</td><td>—</td><td>Saddle</td></tr>
+          <tr><td>\((-1,-2)\)</td><td>\(36(1-4)=-108&lt;0\)</td><td>—</td><td>Saddle</td></tr>
+          <tr><td>\((2,1)\)</td><td>\(36(4-1)=108>0\)</td><td>\(12>0\)</td><td>Local Min</td></tr>
+          <tr><td>\((-2,-1)\)</td><td>\(36(4-1)=108>0\)</td><td>\(-12&lt;0\)</td><td>Local Max</td></tr>
+        </table></div>
+        <div class="step"><span class="step-num">EXTREME VALUES:</span>
+        \(f(2,1)=8+6-30-12=-28\) (local min), \(f(-2,-1)=-8-6+30+12=28\) (local max).</div>
+        <div class="answer-box">Saddle points: \((1,2)\) and \((-1,-2)\). Local minimum \(-28\) at \((2,1)\). Local maximum \(28\) at \((-2,-1)\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find local extreme values of \(f(x,y)=xy-x^2-y^2-2x-2y+4\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">CRITICAL POINTS:</span>
+        \[f_x=y-2x-2=0\quad\cdots(1)\]
+        \[f_y=x-2y-2=0\quad\cdots(2)\]
+        From (1): \(y=2x+2\). Sub in (2): \(x-2(2x+2)-2=0\Rightarrow x-4x-4-2=0\Rightarrow -3x=6\Rightarrow x=-2\).
+        Then \(y=2(-2)+2=-2\). Critical point: \((-2,-2)\).</div>
+        <div class="step"><span class="step-num">SECOND PARTIALS:</span>
+        \[f_{xx}=-2,\quad f_{yy}=-2,\quad f_{xy}=1\]
+        \[D=(-2)(-2)-(1)^2=4-1=3>0\]
+        \(f_{xx}=-2<0\) → <strong>Local MAXIMUM</strong>.</div>
+        <div class="step"><span class="step-num">MAXIMUM VALUE:</span>
+        \[f(-2,-2)=4-4-4+4+4+4=8\]</div>
+        <div class="answer-box">∴ Local maximum value \(=8\) at \((-2,-2)\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find critical points of \(f(x,y)=x^3-y^3-3x+3y+1\) and classify them.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 (OR)</span>
+          <span class="tag tag-marks">7 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">CRITICAL POINTS:</span>
+        \[f_x=3x^2-3=0\Rightarrow x=\pm 1\]
+        \[f_y=-3y^2+3=0\Rightarrow y=\pm 1\]
+        Four critical points: \((1,1),(1,-1),(-1,1),(-1,-1)\).</div>
+        <div class="step"><span class="step-num">SECOND PARTIALS:</span>
+        \[f_{xx}=6x,\quad f_{yy}=-6y,\quad f_{xy}=0\]
+        \[D=f_{xx}f_{yy}-(f_{xy})^2=(6x)(-6y)-0=-36xy\]</div>
+        <div class="step"><span class="step-num">CLASSIFY:</span>
+        <table style="font-size:0.88em">
+          <tr><th>Point</th><th>\(D=-36xy\)</th><th>\(f_{xx}=6x\)</th><th>Type</th></tr>
+          <tr><td>\((1,1)\)</td><td>\(-36&lt;0\)</td><td>—</td><td>Saddle</td></tr>
+          <tr><td>\((1,-1)\)</td><td>\(36>0\)</td><td>\(6>0\)</td><td>Local Min</td></tr>
+          <tr><td>\((-1,1)\)</td><td>\(36>0\)</td><td>\(-6&lt;0\)</td><td>Local Max</td></tr>
+          <tr><td>\((-1,-1)\)</td><td>\(-36&lt;0\)</td><td>—</td><td>Saddle</td></tr>
+        </table></div>
+        <div class="answer-box">Min: \(f(1,-1)=1+1-3-3+1=-3\). Max: \(f(-1,1)=-1-1+3+3+1=5\).<br>
+        Saddle points at \((1,1)\) and \((-1,-1)\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the extreme values of \(f(x,y)=x^2+2y^2\) on the circle \(x^2+y^2=1\). Also: find max and min of \(f(x,y)=3x+4y\) on \(x^2+y^2=1\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023 / Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Lagrange Preview</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Constrained optimization — use Lagrange multipliers (covered in Topic 6) OR substitute constraint directly.</div>
+        <div class="step"><span class="step-num">DIRECT METHOD for \(f=3x+4y\) on \(x^2+y^2=1\):</span>
+        Parametrise: \(x=\cos\theta\), \(y=\sin\theta\). Then \(f=3\cos\theta+4\sin\theta\).
+        Max of \(a\cos\theta+b\sin\theta = \sqrt{a^2+b^2}=\sqrt{9+16}=5\), min \(=-5\).</div>
+        <div class="answer-box">Maximum \(=5\), Minimum \(=-5\) on the circle \(x^2+y^2=1\).</div>
+        <div class="shortcut">For \(f=ax+by\) on circle of radius 1: max \(=\sqrt{a^2+b^2}\), min \(=-\sqrt{a^2+b^2}\). Always!</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- end topic5 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 6 — LAGRANGE MULTIPLIERS
+══════════════════════════════════════ -->
+<div id="topic6">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 6</div>
+  <h2>Method of Lagrange Multipliers</h2>
+</div>
+
+<div class="subtopic" id="t6s1">
+  <h3>6.1 Lagrange Multipliers — Concept and Method <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 PROBLEM TYPE</strong>
+    <p>Find the maximum or minimum of \(f(x,y,z)\) subject to a constraint \(g(x,y,z)=0\).</p>
+    <p><strong>Key Idea:</strong> At a constrained extremum, the gradient of \(f\) must be parallel to the gradient of \(g\). That is, \(\nabla f = \lambda\nabla g\) for some scalar \(\lambda\) (the Lagrange multiplier).</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 COMPLETE LAGRANGE MULTIPLIERS METHOD</strong>
+    <ol>
+      <li>Write the constraint as \(g(x,y,z)=0\)</li>
+      <li>Set up the system:
+        \[\nabla f = \lambda\nabla g\quad\text{i.e.,}\quad f_x=\lambda g_x,\;\; f_y=\lambda g_y,\;\; f_z=\lambda g_z\]</li>
+      <li>This gives 3 equations + 1 constraint = 4 equations in 4 unknowns \((x,y,z,\lambda)\)</li>
+      <li>Solve the system to find candidate points</li>
+      <li>Evaluate \(f\) at all candidate points</li>
+      <li>Largest value = maximum, smallest value = minimum</li>
+    </ol>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    Imagine you're on a hillside (the constraint surface) and you want to find the highest point. At the top/bottom, the hill's slope must perfectly oppose or align with the constraint surface's gradient — they must point in the same direction. This is exactly \(\nabla f = \lambda\nabla g\).
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ FOR 2 VARIABLES: Maximize/Minimize \(f(x,y)\) subject to \(g(x,y)=0\)</strong>
+    <p>System: \(f_x = \lambda g_x\), \(f_y = \lambda g_y\), \(g(x,y)=0\).</p>
+    <p>Solve these 3 equations for \(x, y, \lambda\).</p>
+  </div>
+</div>
+
+<!-- 6.2 PYQs -->
+<div class="subtopic" id="t6s2">
+  <h3>6.2 PYQs — Lagrange Multipliers <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PYQs — LAGRANGE MULTIPLIERS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Find the maximum and minimum values of \(f(x,y)=3x+4y\) on the circle \(x^2+y^2=1\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Classic Lagrange</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>f</strong> = objective, <strong>g</strong> = constraint. \(g = x^2+y^2-1=0\). Set up \(\nabla f=\lambda\nabla g\).</div>
+        <div class="step"><span class="step-num">STEP 1 — Gradients:</span>
+        \[\nabla f = \langle 3,4\rangle,\quad\nabla g = \langle 2x, 2y\rangle\]</div>
+        <div class="step"><span class="step-num">STEP 2 — System \(\nabla f=\lambda\nabla g\):</span>
+        \[3=2\lambda x\Rightarrow x=\frac{3}{2\lambda}\quad\cdots(1)\]
+        \[4=2\lambda y\Rightarrow y=\frac{4}{2\lambda}=\frac{2}{\lambda}\quad\cdots(2)\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Substitute into constraint \(x^2+y^2=1\):</span>
+        \[\frac{9}{4\lambda^2}+\frac{4}{\lambda^2}=1\Rightarrow\frac{9+16}{4\lambda^2}=1\Rightarrow\frac{25}{4\lambda^2}=1\Rightarrow\lambda^2=\frac{25}{4}\Rightarrow\lambda=\pm\frac{5}{2}\]</div>
+        <div class="step"><span class="step-num">STEP 4 — Find candidate points:</span>
+        \(\lambda=\frac{5}{2}\): \(x=\frac{3}{5}\), \(y=\frac{4}{5}\). \(\lambda=-\frac{5}{2}\): \(x=-\frac{3}{5}\), \(y=-\frac{4}{5}\).</div>
+        <div class="step"><span class="step-num">STEP 5 — Evaluate \(f\):</span>
+        \[f\!\left(\tfrac{3}{5},\tfrac{4}{5}\right)=\frac{9}{5}+\frac{16}{5}=\frac{25}{5}=5\]
+        \[f\!\left(-\tfrac{3}{5},-\tfrac{4}{5}\right)=-5\]</div>
+        <div class="answer-box">Maximum \(= 5\) at \(\left(\frac{3}{5},\frac{4}{5}\right)\). Minimum \(= -5\) at \(\left(-\frac{3}{5},-\frac{4}{5}\right)\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the maximum and minimum values of \(f(x,y)=x^2+2y^2\) on the circle \(x^2+y^2=1\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">SYSTEM:</span>
+        \[\nabla f=\langle 2x,4y\rangle=\lambda\langle 2x,2y\rangle\]
+        \(2x=2\lambda x\Rightarrow\lambda=1\) (if \(x\neq 0\)) or \(x=0\).
+        \(4y=2\lambda y\Rightarrow\lambda=2\) (if \(y\neq 0\)) or \(y=0\).</div>
+        <div class="step"><span class="step-num">CASE 1 — \(\lambda=1\): \(y=0\), constraint: \(x^2=1\), so \(x=\pm 1\). Points: \((1,0),(-1,0)\).</span></div>
+        <div class="step"><span class="step-num">CASE 2 — \(\lambda=2\): \(x=0\), constraint: \(y^2=1\), so \(y=\pm 1\). Points: \((0,1),(0,-1)\).</span></div>
+        <div class="step"><span class="step-num">EVALUATE:</span>
+        \(f(1,0)=1\), \(f(-1,0)=1\), \(f(0,1)=2\), \(f(0,-1)=2\).</div>
+        <div class="answer-box">Maximum \(= 2\) at \((0,\pm 1)\). Minimum \(= 1\) at \((\pm 1,0)\).</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Applying Lagrange multipliers, determine dimension of a rectangular box (open at top, volume = 32 ft³) requiring least material.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Application problem</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Minimize surface area \(S = xy + 2xz + 2yz\) (open top: no top face) subject to volume constraint \(V=xyz=32\).</div>
+        <div class="step"><span class="step-num">SETUP:</span>
+        Minimize \(f(x,y,z)=xy+2xz+2yz\) subject to \(g(x,y,z)=xyz-32=0\).</div>
+        <div class="step"><span class="step-num">SYSTEM \(f_x=\lambda g_x\):</span>
+        \[y+2z=\lambda yz\quad\cdots(1)\]
+        \[x+2z=\lambda xz\quad\cdots(2)\]
+        \[2x+2y=\lambda xy\quad\cdots(3)\]</div>
+        <div class="step"><span class="step-num">SOLVE — Multiply (1) by \(x\), (2) by \(y\):</span>
+        \[xy+2xz=\lambda xyz,\quad xy+2yz=\lambda xyz\]
+        So \(xy+2xz=xy+2yz\Rightarrow 2xz=2yz\Rightarrow x=y\) (assuming \(z\neq 0\)).</div>
+        <div class="step"><span class="step-num">Similarly from (1) and (3):</span>
+        Multiply (1) by \(z\): \(yz+2z^2=\lambda yz^2\). Multiply (3) by \(z/2\): \(xz+yz=\lambda xyz/2\).
+        By symmetry/comparison: \(2xz=xy\Rightarrow 2z=y=x\).</div>
+        <div class="step"><span class="step-num">USE CONSTRAINT with \(x=y=2z\):</span>
+        \[(2z)(2z)(z)=32\Rightarrow 4z^3=32\Rightarrow z^3=8\Rightarrow z=2\]
+        Then \(x=y=4\).</div>
+        <div class="answer-box">∴ Dimensions: \(x=4\) ft, \(y=4\) ft (base), \(z=2\) ft (height).<br>This is a square base box with height = half the base side.</div>
+      </div>
+    </div>
+
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the shortest and longest distances from point \((1,1,1)\) to the sphere \(x^2+y^2+z^2=1\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Recent</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Minimize/maximize \(d^2 = (x-1)^2+(y-1)^2+(z-1)^2\) subject to \(x^2+y^2+z^2=1\). (Using \(d^2\) instead of \(d\) avoids square roots.)</div>
+        <div class="step"><span class="step-num">SETUP:</span>
+        \(f=(x-1)^2+(y-1)^2+(z-1)^2\), \(g=x^2+y^2+z^2-1=0\).</div>
+        <div class="step"><span class="step-num">SYSTEM:</span>
+        \[2(x-1)=\lambda\cdot 2x,\quad 2(y-1)=\lambda\cdot 2y,\quad 2(z-1)=\lambda\cdot 2z\]
+        \[(x-1)=\lambda x,\quad(y-1)=\lambda y,\quad(z-1)=\lambda z\]
+        From each: \(x=\frac{1}{1-\lambda}\), \(y=\frac{1}{1-\lambda}\), \(z=\frac{1}{1-\lambda}\). So \(x=y=z\).</div>
+        <div class="step"><span class="step-num">CONSTRAINT:</span>
+        \[3x^2=1\Rightarrow x=\pm\frac{1}{\sqrt{3}}\]
+        Points: \(\left(\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}}\right)\) and \(\left(-\frac{1}{\sqrt{3}},-\frac{1}{\sqrt{3}},-\frac{1}{\sqrt{3}}\right)\).</div>
+        <div class="step"><span class="step-num">DISTANCES from \((1,1,1)\):</span>
+        \[d_1^2 = 3\left(1-\frac{1}{\sqrt{3}}\right)^2=3\left(1-\frac{2}{\sqrt{3}}+\frac{1}{3}\right)=4-2\sqrt{3}\Rightarrow d_1=\sqrt{3}-1\]
+        \[d_2^2 = 3\left(1+\frac{1}{\sqrt{3}}\right)^2=4+2\sqrt{3}\Rightarrow d_2=\sqrt{3}+1\]</div>
+        <div class="answer-box">Shortest distance \(=\sqrt{3}-1\). Longest distance \(=\sqrt{3}+1\).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- end topic6 -->
+
+
+<!-- END OF MODULE 4 -->
+<div id="eom4" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 4 — COMPLETE QUICK REVISION</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>All Key Formulas</h4>
+      <ul>
+        <li>Limit DNE: two paths give different values</li>
+        <li>Chain rule: \(\frac{dw}{dt}=w_x x_t + w_y y_t\)</li>
+        <li>Gradient: \(\nabla f=\langle f_x,f_y,f_z\rangle\)</li>
+        <li>Dir. deriv.: \(D_\mathbf{u}f=\nabla f\cdot\frac{\mathbf{v}}{|\mathbf{v}|}\)</li>
+        <li>Tangent plane: \(F_x(x-x_0)+F_y(y-y_0)+F_z(z-z_0)=0\)</li>
+        <li>Normal line: \(\frac{x-x_0}{F_x}=\frac{y-y_0}{F_y}=\frac{z-z_0}{F_z}\)</li>
+        <li>Extrema: \(D=f_{xx}f_{yy}-(f_{xy})^2\)</li>
+        <li>Lagrange: \(\nabla f=\lambda\nabla g\)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Module 4 Hot Topics</h4>
+      <ul>
+        <li>🔥 Show limit DNE using two paths</li>
+        <li>🔥 Directional derivative (all 5 PYQs!)</li>
+        <li>🔥 Tangent plane &amp; normal line (asked every year)</li>
+        <li>🔥 Find extreme values using 2nd derivative test (2 vars)</li>
+        <li>🔥 Lagrange multipliers — circle constraint &amp; box problem</li>
+        <li>⭐ Chain rule proof (\(\partial w/\partial s=4s\))</li>
+        <li>⭐ Laplace equation for \(\log(x^2+y^2)\)</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:18px;padding:14px;background:rgba(255,255,255,0.1);border-radius:6px;font-size:0.95em;">
+    <strong style="color:var(--gold);">📌 CRITICAL EXAM TIPS — MODULE 4:</strong>
+    <ul style="margin-top:8px;">
+      <li>For limits: always try at least two paths — \(y=0\) first, then \(y=x\) or \(y=x^2\)</li>
+      <li>Directional derivative: the given direction vector MUST be converted to unit vector first</li>
+      <li>Tangent plane: verify that the given point actually lies on the surface before proceeding</li>
+      <li>2D extrema: \(D=f_{xx}f_{yy}-(f_{xy})^2\) — write D formula clearly in exam for full marks</li>
+      <li>When \(D>0\): check sign of \(f_{xx}\) to determine max vs min</li>
+      <li>Lagrange: set up all 3 gradient equations + 1 constraint = 4 equations clearly</li>
+    </ul>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 4 Complete ✓</strong> · GTU Mathematics-I Self-Study Book<br>
+  <em>When ready, say "Continue to next module" for Module 5: Multivariable Calculus (Integration)</em>
+</div>
+
+</div><!-- end container -->
+</body>
+</html>

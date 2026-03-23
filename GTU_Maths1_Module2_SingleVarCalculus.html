@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Mathematics-I | Module 2: Single-Variable Calculus (Differentiation)</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --primary: #1a237e;
+    --secondary: #283593;
+    --accent: #e53935;
+    --gold: #f9a825;
+    --green: #2e7d32;
+    --teal: #00695c;
+    --purple: #6a1b9a;
+    --light-bg: #f5f7ff;
+    --card-bg: #ffffff;
+    --border: #c5cae9;
+    --text: #1a1a2e;
+    --muted: #5c6bc0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #eef0fb; color: var(--text); line-height: 1.75; font-size: 15px; }
+
+  /* COVER */
+  .cover { background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%); color: white; text-align: center; padding: 60px 30px; border-bottom: 6px solid var(--gold); }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+
+  /* LAYOUT */
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+
+  /* TOC */
+  .toc { background: var(--card-bg); border: 1px solid var(--border); border-left: 5px solid #2e7d32; border-radius: 8px; padding: 24px 28px; margin-bottom: 32px; }
+  .toc h2 { color: #2e7d32; font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: #388e3c; text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* TOPIC HEADER */
+  .topic-header { background: linear-gradient(90deg, #1b5e20, #2e7d32); color: white; padding: 16px 24px; border-radius: 8px 8px 0 0; margin-top: 36px; }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+
+  /* SUBTOPIC */
+  .subtopic { background: var(--card-bg); border: 1px solid var(--border); border-top: none; padding: 26px 28px; margin-bottom: 2px; }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 { font-size: 1.1em; color: #1b5e20; border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .priority-tag { font-size: 0.82em; padding: 2px 10px; border-radius: 12px; font-weight: 600; margin-left: auto; white-space: nowrap; }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .medium { background: #e8f5e9; color: #1b5e20; }
+  .low { background: #f5f5f5; color: #616161; }
+
+  /* CONTENT BOXES */
+  .definition { background: #e8f5e9; border-left: 4px solid #2e7d32; border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .definition strong { color: #1b5e20; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e3f2fd; border-left: 4px solid #1565c0; border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .method-box strong { color: #0d47a1; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .mistake-box { background: #ffebee; border: 1px solid #ef9a9a; border-left: 4px solid var(--accent); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .mistake-box strong { color: var(--accent); display: block; margin-bottom: 8px; font-size: 0.85em; letter-spacing: 1px; }
+  .tip-box { background: #ede7f6; border-left: 4px solid var(--purple); border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .tip-box strong { color: var(--purple); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+
+  /* PYQ */
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 { background: #1b5e20; color: white; padding: 8px 14px; border-radius: 6px 6px 0 0; font-size: 0.9em; letter-spacing: 1px; }
+  .pyq-card { border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; margin-bottom: 16px; overflow: hidden; }
+  .pyq-card + .pyq-card, .pyq-standalone { border: 1px solid var(--border); border-radius: 6px; margin-top: 12px; overflow: hidden; }
+  .pyq-question { background: #f1f8e9; padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .pyq-body .concept-note { background: #fff8e1; border-left: 3px solid var(--gold); padding: 8px 12px; margin-bottom: 10px; font-size: 0.92em; color: #5d4037; }
+  .step { margin: 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid #a5d6a7; border-radius: 0 4px 4px 0; }
+  .step-num { color: #1b5e20; font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--green); }
+  .shortcut { background: #ede7f6; border-left: 3px solid var(--purple); padding: 8px 12px; margin-top: 8px; font-size: 0.9em; border-radius: 0 4px 4px 0; }
+  .shortcut::before { content: "⚡ SHORTCUT: "; font-weight: 700; color: var(--purple); }
+
+  /* EOT */
+  .eot { background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%); color: white; border-radius: 8px; padding: 24px 28px; margin: 28px 0 40px 0; }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width:600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+
+  /* MISC */
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: #2e7d32; color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: #f1f8e9; }
+  .warning { color: var(--accent); font-weight: 600; }
+  .note { color: var(--muted); font-style: italic; font-size: 0.92em; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+  .series-box { background: #e8eaf6; border: 1px solid #9fa8da; border-radius: 6px; padding: 14px 18px; margin: 14px 0; font-family: 'Courier New', monospace; font-size: 0.95em; }
+  .series-box strong { color: var(--primary); display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; font-family: 'Segoe UI', Arial, sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Mathematics – I</h1>
+  <div class="module-title">MODULE 2: Single-Variable Calculus (Differentiation)</div>
+  <p style="opacity:0.85">Taylor's &amp; Maclaurin's Series · L'Hôpital's Rule · Extreme Values</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step Solutions</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- TOC -->
+<div class="toc">
+  <h2>📋 MODULE 2 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Indeterminate Forms and L'Hôpital's Rule</a>
+      <ol>
+        <li><a href="#t1s1">1.1 What are Indeterminate Forms?</a></li>
+        <li><a href="#t1s2">1.2 L'Hôpital's Rule — Statement and Method</a></li>
+        <li><a href="#t1s3">1.3 All Types of Indeterminate Forms with Techniques</a></li>
+        <li><a href="#t1s4">1.4 PYQs on L'Hôpital's Rule</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Taylor's and Maclaurin's Theorems and Series</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Taylor's Theorem with Remainder</a></li>
+        <li><a href="#t2s2">2.2 Taylor's Series Expansion</a></li>
+        <li><a href="#t2s3">2.3 Maclaurin's Theorem and Series</a></li>
+        <li><a href="#t2s4">2.4 Standard Maclaurin Series — Master Table</a></li>
+        <li><a href="#t2s5">2.5 PYQs on Taylor's and Maclaurin's Series</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Extreme Values of Functions (Single Variable)</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Maxima, Minima and Critical Points</a></li>
+        <li><a href="#t3s2">3.2 First and Second Derivative Tests</a></li>
+        <li><a href="#t3s3">3.3 PYQs on Extreme Values</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom2">End of Module 2: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 1 — L'HÔPITAL'S RULE
+══════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Indeterminate Forms and L'Hôpital's Rule</h2>
+</div>
+
+<!-- 1.1 -->
+<div class="subtopic" id="t1s1">
+  <h3>1.1 What are Indeterminate Forms? <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITION</strong>
+    <p>When evaluating a limit, if direct substitution gives a form where the answer is <em>ambiguous</em> (cannot be determined without further work), it is called an <strong>indeterminate form</strong>.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ THE 7 INDETERMINATE FORMS</strong>
+    <table>
+      <tr><th>Form</th><th>Example</th><th>Method</th></tr>
+      <tr><td>\(\dfrac{0}{0}\)</td><td>\(\lim_{x\to 0}\frac{\sin x}{x}\)</td><td>L'Hôpital directly</td></tr>
+      <tr><td>\(\dfrac{\infty}{\infty}\)</td><td>\(\lim_{x\to\infty}\frac{x^2}{e^x}\)</td><td>L'Hôpital directly</td></tr>
+      <tr><td>\(0 \cdot \infty\)</td><td>\(\lim_{x\to 0^+}x\ln x\)</td><td>Rewrite as \(\frac{0}{1/\infty}\)</td></tr>
+      <tr><td>\(\infty - \infty\)</td><td>\(\lim_{x\to 0}\left(\frac{1}{x}-\frac{1}{\sin x}\right)\)</td><td>Combine into one fraction</td></tr>
+      <tr><td>\(0^0\)</td><td>\(\lim_{x\to 0^+}x^x\)</td><td>Take \(\ln\), convert to \(\frac{0}{0}\)</td></tr>
+      <tr><td>\(\infty^0\)</td><td>\(\lim_{x\to\infty}x^{1/x}\)</td><td>Take \(\ln\), convert to \(\frac{\infty}{\infty}\)</td></tr>
+      <tr><td>\(1^\infty\)</td><td>\(\lim_{x\to 0}(1+x)^{1/x}\)</td><td>Take \(\ln\), convert to \(\frac{0}{0}\)</td></tr>
+    </table>
+  </div>
+
+  <div class="mistake-box">
+    <strong>⚠️ COMMON MISTAKE: What is NOT indeterminate</strong>
+    <ul>
+      <li>\(\frac{1}{0}\) → This is \(\infty\) (NOT indeterminate, the limit is \(\pm\infty\))</li>
+      <li>\(\frac{0}{1}\) → This is simply \(0\) (NOT indeterminate)</li>
+      <li>\(\infty + \infty\) → This is \(\infty\) (NOT indeterminate)</li>
+      <li>\(0^\infty\) → This is \(0\) (NOT indeterminate)</li>
+      <li>\(\infty^\infty\) → This is \(\infty\) (NOT indeterminate)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 1.2 -->
+<div class="subtopic" id="t1s2">
+  <h3>1.2 L'Hôpital's Rule — Statement and Method <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 L'HÔPITAL'S RULE (STATEMENT)</strong>
+    <p>If \(\lim_{x\to a}\frac{f(x)}{g(x)}\) gives \(\frac{0}{0}\) or \(\frac{\infty}{\infty}\), and if \(g'(x)\neq 0\) near \(a\), then:
+    \[\lim_{x\to a}\frac{f(x)}{g(x)} = \lim_{x\to a}\frac{f'(x)}{g'(x)}\]</p>
+    <p>This can be applied <strong>repeatedly</strong> as long as the result remains indeterminate.</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    L'Hôpital says: "When two functions are racing to 0 or ∞, compare their SPEEDS (derivatives). The ratio of their speeds is the limit." Think of two cars — both stopping, but whose brakes are stronger determines the ratio.
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 STANDARD METHOD FOR \(\frac{0}{0}\) OR \(\frac{\infty}{\infty}\)</strong>
+    <ol>
+      <li>Substitute \(x=a\) to verify it IS indeterminate</li>
+      <li>Differentiate numerator and denominator <strong>separately</strong> (NOT quotient rule!)</li>
+      <li>Check if the new limit is determinate</li>
+      <li>If still indeterminate, apply L'Hôpital again</li>
+      <li>State the final answer</li>
+    </ol>
+  </div>
+
+  <div class="mistake-box">
+    <strong>⚠️ BIGGEST MISTAKE: Wrong differentiation</strong>
+    <p>L'Hôpital differentiates top and bottom <strong>separately</strong>:</p>
+    <p>❌ WRONG: \(\dfrac{d}{dx}\left(\dfrac{f}{g}\right) = \dfrac{fg'-gf'}{g^2}\) (quotient rule — this is wrong here)</p>
+    <p>✅ CORRECT: Differentiate \(f\) to get \(f'\), differentiate \(g\) to get \(g'\), then find \(\lim\dfrac{f'}{g'}\)</p>
+  </div>
+</div>
+
+<!-- 1.3 -->
+<div class="subtopic" id="t1s3">
+  <h3>1.3 All Indeterminate Types with Solving Techniques <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="method-box">
+    <strong>🔧 TYPE: 0 · ∞ — Convert to fraction first</strong>
+    <p>If \(\lim = f(x)\cdot g(x)\) where \(f\to 0\) and \(g\to\infty\):</p>
+    <ul>
+      <li>Rewrite as \(\dfrac{f(x)}{1/g(x)}\) → gives \(\frac{0}{0}\), then use L'Hôpital</li>
+      <li>OR rewrite as \(\dfrac{g(x)}{1/f(x)}\) → gives \(\frac{\infty}{\infty}\), then use L'Hôpital</li>
+      <li><strong>Rule of thumb:</strong> Move whichever function is "nicer" to the denominator</li>
+    </ul>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 TYPE: ∞ − ∞ — Combine into one fraction</strong>
+    <p>If \(\lim = f(x) - g(x)\) where both \(\to\infty\):</p>
+    <ul>
+      <li>Find a common denominator to combine into a single fraction</li>
+      <li>Then apply L'Hôpital to the \(\frac{0}{0}\) result</li>
+    </ul>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 TYPE: 0⁰, ∞⁰, 1^∞ — Take natural log</strong>
+    <p>For \(\lim [f(x)]^{g(x)}\) in indeterminate exponential form:</p>
+    <ol>
+      <li>Let \(y = [f(x)]^{g(x)}\)</li>
+      <li>Take log: \(\ln y = g(x)\cdot\ln[f(x)]\) — now it's \(0\cdot\infty\) type</li>
+      <li>Convert \(g(x)\cdot\ln[f(x)]\) to a fraction and apply L'Hôpital</li>
+      <li>Get \(\lim(\ln y) = L\)</li>
+      <li>Final answer: \(\lim y = e^L\)</li>
+    </ol>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ USEFUL STANDARD LIMITS (Memorize — saves time!)</strong>
+    <table>
+      <tr><th>Limit</th><th>Value</th></tr>
+      <tr><td>\(\lim_{x\to 0}\frac{\sin x}{x}\)</td><td>\(1\)</td></tr>
+      <tr><td>\(\lim_{x\to 0}\frac{\tan x}{x}\)</td><td>\(1\)</td></tr>
+      <tr><td>\(\lim_{x\to 0}\frac{e^x-1}{x}\)</td><td>\(1\)</td></tr>
+      <tr><td>\(\lim_{x\to 0}\frac{\ln(1+x)}{x}\)</td><td>\(1\)</td></tr>
+      <tr><td>\(\lim_{x\to 0}(1+x)^{1/x}\)</td><td>\(e\)</td></tr>
+      <tr><td>\(\lim_{x\to 0^+}x\ln x\)</td><td>\(0\)</td></tr>
+      <tr><td>\(\lim_{x\to 0^+}x^x\)</td><td>\(1\)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 1.4 PYQs -->
+<div class="subtopic" id="t1s4">
+  <h3>1.4 PYQs — L'Hôpital's Rule and Limits <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — LIMITS & L'HÔPITAL'S RULE</h4>
+
+    <!-- PYQ L1 -->
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\lim_{x\to 0^+} x\ln x\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Classic</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Form:</strong> \(0\cdot(-\infty)\) → Type \(0\cdot\infty\). Rewrite as \(\frac{\ln x}{1/x}\) to get \(\frac{-\infty}{\infty}\), then apply L'Hôpital.</div>
+        <div class="step"><span class="step-num">STEP 1 — Identify form:</span> As \(x\to 0^+\): \(x\to 0\) and \(\ln x\to -\infty\). Form: \(0\cdot(-\infty)\).</div>
+        <div class="step"><span class="step-num">STEP 2 — Rewrite:</span>
+        \[x\ln x = \frac{\ln x}{1/x}\quad\text{(now }\tfrac{-\infty}{\infty}\text{ form)}\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Apply L'Hôpital:</span>
+        \[\lim_{x\to 0^+}\frac{\ln x}{1/x} = \lim_{x\to 0^+}\frac{d(\ln x)/dx}{d(1/x)/dx} = \lim_{x\to 0^+}\frac{1/x}{-1/x^2} = \lim_{x\to 0^+}\left(\frac{1}{x}\cdot\frac{-x^2}{1}\right) = \lim_{x\to 0^+}(-x)\]</div>
+        <div class="step"><span class="step-num">STEP 4 — Evaluate:</span> \(\lim_{x\to 0^+}(-x) = 0\).</div>
+        <div class="answer-box">∴ \(\displaystyle\lim_{x\to 0^+}x\ln x = 0\)</div>
+      </div>
+    </div>
+
+    <!-- PYQ L2 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find \(\displaystyle\lim_{x\to 0}\frac{\tan 2x - x^2}{x^2\tan 2x}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Form:</strong> \(\frac{0}{0}\). Apply L'Hôpital. Alternatively, use the limit \(\lim_{x\to 0}\frac{\tan x}{x}=1\) to simplify first.</div>
+        <div class="step"><span class="step-num">STEP 1 — Simplify using standard limit trick:</span>
+        \[\frac{\tan 2x - x^2}{x^2\tan 2x} = \frac{\tan 2x}{x^2\tan 2x} - \frac{x^2}{x^2\tan 2x} = \frac{1}{x^2} - \frac{1}{\tan 2x}\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Now this is \(\infty-\infty\) form. Combine:</span>
+        \[= \frac{\tan 2x - x^2}{x^2\tan 2x}\]
+        Apply L'Hôpital to original. Numerator derivative: \(2\sec^2 2x - 2x\). Denominator derivative: \(2x\tan 2x + 2x^2\sec^2 2x\).</div>
+        <div class="step"><span class="step-num">STEP 3 — At \(x=0\):</span>
+        Numerator: \(2\sec^2(0)-0 = 2(1)=2\). Denominator: \(0+0=0\). Still \(\frac{2}{0}\) — apply again.</div>
+        <div class="step"><span class="step-num">STEP 4 — Use series approach (cleaner):</span>
+        Near \(x=0\): \(\tan 2x \approx 2x + \frac{(2x)^3}{3}+\cdots = 2x+\frac{8x^3}{3}+\cdots\)
+        \[\frac{\tan 2x - x^2}{x^2\tan 2x} \approx \frac{2x + \frac{8x^3}{3} - x^2}{x^2(2x+\cdots)} = \frac{2x(1+\frac{4x^2}{3}-\frac{x}{2}+\cdots)}{2x^3(1+\cdots)}\]
+        As \(x\to 0\), the leading terms: numerator \(\approx 2x\), denominator \(\approx 2x^3\), ratio \(\approx \frac{1}{x^2}\to\infty\).</div>
+        <div class="answer-box">∴ \(\displaystyle\lim_{x\to 0}\frac{\tan 2x - x^2}{x^2\tan 2x} = \infty\) (limit does not exist, diverges)</div>
+        <p class="note">Note: If the exam expects a finite answer, check the original — the limit truly diverges to \(+\infty\).</p>
+      </div>
+    </div>
+
+    <!-- PYQ L3 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\lim_{x\to 0}\frac{e^x - e^{-x} - 2x}{x - \sin x}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Form:</strong> \(\frac{0}{0}\). Need to apply L'Hôpital twice (numerator and denominator both vanish on first application too).</div>
+        <div class="step"><span class="step-num">STEP 1 — Check form:</span> At \(x=0\): numerator \(= 1-1-0=0\); denominator \(=0-0=0\). → \(\frac{0}{0}\). Apply L'Hôpital.</div>
+        <div class="step"><span class="step-num">STEP 2 — First application:</span>
+        \[\lim\frac{e^x + e^{-x} - 2}{1 - \cos x}\]
+        At \(x=0\): \(\frac{1+1-2}{1-1}=\frac{0}{0}\). Apply again.</div>
+        <div class="step"><span class="step-num">STEP 3 — Second application:</span>
+        \[\lim\frac{e^x - e^{-x}}{\sin x}\]
+        At \(x=0\): \(\frac{0}{0}\). Apply again.</div>
+        <div class="step"><span class="step-num">STEP 4 — Third application:</span>
+        \[\lim\frac{e^x + e^{-x}}{\cos x}\]
+        At \(x=0\): \(\frac{1+1}{1} = 2\).</div>
+        <div class="answer-box">∴ \(\displaystyle\lim_{x\to 0}\frac{e^x - e^{-x} - 2x}{x - \sin x} = 2\)</div>
+        <div class="shortcut">Verify using Taylor series: near \(x=0\), numerator \(\approx 2\cdot\frac{x^3}{3!}+\cdots = \frac{x^3}{3}\); denominator \(\approx \frac{x^3}{6}\); ratio \(= \frac{x^3/3}{x^3/6} = 2\). ✓</div>
+      </div>
+    </div>
+
+    <!-- PYQ L4 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Using L'Hôpital's rule, evaluate \(\displaystyle\lim_{x\to 1}\frac{x-x^x}{1+\log x - x}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Tricky</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Form:</strong> \(\frac{0}{0}\) at \(x=1\). Note: \(x^x = e^{x\ln x}\), so \(\frac{d}{dx}x^x = x^x(1+\ln x)\).</div>
+        <div class="step"><span class="step-num">STEP 1 — Check:</span> At \(x=1\): \(x^x=1\), num \(=1-1=0\); denom \(=1+0-1=0\). → \(\frac{0}{0}\).</div>
+        <div class="step"><span class="step-num">STEP 2 — L'Hôpital (differentiate separately):</span>
+        \[\text{Numerator: }\frac{d}{dx}(x-x^x) = 1-x^x(1+\ln x)\]
+        \[\text{Denominator: }\frac{d}{dx}(1+\log x - x) = \frac{1}{x}-1\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Evaluate at \(x=1\):</span>
+        Num: \(1 - 1^1(1+0) = 1-1 = 0\). Denom: \(1-1=0\). Still \(\frac{0}{0}\). Apply again.</div>
+        <div class="step"><span class="step-num">STEP 4 — Second application:</span>
+        \[\text{Num: }\frac{d}{dx}[1-x^x(1+\ln x)] = -\frac{d}{dx}[x^x(1+\ln x)]\]
+        \[= -[x^x(1+\ln x)^2 + x^x\cdot\frac{1}{x}] = -x^x\left[(1+\ln x)^2+\frac{1}{x}\right]\]
+        \[\text{Denom: }\frac{d}{dx}\left[\frac{1}{x}-1\right] = -\frac{1}{x^2}\]</div>
+        <div class="step"><span class="step-num">STEP 5 — Evaluate at \(x=1\):</span>
+        Num: \(-1^1[(1+0)^2+1] = -(1+1) = -2\). Denom: \(-1\). Ratio: \(\frac{-2}{-1}=2\).</div>
+        <div class="answer-box">∴ \(\displaystyle\lim_{x\to 1}\frac{x-x^x}{1+\log x-x} = 2\)</div>
+      </div>
+    </div>
+
+    <!-- PYQ L5 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find \(\displaystyle\lim_{x\to 0}\left(\frac{1}{x^2}-\frac{1}{\sin^2 x}\right)\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Also Winter 2025</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Form:</strong> \(\infty - \infty\). Combine fractions into one, then apply L'Hôpital to the resulting \(\frac{0}{0}\).</div>
+        <div class="step"><span class="step-num">STEP 1 — Combine:</span>
+        \[\frac{1}{x^2}-\frac{1}{\sin^2 x} = \frac{\sin^2 x - x^2}{x^2\sin^2 x}\]
+        At \(x=0\): \(\frac{0}{0}\).</div>
+        <div class="step"><span class="step-num">STEP 2 — L'Hôpital (apply twice since 0/0 repeats):</span>
+        <br>Using Taylor series is faster: \(\sin x = x - \frac{x^3}{6}+\cdots\), so:
+        \[\sin^2 x = x^2 - \frac{x^4}{3}+\cdots\]
+        \[\sin^2 x - x^2 = -\frac{x^4}{3}+\cdots\]
+        \[x^2\sin^2 x = x^2\left(x^2-\frac{x^4}{3}+\cdots\right) = x^4-\frac{x^6}{3}+\cdots\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Divide:</span>
+        \[\frac{-\frac{x^4}{3}+\cdots}{x^4+\cdots} = \frac{-1/3+\cdots}{1+\cdots}\xrightarrow{x\to 0} -\frac{1}{3}\]</div>
+        <div class="answer-box">∴ \(\displaystyle\lim_{x\to 0}\left(\frac{1}{x^2}-\frac{1}{\sin^2 x}\right) = -\dfrac{1}{3}\)</div>
+      </div>
+    </div>
+
+    <!-- PYQ L6 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\lim_{x\to 0}\left(\frac{1}{x}-\frac{1}{\sin x}\right)\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Form:</strong> \(\infty-\infty\). Combine fractions, apply L'Hôpital.</div>
+        <div class="step"><span class="step-num">STEP 1 — Combine:</span>
+        \[\frac{1}{x}-\frac{1}{\sin x} = \frac{\sin x - x}{x\sin x}\]
+        At \(x=0\): \(\frac{0}{0}\).</div>
+        <div class="step"><span class="step-num">STEP 2 — L'Hôpital twice:</span>
+        \[\lim\frac{\cos x - 1}{\sin x + x\cos x}\] → At \(x=0\): \(\frac{0}{0}\). Apply again:
+        \[\lim\frac{-\sin x}{\cos x + \cos x - x\sin x} = \lim\frac{-\sin x}{2\cos x - x\sin x}\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Evaluate at \(x=0\):</span>
+        \[\frac{-\sin 0}{2\cos 0 - 0} = \frac{0}{2} = 0\]</div>
+        <div class="answer-box">∴ \(\displaystyle\lim_{x\to 0}\left(\frac{1}{x}-\frac{1}{\sin x}\right) = 0\)</div>
+      </div>
+    </div>
+
+    <!-- PYQ L7 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\lim_{x\to 0^+}\left(\frac{1}{x^2}\right)^{\tan x}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 (OR)</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Exponential form</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Form:</strong> As \(x\to 0^+\): base \(\to\infty\), exponent \(\to 0\). Form: \(\infty^0\). Use the "take ln" technique.</div>
+        <div class="step"><span class="step-num">STEP 1 — Let \(y\) be the limit:</span>
+        \[y = \lim_{x\to 0^+}\left(\frac{1}{x^2}\right)^{\tan x}\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Take ln:</span>
+        \[\ln y = \lim_{x\to 0^+}\tan x \cdot \ln\!\left(\frac{1}{x^2}\right) = \lim_{x\to 0^+}\tan x\cdot(-2\ln x) = -2\lim_{x\to 0^+}\frac{\ln x}{\cot x}\]
+        Form: \(\frac{-\infty}{\infty}\).</div>
+        <div class="step"><span class="step-num">STEP 3 — L'Hôpital:</span>
+        \[-2\lim_{x\to 0^+}\frac{1/x}{-\csc^2 x} = -2\lim_{x\to 0^+}\frac{-\sin^2 x}{x} = 2\lim_{x\to 0^+}\frac{\sin^2 x}{x}\]
+        \[= 2\lim_{x\to 0^+}\sin x\cdot\frac{\sin x}{x} = 2\cdot 0\cdot 1 = 0\]</div>
+        <div class="step"><span class="step-num">STEP 4 — Final answer:</span>
+        \(\ln y = 0 \Rightarrow y = e^0 = 1\).</div>
+        <div class="answer-box">∴ \(\displaystyle\lim_{x\to 0^+}\left(\frac{1}{x^2}\right)^{\tan x} = 1\)</div>
+      </div>
+    </div>
+
+    <!-- PYQ L8 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Evaluate \(\displaystyle\lim_{x\to 0}\frac{3x-\sin x}{x}\) using L'Hôpital's rule</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 <strong>Form:</strong> \(\frac{0}{0}\). One application suffices.</div>
+        <div class="step"><span class="step-num">CHECK:</span> At \(x=0\): \(\frac{3(0)-0}{0}=\frac{0}{0}\). ✓</div>
+        <div class="step"><span class="step-num">L'HÔPITAL:</span>
+        \[\lim_{x\to 0}\frac{3-\cos x}{1} = 3-\cos 0 = 3-1 = 2\]</div>
+        <div class="answer-box">∴ \(\displaystyle\lim_{x\to 0}\frac{3x-\sin x}{x} = 2\)</div>
+        <div class="shortcut">Direct: \(\frac{3x-\sin x}{x} = 3-\frac{\sin x}{x} \to 3-1=2\) (using standard limit). No L'Hôpital needed!</div>
+      </div>
+    </div>
+
+  </div><!-- end pyq-section -->
+</div><!-- end 1.4 -->
+
+<!-- EOT 1 -->
+<div class="eot">
+  <h3>📝 QUICK REVISION — Topic 1: L'Hôpital's Rule</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Points</h4>
+      <ul>
+        <li>L'Hôpital applies ONLY to \(\frac{0}{0}\) or \(\frac{\infty}{\infty}\)</li>
+        <li>Differentiate TOP and BOTTOM separately</li>
+        <li>For \(0\cdot\infty\): convert to fraction</li>
+        <li>For \(\infty-\infty\): combine fractions</li>
+        <li>For \(0^0,\infty^0,1^\infty\): take \(\ln\) first</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Most Repeated PYQs</h4>
+      <ul>
+        <li>\(\lim x\ln x = 0\) (W2023)</li>
+        <li>\(\lim\frac{1}{x^2}-\frac{1}{\sin^2 x} = -\frac{1}{3}\) (W2024, W2025)</li>
+        <li>\(\lim\frac{e^x-e^{-x}-2x}{x-\sin x}=2\) (S2023)</li>
+        <li>\(\lim(1/x^2)^{\tan x}=1\) (W2025)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end topic1 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 2 — TAYLOR'S & MACLAURIN'S SERIES
+══════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Taylor's and Maclaurin's Theorems and Series</h2>
+</div>
+
+<!-- 2.1 -->
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Taylor's Theorem with Remainder <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 TAYLOR'S THEOREM (STATEMENT)</strong>
+    <p>If \(f(x)\) has derivatives of all orders in an interval containing \(a\), then:
+    \[f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \cdots\]
+    i.e., \[f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n\]</p>
+    <p>This expansion is around the point \(x = a\).</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    Taylor's theorem says: "Any smooth function can be perfectly approximated by a polynomial — if you know its value and all its derivatives at one point." The more terms, the better the approximation. Think of it as a "polynomial portrait" of the function taken at point \(a\).
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 METHOD: Expand f(x) in powers of (x − a) [Shift to point a]</strong>
+    <ol>
+      <li>Compute \(f(a), f'(a), f''(a), f'''(a), \ldots\)</li>
+      <li>Put each value into the Taylor formula</li>
+      <li>Write as a series in powers of \((x-a)\)</li>
+    </ol>
+  </div>
+</div>
+
+<!-- 2.2 -->
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Taylor's Series Expansion About a Point <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="method-box">
+    <strong>🔧 STEP-BY-STEP: Expand f(x) about x = a</strong>
+    <p>Build a table of derivatives evaluated at \(x=a\):</p>
+
+    <table>
+      <tr><th>Step</th><th>Compute</th><th>Evaluate at \(x=a\)</th></tr>
+      <tr><td>1</td><td>\(f(x)\)</td><td>\(f(a)\)</td></tr>
+      <tr><td>2</td><td>\(f'(x)\)</td><td>\(f'(a)\)</td></tr>
+      <tr><td>3</td><td>\(f''(x)\)</td><td>\(f''(a)\)</td></tr>
+      <tr><td>4</td><td>\(f'''(x)\)</td><td>\(f'''(a)\)</td></tr>
+    </table>
+    <p>Then: \(f(x) = f(a) + f'(a)(x-a) + \dfrac{f''(a)}{2!}(x-a)^2 + \dfrac{f'''(a)}{3!}(x-a)^3 + \cdots\)</p>
+  </div>
+</div>
+
+<!-- 2.3 -->
+<div class="subtopic" id="t2s3">
+  <h3>2.3 Maclaurin's Theorem and Series <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 MACLAURIN'S THEOREM</strong>
+    <p>Maclaurin's series is <strong>Taylor's series at \(a = 0\)</strong>:
+    \[f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3 + \cdots = \sum_{n=0}^\infty\frac{f^{(n)}(0)}{n!}x^n\]</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    Maclaurin = Taylor at the origin. Instead of expanding near some arbitrary point \(a\), you expand around \(x=0\). This is the most common form because it gives the simplest-looking series.
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 METHOD FOR MACLAURIN SERIES</strong>
+    <ol>
+      <li>Compute \(f(0), f'(0), f''(0), f'''(0), \ldots\) (evaluate all derivatives at \(x=0\))</li>
+      <li>Substitute into the formula \(f(x) = \sum\frac{f^{(n)}(0)}{n!}x^n\)</li>
+      <li>Look for a pattern in the coefficients</li>
+    </ol>
+  </div>
+</div>
+
+<!-- 2.4 -->
+<div class="subtopic" id="t2s4">
+  <h3>2.4 Standard Maclaurin Series — Master Table <span class="priority-tag fire">🔥 Must Memorize</span></h3>
+
+  <div class="series-box">
+    <strong>⭐ STANDARD MACLAURIN SERIES (MUST MEMORIZE ALL)</strong>
+
+    <p style="margin-top:8px"><strong>1. Exponential:</strong></p>
+    \[e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots = \sum_{n=0}^\infty\frac{x^n}{n!}, \quad \text{all }x\]
+
+    <p style="margin-top:10px"><strong>2. Sine:</strong></p>
+    \[\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \cdots = \sum_{n=0}^\infty\frac{(-1)^n x^{2n+1}}{(2n+1)!}, \quad \text{all }x\]
+
+    <p style="margin-top:10px"><strong>3. Cosine:</strong></p>
+    \[\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots = \sum_{n=0}^\infty\frac{(-1)^n x^{2n}}{(2n)!}, \quad \text{all }x\]
+
+    <p style="margin-top:10px"><strong>4. Natural log (ln):</strong></p>
+    \[\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots = \sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}, \quad -1 < x \leq 1\]
+
+    <p style="margin-top:10px"><strong>5. Geometric series:</strong></p>
+    \[\frac{1}{1-x} = 1 + x + x^2 + x^3 + \cdots = \sum_{n=0}^\infty x^n, \quad |x|<1\]
+
+    <p style="margin-top:10px"><strong>6. Binomial series:</strong></p>
+    \[(1+x)^k = 1 + kx + \frac{k(k-1)}{2!}x^2 + \frac{k(k-1)(k-2)}{3!}x^3 + \cdots, \quad |x|<1\]
+
+    <p style="margin-top:10px"><strong>7. arctan (inverse tan):</strong></p>
+    \[\tan^{-1} x = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \cdots = \sum_{n=0}^\infty\frac{(-1)^n x^{2n+1}}{2n+1}, \quad |x|\leq 1\]
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 MEMORY TRICK FOR sin/cos/e^x</strong>
+    <ul>
+      <li>\(e^x\): ALL powers, ALL positive: \(1, x, \frac{x^2}{2!}, \frac{x^3}{3!},\ldots\)</li>
+      <li>\(\sin x\): ODD powers only, ALTERNATING signs: \(x, -\frac{x^3}{3!}, +\frac{x^5}{5!},\ldots\)</li>
+      <li>\(\cos x\): EVEN powers only, ALTERNATING signs starting positive: \(1, -\frac{x^2}{2!}, +\frac{x^4}{4!},\ldots\)</li>
+      <li>\(\tan^{-1}x\): ODD powers, ALTERNATING signs, DENOMINATOR = power (not factorial): \(x-\frac{x^3}{3}+\frac{x^5}{5}\ldots\)</li>
+    </ul>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ IMPORTANT DERIVABLE SERIES (Using substitution in standard forms)</strong>
+    <table>
+      <tr><th>Series</th><th>How to get it</th></tr>
+      <tr><td>\(\ln(1-x) = -x-\frac{x^2}{2}-\frac{x^3}{3}-\cdots\)</td><td>Replace \(x\) with \(-x\) in \(\ln(1+x)\)</td></tr>
+      <tr><td>\(e^{-x} = 1-x+\frac{x^2}{2!}-\frac{x^3}{3!}+\cdots\)</td><td>Replace \(x\) with \(-x\) in \(e^x\)</td></tr>
+      <tr><td>\(\frac{1}{1+x} = 1-x+x^2-x^3+\cdots\)</td><td>Replace \(x\) with \(-x\) in \(\frac{1}{1-x}\)</td></tr>
+      <tr><td>\(\sin^{-1}x = x+\frac{x^3}{6}+\frac{3x^5}{40}+\cdots\)</td><td>Use \((\sin^{-1}x)'=\frac{1}{\sqrt{1-x^2}}=(1-x^2)^{-1/2}\)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 2.5 PYQs -->
+<div class="subtopic" id="t2s5">
+  <h3>2.5 PYQs — Taylor's and Maclaurin's Series <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — SERIES EXPANSIONS</h4>
+
+    <!-- PYQ T1 -->
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Find the Maclaurin series for \(\cos x\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Fundamental</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Standard Maclaurin — compute derivatives at \(x=0\). The values cycle: \(1,0,-1,0,1,0,-1,\ldots\)</div>
+        <div class="step"><span class="step-num">STEP 1 — Derivatives table:</span>
+        <table style="font-size:0.9em">
+          <tr><th>\(n\)</th><th>\(f^{(n)}(x)\)</th><th>\(f^{(n)}(0)\)</th></tr>
+          <tr><td>0</td><td>\(\cos x\)</td><td>1</td></tr>
+          <tr><td>1</td><td>\(-\sin x\)</td><td>0</td></tr>
+          <tr><td>2</td><td>\(-\cos x\)</td><td>\(-1\)</td></tr>
+          <tr><td>3</td><td>\(\sin x\)</td><td>0</td></tr>
+          <tr><td>4</td><td>\(\cos x\)</td><td>1</td></tr>
+        </table>
+        Pattern: only even terms survive (odd derivatives = 0 at 0).</div>
+        <div class="step"><span class="step-num">STEP 2 — Series:</span>
+        \[\cos x = \frac{1}{0!}x^0 + \frac{0}{1!}x^1 + \frac{-1}{2!}x^2 + \frac{0}{3!}x^3 + \frac{1}{4!}x^4 + \cdots\]</div>
+        <div class="answer-box">\[\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots = \sum_{n=0}^\infty\frac{(-1)^n x^{2n}}{(2n)!}\]</div>
+      </div>
+    </div>
+
+    <!-- PYQ T2 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Expand \(e^x\) in a power series of \(x\). Find the number of terms required to calculate \(e\) with error less than \(10^{-4}\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Part 1: Maclaurin for \(e^x\). Part 2: Error estimate — use the fact that the series is alternating (after certain point) or use the bound \(|R_n|\leq\frac{M}{(n+1)!}|x|^{n+1}\).</div>
+
+        <div class="step"><span class="step-num">PART 1 — Maclaurin for \(e^x\):</span>
+        All derivatives of \(e^x\) equal \(e^x\). At \(x=0\), all derivatives \(= e^0 = 1\).
+        \[e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots = \sum_{n=0}^\infty\frac{x^n}{n!}\]</div>
+
+        <div class="step"><span class="step-num">PART 2 — At \(x=1\), we get \(e\):</span>
+        \[e = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \frac{1}{4!} + \cdots + \frac{1}{n!} + R_n\]
+        The remainder (Lagrange form): \(|R_n| = \frac{e^c}{(n+1)!}\) for some \(c\in(0,1)\). Since \(e^c < e < 3\):
+        \[|R_n| < \frac{3}{(n+1)!}\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Find \(n\) such that error \(<10^{-4}\):</span>
+        Need: \(\dfrac{3}{(n+1)!} < 10^{-4}\), i.e., \((n+1)! > 3\times 10^4 = 30000\).
+        <table style="font-size:0.88em">
+          <tr><th>\(n\)</th><th>\((n+1)!\)</th><th>&gt;30000?</th></tr>
+          <tr><td>7</td><td>\(8!=40320\)</td><td>✅ Yes</td></tr>
+          <tr><td>6</td><td>\(7!=5040\)</td><td>❌ No</td></tr>
+        </table>
+        So \(n=7\) terms are needed.</div>
+
+        <div class="answer-box">∴ \(e = 1 + 1 + \frac{1}{2}+\frac{1}{6}+\frac{1}{24}+\frac{1}{120}+\frac{1}{720}+\frac{1}{5040} = 2.71825...\)<br>Minimum <strong>8 terms</strong> (i.e., up to \(\frac{1}{7!}\)) ensure error \(< 10^{-4}\).</div>
+      </div>
+    </div>
+
+    <!-- PYQ T3 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Express \(f(x) = 2x^3 + x^2 + 3x - 8\) in powers of \((x-1)\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2023 / Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated Twice — Very Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Taylor series about \(a=1\). Build a derivative table, evaluate all at \(x=1\).</div>
+        <div class="step"><span class="step-num">STEP 1 — Derivatives table at \(a=1\):</span>
+        <table style="font-size:0.9em">
+          <tr><th>Derivative</th><th>Expression</th><th>At \(x=1\)</th></tr>
+          <tr><td>\(f(x)\)</td><td>\(2x^3+x^2+3x-8\)</td><td>\(2+1+3-8=-2\)</td></tr>
+          <tr><td>\(f'(x)\)</td><td>\(6x^2+2x+3\)</td><td>\(6+2+3=11\)</td></tr>
+          <tr><td>\(f''(x)\)</td><td>\(12x+2\)</td><td>\(12+2=14\)</td></tr>
+          <tr><td>\(f'''(x)\)</td><td>\(12\)</td><td>\(12\)</td></tr>
+          <tr><td>\(f^{(4)}(x)\)</td><td>\(0\)</td><td>\(0\)</td></tr>
+        </table></div>
+
+        <div class="step"><span class="step-num">STEP 2 — Write Taylor series about \(a=1\):</span>
+        \[f(x) = f(1) + f'(1)(x-1) + \frac{f''(1)}{2!}(x-1)^2 + \frac{f'''(1)}{3!}(x-1)^3\]</div>
+
+        <div class="step"><span class="step-num">STEP 3 — Substitute:</span>
+        \[f(x) = -2 + 11(x-1) + \frac{14}{2}(x-1)^2 + \frac{12}{6}(x-1)^3\]</div>
+
+        <div class="answer-box">\[f(x) = -2 + 11(x-1) + 7(x-1)^2 + 2(x-1)^3\]</div>
+
+        <div class="shortcut">For polynomials, the series terminates after a finite number of terms (since higher derivatives become 0). This is always exact — no approximation!</div>
+      </div>
+    </div>
+
+    <!-- PYQ T4: Express in powers of (x-2) -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Express \(f(x) = 2x^3 + 3x^2 - 8x + 7\) in terms of \((x-2)\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Taylor series about \(a=2\). Same method as above.</div>
+        <div class="step"><span class="step-num">DERIVATIVE TABLE at \(x=2\):</span>
+        <table style="font-size:0.9em">
+          <tr><th>Derivative</th><th>Expression</th><th>At \(x=2\)</th></tr>
+          <tr><td>\(f\)</td><td>\(2x^3+3x^2-8x+7\)</td><td>\(16+12-16+7=19\)</td></tr>
+          <tr><td>\(f'\)</td><td>\(6x^2+6x-8\)</td><td>\(24+12-8=28\)</td></tr>
+          <tr><td>\(f''\)</td><td>\(12x+6\)</td><td>\(24+6=30\)</td></tr>
+          <tr><td>\(f'''\)</td><td>\(12\)</td><td>\(12\)</td></tr>
+        </table></div>
+        <div class="step"><span class="step-num">APPLY FORMULA:</span>
+        \[f(x) = 19 + 28(x-2) + \frac{30}{2}(x-2)^2 + \frac{12}{6}(x-2)^3\]</div>
+        <div class="answer-box">\[f(x) = 19 + 28(x-2) + 15(x-2)^2 + 2(x-2)^3\]</div>
+      </div>
+    </div>
+
+    <!-- PYQ T5: e^x at x=2 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the Taylor series generated by \(f(x) = e^x\) at \(x = 2\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 All derivatives of \(e^x\) are \(e^x\). At \(x=2\): all derivatives \(= e^2\).</div>
+        <div class="step"><span class="step-num">SETUP:</span> \(f^{(n)}(2) = e^2\) for all \(n\geq 0\).</div>
+        <div class="step"><span class="step-num">TAYLOR SERIES:</span>
+        \[e^x = \sum_{n=0}^\infty\frac{f^{(n)}(2)}{n!}(x-2)^n = \sum_{n=0}^\infty\frac{e^2}{n!}(x-2)^n\]</div>
+        <div class="answer-box">\[e^x = e^2\left[1 + (x-2) + \frac{(x-2)^2}{2!} + \frac{(x-2)^3}{3!}+\cdots\right] = e^2\sum_{n=0}^\infty\frac{(x-2)^n}{n!}\]</div>
+      </div>
+    </div>
+
+    <!-- PYQ T6: Maclaurin for (1+x)^k -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the Maclaurin series for \(f(x) = (1+x)^k\) where \(k\) is any real number. Using it, find the Maclaurin series for \(\dfrac{1}{1-x}\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Binomial series — derive from scratch using Maclaurin method.</div>
+        <div class="step"><span class="step-num">DERIVATIVE TABLE at \(x=0\):</span>
+        <table style="font-size:0.88em">
+          <tr><th>Derivative</th><th>Expression</th><th>At \(x=0\)</th></tr>
+          <tr><td>\(f\)</td><td>\((1+x)^k\)</td><td>1</td></tr>
+          <tr><td>\(f'\)</td><td>\(k(1+x)^{k-1}\)</td><td>\(k\)</td></tr>
+          <tr><td>\(f''\)</td><td>\(k(k-1)(1+x)^{k-2}\)</td><td>\(k(k-1)\)</td></tr>
+          <tr><td>\(f'''\)</td><td>\(k(k-1)(k-2)(1+x)^{k-3}\)</td><td>\(k(k-1)(k-2)\)</td></tr>
+          <tr><td>\(f^{(n)}\)</td><td>\(k(k-1)\cdots(k-n+1)(1+x)^{k-n}\)</td><td>\(k(k-1)\cdots(k-n+1)\)</td></tr>
+        </table></div>
+        <div class="step"><span class="step-num">MACLAURIN SERIES:</span>
+        \[(1+x)^k = 1 + kx + \frac{k(k-1)}{2!}x^2 + \frac{k(k-1)(k-2)}{3!}x^3 + \cdots\]
+        Valid for \(|x|<1\).</div>
+        <div class="step"><span class="step-num">APPLYING TO \(\frac{1}{1-x}\):</span>
+        Write \(\frac{1}{1-x} = (1+(-x))^{-1}\). Set \(k=-1\), replace \(x\) with \(-x\):
+        \[(1+(-x))^{-1} = 1 + (-1)(-x) + \frac{(-1)(-2)}{2!}(-x)^2 + \frac{(-1)(-2)(-3)}{3!}(-x)^3+\cdots\]
+        \[= 1 + x + x^2 + x^3 + \cdots\]</div>
+        <div class="answer-box">\[(1+x)^k = \sum_{n=0}^\infty\binom{k}{n}x^n = 1+kx+\frac{k(k-1)}{2!}x^2+\cdots\quad(|x|<1)\]
+        \[\frac{1}{1-x} = 1+x+x^2+x^3+\cdots\quad(|x|<1)\]</div>
+      </div>
+    </div>
+
+    <!-- PYQ T7: Maclaurin of 1/(1-x) and log -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Obtain the Maclaurin's series expansion of \(\dfrac{1}{1-x}\) for \(|x|<1\). Using it, expand \(\log_e(1-x)\) in powers of \(x\).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Part 1: Maclaurin for \(\frac{1}{1-x}\). Part 2: Integrate term-by-term to get \(\ln(1-x)\) (since \(\frac{d}{dx}\ln(1-x)=\frac{-1}{1-x}\)).</div>
+        <div class="step"><span class="step-num">PART 1 — Maclaurin for \(\frac{1}{1-x}\):</span>
+        All derivatives: \(f^{(n)}(x) = \frac{n!}{(1-x)^{n+1}}\), so \(f^{(n)}(0) = n!\).
+        \[\frac{1}{1-x} = \sum_{n=0}^\infty\frac{n!}{n!}x^n = \sum_{n=0}^\infty x^n = 1+x+x^2+x^3+\cdots\quad(|x|<1)\]</div>
+        <div class="step"><span class="step-num">PART 2 — Integrate to get \(\ln(1-x)\):</span>
+        We know \(\frac{d}{dx}[-\ln(1-x)] = \frac{1}{1-x}\). So \(-\ln(1-x) = \int\frac{1}{1-x}dx\).
+        Integrate the series term-by-term:
+        \[\int(1+x+x^2+x^3+\cdots)dx = x + \frac{x^2}{2}+\frac{x^3}{3}+\frac{x^4}{4}+\cdots + C\]
+        At \(x=0\): \(\ln(1)=0\), so \(C=0\). Thus:
+        \[-\ln(1-x) = x+\frac{x^2}{2}+\frac{x^3}{3}+\cdots\]</div>
+        <div class="answer-box">\[\ln(1-x) = -x-\frac{x^2}{2}-\frac{x^3}{3}-\frac{x^4}{4}-\cdots = -\sum_{n=1}^\infty\frac{x^n}{n}\quad(|x|<1)\]</div>
+      </div>
+    </div>
+
+    <!-- PYQ T8: tan^-1 series -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Prove that \(\tan^{-1}x = x - \dfrac{x^3}{3} + \dfrac{x^5}{5} - \dfrac{x^7}{7} + \cdots\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024 / Winter 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated — Important Proof</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Integrate the geometric series \(\frac{1}{1+x^2} = 1-x^2+x^4-\cdots\) to get \(\tan^{-1}x\).</div>
+        <div class="step"><span class="step-num">STEP 1 — Start with known series:</span>
+        \[\frac{1}{1+t} = 1-t+t^2-t^3+\cdots\quad(|t|<1)\]
+        Replace \(t\) with \(x^2\):
+        \[\frac{1}{1+x^2} = 1-x^2+x^4-x^6+\cdots\quad(|x|<1)\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Integrate both sides from 0 to \(x\):</span>
+        \[\int_0^x\frac{dt}{1+t^2} = \int_0^x(1-t^2+t^4-t^6+\cdots)dt\]
+        \[\Big[\tan^{-1}t\Big]_0^x = \left[t-\frac{t^3}{3}+\frac{t^5}{5}-\frac{t^7}{7}+\cdots\right]_0^x\]</div>
+        <div class="answer-box">\[\tan^{-1}x = x - \frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots\quad(|x|\leq 1) \quad\blacksquare\]</div>
+      </div>
+    </div>
+
+    <!-- PYQ T9: Approximate sqrt(25.15) -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the approximate value of \(\sqrt{25.15}\) using Taylor's theorem</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2022</span>
+          <span class="tag tag-marks">4 Marks</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Express \(\sqrt{25.15}\) as \(f(a+h)\) where \(f(x)=\sqrt{x}\), \(a=25\), \(h=0.15\). Then apply Taylor's theorem \(f(a+h)\approx f(a)+hf'(a)+\frac{h^2}{2!}f''(a)+\cdots\)</div>
+        <div class="step"><span class="step-num">STEP 1 — Setup:</span>
+        \(f(x)=\sqrt{x}\), \(a=25\), \(h=0.15\). So \(\sqrt{25.15}=f(25+0.15)\).</div>
+        <div class="step"><span class="step-num">STEP 2 — Compute derivatives:</span>
+        \[f(x)=x^{1/2}\Rightarrow f(25)=5\]
+        \[f'(x)=\frac{1}{2}x^{-1/2}\Rightarrow f'(25)=\frac{1}{10}\]
+        \[f''(x)=-\frac{1}{4}x^{-3/2}\Rightarrow f''(25)=-\frac{1}{4\cdot 125}=-\frac{1}{500}\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Apply Taylor:</span>
+        \[\sqrt{25.15}\approx f(25)+0.15\cdot f'(25)+\frac{(0.15)^2}{2!}f''(25)\]
+        \[= 5 + 0.15\cdot\frac{1}{10} + \frac{0.0225}{2}\cdot\left(-\frac{1}{500}\right)\]
+        \[= 5 + 0.015 - \frac{0.0225}{1000} = 5 + 0.015 - 0.0000225\]</div>
+        <div class="answer-box">∴ \(\sqrt{25.15} \approx 5.0149775 \approx 5.015\)</div>
+      </div>
+    </div>
+
+  </div><!-- end pyq-section -->
+</div><!-- end 2.5 -->
+
+<!-- EOT 2 -->
+<div class="eot">
+  <h3>📝 QUICK REVISION — Topic 2: Taylor's and Maclaurin's Series</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Master Formulas</h4>
+      <ul>
+        <li>Taylor: \(f(x)=\sum\frac{f^{(n)}(a)}{n!}(x-a)^n\)</li>
+        <li>Maclaurin: \(f(x)=\sum\frac{f^{(n)}(0)}{n!}x^n\)</li>
+        <li>\(e^x = \sum\frac{x^n}{n!}\)</li>
+        <li>\(\sin x = \sum\frac{(-1)^n x^{2n+1}}{(2n+1)!}\)</li>
+        <li>\(\cos x = \sum\frac{(-1)^n x^{2n}}{(2n)!}\)</li>
+        <li>\(\tan^{-1}x = \sum\frac{(-1)^n x^{2n+1}}{2n+1}\)</li>
+        <li>\(\frac{1}{1-x}=\sum x^n\)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Most Repeated PYQs</h4>
+      <ul>
+        <li>🔥 Maclaurin for \(\cos x\) (W2023)</li>
+        <li>🔥 Expand polynomial in \((x-a)\) (S2023, S2024)</li>
+        <li>🔥 Prove \(\tan^{-1}x\) series (S2024, W2024)</li>
+        <li>⭐ Taylor for \(e^x\) (W2024, S2025)</li>
+        <li>⭐ Expand \(\frac{1}{1-x}\), then \(\ln(1-x)\) (W2025)</li>
+        <li>⭐ Approximate \(\sqrt{25.15}\) (W2022)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end topic2 -->
+
+
+<!-- ══════════════════════════════════════
+     TOPIC 3 — EXTREME VALUES
+══════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Extreme Values of Functions (Single Variable)</h2>
+</div>
+
+<!-- 3.1 -->
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Maxima, Minima and Critical Points <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DEFINITIONS</strong>
+    <p><strong>Local Maximum:</strong> \(f(a)\) is a local maximum if \(f(a)\geq f(x)\) for all \(x\) near \(a\).</p>
+    <p><strong>Local Minimum:</strong> \(f(a)\) is a local minimum if \(f(a)\leq f(x)\) for all \(x\) near \(a\).</p>
+    <p><strong>Critical Point:</strong> A point \(x=a\) where \(f'(a)=0\) or \(f'(a)\) does not exist.</p>
+    <p><strong>Important:</strong> Every local extremum is a critical point, but NOT every critical point is an extremum (it could be a saddle/inflection point).</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    At a peak (maximum) or valley (minimum), the slope of the tangent is zero — the function momentarily "stops going up" or "stops going down." That's why \(f'(a)=0\) at extreme values. But a flat road (inflection point) also has slope 0 — that's why we need a second test to distinguish.
+  </div>
+</div>
+
+<!-- 3.2 -->
+<div class="subtopic" id="t3s2">
+  <h3>3.2 First and Second Derivative Tests <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="method-box">
+    <strong>🔧 FIRST DERIVATIVE TEST</strong>
+    <p>At a critical point \(x=a\) where \(f'(a)=0\):</p>
+    <table>
+      <tr><th>Sign of \(f'(x)\) before \(a\)</th><th>Sign of \(f'(x)\) after \(a\)</th><th>Conclusion</th></tr>
+      <tr><td>\(+\)</td><td>\(-\)</td><td>Local Maximum at \(a\)</td></tr>
+      <tr><td>\(-\)</td><td>\(+\)</td><td>Local Minimum at \(a\)</td></tr>
+      <tr><td>\(+\)</td><td>\(+\)</td><td>No extremum (inflection)</td></tr>
+      <tr><td>\(-\)</td><td>\(-\)</td><td>No extremum (inflection)</td></tr>
+    </table>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 SECOND DERIVATIVE TEST (EASIER — Most Used in Exams)</strong>
+    <p>At a critical point \(x=a\) where \(f'(a)=0\):</p>
+    <table>
+      <tr><th>Value of \(f''(a)\)</th><th>Conclusion</th></tr>
+      <tr><td>\(f''(a) < 0\)</td><td><strong>Local MAXIMUM</strong> (curve is concave down = hill)</td></tr>
+      <tr><td>\(f''(a) > 0\)</td><td><strong>Local MINIMUM</strong> (curve is concave up = valley)</td></tr>
+      <tr><td>\(f''(a) = 0\)</td><td>Test is <strong>INCONCLUSIVE</strong> — use first derivative test</td></tr>
+    </table>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 COMPLETE STEP-BY-STEP METHOD</strong>
+    <ol>
+      <li><strong>Find critical points:</strong> Compute \(f'(x)\), set \(f'(x)=0\), solve for \(x\)</li>
+      <li><strong>Apply second derivative test:</strong> Compute \(f''(x)\), evaluate at each critical point</li>
+      <li><strong>Find extreme values:</strong> Substitute critical points back into \(f(x)\)</li>
+      <li><strong>State clearly:</strong> "Local maximum of [value] at \(x=[a]\)" etc.</li>
+    </ol>
+  </div>
+
+  <div class="mistake-box">
+    <strong>⚠️ COMMON MISTAKES</strong>
+    <ul>
+      <li>Finding critical points but NOT stating the extreme values \(f(a)\)</li>
+      <li>Forgetting to check when \(f''(a)=0\) (need first derivative test then)</li>
+      <li>Calling a saddle/inflection point an extremum</li>
+      <li>Not verifying that the critical point is in the domain</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 3.3 PYQs -->
+<div class="subtopic" id="t3s3">
+  <h3>3.3 PYQs — Extreme Values of Functions <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — EXTREME VALUES (SINGLE VARIABLE)</h4>
+
+    <!-- PYQ E1 -->
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Write second derivative test for local extrema and find the extrema of \(f(x) = x^4 - 4x^3 + 10\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 State the second derivative test first, then apply it.</div>
+        <div class="step"><span class="step-num">SECOND DERIVATIVE TEST:</span> If \(f'(a)=0\) and \(f''(a)&lt;0\) → local max; if \(f''(a)>0\) → local min; if \(f''(a)=0\) → inconclusive.</div>
+        <div class="step"><span class="step-num">STEP 1 — Find \(f'(x)\):</span>
+        \[f'(x) = 4x^3 - 12x^2 = 4x^2(x-3)\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Critical points (\(f'=0\)):</span>
+        \[4x^2(x-3)=0\Rightarrow x=0\text{ or }x=3\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Second derivative:</span>
+        \[f''(x) = 12x^2 - 24x = 12x(x-2)\]
+        At \(x=0\): \(f''(0)=0\) → <strong>inconclusive</strong>. At \(x=3\): \(f''(3)=12(3)(1)=36>0\) → <strong>local min</strong>.</div>
+        <div class="step"><span class="step-num">STEP 4 — Check \(x=0\) by first derivative test:</span>
+        For \(x&lt;0\): \(f'(x)=4x^2(x-3)\), \(x^2>0\), \((x-3)&lt;0\) → \(f'&lt;0\).
+        For \(0&lt;x&lt;3\): \(f'(x)&lt;0\) (since \(x-3&lt;0\)).
+        So sign doesn't change at \(x=0\) → <strong>no extremum at \(x=0\)</strong> (inflection point).</div>
+        <div class="step"><span class="step-num">STEP 5 — Extreme value:</span>
+        \(f(3) = 81 - 108 + 10 = -17\).</div>
+        <div class="answer-box">∴ Local minimum value \(-17\) at \(x=3\). No extremum at \(x=0\).</div>
+      </div>
+    </div>
+
+    <!-- PYQ E2 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find local extreme value of the function \(f(x) = 2x^3 - 6x\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Recent</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Standard method — differentiate, set to zero, apply second derivative test.</div>
+        <div class="step"><span class="step-num">STEP 1 — \(f'(x)\):</span>
+        \[f'(x) = 6x^2 - 6 = 6(x^2-1) = 6(x-1)(x+1)\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Critical points:</span>
+        \[f'(x)=0 \Rightarrow x=1\text{ or }x=-1\]</div>
+        <div class="step"><span class="step-num">STEP 3 — \(f''(x)\):</span>
+        \[f''(x) = 12x\]
+        At \(x=1\): \(f''(1)=12>0\) → local <strong>minimum</strong>.
+        At \(x=-1\): \(f''(-1)=-12&lt;0\) → local <strong>maximum</strong>.</div>
+        <div class="step"><span class="step-num">STEP 4 — Extreme values:</span>
+        \[f(1)=2-6=-4\quad\text{(local min)}\]
+        \[f(-1)=-2+6=4\quad\text{(local max)}\]</div>
+        <div class="answer-box">∴ Local maximum value \(= 4\) at \(x=-1\); Local minimum value \(= -4\) at \(x=1\).</div>
+      </div>
+    </div>
+
+    <!-- PYQ E3 -->
+    <div class="pyq-standalone">
+      <div class="pyq-question">
+        <span>Q: Find the local extreme values of \(f(x) = 3x^4 - 2x^3 - 6x^2 + 6x + 1\)</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">⭐ Important (7 marks)</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Quartic function — expect 1 or 2 extreme values. This is a 7-mark question so show all steps clearly.</div>
+        <div class="step"><span class="step-num">STEP 1 — \(f'(x)\):</span>
+        \[f'(x) = 12x^3 - 6x^2 - 12x + 6 = 6(2x^3-x^2-2x+1)\]</div>
+        <div class="step"><span class="step-num">STEP 2 — Factor \(2x^3-x^2-2x+1\):</span>
+        Try \(x=1\): \(2-1-2+1=0\) ✓. So \((x-1)\) is a factor.
+        Divide: \(2x^3-x^2-2x+1 = (x-1)(2x^2+x-1) = (x-1)(2x-1)(x+1)\).
+        \[f'(x) = 6(x-1)(2x-1)(x+1)\]</div>
+        <div class="step"><span class="step-num">STEP 3 — Critical points:</span>
+        \[x=1,\quad x=\frac{1}{2},\quad x=-1\]</div>
+        <div class="step"><span class="step-num">STEP 4 — \(f''(x)\):</span>
+        \[f''(x) = 36x^2-12x-12 = 12(3x^2-x-1)\]
+        <ul>
+          <li>\(f''(1)=12(3-1-1)=12>0\) → local <strong>min</strong></li>
+          <li>\(f''(\tfrac{1}{2})=12(\tfrac{3}{4}-\tfrac{1}{2}-1)=12(-\tfrac{3}{4})=-9&lt;0\) → local <strong>max</strong></li>
+          <li>\(f''(-1)=12(3+1-1)=36>0\) → local <strong>min</strong></li>
+        </ul></div>
+        <div class="step"><span class="step-num">STEP 5 — Extreme values:</span>
+        \[f(1)=3-2-6+6+1=2\]
+        \[f\!\left(\tfrac{1}{2}\right)=3\cdot\tfrac{1}{16}-2\cdot\tfrac{1}{8}-6\cdot\tfrac{1}{4}+3+1 = \tfrac{3}{16}-\tfrac{1}{4}-\tfrac{3}{2}+4 = \tfrac{3}{16}-\tfrac{4}{16}-\tfrac{24}{16}+\tfrac{64}{16} = \tfrac{39}{16}\]
+        \[f(-1)=3+2-6-6+1=-6\]</div>
+        <div class="answer-box">
+          Local max: \(f\!\left(\tfrac{1}{2}\right) = \dfrac{39}{16}\) at \(x=\tfrac{1}{2}\)<br>
+          Local min: \(f(1)=2\) at \(x=1\), and \(f(-1)=-6\) at \(x=-1\)
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end pyq-section -->
+</div><!-- end 3.3 -->
+
+<!-- EOT 3 -->
+<div class="eot">
+  <h3>📝 QUICK REVISION — Topic 3: Extreme Values</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Method Steps</h4>
+      <ul>
+        <li>1. Set \(f'(x)=0\) → find critical points</li>
+        <li>2. Find \(f''(x)\)</li>
+        <li>3. \(f''(a)>0\) → min; \(f''(a)&lt;0\) → max</li>
+        <li>4. \(f''(a)=0\) → use 1st derivative test</li>
+        <li>5. Compute the extreme VALUES \(f(a)\)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Most Repeated PYQs</h4>
+      <ul>
+        <li>🔥 \(f(x)=2x^3-6x\): max 4, min -4 (W2025)</li>
+        <li>🔥 \(f(x)=x^4-4x^3+10\): min -17 at x=3 (W2024)</li>
+        <li>⭐ \(f(x)=3x^4-2x^3-6x^2+6x+1\) (S2025)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div><!-- end topic3 -->
+
+
+<!-- ══════════════════════════════════════
+     END OF MODULE 2 SUMMARY
+══════════════════════════════════════ -->
+<div id="eom2" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 2 — COMPLETE QUICK REVISION</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>All Key Points</h4>
+      <ul>
+        <li>L'Hôpital: only for \(\frac{0}{0}\) or \(\frac{\infty}{\infty}\)</li>
+        <li>\(0\cdot\infty\): rewrite as fraction</li>
+        <li>\(\infty-\infty\): combine into one fraction</li>
+        <li>\(0^0,\infty^0,1^\infty\): take \(\ln\), get \(e^L\)</li>
+        <li>Taylor at \(a\): \(\sum\frac{f^{(n)}(a)}{n!}(x-a)^n\)</li>
+        <li>Maclaurin: Taylor at \(a=0\)</li>
+        <li>Extrema: solve \(f'=0\), use \(f''\) sign</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Priority PYQs for Module 2</h4>
+      <ul>
+        <li>🔥 \(\lim x\ln x\), \(\lim\frac{1}{x^2}-\frac{1}{\sin^2 x}\) — L'Hôpital</li>
+        <li>🔥 Maclaurin for \(\cos x\), \(e^x\)</li>
+        <li>🔥 Expand polynomial in \((x-a)\)</li>
+        <li>🔥 Prove \(\tan^{-1}x\) series</li>
+        <li>🔥 Find extreme values with 2nd derivative test</li>
+        <li>⭐ \((1+x)^k\) Maclaurin, binomial series</li>
+        <li>⭐ Error estimate for \(e\approx\) series</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:18px;padding:14px;background:rgba(255,255,255,0.1);border-radius:6px;font-size:0.95em;">
+    <strong style="color:var(--gold);">📌 COMMON MISTAKES — MODULE 2:</strong>
+    <ul style="margin-top:8px;">
+      <li>Applying L'Hôpital when form is NOT indeterminate (e.g., \(\frac{3}{0}\) — this is \(\infty\), not L'Hôpital)</li>
+      <li>Using quotient rule in L'Hôpital instead of differentiating top/bottom separately</li>
+      <li>Forgetting \(\Gamma\), \(n!\) denominators in Maclaurin — the coefficients are \(\frac{f^{(n)}(0)}{n!}\), not \(f^{(n)}(0)\)</li>
+      <li>Mixing up \(\sin x\) (odd powers) with \(\cos x\) (even powers) in series</li>
+      <li>At extrema: finding critical points but forgetting to compute \(f(a)\) (the extreme VALUE)</li>
+      <li>When \(f''(a)=0\), jumping to "no extremum" — must use first derivative test!</li>
+    </ul>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 2 Complete ✓</strong> · GTU Mathematics-I Self-Study Book<br>
+  <em>When ready, say "Continue to next module" for Module 3: Sequences and Series</em>
+</div>
+
+</div><!-- end container -->
+</body>
+</html>
