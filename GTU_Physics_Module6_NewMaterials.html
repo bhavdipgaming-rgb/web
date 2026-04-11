@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Physics | Module 6: New Engineering Materials</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root { --primary: #006064; --secondary: #00838f; --accent: #00bcd4; --gold: #f9a825; --green: #2e7d32; --light-bg: #e0f7fa; --card-bg: #ffffff; --border: #b2ebf2; --text: #001f21; --muted: #006064; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #e0f2f1; color: var(--text); line-height: 1.7; font-size: 15px; }
+  .cover { background: linear-gradient(135deg, #006064 0%, #00838f 50%, #0097a7 100%); color: white; text-align: center; padding: 60px 30px; border-bottom: 6px solid var(--gold); }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+  .toc { background: var(--card-bg); border: 1px solid var(--border); border-left: 5px solid var(--primary); border-radius: 8px; padding: 24px 28px; margin-bottom: 32px; }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  .topic-header { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; padding: 16px 24px; border-radius: 8px 8px 0 0; margin-top: 36px; }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+  .subtopic { background: var(--card-bg); border: 1px solid var(--border); border-top: none; padding: 26px 28px; margin-bottom: 2px; }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 { font-size: 1.1em; color: var(--secondary); border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .priority-tag { font-size: 0.85em; padding: 2px 10px; border-radius: 12px; font-weight: 600; margin-left: auto; }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .definition, .formula-box, .method-box, .intuition-box { border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .definition { background: #e0f7fa; border-left: 4px solid var(--primary); }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e8f5e9; border-left: 4px solid var(--green); }
+  .method-box strong { color: var(--green); display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 { background: var(--primary); color: white; padding: 8px 14px; border-radius: 6px 6px 0 0; font-size: 0.9em; letter-spacing: 1px; }
+  .pyq-card { border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; margin-bottom: 16px; overflow: hidden; }
+  .pyq-card + .pyq-card { border-top: 1px solid var(--border); border-radius: 6px; margin-top: 10px; }
+  .pyq-question { background: #f5f7ff; padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .pyq-body .concept-note { background: #fff8e1; border-left: 3px solid var(--gold); padding: 8px 12px; margin-bottom: 10px; font-size: 0.92em; color: #5d4037; }
+  .step { margin: 8px 0 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid var(--border); border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--green); }
+  .eot { background: linear-gradient(135deg, #006064 0%, #00838f 100%); color: white; border-radius: 8px; padding: 24px 28px; margin: 28px 0 40px 0; }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width: 600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Engineering Physics</h1>
+  <div class="module-title">MODULE 6: New Engineering Materials</div>
+  <p style="opacity:0.85">Complete Self-Study Material · PYQ-Integrated · Exam-Focused</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step Solutions</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+  <h2>📋 MODULE 6 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Semiconductors</a>
+      <ol>
+        <li><a href="#t1s1">1.1 Band Theory of Solids</a></li>
+        <li><a href="#t1s2">1.2 Intrinsic and Extrinsic Semiconductors</a></li>
+        <li><a href="#t1s3">1.3 N-type and P-type Semiconductors</a></li>
+        <li><a href="#t1s4">1.4 P-N Junction Diode</a></li>
+        <li><a href="#t1s5">1.5 PYQs on Semiconductors</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Superconductors</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Superconductivity and Critical Parameters</a></li>
+        <li><a href="#t2s2">2.2 Meissner Effect and BCS Theory</a></li>
+        <li><a href="#t2s3">2.3 Type I and Type II Superconductors</a></li>
+        <li><a href="#t2s4">2.4 PYQs on Superconductors</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Nanomaterials</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Introduction to Nanomaterials</a></li>
+        <li><a href="#t3s2">3.2 Synthesis Methods (Ball Milling, PVD)</a></li>
+        <li><a href="#t3s3">3.3 Applications of Nanomaterials</a></li>
+        <li><a href="#t3s4">3.4 PYQs on Nanomaterials</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom6">End of Module 6: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 1 — SEMICONDUCTORS
+════════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Semiconductors</h2>
+</div>
+
+<div class="subtopic" id="t1s1">
+  <h3>1.1 Band Theory of Solids <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 BAND THEORY</strong>
+    <p>According to quantum mechanics, electrons in a solid can only have certain energies. These allowed energies form bands:</p>
+    <ul>
+      <li><strong>Valence Band (VB):</strong> Highest occupied energy band at 0K</li>
+      <li><strong>Conduction Band (CB):</strong> Lowest unoccupied energy band</li>
+      <li><strong>Forbidden Energy Gap (E_g):</strong> Gap between VB and CB where no electron states exist</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    <strong>📖 CLASSIFICATION OF SOLIDS BY BAND THEORY</strong>
+    <table>
+      <tr><th>Type</th><th>Band Gap</th><th>Conduction</th><th>Example</th></tr>
+      <tr><td><strong>Conductors</strong></td><td>No gap (VB & CB overlap)</td><td>Easy</td><td>Cu, Ag, Al</td></tr>
+      <tr><td><strong>Semiconductors</strong></td><td>Small gap (~1 eV)</td><td>At high T</td><td>Si, Ge</td></tr>
+      <tr><td><strong>Insulators</strong></td><td>Large gap (>3 eV)</td><td>Very difficult</td><td>Diamond, Glass</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Intrinsic and Extrinsic Semiconductors <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 INTRINSIC SEMICONDUCTOR</strong>
+    <p>A pure semiconductor with no impurities. At 0K, valence band is full and conduction band is empty (acts as insulator). At higher temperatures, some electrons gain energy to jump to conduction band.</p>
+    <p><strong>At room temperature:</strong> Electron-hole pairs are created thermally.</p>
+    <p><strong>Fermi level:</strong> Lies at the middle of the band gap.</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 EXTRINSIC SEMICONDUCTOR</strong>
+    <p>Semiconductor doped with impurity atoms to increase conductivity. Two types:</p>
+    <table>
+      <tr><th>Type</th><th>Dopant</th><th>Majority Carriers</th><th>Fermi Level</th></tr>
+      <tr><td><strong>N-type</strong></td><td>Pentavalent (As, P, Sb)</td><td>Electrons</td><td>Near CB</td></tr>
+      <tr><td><strong>P-type</strong></td><td>Trivalent (In, B, Al)</td><td>Holes</td><td>Near VB</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s3">
+  <h3>1.3 N-type and P-type Semiconductors <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 N-TYPE SEMICONDUCTOR</strong>
+    <p>Created by doping pure Si/Ge with pentavalent impurity (Group V: P, As, Sb).</p>
+    <ul>
+      <li>4 valence electrons form bonds with Si, 5th electron is free</li>
+      <li>Donor impurity (donates electron)</li>
+      <li>Electrons = majority carriers, Holes = minority carriers</li>
+      <li>nₑ >> nₕ (electron concentration much greater than hole concentration)</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    <strong>📖 P-TYPE SEMICONDUCTOR</strong>
+    <p>Created by doping pure Si/Ge with trivalent impurity (Group III: B, Al, Ga, In).</p>
+    <ul>
+      <li>3 valence electrons form incomplete bonds → creates hole</li>
+      <li>Acceptor impurity (accepts electron)</li>
+      <li>Holes = majority carriers, Electrons = minority carriers</li>
+      <li>nₕ >> nₑ</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s4">
+  <h3>1.4 P-N Junction Diode <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 P-N JUNCTION</strong>
+    <p>When p-type and n-type semiconductors are joined, a P-N junction is formed.</p>
+    <ul>
+      <li><strong>Depletion region:</strong> Region near junction with no free carriers (ions only)</li>
+      <li><strong>Potential barrier:</strong> Built-in voltage across depletion region (~0.7V for Si, ~0.3V for Ge)</li>
+      <li><strong>Forward bias:</strong> P connected to +ve, N to -ve → current flows</li>
+      <li><strong>Reverse bias:</strong> P connected to -ve, N to +ve → very small current</li>
+    </ul>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 DIODE AS A ONE-WAY VALVE</strong>
+    Think of a P-N junction like a one-way valve for electric current. Forward bias opens the valve (low resistance). Reverse bias closes it (high resistance). This property is used for rectification (AC → DC conversion).
+  </div>
+</div>
+
+<div class="subtopic" id="t1s5">
+  <h3>1.5 PYQs — Semiconductors <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — SEMICONDUCTORS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Explain the band theory of solids and classify conductors, semiconductors and insulators.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Draw band diagrams for each type.</div>
+        <div class="step"><span class="step-num">BAND THEORY:</span> In solids, electron energy levels form bands due to overlap of atomic orbitals. Valence band (filled at 0K), conduction band (empty at 0K), and forbidden gap between them.</div>
+        <div class="step"><span class="step-num">CONDUCTORS:</span> VB and CB overlap (no gap). Electrons easily move to CB. High conductivity at all temperatures.</div>
+        <div class="step"><span class="step-num">SEMICONDUCTORS:</span> Small band gap (~1 eV for Si, ~0.7 eV for Ge). At 0K, acts as insulator. At room temperature, thermal energy excites some electrons to CB.</div>
+        <div class="step"><span class="step-num">INSULATORS:</span> Large band gap (>3 eV). Electrons cannot jump to CB at normal temperatures. Very low conductivity.</div>
+        <div class="answer-box">Band theory successfully explains electrical properties of all solids based on band gap size.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Differentiate between intrinsic and extrinsic semiconductors.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <table>
+          <tr><th>Intrinsic</th><th>Extrinsic</th></tr>
+          <tr><td>Pure semiconductor (no impurities)</td><td>Doped with impurity atoms</td></tr>
+          <tr><td>Low conductivity at room temp</td><td>Higher conductivity</td></tr>
+          <tr><td>nₑ = nₕ (equal electrons and holes)</td><td>nₑ ≠ nₕ (unequal)</td></tr>
+          <tr><td>Fermi level at center of gap</td><td>Fermi level shifts (up for N, down for P)</td></tr>
+          <tr><td>Examples: Pure Si, Ge</td><td>Examples: Si doped with P or B</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: What is doping? Explain N-type and P-type semiconductors.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">DOPING:</span> Process of adding impurity atoms to pure semiconductor to increase conductivity.</div>
+        <div class="step"><span class="step-num">N-TYPE:</span> Doping with pentavalent impurity (P, As, Sb). Each impurity atom donates one free electron. Electrons are majority carriers.</div>
+        <div class="step"><span class="step-num">P-TYPE:</span> Doping with trivalent impurity (B, Al, Ga). Each impurity atom creates one hole. Holes are majority carriers.</div>
+        <div class="answer-box">Doping increases conductivity by orders of magnitude and allows creation of electronic devices.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 2 — SUPERCONDUCTORS
+════════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Superconductors</h2>
+</div>
+
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Superconductivity and Critical Parameters <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 SUPERCONDUCTIVITY</strong>
+    <p>The phenomenon of zero electrical resistance below a certain critical temperature (T_c). Discovered by Kamerlingh Onnes in 1911 (mercury at 4.2K).</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ CRITICAL PARAMETERS</strong>
+    <p>Superconductivity exists only when all three parameters are below critical values:</p>
+    <table>
+      <tr><th>Parameter</th><th>Symbol</th><th>Description</th></tr>
+      <tr><td><strong>Critical Temperature</strong></td><td>T_c</td><td>Temperature below which superconductivity occurs</td></tr>
+      <tr><td><strong>Critical Magnetic Field</strong></td><td>H_c</td><td>Maximum magnetic field that can be applied</td></tr>
+      <tr><td><strong>Critical Current Density</strong></td><td>J_c</td><td>Maximum current density that can flow</td></tr>
+    </table>
+    <p><strong>Temperature dependence of H_c:</strong></p>
+    \[H_c(T) = H_c(0)\left[1 - \left(\frac{T}{T_c}\right)^2\right]\]
+  </div>
+</div>
+
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Meissner Effect and BCS Theory <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 MEISSNER EFFECT (1933)</strong>
+    <p>When a material becomes superconducting, it expels all magnetic field lines from its interior. The material becomes a perfect diamagnet (χ = -1, B = 0 inside).</p>
+    <p><strong>Significance:</strong> Proves superconductivity is a distinct thermodynamic state, not just zero resistance.</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 MAGNETIC LEVITATION</strong>
+    The Meissner effect causes magnetic levitation. A magnet placed above a superconductor will float! This is used in maglev trains and frictionless bearings.
+  </div>
+
+  <div class="definition">
+    <strong>📖 BCS THEORY (Bardeen, Cooper, Schrieffer - 1957)</strong>
+    <p>Microscopic theory explaining superconductivity:</p>
+    <ul>
+      <li>Electrons form <strong>Cooper pairs</strong> due to lattice vibrations (phonons)</li>
+      <li>Cooper pairs behave as bosons and condense into ground state</li>
+      <li>Energy gap opens at Fermi level</li>
+      <li>Scattering of individual electrons is prevented → zero resistance</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s3">
+  <h3>2.3 Type I and Type II Superconductors <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 COMPARISON: TYPE I vs TYPE II</strong>
+    <table>
+      <tr><th>Property</th><th>Type I (Soft)</th><th>Type II (Hard)</th></tr>
+      <tr><td><strong>Transition</strong></td><td>Abrupt</td><td>Gradual</td></tr>
+      <tr><td><strong>Magnetic Behavior</strong></td><td>Perfect Meissner effect up to H_c</td><td>Partial Meissner between H_c1 and H_c2</td></tr>
+      <tr><td><strong>Critical Fields</strong></td><td>One critical field H_c</td><td>Two fields: H_c1 and H_c2</td></tr>
+      <tr><td><strong>Materials</strong></td><td>Pure metals (Pb, Hg, Al)</td><td>Alloys, ceramics (NbTi, YBCO)</td></tr>
+      <tr><td><strong>T_c Range</strong></td><td>Low (usually <10K)</td><td>Higher (up to 138K for HTSC)</td></tr>
+      <tr><td><strong>Applications</strong></td><td>Limited</td><td>Magnets, MRI, maglev</td></tr>
+    </table>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 VORTEX STATE (Type II)</strong>
+    Between H_c1 and H_c2, magnetic field penetrates Type II superconductors in quantized flux tubes (vortices). Superconductivity coexists with magnetism in this mixed state.
+  </div>
+</div>
+
+<div class="subtopic" id="t2s4">
+  <h3>2.4 PYQs — Superconductors <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — SUPERCONDUCTORS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: What is superconductivity? Explain the Meissner effect.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Define superconductivity + describe Meissner effect with significance.</div>
+        <div class="step"><span class="step-num">SUPERCONDUCTIVITY:</span> Phenomenon where electrical resistance becomes zero below critical temperature T_c. Current flows without any energy loss.</div>
+        <div class="step"><span class="step-num">MEISSNER EFFECT:</span> When a superconductor is cooled below T_c in a magnetic field, it expels all magnetic field lines from its interior. B = 0 inside the superconductor.</div>
+        <div class="step"><span class="step-num">MATHEMATICALLY:</span> χ = -1 (perfect diamagnetism), M = -H</div>
+        <div class="step"><span class="step-num">SIGNIFICANCE:</span> Proves superconductivity is a distinct thermodynamic state, not just perfect conductivity. A perfect conductor would trap field lines, but superconductor actively expels them.</div>
+        <div class="answer-box">Meissner effect is the defining characteristic of superconductivity (more fundamental than zero resistance).</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Explain BCS theory of superconductivity.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Cooper pairs + phonon interaction.</div>
+        <div class="step"><span class="step-num">BCS THEORY (1957):</span> Bardeen, Cooper, and Schrieffer explained superconductivity microscopically.</div>
+        <div class="step"><span class="step-num">COOPER PAIRS:</span> Two electrons with opposite momenta and spins form a bound pair due to electron-phonon interaction.</div>
+        <div class="step"><span class="step-num">MECHANISM:</span> First electron distorts lattice (creates phonon). Second electron is attracted to this distortion. Net result: weak attractive force between electrons.</div>
+        <div class="step"><span class="step-num">CONDENSATION:</span> Cooper pairs behave as bosons and condense into same quantum ground state.</div>
+        <div class="step"><span class="step-num">ENERGY GAP:</span> An energy gap opens at Fermi level. Scattering requires breaking pairs (needs energy > gap).</div>
+        <div class="answer-box">At low temperatures, thermal energy is insufficient to break Cooper pairs → zero resistance!</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Distinguish between Type I and Type II superconductors.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <table>
+          <tr><th>Type I</th><th>Type II</th></tr>
+          <tr><td>Abrupt transition at H_c</td><td>Gradual transition between H_c1 and H_c2</td></tr>
+          <tr><td>Perfect Meissner effect</td><td>Partial Meissner (vortex state between H_c1 and H_c2)</td></tr>
+          <tr><td>One critical field H_c</td><td>Two critical fields H_c1 and H_c2</td></tr>
+          <tr><td>Pure metals (Pb, Hg, Sn)</td><td>Alloys and ceramics (NbTi, Nb₃Sn, YBCO)</td></tr>
+          <tr><td>Low T_c (<10K)</td><td>Higher T_c (up to 138K)</td></tr>
+          <tr><td>Not useful for magnets</td><td>Used in MRI, maglev, particle accelerators</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: The critical temperature of mercury is 4.2 K. Calculate the critical magnetic field at 2 K if H_c(0) = 0.05 T.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Numerical</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">GIVEN:</span> T_c = 4.2 K, T = 2 K, H_c(0) = 0.05 T</div>
+        <div class="step"><span class="step-num">FORMULA:</span> H_c(T) = H_c(0)[1 - (T/T_c)²]</div>
+        <div class="step"><span class="step-num">CALCULATION:</span> H_c(2) = 0.05[1 - (2/4.2)²] = 0.05[1 - 0.227] = 0.05 × 0.773</div>
+        <div class="answer-box">∴ H_c(2K) = 0.0387 T</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 3 — NANOMATERIALS
+════════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Nanomaterials</h2>
+</div>
+
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Introduction to Nanomaterials <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 NANOMATERIALS</strong>
+    <p>Materials with at least one dimension in the nanometer range (1-100 nm). At this scale, materials exhibit unique properties different from bulk.</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 CLASSIFICATION BY DIMENSIONALITY</strong>
+    <table>
+      <tr><th>Type</th><th>Dimensions</th><th>Examples</th></tr>
+      <tr><td><strong>0D (Quantum Dots)</strong></td><td>All 3 dimensions nano</td><td>Nanoparticles, fullerenes</td></tr>
+      <tr><td><strong>1D</strong></td><td>2 dimensions nano</td><td>Nanowires, nanotubes</td></tr>
+      <tr><td><strong>2D</strong></td><td>1 dimension nano</td><td>Thin films, graphene</td></tr>
+      <tr><td><strong>3D (Bulk nano)</strong></td><td>All 3 dimensions >100nm but nanostructure within</td><td>Nanocomposites</td></tr>
+    </table>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 WHY NANOMATERIALS ARE SPECIAL</strong>
+    <ul>
+      <li><strong>High surface-to-volume ratio:</strong> More atoms on surface → higher reactivity</li>
+      <li><strong>Quantum confinement:</strong> Electronic properties change with size</li>
+      <li><strong>Size-dependent optical properties:</strong> Gold nanoparticles are red, not golden!</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Synthesis Methods — Ball Milling and PVD <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 BALL MILLING (Top-Down Approach)</strong>
+    <p>Mechanical method where bulk material is ground into nanoparticles.</p>
+    <ul>
+      <li>Hard steel balls rotate in a chamber with bulk material</li>
+      <li>Repeated impact and friction reduces particle size</li>
+      <li><strong>Advantages:</strong> Simple, low cost, large scale</li>
+      <li><strong>Disadvantages:</strong> Impurities from balls, broad size distribution</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    <strong>📖 PHYSICAL VAPOR DEPOSITION (PVD) (Bottom-Up Approach)</strong>
+    <p>Material is vaporized from a source and deposited as thin film on substrate.</p>
+    <ul>
+      <li><strong>Steps:</strong> Evaporation → Transport → Condensation → Nucleation → Film growth</li>
+      <li><strong>Types:</strong> Thermal evaporation, Sputtering, Pulsed Laser Deposition</li>
+      <li><strong>Advantages:</strong> High purity, controlled thickness, uniform films</li>
+      <li><strong>Disadvantages:</strong> Expensive equipment, slow deposition rate</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s3">
+  <h3>3.3 Applications of Nanomaterials <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 APPLICATIONS OF NANOMATERIALS</strong>
+    <table>
+      <tr><th>Field</th><th>Applications</th></tr>
+      <tr><td><strong>Medicine</strong></td><td>Drug delivery, cancer therapy, imaging, biosensors</td></tr>
+      <tr><td><strong>Electronics</strong></td><td>Transistors, memory devices, displays, quantum computing</td></tr>
+      <tr><td><strong>Energy</strong></td><td>Solar cells, batteries, fuel cells, supercapacitors</td></tr>
+      <tr><td><strong>Environment</strong></td><td>Water purification, air filters, pollution sensors</td></tr>
+      <tr><td><strong>Materials</strong></td><td>Nanocomposites, coatings, self-cleaning surfaces</td></tr>
+      <tr><td><strong>Textiles</strong></td><td>Stain-resistant fabrics, antibacterial clothing</td></tr>
+    </table>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 SPECIFIC EXAMPLES</strong>
+    <ul>
+      <li><strong>Carbon nanotubes:</strong> 100x stronger than steel, used in composites</li>
+      <li><strong>Silver nanoparticles:</strong> Antibacterial properties in wound dressings</li>
+      <li><strong>Titanium dioxide (TiO₂):</strong> Self-cleaning glass, sunscreen</li>
+      <li><strong>Quantum dots:</strong> High-color displays, medical imaging</li>
+      <li><strong>Graphene:</strong> Flexible electronics, supercapacitors</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s4">
+  <h3>3.4 PYQs — Nanomaterials <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — NANOMATERIALS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: What are nanomaterials? Explain classification based on dimensions.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Define + give classification with examples.</div>
+        <div class="step"><span class="step-num">DEFINITION:</span> Nanomaterials are materials with at least one dimension in the range of 1-100 nanometers.</div>
+        <div class="step"><span class="step-num">0D NANOMATERIALS:</span> All three dimensions in nano range. Examples: Nanoparticles, quantum dots, fullerenes (C₆₀).</div>
+        <div class="step"><span class="step-num">1D NANOMATERIALS:</span> Two dimensions in nano range. Examples: Nanowires, carbon nanotubes, nanorods.</div>
+        <div class="step"><span class="step-num">2D NANOMATERIALS:</span> One dimension in nano range. Examples: Thin films, graphene, nanocoatings.</div>
+        <div class="step"><span class="step-num">3D NANOMATERIALS:</span> Bulk materials with nanostructure. Examples: Nanocomposites, bundled nanotubes.</div>
+        <div class="answer-box">Properties change dramatically at nanoscale due to high surface area and quantum effects.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Explain the ball milling method for synthesis of nanomaterials.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Top-down mechanical method.</div>
+        <div class="step"><span class="step-num">PRINCIPLE:</span> Top-down approach — bulk material is mechanically ground into nanoparticles.</div>
+        <div class="step"><span class="step-num">CONSTRUCTION:</span> Rotating cylindrical chamber containing hard steel/tungsten carbide balls and bulk material.</div>
+        <div class="step"><span class="step-num">WORKING:</span> Chamber rotates → balls lift and fall → impact and friction crush material → repeated collisions reduce particle size to nanoscale.</div>
+        <div class="step"><span class="step-num">ADVANTAGES:</span> Simple, cost-effective, scalable, works for many materials.</div>
+        <div class="step"><span class="step-num">DISADVANTAGES:</span> Contamination from balls, broad size distribution, time-consuming.</div>
+        <div class="answer-box">Ball milling is widely used for industrial-scale nanoparticle production.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Describe the Physical Vapor Deposition (PVD) method.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Bottom-up thin film deposition.</div>
+        <div class="step"><span class="step-num">PRINCIPLE:</span> Bottom-up approach — material is vaporized from source and deposited atom-by-atom on substrate.</div>
+        <div class="step"><span class="step-num">STEPS:</span> (1) Evaporation of source material, (2) Transport of vapor in vacuum, (3) Condensation on substrate, (4) Nucleation and film growth.</div>
+        <div class="step"><span class="step-num">TYPES:</span> Thermal evaporation, Sputtering, Pulsed Laser Deposition (PLD).</div>
+        <div class="step"><span class="step-num">ADVANTAGES:</span> High purity films, precise thickness control, uniform coating, good adhesion.</div>
+        <div class="step"><span class="step-num">APPLICATIONS:</span> Semiconductor devices, optical coatings, protective coatings, decorative coatings.</div>
+        <div class="answer-box">PVD is essential for manufacturing integrated circuits and optical devices.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: List any four applications of nanomaterials.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Simple</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="answer-box">
+        1. <strong>Medicine:</strong> Targeted drug delivery, cancer therapy, medical imaging<br>
+        2. <strong>Electronics:</strong> Nanotransistors, memory devices, flexible displays<br>
+        3. <strong>Energy:</strong> High-efficiency solar cells, lithium-ion batteries<br>
+        4. <strong>Environment:</strong> Water purification, air filtration, pollution sensors<br>
+        5. <strong>Materials:</strong> Strong nanocomposites, self-cleaning surfaces<br>
+        (Any 4 for full marks)
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     END OF MODULE 6 SUMMARY
+════════════════════════════════════════ -->
+<div id="eom6" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 6 — COMPLETE QUICK REVISION SUMMARY</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Concepts</h4>
+      <ul>
+        <li>Band gap: Conductors (0), Semiconductors (~1 eV), Insulators (>3 eV)</li>
+        <li>N-type: Pentavalent dopant, electrons majority</li>
+        <li>P-type: Trivalent dopant, holes majority</li>
+        <li>Superconductivity: Zero resistance below T_c</li>
+        <li>Meissner effect: Perfect diamagnetism (B=0)</li>
+        <li>BCS theory: Cooper pairs via phonons</li>
+        <li>Type I vs Type II superconductors</li>
+        <li>Nanomaterials: 1-100 nm size range</li>
+        <li>Ball milling: Top-down method</li>
+        <li>PVD: Bottom-up thin film deposition</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Priority PYQs</h4>
+      <ul>
+        <li>🔥 Band theory + classification of solids</li>
+        <li>🔥 Intrinsic vs extrinsic semiconductors</li>
+        <li>🔥 N-type and P-type semiconductors</li>
+        <li>🔥 Superconductivity + Meissner effect</li>
+        <li>🔥 BCS theory of superconductivity</li>
+        <li>🔥 Type I vs Type II superconductors</li>
+        <li>🔥 Nanomaterials classification</li>
+        <li>🔥 Ball milling method</li>
+        <li>🔥 PVD method</li>
+        <li>⭐ Applications of nanomaterials</li>
+        <li>⭐ Numerical on H_c(T) = H_c(0)[1-(T/T_c)²]</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 6 Complete ✓</strong> · GTU Engineering Physics Self-Study Book<br>
+  <em>All 6 Physics modules now complete!</em>
+</div>
+
+</div>
+</body>
+</html>

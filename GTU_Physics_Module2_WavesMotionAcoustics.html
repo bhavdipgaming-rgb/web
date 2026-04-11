@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Physics | Module 2: Waves, Motion and Acoustics</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --primary: #006064;
+    --secondary: #00838f;
+    --accent: #00bcd4;
+    --gold: #f9a825;
+    --green: #2e7d32;
+    --light-bg: #e0f7fa;
+    --card-bg: #ffffff;
+    --border: #b2ebf2;
+    --text: #001f21;
+    --muted: #006064;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #e0f2f1;
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  .cover {
+    background: linear-gradient(135deg, #006064 0%, #00838f 50%, #0097a7 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 30px;
+    border-bottom: 6px solid var(--gold);
+  }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+           padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--primary);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  .topic-header {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px 8px 0 0;
+    margin-top: 36px;
+  }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+  .subtopic {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 26px 28px;
+    margin-bottom: 2px;
+  }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 {
+    font-size: 1.1em;
+    color: var(--secondary);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .priority-tag {
+    font-size: 0.85em;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-left: auto;
+  }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .medium { background: #e8f5e9; color: #1b5e20; }
+  .definition, .formula-box, .method-box, .intuition-box {
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .definition { background: #e0f7fa; border-left: 4px solid var(--primary); }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e8f5e9; border-left: 4px solid var(--green); }
+  .method-box strong { color: var(--green); display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 {
+    background: var(--primary);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px 6px 0 0;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+  }
+  .pyq-card {
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .pyq-card + .pyq-card { border-top: 1px solid var(--border); border-radius: 6px; margin-top: 10px; }
+  .pyq-question {
+    background: #f5f7ff;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .pyq-body .concept-note {
+    background: #fff8e1;
+    border-left: 3px solid var(--gold);
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 0.92em;
+    color: #5d4037;
+  }
+  .step { margin: 8px 0 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid var(--border); border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--green); }
+  .eot {
+    background: linear-gradient(135deg, #006064 0%, #00838f 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 28px 0 40px 0;
+  }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width: 600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Engineering Physics</h1>
+  <div class="module-title">MODULE 2: Waves, Motion and Acoustics</div>
+  <p style="opacity:0.85">Complete Self-Study Material · PYQ-Integrated · Exam-Focused</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step Solutions</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+  <h2>📋 MODULE 2 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Simple Harmonic Motion (SHM)</a>
+      <ol>
+        <li><a href="#t1s1">1.1 Definition and Differential Equation</a></li>
+        <li><a href="#t1s2">1.2 Velocity, Acceleration and Energy</a></li>
+        <li><a href="#t1s3">1.3 PYQs on SHM</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Wave Motion and Superposition</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Wave Equation and Types of Waves</a></li>
+        <li><a href="#t2s2">2.2 Principle of Superposition</a></li>
+        <li><a href="#t2s3">2.3 PYQs on Wave Motion</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Acoustics and Ultrasonics</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Reverberation Time and Sabine's Formula</a></li>
+        <li><a href="#t3s2">3.2 Ultrasonics and Applications</a></li>
+        <li><a href="#t3s3">3.3 PYQs on Acoustics</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom2">End of Module 2: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 1 — SIMPLE HARMONIC MOTION
+════════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Simple Harmonic Motion (SHM)</h2>
+</div>
+
+<div class="subtopic" id="t1s1">
+  <h3>1.1 Definition and Differential Equation <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 SIMPLE HARMONIC MOTION</strong>
+    <p>A particle executes SHM when it oscillates about a mean position such that:</p>
+    <ul>
+      <li>The restoring force is proportional to displacement</li>
+      <li>The force is always directed towards the mean position</li>
+    </ul>
+    <p><strong>Mathematical condition:</strong> F = -kx (Hooke's law type force)</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ DIFFERENTIAL EQUATION OF SHM</strong>
+    <p>From Newton's 2nd law: F = ma = m(d²x/dt²)</p>
+    <p>For SHM: F = -kx</p>
+    <p>Therefore: \[\frac{d^2x}{dt^2} + \omega^2 x = 0\]</p>
+    <p>where ω² = k/m is the angular frequency</p>
+    <p><strong>Solution:</strong> x = A sin(ωt + φ) or x = A cos(ωt + φ)</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 KEY TERMS IN SHM</strong>
+    <table>
+      <tr><th>Term</th><th>Definition</th><th>Formula</th></tr>
+      <tr><td><strong>Amplitude (A)</strong></td><td>Maximum displacement from mean position</td><td>—</td></tr>
+      <tr><td><strong>Time Period (T)</strong></td><td>Time for one complete oscillation</td><td>T = 2π/ω = 2π√(m/k)</td></tr>
+      <tr><td><strong>Frequency (n)</strong></td><td>Oscillations per second</td><td>n = 1/T = ω/(2π)</td></tr>
+      <tr><td><strong>Phase (ωt+φ)</strong></td><td>Specifies position in cycle</td><td>φ = initial phase</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Velocity, Acceleration and Energy in SHM <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ VELOCITY AND ACCELERATION</strong>
+    <p>For x = A sin(ωt + φ):</p>
+    <table>
+      <tr><th>Quantity</th><th>Formula</th><th>Maximum Value</th></tr>
+      <tr><td><strong>Displacement</strong></td><td>x = A sin(ωt + φ)</td><td>A</td></tr>
+      <tr><td><strong>Velocity</strong></td><td>v = dx/dt = Aω cos(ωt + φ)</td><td>Aω</td></tr>
+      <tr><td><strong>Acceleration</strong></td><td>a = dv/dt = -Aω² sin(ωt + φ)</td><td>Aω²</td></tr>
+    </table>
+    <p><strong>Phase relationships:</strong></p>
+    <ul>
+      <li>Velocity leads displacement by π/2 (90°)</li>
+      <li>Acceleration leads velocity by π/2 (90°)</li>
+      <li>Acceleration is opposite to displacement (180° out of phase)</li>
+    </ul>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ ENERGY IN SHM</strong>
+    <table>
+      <tr><th>Energy Type</th><th>Formula</th></tr>
+      <tr><td><strong>Kinetic Energy</strong></td><td>KE = ½mv² = ½mω²(A²-x²) = ½k(A²-x²)</td></tr>
+      <tr><td><strong>Potential Energy</strong></td><td>PE = ½kx² = ½mω²x²</td></tr>
+      <tr><td><strong>Total Energy</strong></td><td>E = KE + PE = ½kA² = ½mω²A² (constant!)</td></tr>
+    </table>
+    <p><em>Note: Total energy is conserved. KE is max at mean position, PE is max at extreme position.</em></p>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s3">
+  <h3>1.3 PYQs — Simple Harmonic Motion <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — SHM</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Define Simple Harmonic Motion. Derive the differential equation of SHM.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Definition + derivation from basic principles.</div>
+        <div class="step"><span class="step-num">DEFINITION:</span> SHM is oscillatory motion where restoring force is proportional to displacement and directed towards mean position.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> By definition: F ∝ -x ⇒ F = -kx (where k = force constant)</div>
+        <div class="step"><span class="step-num">STEP 2:</span> From Newton's 2nd law: F = ma = m(d²x/dt²)</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Equating: m(d²x/dt²) = -kx</div>
+        <div class="step"><span class="step-num">STEP 4:</span> Rearranging: d²x/dt² = -(k/m)x</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Let ω² = k/m, then:</div>
+        <div class="answer-box">∴ d²x/dt² + ω²x = 0 ✓ This is the differential equation of SHM</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Show that total energy in SHM is conserved (constant).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025 / Winter 2023</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Add KE and PE, show sum is independent of time.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> For x = A sin(ωt + φ), velocity v = Aω cos(ωt + φ)</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Kinetic Energy: KE = ½mv² = ½m(Aω cos(ωt+φ))² = ½mA²ω²cos²(ωt+φ)</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Potential Energy: PE = ½kx² = ½k(A sin(ωt+φ))² = ½kA²sin²(ωt+φ)</div>
+        <div class="step"><span class="step-num">STEP 4:</span> Since k = mω²: PE = ½mω²A²sin²(ωt+φ)</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Total Energy: E = KE + PE = ½mA²ω²[cos²(ωt+φ) + sin²(ωt+φ)]</div>
+        <div class="step"><span class="step-num">STEP 6:</span> Using identity: cos²θ + sin²θ = 1</div>
+        <div class="answer-box">∴ E = ½mA²ω² (constant, independent of time) ✓ Energy is conserved</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: A particle in SHM has amplitude 5 cm and period 2 s. Find maximum velocity and maximum acceleration.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Numerical</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Direct formula application.</div>
+        <div class="step"><span class="step-num">GIVEN:</span> A = 5 cm = 0.05 m; T = 2 s</div>
+        <div class="step"><span class="step-num">STEP 1:</span> ω = 2π/T = 2π/2 = π rad/s</div>
+        <div class="step"><span class="step-num">STEP 2:</span> v_max = Aω = 0.05 × π = 0.157 m/s</div>
+        <div class="step"><span class="step-num">STEP 3:</span> a_max = Aω² = 0.05 × π² = 0.05 × 9.87 = 0.493 m/s²</div>
+        <div class="answer-box">∴ Maximum velocity = 0.157 m/s; Maximum acceleration = 0.493 m/s²</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 2 — WAVE MOTION
+════════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Wave Motion and Superposition</h2>
+</div>
+
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Wave Equation and Types of Waves <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 WAVE MOTION</strong>
+    <p>Wave motion is the transfer of energy through a medium without actual transfer of matter. Particles oscillate about their mean positions while energy propagates forward.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ ONE-DIMENSIONAL WAVE EQUATION</strong>
+    <p>\[\frac{\partial^2 y}{\partial x^2} = \frac{1}{v^2}\frac{\partial^2 y}{\partial t^2}\]</p>
+    <p>where v = wave velocity</p>
+    <p><strong>General solution:</strong> y = f(x-vt) + g(x+vt)</p>
+    <p><strong>Sinusoidal wave:</strong> y = A sin(kx - ωt) for wave traveling in +x direction</p>
+    <p>where k = 2π/λ (wave number), ω = 2πn (angular frequency)</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 TYPES OF WAVES</strong>
+    <table>
+      <tr><th>Type</th><th>Particle Motion</th><th>Example</th></tr>
+      <tr><td><strong>Transverse</strong></td><td>Perpendicular to wave direction</td><td>String waves, EM waves</td></tr>
+      <tr><td><strong>Longitudinal</strong></td><td>Parallel to wave direction</td><td>Sound waves in air</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Principle of Superposition <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 PRINCIPLE OF SUPERPOSITION</strong>
+    <p>When two or more waves overlap in a medium, the resultant displacement at any point is the vector sum of individual displacements at that point.</p>
+    <p><strong>Mathematically:</strong> y = y₁ + y₂ + y₃ + ...</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 APPLICATIONS OF SUPERPOSITION</strong>
+    <ul>
+      <li><strong>Interference:</strong> Two waves of same frequency → constructive/destructive interference</li>
+      <li><strong>Beats:</strong> Two waves of slightly different frequencies → periodic variation in amplitude</li>
+      <li><strong>Standing Waves:</strong> Two identical waves traveling in opposite directions → nodes and antinodes</li>
+    </ul>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ BEATS FREQUENCY</strong>
+    <p>When two waves of frequencies n₁ and n₂ (n₁ ≈ n₂) superpose:</p>
+    <p><strong>Beat frequency:</strong> n_beat = |n₁ - n₂|</p>
+    <p><em>Application: Tuning musical instruments, detecting frequency differences</em></p>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s3">
+  <h3>2.3 PYQs — Wave Motion <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — WAVE MOTION</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Derive the one-dimensional wave equation and write its general solution.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Consider transverse wave on a stretched string.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Consider a small element dx of a stretched string under tension T.</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Net transverse force = T[sin(θ+dθ) - sin(θ)] ≈ T·dθ (for small angles)</div>
+        <div class="step"><span class="step-num">STEP 3:</span> For small slopes: tan θ ≈ ∂y/∂x, so net force = T(∂²y/∂x²)dx</div>
+        <div class="step"><span class="step-num">STEP 4:</span> From Newton's law: (μ·dx)(∂²y/∂t²) = T(∂²y/∂x²)dx</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Simplifying: ∂²y/∂t² = (T/μ)(∂²y/∂x²)</div>
+        <div class="step"><span class="step-num">STEP 6:</span> Wave velocity v = √(T/μ), so:</div>
+        <div class="answer-box">∴ ∂²y/∂x² = (1/v²)(∂²y/∂t²) ✓ General solution: y = f(x-vt) + g(x+vt)</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Explain the phenomenon of beats with theory.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Superposition of two waves with slightly different frequencies.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Let y₁ = A sin(ω₁t) and y₂ = A sin(ω₂t) be two waves</div>
+        <div class="step"><span class="step-num">STEP 2:</span> By superposition: y = y₁ + y₂ = A[sin(ω₁t) + sin(ω₂t)]</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Using identity: sin C + sin D = 2 cos((C-D)/2) sin((C+D)/2)</div>
+        <div class="step"><span class="step-num">STEP 4:</span> y = 2A cos((ω₁-ω₂)t/2) · sin((ω₁+ω₂)t/2)</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Amplitude varies as 2A cos((ω₁-ω₂)t/2)</div>
+        <div class="step"><span class="step-num">STEP 6:</span> Beat frequency = |n₁ - n₂| = |(ω₁-ω₂)/(2π)|</div>
+        <div class="answer-box">∴ Beats are periodic variations in loudness with frequency = |n₁ - n₂|</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 3 — ACOUSTICS
+════════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Acoustics and Ultrasonics</h2>
+</div>
+
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Reverberation Time and Sabine's Formula <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 REVERBERATION TIME (T)</strong>
+    <p>The time taken for sound intensity to decrease to one-millionth (10⁻⁶) of its original value after the source is stopped.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ SABINE'S FORMULA</strong>
+    <p>\[T = \frac{0.161V}{\sum a_i S_i} = \frac{0.161V}{A}\]</p>
+    <p>where:<br>
+    V = volume of hall (m³)<br>
+    S_i = surface area of each surface (m²)<br>
+    a_i = absorption coefficient of each surface<br>
+    A = total absorption = Σa_iS_i (in m² sabine or OWU)</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 CONDITIONS FOR GOOD ACOUSTICS</strong>
+    <ul>
+      <li>Reverberation time should be optimum (1-2 seconds for concert halls)</li>
+      <li>Uniform distribution of sound</li>
+      <li>No echoes or focusing of sound</li>
+      <li>Absence of external noise</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Ultrasonics and Applications <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 ULTRASONICS</strong>
+    <p>Sound waves with frequency above 20 kHz (beyond human hearing) are called ultrasonics.</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 PRODUCTION METHODS</strong>
+    <table>
+      <tr><th>Method</th><th>Principle</th><th>Frequency Range</th></tr>
+      <tr><td><strong>Magnetostriction</strong></td><td>Change in dimensions of ferromagnetic material in magnetic field</td><td>Up to 30 kHz</td></tr>
+      <tr><td><strong>Piezoelectric</strong></td><td>Deformation of piezoelectric crystal under electric field</td><td>Up to 500 MHz</td></tr>
+    </table>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 APPLICATIONS OF ULTRASONICS</strong>
+    <ul>
+      <li>Sonar (underwater navigation and detection)</li>
+      <li>Ultrasonic cleaning</li>
+      <li>Medical imaging (ultrasound scans)</li>
+      <li>Non-destructive testing (crack detection)</li>
+      <li>Ultrasonic welding</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s3">
+  <h3>3.3 PYQs — Acoustics <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — ACOUSTICS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Derive Sabine's formula for reverberation time.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Consider growth and decay of sound energy in an enclosed space.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Let E = total sound energy in hall, V = volume, S = total surface area</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Rate of energy loss = rate at which energy hits walls × absorption coefficient</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Energy density = E/V. Energy flowing to wall per unit area per unit time = (E/V)(v/4)</div>
+        <div class="step"><span class="step-num">STEP 4:</span> Rate of absorption = (E/V)(v/4)·S·a_avg where a_avg = average absorption coefficient</div>
+        <div class="step"><span class="step-num">STEP 5:</span> dE/dt = -(vSa_avg/4V)E</div>
+        <div class="step"><span class="step-num">STEP 6:</span> Integrating: E = E₀e^(-t/τ) where τ = 4V/(vSa_avg)</div>
+        <div class="step"><span class="step-num">STEP 7:</span> For T, E/E₀ = 10⁻⁶, so e^(-T/τ) = 10⁻⁶</div>
+        <div class="step"><span class="step-num">STEP 8:</span> T = τ·ln(10⁶) = (4V/(vSa_avg))·13.8</div>
+        <div class="step"><span class="step-num">STEP 9:</span> With v = 344 m/s: T = 0.161V/(Sa_avg)</div>
+        <div class="answer-box">∴ T = 0.161V/Σ(a_iS_i) ✓ Sabine's formula</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: A hall has volume 5000 m³ and total absorption 50 m² sabine. Calculate reverberation time.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Numerical</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Direct application of Sabine's formula.</div>
+        <div class="step"><span class="step-num">GIVEN:</span> V = 5000 m³; A = ΣaS = 50 m² sabine</div>
+        <div class="step"><span class="step-num">FORMULA:</span> T = 0.161V/A</div>
+        <div class="step"><span class="step-num">CALCULATION:</span> T = (0.161 × 5000)/50 = 805/50 = 16.1 s</div>
+        <div class="answer-box">∴ Reverberation time = 16.1 seconds</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Explain the piezoelectric method for production of ultrasonics.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Describe the piezoelectric effect and oscillator circuit.</div>
+        <div class="step"><span class="step-num">PRINCIPLE:</span> Piezoelectric effect — deformation of certain crystals (quartz, Rochelle salt) when electric field is applied.</div>
+        <div class="step"><span class="step-num">CONSTRUCTION:</span> Quartz crystal placed between metal plates connected to LC oscillator.</div>
+        <div class="step"><span class="step-num">WORKING:</span> AC voltage causes crystal to expand/contract at oscillator frequency. At resonance, large amplitude ultrasonic waves produced.</div>
+        <div class="step"><span class="step-num">RESONANCE CONDITION:</span> f = (1/2t)√(Y/ρ) where t = thickness, Y = Young's modulus, ρ = density</div>
+        <div class="answer-box">Advantages: High frequency (up to 500 MHz), stable output, efficient</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     END OF MODULE 2 SUMMARY
+════════════════════════════════════════ -->
+<div id="eom2" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 2 — COMPLETE QUICK REVISION SUMMARY</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Formulas</h4>
+      <ul>
+        <li>SHM equation: d²x/dt² + ω²x = 0</li>
+        <li>T = 2π/ω = 2π√(m/k)</li>
+        <li>v_max = Aω; a_max = Aω²</li>
+        <li>Total energy: E = ½kA² (constant)</li>
+        <li>Wave equation: ∂²y/∂x² = (1/v²)(∂²y/∂t²)</li>
+        <li>y = A sin(kx - ωt)</li>
+        <li>Beat frequency: |n₁ - n₂|</li>
+        <li>Sabine's formula: T = 0.161V/A</li>
+        <li>Ultrasonic: f > 20 kHz</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Priority PYQs</h4>
+      <ul>
+        <li>🔥 Define SHM + differential equation</li>
+        <li>🔥 Show total energy in SHM is constant</li>
+        <li>🔥 Derive wave equation</li>
+        <li>🔥 Sabine's formula derivation</li>
+        <li>🔥 Explain beats phenomenon</li>
+        <li>⭐ Piezoelectric ultrasonics</li>
+        <li>⭐ Superposition principle</li>
+        <li>⭐ Numerical on T = 0.161V/A</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 2 Complete ✓</strong> · GTU Engineering Physics Self-Study Book
+</div>
+
+</div>
+</body>
+</html>

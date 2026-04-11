@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PYQs | GTUAcademy</title>
+<title>Physics PYQs | GTUAcademy</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#080e1f;--navy-card:#111d40;--navy-light:#162249;--gold:#f0b429;--gold-pale:rgba(240,180,41,0.12);--teal:#00b4d8;--teal-dim:rgba(0,180,216,0.15);--white:#f0f4ff;--muted:#7a8ab0;--border:rgba(240,180,41,0.18);--green:#4caf7d;--red:#e05252;--orange:#fb923c;--purple:#8b5cf6;--pink:#f472b6;}
@@ -26,13 +26,11 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .page-hero h1 span{color:var(--gold);}
 .page-hero p{font-size:.95em;color:var(--muted);max-width:560px;line-height:1.7;}
 .main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:10px 40px 80px;}
-/* stats */
 .stats-strip{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:36px;}
 .stat-c{flex:1;min-width:130px;background:var(--navy-card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px;}
 .stat-ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2em;flex-shrink:0;}
 .stat-num{font-family:'Playfair Display',serif;font-size:1.7em;font-weight:700;color:var(--gold);line-height:1;}
 .stat-lbl{font-size:.72em;color:var(--muted);margin-top:2px;}
-/* subject pyq cards */
 .subj-pyq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:48px;}
 .spq-card{background:var(--navy-card);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s;}
 .spq-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.4),0 0 0 1px rgba(240,180,41,.22);}
@@ -45,7 +43,6 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .spq-code{font-family:'Space Mono',monospace;font-size:.65em;color:var(--muted);letter-spacing:.07em;}
 .spq-chips{display:flex;flex-wrap:wrap;gap:7px;padding:0 22px 14px;}
 .chip{font-size:.69em;padding:3px 9px;border-radius:9px;font-weight:600;border:1px solid;}
-/* paper list inside card */
 .spq-papers{border-top:1px solid rgba(255,255,255,.05);padding:14px 22px;}
 .spq-papers-title{font-family:'Space Mono',monospace;font-size:.63em;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
 .paper-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:8px;margin-bottom:5px;background:var(--navy);border:1px solid rgba(255,255,255,.05);transition:all .2s;}
@@ -60,16 +57,10 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 .pr-btn-v:hover{background:var(--gold);color:var(--navy);}
 .pr-btn-d{background:transparent;border:1px solid var(--border);color:var(--muted);}
 .pr-btn-d:hover{border-color:var(--teal);color:var(--teal);}
-/* coming soon overlay */
-.spq-soon{padding:20px 22px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
-.spq-soon .so-icon{font-size:2em;opacity:.5;}
-.spq-soon .so-text{font-size:.83em;color:var(--muted);}
-/* section header */
 .sec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
 .sec-hdr h2{font-family:'Playfair Display',serif;font-size:1.5em;font-weight:700;}
 .sec-hdr .cnt{font-family:'Space Mono',monospace;font-size:.7em;color:var(--gold);background:var(--gold-pale);padding:3px 10px;border-radius:10px;border:1px solid var(--border);}
 .sec-hdr .ln{flex:1;height:1px;background:var(--border);}
-/* modal */
 .modal-ov{position:fixed;inset:0;z-index:500;background:rgba(4,8,20,.92);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s;}
 .modal-ov.open{opacity:1;pointer-events:all;}
 .modal-box{background:var(--navy-card);border:1px solid var(--border);border-radius:18px;width:100%;max-width:900px;height:90vh;display:flex;flex-direction:column;overflow:hidden;transform:scale(.96);transition:transform .3s;}
@@ -85,138 +76,60 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--navy);}::-webkit-scrollbar-thumb{background:var(--navy-light);border-radius:3px;}
 .footer{position:relative;z-index:1;text-align:center;padding:26px 40px;border-top:1px solid var(--border);color:var(--muted);font-size:.8em;}
 .footer .fbr{font-family:'Playfair Display',serif;font-size:1.05em;color:var(--gold);display:block;margin-bottom:4px;}
+.topic-analysis{background:var(--navy-card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:36px;}
+.topic-analysis h3{font-family:'Playfair Display',serif;font-size:1.1em;color:var(--gold);margin-bottom:14px;}
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.topic-tag{background:var(--navy);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:.78em;}
+.topic-tag .t-name{color:var(--white);font-weight:600;display:block;margin-bottom:4px;}
+.topic-tag .t-meta{color:var(--muted);font-size:.9em;}
 </style>
 </head>
 <body>
 <nav class="navbar">
-  <a href="GTUAcademy_Homepage.html" class="nav-brand">
+  <a href="index.html" class="nav-brand">
     <div class="nav-logo"><img src="GTUAcademy_Logo.svg" alt="G" onerror="this.outerHTML='G'"></div>
     <span class="nav-name">GTU<span>Academy</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="GTUAcademy_Homepage.html">🏠 Home</a></li>
+    <li><a href="index.html">🏠 Home</a></li>
     <li><a href="GTUAcademy_Subjects.html">📚 Subjects</a></li>
-    <li><a href="GTUAcademy_PYQs.html" class="active">📋 PYQs</a></li>
+    <li><a href="GTUAcademy_PYQs.html">📋 PYQs</a></li>
     <li><a href="GTUAcademy_About.html">ℹ About</a></li>
   </ul>
 </nav>
 <div class="page-hero">
-  <div class="page-eyebrow">📋 Previous Year Questions</div>
-  <h1>GTU <span>PYQ Bank</span></h1>
-  <p>All available previous year question papers, organised by subject. View in-browser or download as PDF — completely free.</p>
+  <div class="page-eyebrow">📋 Physics · Previous Year Questions</div>
+  <h1>Engineering <span>Physics PYQs</span></h1>
+  <p>All Physics previous year question papers with topic-wise analysis. View in-browser or download as PDF.</p>
 </div>
 <main class="main">
 
   <!-- Stats -->
   <div class="stats-strip">
-    <div class="stat-c"><div class="stat-ic" style="background:rgba(240,180,41,.14);color:var(--gold);">📄</div><div><div class="stat-num">13</div><div class="stat-lbl">Papers Available</div></div></div>
-    <div class="stat-c"><div class="stat-ic" style="background:rgba(0,180,216,.14);color:var(--teal);">📚</div><div><div class="stat-num">2</div><div class="stat-lbl">Subjects Live</div></div></div>
-    <div class="stat-c"><div class="stat-ic" style="background:rgba(76,175,125,.14);color:var(--green);">📅</div><div><div class="stat-num">4</div><div class="stat-lbl">Years Covered</div></div></div>
+    <div class="stat-c"><div class="stat-ic" style="background:rgba(0,180,216,.14);color:var(--teal);">📄</div><div><div class="stat-num">6</div><div class="stat-lbl">Papers Available</div></div></div>
+    <div class="stat-c"><div class="stat-ic" style="background:rgba(76,175,125,.14);color:var(--green);">📚</div><div><div class="stat-num">6</div><div class="stat-lbl">Modules</div></div></div>
+    <div class="stat-c"><div class="stat-ic" style="background:rgba(240,180,41,.14);color:var(--gold);">📅</div><div><div class="stat-num">3</div><div class="stat-lbl">Years Covered</div></div></div>
     <div class="stat-c"><div class="stat-ic" style="background:rgba(224,82,82,.14);color:var(--red);">🆓</div><div><div class="stat-num">Free</div><div class="stat-lbl">Always</div></div></div>
   </div>
 
-  <!-- Available PYQs -->
-  <div class="sec-hdr"><h2>Available Papers</h2><span class="cnt">2 Subjects · 13 Papers</span><div class="ln"></div></div>
+  <!-- Topic Analysis -->
+  <div class="topic-analysis">
+    <h3>📊 Module-wise Weightage Analysis</h3>
+    <div class="topic-grid">
+      <div class="topic-tag"><span class="t-name">M1: Properties of Matter</span><span class="t-meta">~13% · Stress-Strain, Beam Bending, Viscosity</span></div>
+      <div class="topic-tag"><span class="t-name">M2: Waves & Acoustics</span><span class="t-meta">~18% · SHM, Wave Motion, Ultrasonics</span></div>
+      <div class="topic-tag"><span class="t-name">M3: Optics</span><span class="t-meta">~18% · Interference, Diffraction, Polarization</span></div>
+      <div class="topic-tag"><span class="t-name">M4: Quantum Physics</span><span class="t-meta">~18% · de Broglie, Uncertainty, Schrodinger</span></div>
+      <div class="topic-tag"><span class="t-name">M5: Lasers</span><span class="t-meta">~18% · Einstein Coefficients, Population Inversion</span></div>
+      <div class="topic-tag"><span class="t-name">M6: New Materials</span><span class="t-meta">~15% · Semiconductors, Superconductors, Nanomaterials</span></div>
+    </div>
+  </div>
+
+  <!-- Available Papers -->
+  <div class="sec-hdr"><h2>📄 All Physics Papers</h2><span class="cnt">6 Papers · 2023-2025</span><div class="ln"></div></div>
   <div class="subj-pyq-grid">
 
-    <!-- MATHS-1 CARD — FULL -->
-    <div class="spq-card avail">
-      <div class="spq-top">
-        <div class="spq-ico" style="background:rgba(240,180,41,.15);color:var(--gold);">∫</div>
-        <div class="spq-meta">
-          <div class="spq-sub">Mathematics – I</div>
-          <div class="spq-code">BE01R00041 · Semester 1 · 4 Credits</div>
-        </div>
-      </div>
-      <div class="spq-chips">
-        <span class="chip" style="background:rgba(76,175,125,.1);color:var(--green);border-color:rgba(76,175,125,.3);">✓ 7 Papers</span>
-        <span class="chip" style="background:rgba(240,180,41,.1);color:var(--gold);border-color:rgba(240,180,41,.3);">2022–2025</span>
-        <span class="chip" style="background:rgba(0,180,216,.1);color:var(--teal);border-color:rgba(0,180,216,.3);">Winter &amp; Summer</span>
-      </div>
-      <div class="spq-papers">
-        <div class="spq-papers-title">All Papers — Click to View or Download</div>
-
-        <div class="paper-row">
-          <div class="pr-left">
-            <div class="pr-badge" style="background:rgba(0,180,216,.15);color:var(--teal);">❄</div>
-            <div><div class="pr-name">Winter 2025</div><div class="pr-date">22 Dec 2025 · 70 Marks</div></div>
-          </div>
-          <div class="pr-right">
-            <a class="pr-btn pr-btn-v" href="#" onclick="openV('PYQ_Maths1_Winter2025.pdf','Maths-I · Winter 2025');return false;">👁 View</a>
-            <a class="pr-btn pr-btn-d" href="PYQ_Maths1_Winter2025.pdf" download>⬇</a>
-          </div>
-        </div>
-
-        <div class="paper-row">
-          <div class="pr-left">
-            <div class="pr-badge" style="background:rgba(251,146,60,.12);color:var(--orange);">☀</div>
-            <div><div class="pr-name">Summer 2025</div><div class="pr-date">05 Jun 2025 · 70 Marks</div></div>
-          </div>
-          <div class="pr-right">
-            <a class="pr-btn pr-btn-v" href="#" onclick="openV('PYQ_Maths1_Summer2025.pdf','Maths-I · Summer 2025');return false;">👁 View</a>
-            <a class="pr-btn pr-btn-d" href="PYQ_Maths1_Summer2025.pdf" download>⬇</a>
-          </div>
-        </div>
-
-        <div class="paper-row">
-          <div class="pr-left">
-            <div class="pr-badge" style="background:rgba(0,180,216,.15);color:var(--teal);">❄</div>
-            <div><div class="pr-name">Winter 2024</div><div class="pr-date">04 Jan 2025 · 70 Marks</div></div>
-          </div>
-          <div class="pr-right">
-            <a class="pr-btn pr-btn-v" href="#" onclick="openV('PYQ_Maths1_Winter2024.pdf','Maths-I · Winter 2024');return false;">👁 View</a>
-            <a class="pr-btn pr-btn-d" href="PYQ_Maths1_Winter2024.pdf" download>⬇</a>
-          </div>
-        </div>
-
-        <div class="paper-row">
-          <div class="pr-left">
-            <div class="pr-badge" style="background:rgba(251,146,60,.12);color:var(--orange);">☀</div>
-            <div><div class="pr-name">Summer 2024</div><div class="pr-date">09 Jul 2024 · 70 Marks</div></div>
-          </div>
-          <div class="pr-right">
-            <a class="pr-btn pr-btn-v" href="#" onclick="openV('PYQ_Maths1_Summer2024.pdf','Maths-I · Summer 2024');return false;">👁 View</a>
-            <a class="pr-btn pr-btn-d" href="PYQ_Maths1_Summer2024.pdf" download>⬇</a>
-          </div>
-        </div>
-
-        <div class="paper-row">
-          <div class="pr-left">
-            <div class="pr-badge" style="background:rgba(0,180,216,.15);color:var(--teal);">❄</div>
-            <div><div class="pr-name">Winter 2023</div><div class="pr-date">11 Jan 2024 · 70 Marks</div></div>
-          </div>
-          <div class="pr-right">
-            <a class="pr-btn pr-btn-v" href="#" onclick="openV('PYQ_Maths1_Winter2023.pdf','Maths-I · Winter 2023');return false;">👁 View</a>
-            <a class="pr-btn pr-btn-d" href="PYQ_Maths1_Winter2023.pdf" download>⬇</a>
-          </div>
-        </div>
-
-        <div class="paper-row">
-          <div class="pr-left">
-            <div class="pr-badge" style="background:rgba(251,146,60,.12);color:var(--orange);">☀</div>
-            <div><div class="pr-name">Summer 2023</div><div class="pr-date">31 Jul 2023 · 70 Marks</div></div>
-          </div>
-          <div class="pr-right">
-            <a class="pr-btn pr-btn-v" href="#" onclick="openV('PYQ_Maths1_Summer2023.pdf','Maths-I · Summer 2023');return false;">👁 View</a>
-            <a class="pr-btn pr-btn-d" href="PYQ_Maths1_Summer2023.pdf" download>⬇</a>
-          </div>
-        </div>
-
-        <div class="paper-row">
-          <div class="pr-left">
-            <div class="pr-badge" style="background:rgba(139,92,246,.14);color:var(--purple);">❄</div>
-            <div><div class="pr-name">Winter 2022</div><div class="pr-date">02 Mar 2023 · 70 Marks</div></div>
-          </div>
-          <div class="pr-right">
-            <a class="pr-btn pr-btn-v" href="#" onclick="openV('PYQ_Maths1_Winter2022.pdf','Maths-I · Winter 2022');return false;">👁 View</a>
-            <a class="pr-btn pr-btn-d" href="PYQ_Maths1_Winter2022.pdf" download>⬇</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- PHYSICS CARD — FULL -->
+    <!-- Physics Card -->
     <div class="spq-card avail">
       <div class="spq-top">
         <div class="spq-ico" style="background:rgba(0,180,216,.15);color:var(--teal);">⚛</div>
@@ -227,8 +140,8 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
       </div>
       <div class="spq-chips">
         <span class="chip" style="background:rgba(76,175,125,.1);color:var(--green);border-color:rgba(76,175,125,.3);">✓ 6 Papers</span>
-        <span class="chip" style="background:rgba(240,180,41,.1);color:var(--gold);border-color:rgba(240,180,41,.3);">2023–2025</span>
-        <span class="chip" style="background:rgba(0,180,216,.1);color:var(--teal);border-color:rgba(0,180,216,.3);">Winter &amp; Summer</span>
+        <span class="chip" style="background:rgba(240,180,41,.1);color:var(--gold);border-color:rgba(240,180,41,.3);">2023-2025</span>
+        <span class="chip" style="background:rgba(0,180,216,.1);color:var(--teal);border-color:rgba(0,180,216,.3);">Winter & Summer</span>
       </div>
       <div class="spq-papers">
         <div class="spq-papers-title">All Papers — Click to View or Download</div>
@@ -304,11 +217,27 @@ body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(
 
   </div>
 
-  <!-- Coming Soon PYQs -->
-  <div class="sec-hdr" style="margin-top:16px;"><h2>Coming Soon</h2><div class="ln"></div></div>
+  <!-- Module Links -->
+  <div class="sec-hdr" style="margin-top:16px;"><h2>📚 Study Modules</h2><div class="ln"></div></div>
   <div class="subj-pyq-grid">
-    <div class="spq-card"><div class="spq-top"><div class="spq-ico" style="background:rgba(139,92,246,.14);color:var(--purple);">⚗</div><div class="spq-meta"><div class="spq-sub">Engineering Chemistry</div><div class="spq-code">BE01R00043 · Semester 1</div></div></div><div class="spq-chips"><span class="chip" style="background:rgba(251,146,60,.1);color:var(--orange);border-color:rgba(251,146,60,.25);">⏳ Coming Soon</span></div><div class="spq-soon"><div class="so-icon">📥</div><div class="so-text">Papers being collected and formatted. Check back soon!</div></div></div>
-    <div class="spq-card"><div class="spq-top"><div class="spq-ico" style="background:rgba(240,180,41,.14);color:var(--gold);">∑</div><div class="spq-meta"><div class="spq-sub">Mathematics – II</div><div class="spq-code">BE02R00041 · Semester 2</div></div></div><div class="spq-chips"><span class="chip" style="background:rgba(251,146,60,.1);color:var(--orange);border-color:rgba(251,146,60,.25);">⏳ Coming Soon</span></div><div class="spq-soon"><div class="so-icon">📥</div><div class="so-text">Papers being collected and formatted. Check back soon!</div></div></div>
+    <div class="spq-card avail" style="cursor:pointer;" onclick="location.href='GTU_Physics_Module1_PropertiesOfMatter.html'">
+      <div class="spq-top"><div class="spq-ico" style="background:rgba(0,180,216,.15);color:var(--teal);">📖</div><div class="spq-meta"><div class="spq-sub">Module 1: Properties of Matter</div><div class="spq-code">Elasticity, Beam Bending, Fluid Mechanics</div></div></div>
+    </div>
+    <div class="spq-card avail" style="cursor:pointer;" onclick="location.href='GTU_Physics_Module2_WavesMotionAcoustics.html'">
+      <div class="spq-top"><div class="spq-ico" style="background:rgba(0,180,216,.15);color:var(--teal);">📖</div><div class="spq-meta"><div class="spq-sub">Module 2: Waves, Motion & Acoustics</div><div class="spq-code">SHM, Wave Motion, Ultrasonics</div></div></div>
+    </div>
+    <div class="spq-card avail" style="cursor:pointer;" onclick="location.href='GTU_Physics_Module3_Optics.html'">
+      <div class="spq-top"><div class="spq-ico" style="background:rgba(0,180,216,.15);color:var(--teal);">📖</div><div class="spq-meta"><div class="spq-sub">Module 3: Optics</div><div class="spq-code">Interference, Diffraction, Polarization</div></div></div>
+    </div>
+    <div class="spq-card avail" style="cursor:pointer;" onclick="location.href='GTU_Physics_Module4_QuantumPhysics.html'">
+      <div class="spq-top"><div class="spq-ico" style="background:rgba(0,180,216,.15);color:var(--teal);">📖</div><div class="spq-meta"><div class="spq-sub">Module 4: Quantum Physics</div><div class="spq-code">Wave-Particle Duality, Uncertainty, Schrodinger</div></div></div>
+    </div>
+    <div class="spq-card avail" style="cursor:pointer;" onclick="location.href='GTU_Physics_Module5_Lasers.html'">
+      <div class="spq-top"><div class="spq-ico" style="background:rgba(0,180,216,.15);color:var(--teal);">📖</div><div class="spq-meta"><div class="spq-sub">Module 5: Lasers</div><div class="spq-code">Einstein Coefficients, Population Inversion</div></div></div>
+    </div>
+    <div class="spq-card avail" style="cursor:pointer;" onclick="location.href='GTU_Physics_Module6_NewMaterials.html'">
+      <div class="spq-top"><div class="spq-ico" style="background:rgba(0,180,216,.15);color:var(--teal);">📖</div><div class="spq-meta"><div class="spq-sub">Module 6: New Engineering Materials</div><div class="spq-code">Semiconductors, Superconductors, Nanomaterials</div></div></div>
+    </div>
   </div>
 
 </main>

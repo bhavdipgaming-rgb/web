@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Physics | Module 1: Properties of Matter</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --primary: #006064;
+    --secondary: #00838f;
+    --accent: #00bcd4;
+    --gold: #f9a825;
+    --green: #2e7d32;
+    --light-bg: #e0f7fa;
+    --card-bg: #ffffff;
+    --border: #b2ebf2;
+    --text: #001f21;
+    --muted: #006064;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #e0f2f1;
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  .cover {
+    background: linear-gradient(135deg, #006064 0%, #00838f 50%, #0097a7 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 30px;
+    border-bottom: 6px solid var(--gold);
+  }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+           padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--primary);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  .topic-header {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px 8px 0 0;
+    margin-top: 36px;
+  }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+  .subtopic {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 26px 28px;
+    margin-bottom: 2px;
+  }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 {
+    font-size: 1.1em;
+    color: var(--secondary);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .priority-tag {
+    font-size: 0.85em;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-left: auto;
+  }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .medium { background: #e8f5e9; color: #1b5e20; }
+  .definition, .formula-box, .method-box, .intuition-box, .mistake-box {
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .definition { background: #e0f7fa; border-left: 4px solid var(--primary); }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e8f5e9; border-left: 4px solid var(--green); }
+  .method-box strong { color: var(--green); display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .mistake-box { background: #ffebee; border: 1px solid #ef9a9a; border-left: 4px solid var(--accent); }
+  .mistake-box strong { color: var(--accent); display: block; margin-bottom: 8px; font-size: 0.85em; letter-spacing: 1px; }
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 {
+    background: var(--primary);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px 6px 0 0;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+  }
+  .pyq-card {
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .pyq-card + .pyq-card { border-top: 1px solid var(--border); border-radius: 6px; margin-top: 10px; }
+  .pyq-question {
+    background: #f5f7ff;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .pyq-body .concept-note {
+    background: #fff8e1;
+    border-left: 3px solid var(--gold);
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    font-size: 0.92em;
+    color: #5d4037;
+  }
+  .step { margin: 8px 0 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid var(--border); border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--green); }
+  .eot {
+    background: linear-gradient(135deg, #006064 0%, #00838f 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 28px 0 40px 0;
+  }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width: 600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Engineering Physics</h1>
+  <div class="module-title">MODULE 1: Properties of Matter</div>
+  <p style="opacity:0.85">Complete Self-Study Material · PYQ-Integrated · Exam-Focused</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step Solutions</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+  <h2>📋 MODULE 1 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Elasticity and Stress-Strain Relationship</a>
+      <ol>
+        <li><a href="#t1s1">1.1 Stress and Strain — Definitions</a></li>
+        <li><a href="#t1s2">1.2 Hooke's Law and Modulus of Elasticity</a></li>
+        <li><a href="#t1s3">1.3 Poisson's Ratio</a></li>
+        <li><a href="#t1s4">1.4 PYQs on Elasticity</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Beam Bending and Deflection</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Bending Moment and Radius of Curvature</a></li>
+        <li><a href="#t2s2">2.2 Deflection of Cantilever</a></li>
+        <li><a href="#t2s3">2.3 PYQs on Beam Bending</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Fluid Mechanics and Viscosity</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Bernoulli's Equation</a></li>
+        <li><a href="#t3s2">3.2 Coefficient of Viscosity</a></li>
+        <li><a href="#t3s3">3.3 PYQs on Fluid Mechanics</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom1">End of Module 1: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 1 — ELASTICITY
+════════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Elasticity and Stress-Strain Relationship</h2>
+</div>
+
+<div class="subtopic" id="t1s1">
+  <h3>1.1 Stress and Strain — Definitions <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 STRESS</strong>
+    <p>When an external force is applied to a body, internal restoring forces develop. <strong>Stress</strong> is the internal restoring force per unit area:</p>
+    \[\text{Stress } (\sigma) = \frac{\text{Applied Force } (F)}{\text{Area } (A)}\]
+    <p><strong>SI Unit:</strong> N/m² or Pascal (Pa)</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 STRAIN</strong>
+    <p><strong>Strain</strong> is the ratio of change in dimension to original dimension. It has no unit (dimensionless quantity).</p>
+    <table>
+      <tr><th>Type</th><th>Formula</th></tr>
+      <tr><td><strong>Longitudinal Strain</strong></td><td>\(\displaystyle\frac{\Delta L}{L}\)</td></tr>
+      <tr><td><strong>Volumetric Strain</strong></td><td>\(\displaystyle\frac{\Delta V}{V}\)</td></tr>
+      <tr><td><strong>Shear Strain</strong></td><td>\(\displaystyle\theta = \frac{x}{L}\) (angle of deformation)</td></tr>
+    </table>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    Think of stress as "how hard you push" and strain as "how much it squishes". A stiff material (steel) has low strain for high stress. A rubber band has high strain for low stress.
+  </div>
+</div>
+
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Hooke's Law and Modulus of Elasticity <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ HOOKE'S LAW</strong>
+    <p>Within elastic limit, stress is directly proportional to strain:</p>
+    \[\sigma \propto \epsilon \quad \Rightarrow \quad \sigma = E\epsilon\]
+    <p>where \(E\) = Modulus of Elasticity (Young's Modulus for longitudinal stress)</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 MODULUS OF ELASTICITY</strong>
+    <p>The ratio of stress to strain is constant for a given material (within elastic limit). This constant is called <strong>Modulus of Elasticity</strong>.</p>
+    <table>
+      <tr><th>Type</th><th>Formula</th><th>Symbol</th></tr>
+      <tr><td><strong>Young's Modulus</strong></td><td>\(\displaystyle Y = \frac{\text{Longitudinal Stress}}{\text{Longitudinal Strain}} = \frac{F/A}{\Delta L/L}\)</td><td>Y or E</td></tr>
+      <tr><td><strong>Shear Modulus</strong></td><td>\(\displaystyle G = \frac{\text{Shear Stress}}{\text{Shear Strain}} = \frac{F/A}{\theta}\)</td><td>G or η</td></tr>
+      <tr><td><strong>Bulk Modulus</strong></td><td>\(\displaystyle K = \frac{\text{Volume Stress}}{\text{Volume Strain}} = \frac{P}{\Delta V/V}\)</td><td>K or B</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s3">
+  <h3>1.3 Poisson's Ratio <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 POISSON'S RATIO (σ)</strong>
+    <p>When a wire is stretched, it becomes longer but thinner. The ratio of lateral strain to longitudinal strain is called <strong>Poisson's ratio</strong>:</p>
+    \[\sigma = \frac{\text{Lateral Strain}}{\text{Longitudinal Strain}} = \frac{-\Delta D/D}{\Delta L/L}\]
+    <p><strong>Theoretical limits:</strong> -1 to 0.5<br><strong>Practical limits:</strong> 0 to 0.5<br><strong>For most metals:</strong> 0.25 to 0.35</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ RELATIONSHIP BETWEEN ELASTIC CONSTANTS</strong>
+    <table>
+      <tr><td>\(Y = 2G(1+\sigma)\)</td><td>(Young's vs Shear)</td></tr>
+      <tr><td>\(Y = 3K(1-2\sigma)\)</td><td>(Young's vs Bulk)</td></tr>
+      <tr><td>\(\displaystyle \sigma = \frac{3K-2G}{6K+2G}\)</td><td>(Poisson's ratio)</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s4">
+  <h3>1.4 PYQs — Elasticity <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — ELASTICITY</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Define Poisson's ratio and state its limits.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024 / Summer 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Definition question — write clearly with formula and limits.</div>
+        <div class="step"><span class="step-num">DEFINITION:</span> Poisson's ratio is the ratio of lateral strain to longitudinal strain when a material is stretched within its elastic limit.</div>
+        <div class="step"><span class="step-num">FORMULA:</span> \(\sigma = \frac{\text{Lateral Strain}}{\text{Longitudinal Strain}} = \frac{-\Delta D/D}{\Delta L/L}\)</div>
+        <div class="step"><span class="step-num">LIMITS:</span> Theoretical: -1 to +0.5; Practical: 0 to 0.5; For metals: 0.25 to 0.35</div>
+        <div class="answer-box">Write all three points for full marks (3 marks).</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Derive the relationship between Young's modulus, Shear modulus and Poisson's ratio.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Standard derivation. Consider a cube under shear stress and analyze diagonal strain.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Consider a cube ABCD subjected to shear stress τ on opposite faces.</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Shear strain θ = τ/G (by definition of shear modulus)</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Diagonal AC elongates due to tensile stress on diagonal. Longitudinal strain in diagonal = τ(1+σ)/Y</div>
+        <div class="step"><span class="step-num">STEP 4:</span> Geometrically, diagonal strain = θ/2 = τ/(2G)</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Equating: τ/(2G) = τ(1+σ)/Y</div>
+        <div class="answer-box">∴ Y = 2G(1+σ) ✓ Proved</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 2 — BEAM BENDING
+════════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Beam Bending and Deflection</h2>
+</div>
+
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Bending Moment and Radius of Curvature <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 BENDING MOMENT</strong>
+    <p>When a beam is loaded, internal moments develop to resist bending. The <strong>Bending Moment</strong> at any section is the algebraic sum of moments of all forces on either side of that section.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ FLEXURE FORMULA (BENDING EQUATION)</strong>
+    \[\frac{M}{I} = \frac{E}{R} = \frac{\sigma}{y}\]
+    <p>where:<br>
+    M = Bending Moment<br>
+    I = Moment of Inertia of cross-section<br>
+    E = Young's Modulus<br>
+    R = Radius of curvature of bent beam<br>
+    σ = Bending stress at distance y from neutral axis</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    When you bend a ruler, the top surface stretches (tension) and bottom compresses. The middle layer (neutral axis) remains unchanged. Bending moment quantifies how much "bending effort" is applied.
+  </div>
+</div>
+
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Deflection of Cantilever <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 CANTILEVER BEAM</strong>
+    <p>A beam fixed at one end and free at the other is called a <strong>cantilever</strong>. When loaded at the free end, it deflects (bends downward).</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ DEPRESSION (DEFLECTION) AT FREE END</strong>
+    <p>For a cantilever of length L, loaded with force W at free end:</p>
+    \[\delta = \frac{WL^3}{3EI}\]
+    <p>For rectangular cross-section: \(I = \frac{bd^3}{12}\)<br>
+    For circular cross-section: \(I = \frac{\pi r^4}{4}\)</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 KEY POINTS TO REMEMBER</strong>
+    <ul>
+      <li>Deflection δ ∝ L³ (cube of length) — doubling length increases deflection 8x!</li>
+      <li>δ ∝ 1/E — stiffer material (higher E) means less deflection</li>
+      <li>δ ∝ 1/I — thicker beam (higher I) means less deflection</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s3">
+  <h3>2.3 PYQs — Beam Bending <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — BEAM BENDING</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Derive the expression for depression at the free end of a cantilever beam loaded at the free end.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Standard derivation using bending moment and differential equation of elastic curve.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Consider a cantilever of length L fixed at A and loaded with W at free end B.</div>
+        <div class="step"><span class="step-num">STEP 2:</span> At distance x from fixed end, bending moment M = -W(L-x)</div>
+        <div class="step"><span class="step-num">STEP 3:</span> From flexure formula: \(M = EI\frac{d^2y}{dx^2}\)</div>
+        <div class="step"><span class="step-num">STEP 4:</span> So: \(EI\frac{d^2y}{dx^2} = -W(L-x)\)</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Integrate once: \(EI\frac{dy}{dx} = -WLx + \frac{Wx^2}{2} + C_1\)</div>
+        <div class="step"><span class="step-num">STEP 6:</span> At x=0, dy/dx=0 (fixed end), so C₁=0</div>
+        <div class="step"><span class="step-num">STEP 7:</span> Integrate again: \(EIy = -\frac{WLx^2}{2} + \frac{Wx^3}{6} + C_2\)</div>
+        <div class="step"><span class="step-num">STEP 8:</span> At x=0, y=0 (fixed end), so C₂=0</div>
+        <div class="step"><span class="step-num">STEP 9:</span> At free end x=L: \(y = \delta = \frac{1}{EI}\left(-\frac{WL^3}{2} + \frac{WL^3}{6}\right) = -\frac{WL^3}{3EI}\)</div>
+        <div class="answer-box">∴ Depression at free end: \(\delta = \frac{WL^3}{3EI}\) (negative sign indicates downward deflection)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 3 — FLUID MECHANICS
+════════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Fluid Mechanics and Viscosity</h2>
+</div>
+
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Bernoulli's Equation <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ BERNOULLI'S EQUATION</strong>
+    <p>For steady, incompressible, non-viscous flow:</p>
+    \[P + \frac{1}{2}\rho v^2 + \rho gh = \text{constant}\]
+    <p>where:<br>
+    P = Pressure energy per unit volume<br>
+    ½ρv² = Kinetic energy per unit volume<br>
+    ρgh = Potential energy per unit volume</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 INTUITION</strong>
+    Bernoulli's principle says: faster fluid = lower pressure. This is why airplane wings generate lift (air moves faster over curved top) and why roofs blow off in storms (fast wind above = low pressure).
+  </div>
+</div>
+
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Coefficient of Viscosity <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 VISCOSITY</strong>
+    <p><strong>Viscosity</strong> is the property of a fluid that opposes the relative motion between its layers. It is "internal friction" of the fluid.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ NEWTON'S LAW OF VISCOSITY</strong>
+    <p>The viscous drag F between two layers is:</p>
+    \[F = \eta A \frac{dv}{dx}\]
+    <p>where η = coefficient of viscosity, A = area, dv/dx = velocity gradient</p>
+    <p><strong>SI Unit:</strong> Pa·s or N·s/m²<br><strong>CGS Unit:</strong> poise (1 Pa·s = 10 poise)</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ POISEUILLE'S EQUATION</strong>
+    <p>For laminar flow through a capillary tube of radius r and length L:</p>
+    \[Q = \frac{\pi P r^4}{8\eta L}\]
+    <p>where Q = volume flow rate, P = pressure difference</p>
+    <p><em>Note: Flow rate ∝ r⁴ — doubling radius increases flow 16x!</em></p>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s3">
+  <h3>3.3 PYQs — Fluid Mechanics <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — FLUID MECHANICS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Define coefficient of viscosity. State its SI unit and dimensional formula.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025 / Winter 2023</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Direct definition question.</div>
+        <div class="step"><span class="step-num">DEFINITION:</span> Coefficient of viscosity is the ratio of shear stress to velocity gradient in a fluid.</div>
+        <div class="step"><span class="step-num">FORMULA:</span> \(\eta = \frac{F}{A(dv/dx)}\)</div>
+        <div class="step"><span class="step-num">SI UNIT:</span> Pa·s or N·s/m²</div>
+        <div class="step"><span class="step-num">DIMENSIONS:</span> [M¹L⁻¹T⁻¹]</div>
+        <div class="answer-box">Write all four points for full marks.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: State and prove Bernoulli's theorem for fluid flow.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Use work-energy theorem for proof.</div>
+        <div class="step"><span class="step-num">STATEMENT:</span> For steady flow of incompressible, non-viscous fluid, total energy per unit volume remains constant.</div>
+        <div class="step"><span class="step-num">PROOF:</span> Consider fluid element moving from point 1 to 2. Work done by pressure = change in KE + PE.</div>
+        <div class="step"><span class="step-num">Work by pressure:</span> W = (P₁-P₂)ΔV</div>
+        <div class="step"><span class="step-num">Change in KE:</span> ΔKE = ½m(v₂²-v₁²) = ½ρΔV(v₂²-v₁²)</div>
+        <div class="step"><span class="step-num">Change in PE:</span> ΔPE = mg(h₂-h₁) = ρΔVg(h₂-h₁)</div>
+        <div class="step"><span class="step-num">Equating:</span> (P₁-P₂) = ½ρ(v₂²-v₁²) + ρg(h₂-h₁)</div>
+        <div class="answer-box">∴ P₁ + ½ρv₁² + ρgh₁ = P₂ + ½ρv₂² + ρgh₂ = constant ✓</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     END OF MODULE 1 SUMMARY
+════════════════════════════════════════ -->
+<div id="eom1" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 1 — COMPLETE QUICK REVISION SUMMARY</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Formulas</h4>
+      <ul>
+        <li>Stress = F/A; Strain = ΔL/L</li>
+        <li>Hooke's Law: σ = Eε</li>
+        <li>Y = F·L / (A·ΔL)</li>
+        <li>Poisson's ratio: σ = lateral/longitudinal</li>
+        <li>Y = 2G(1+σ); Y = 3K(1-2σ)</li>
+        <li>Bending: M/I = E/R = σ/y</li>
+        <li>Cantilever deflection: δ = WL³/(3EI)</li>
+        <li>Bernoulli: P + ½ρv² + ρgh = const</li>
+        <li>Viscosity: F = ηA(dv/dx)</li>
+        <li>Poiseuille: Q = πPr⁴/(8ηL)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Priority PYQs</h4>
+      <ul>
+        <li>🔥 Define Poisson's ratio + limits</li>
+        <li>🔥 Derive Y = 2G(1+σ)</li>
+        <li>🔥 Cantilever deflection derivation</li>
+        <li>🔥 Bernoulli's theorem statement+proof</li>
+        <li>⭐ Define viscosity + SI unit</li>
+        <li>⭐ Flexure formula M/I = E/R</li>
+        <li>⭐ Poiseuille's equation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 1 Complete ✓</strong> · GTU Engineering Physics Self-Study Book
+</div>
+
+</div>
+</body>
+</html>

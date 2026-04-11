@@ -695,7 +695,7 @@ body::before {
         <div class="sem-label">First Semester</div>
         <div class="sem-desc">Foundation subjects · Common for all branches · BE Programme</div>
       </div>
-      <span class="sem-count">5 Subjects</span>
+      <span class="sem-count">2 Available</span>
     </div>
     <div class="subjects-grid">
 
@@ -762,18 +762,72 @@ body::before {
       </div>
 
       <!-- Physics -->
-      <div class="subject-card" onclick="noModules(this)">
+      <div class="subject-card has-modules" onclick="toggleModules(this)">
         <div class="subject-header">
           <div class="subject-icon" style="background:rgba(0,180,216,0.15); color:var(--teal);">⚛</div>
           <div class="subject-info">
             <div class="subject-code">BE01R00042 · 4 Credits</div>
-            <div class="subject-name">Physics</div>
+            <div class="subject-name">Engineering Physics</div>
           </div>
           <span class="subject-arrow">›</span>
         </div>
         <div class="subject-footer">
-          <span class="subject-badge badge-soon">⏳ Coming Soon</span>
-          <span class="subject-badge badge-credits">4 Credits</span>
+          <span class="subject-badge badge-available">✓ Available</span>
+          <span class="subject-badge badge-credits">6 Modules</span>
+          <a class="subject-badge" href="GTUAcademy_Physics_PYQs.html" onclick="event.stopPropagation()" style="background:rgba(224,82,82,0.12);color:#e05252;border:1px solid rgba(224,82,82,0.3);text-decoration:none;">📋 6 PYQs</a>
+        </div>
+        <div class="modules-panel">
+          <div class="modules-header">📚 All 6 Modules — Click to Open</div>
+          <div class="module-list">
+            <a class="module-item" href="GTU_Physics_Module1_PropertiesOfMatter.html" target="_blank">
+              <span class="module-num">M1</span>
+              <div class="module-text">
+                <div class="module-title">Module 1: Properties of Matter</div>
+                <div class="module-subtitle">Elasticity, Stress-Strain, Beam Bending, Fluid Mechanics</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+            <a class="module-item" href="GTU_Physics_Module2_WavesMotionAcoustics.html" target="_blank">
+              <span class="module-num">M2</span>
+              <div class="module-text">
+                <div class="module-title">Module 2: Waves, Motion &amp; Acoustics</div>
+                <div class="module-subtitle">SHM, Wave Motion, Ultrasonics, Reverberation</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+            <a class="module-item" href="GTU_Physics_Module3_Optics.html" target="_blank">
+              <span class="module-num">M3</span>
+              <div class="module-text">
+                <div class="module-title">Module 3: Optics</div>
+                <div class="module-subtitle">Interference, Diffraction, Polarization</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+            <a class="module-item" href="GTU_Physics_Module4_QuantumPhysics.html" target="_blank">
+              <span class="module-num">M4</span>
+              <div class="module-text">
+                <div class="module-title">Module 4: Quantum Physics</div>
+                <div class="module-subtitle">de Broglie, Uncertainty Principle, Schrodinger Equation</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+            <a class="module-item" href="GTU_Physics_Module5_Lasers.html" target="_blank">
+              <span class="module-num">M5</span>
+              <div class="module-text">
+                <div class="module-title">Module 5: Lasers</div>
+                <div class="module-subtitle">Einstein Coefficients, Population Inversion, Ruby &amp; He-Ne</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+            <a class="module-item" href="GTU_Physics_Module6_NewMaterials.html" target="_blank">
+              <span class="module-num">M6</span>
+              <div class="module-text">
+                <div class="module-title">Module 6: New Engineering Materials</div>
+                <div class="module-subtitle">Semiconductors, Superconductors, Nanomaterials</div>
+              </div>
+              <span class="module-go">↗</span>
+            </a>
+          </div>
         </div>
       </div>
 

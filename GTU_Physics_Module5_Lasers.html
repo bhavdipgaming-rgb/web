@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Physics | Module 5: Lasers</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root { --primary: #006064; --secondary: #00838f; --accent: #00bcd4; --gold: #f9a825; --green: #2e7d32; --light-bg: #e0f7fa; --card-bg: #ffffff; --border: #b2ebf2; --text: #001f21; --muted: #006064; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #e0f2f1; color: var(--text); line-height: 1.7; font-size: 15px; }
+  .cover { background: linear-gradient(135deg, #006064 0%, #00838f 50%, #0097a7 100%); color: white; text-align: center; padding: 60px 30px; border-bottom: 6px solid var(--gold); }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+  .toc { background: var(--card-bg); border: 1px solid var(--border); border-left: 5px solid var(--primary); border-radius: 8px; padding: 24px 28px; margin-bottom: 32px; }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  .topic-header { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; padding: 16px 24px; border-radius: 8px 8px 0 0; margin-top: 36px; }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+  .subtopic { background: var(--card-bg); border: 1px solid var(--border); border-top: none; padding: 26px 28px; margin-bottom: 2px; }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 { font-size: 1.1em; color: var(--secondary); border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .priority-tag { font-size: 0.85em; padding: 2px 10px; border-radius: 12px; font-weight: 600; margin-left: auto; }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .definition, .formula-box, .method-box, .intuition-box { border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .definition { background: #e0f7fa; border-left: 4px solid var(--primary); }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e8f5e9; border-left: 4px solid var(--green); }
+  .method-box strong { color: var(--green); display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 { background: var(--primary); color: white; padding: 8px 14px; border-radius: 6px 6px 0 0; font-size: 0.9em; letter-spacing: 1px; }
+  .pyq-card { border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; margin-bottom: 16px; overflow: hidden; }
+  .pyq-card + .pyq-card { border-top: 1px solid var(--border); border-radius: 6px; margin-top: 10px; }
+  .pyq-question { background: #f5f7ff; padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .pyq-body .concept-note { background: #fff8e1; border-left: 3px solid var(--gold); padding: 8px 12px; margin-bottom: 10px; font-size: 0.92em; color: #5d4037; }
+  .step { margin: 8px 0 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid var(--border); border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--green); }
+  .eot { background: linear-gradient(135deg, #006064 0%, #00838f 100%); color: white; border-radius: 8px; padding: 24px 28px; margin: 28px 0 40px 0; }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width: 600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Engineering Physics</h1>
+  <div class="module-title">MODULE 5: Lasers</div>
+  <p style="opacity:0.85">Complete Self-Study Material · PYQ-Integrated · Exam-Focused</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step Solutions</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+  <h2>📋 MODULE 5 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Basic Laser Theory</a>
+      <ol>
+        <li><a href="#t1s1">1.1 Absorption, Spontaneous and Stimulated Emission</a></li>
+        <li><a href="#t1s2">1.2 Einstein's A and B Coefficients</a></li>
+        <li><a href="#t1s3">1.3 PYQs on Laser Theory</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Population Inversion and Pumping</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Metastable States and Population Inversion</a></li>
+        <li><a href="#t2s2">2.2 Pumping Methods</a></li>
+        <li><a href="#t2s3">2.3 PYQs on Population Inversion</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Laser Systems and Applications</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Ruby Laser and He-Ne Laser</a></li>
+        <li><a href="#t3s2">3.2 Applications of Lasers</a></li>
+        <li><a href="#t3s3">3.3 PYQs on Laser Systems</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom5">End of Module 5: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 1 — BASIC LASER THEORY
+════════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Basic Laser Theory</h2>
+</div>
+
+<div class="subtopic" id="t1s1">
+  <h3>1.1 Absorption, Spontaneous and Stimulated Emission <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 LASER</strong>
+    <p><strong>LASER</strong> = <strong>L</strong>ight <strong>A</strong>mplification by <strong>S</strong>timulated <strong>E</strong>mission of <strong>R</strong>adiation</p>
+    <p><strong>Characteristics of Laser Light:</strong></p>
+    <ul>
+      <li><strong>Monochromatic:</strong> Single wavelength (very narrow bandwidth)</li>
+      <li><strong>Coherent:</strong> Waves are in phase (temporal and spatial coherence)</li>
+      <li><strong>Directional:</strong> Very low divergence (collimated beam)</li>
+      <li><strong>High Intensity:</strong> Highly concentrated energy</li>
+    </ul>
+  </div>
+
+  <div class="definition">
+    <strong>📖 THREE ATOMIC PROCESSES</strong>
+    <table>
+      <tr><th>Process</th><th>Description</th><th>Diagram</th></tr>
+      <tr><td><strong>Absorption</strong></td><td>Atom absorbs photon, goes from E₁ to E₂</td><td>E₁ + hν → E₂</td></tr>
+      <tr><td><strong>Spontaneous Emission</strong></td><td>Atom randomly drops from E₂ to E₁, emits photon</td><td>E₂ → E₁ + hν</td></tr>
+      <tr><td><strong>Stimulated Emission</strong></td><td>Incident photon triggers emission of identical photon</td><td>E₂ + hν → E₁ + 2hν</td></tr>
+    </table>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 KEY DIFFERENCE</strong>
+    <p><strong>Spontaneous emission:</strong> Random, incoherent light (LED, tube light)<br>
+    <strong>Stimulated emission:</strong> Triggered, coherent light (LASER) — emitted photon has same phase, frequency, polarization, and direction as incident photon!</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Einstein's A and B Coefficients <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ EINSTEIN'S COEFFICIENTS</strong>
+    <p>Einstein (1917) introduced coefficients to describe the three processes:</p>
+    <table>
+      <tr><th>Coefficient</th><th>Process</th><th>Rate</th></tr>
+      <tr><td><strong>A₂₁</strong></td><td>Spontaneous emission</td><td>Rate = A₂₁N₂</td></tr>
+      <tr><td><strong>B₁₂</strong></td><td>Absorption</td><td>Rate = B₁₂N₁ρ(ν)</td></tr>
+      <tr><td><strong>B₂₁</strong></td><td>Stimulated emission</td><td>Rate = B₂₁N₂ρ(ν)</td></tr>
+    </table>
+    <p>where N₁, N₂ = populations of lower and upper states, ρ(ν) = energy density of radiation</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ RATIO OF EINSTEIN COEFFICIENTS</strong>
+    <p>At thermal equilibrium, rate of upward transitions = rate of downward transitions:</p>
+    \[\frac{A_{21}}{B_{21}} = \frac{8\pi h\nu^3}{c^3}\]
+    <p><strong>Key conclusions:</strong></p>
+    <ul>
+      <li>A₂₁/B₂₁ ∝ ν³ — spontaneous emission dominates at high frequencies</li>
+      <li>For laser action, we need stimulated emission to dominate → need high N₂ (population inversion)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s3">
+  <h3>1.3 PYQs — Basic Laser Theory <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — LASER THEORY</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Explain the processes of spontaneous and stimulated emission of radiation.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Contrast the two emission processes clearly.</div>
+        <div class="step"><span class="step-num">SPONTANEOUS EMISSION:</span> An excited atom in higher energy state E₂ randomly (without external trigger) drops to lower state E₁, emitting a photon of energy hν = E₂ - E₁.</div>
+        <div class="step"><span class="step-num">Characteristics:</span> Random process, photons emitted in random directions, different phases → INCOHERENT light</div>
+        <div class="step"><span class="step-num">STIMULATED EMISSION:</span> When an excited atom is struck by an incident photon of energy hν = E₂ - E₁, it is stimulated to drop to E₁ and emit a second photon.</div>
+        <div class="step"><span class="step-num">Characteristics:</span> Triggered process, emitted photon is IDENTICAL to incident photon (same frequency, phase, polarization, direction) → COHERENT light</div>
+        <div class="answer-box">Stimulated emission is the basis of LASER action. One photon → two photons → four photons (chain reaction = amplification).</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Derive the relationship between Einstein's A and B coefficients.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Consider thermal equilibrium between radiation and atoms.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> At equilibrium, rate of absorption = rate of emission</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Rate of absorption (E₁→E₂) = B₁₂N₁ρ(ν)</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Rate of emission (E₂→E₁) = A₂₁N₂ + B₂₁N₂ρ(ν) (spontaneous + stimulated)</div>
+        <div class="step"><span class="step-num">STEP 4:</span> At equilibrium: B₁₂N₁ρ = A₂₁N₂ + B₂₁N₂ρ</div>
+        <div class="step"><span class="step-num">STEP 5:</span> From Boltzmann distribution: N₂/N₁ = e^(-hν/kT)</div>
+        <div class="step"><span class="step-num">STEP 6:</span> Solving: ρ(ν) = A₂₁ / [B₁₂e^(hν/kT) - B₂₁]</div>
+        <div class="step"><span class="step-num">STEP 7:</span> Compare with Planck's radiation law: ρ(ν) = (8πhν³/c³) · 1/(e^(hν/kT) - 1)</div>
+        <div class="answer-box">∴ A₂₁/B₂₁ = 8πhν³/c³ and B₁₂ = B₂₁ ✓</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 2 — POPULATION INVERSION
+════════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Population Inversion and Pumping</h2>
+</div>
+
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Metastable States and Population Inversion <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 POPULATION INVERSION</strong>
+    <p>Under normal conditions (thermal equilibrium), N₁ > N₂ (more atoms in lower energy state). <strong>Population inversion</strong> is the condition where N₂ > N₁ (more atoms in excited state than ground state).</p>
+    <p><strong>This is essential for laser action!</strong></p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 METASTABLE STATE</strong>
+    <p>A metastable state is an excited energy state with unusually long lifetime (10⁻³ s compared to 10⁻⁸ s for normal excited states).</p>
+    <p><strong>Importance:</strong> Atoms can "accumulate" in metastable state, making population inversion possible.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ CONDITIONS FOR LASER ACTION</strong>
+    <ul>
+      <li><strong>Population inversion:</strong> N₂ > N₁ (necessary for net stimulated emission)</li>
+      <li><strong>Metastable state:</strong> Long lifetime allows accumulation of excited atoms</li>
+      <li><strong>Optical resonator:</strong> Mirrors provide feedback for amplification</li>
+      <li><strong>Pumping mechanism:</strong> External energy source to create population inversion</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Pumping Methods <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 PUMPING</strong>
+    <p>The process of supplying energy to raise atoms from lower energy state to higher energy state is called pumping.</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 TYPES OF PUMPING</strong>
+    <table>
+      <tr><th>Method</th><th>Description</th><th>Example</th></tr>
+      <tr><td><strong>Optical Pumping</strong></td><td>Using intense light source (flash lamp)</td><td>Ruby laser</td></tr>
+      <tr><td><strong>Electrical Discharge</strong></td><td>Electric current through gas</td><td>He-Ne laser, CO₂ laser</td></tr>
+      <tr><td><strong>Direct Conversion</strong></td><td>Electrical → optical (semiconductor)</td><td>Diode laser</td></tr>
+      <tr><td><strong>Chemical Pumping</strong></td><td>Energy from chemical reaction</td><td>Chemical lasers</td></tr>
+      <tr><td><strong>Gas Dynamic</strong></td><td>Rapid cooling of hot gas</td><td>Gas dynamic CO₂ laser</td></tr>
+    </table>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 THREE-LEVEL vs FOUR-LEVEL LASERS</strong>
+    <p><strong>Three-level (Ruby):</strong> Ground state → excited → metastable → ground. Hard to achieve inversion (need >50% atoms excited).</p>
+    <p><strong>Four-level (He-Ne, Nd:YAG):</strong> Extra level below metastable. Easy to achieve inversion (lower laser level is nearly empty).</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s3">
+  <h3>2.3 PYQs — Population Inversion <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — POPULATION INVERSION</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: What is population inversion? Why is it necessary for laser action?</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Explain normal distribution vs inverted distribution.</div>
+        <div class="step"><span class="step-num">DEFINITION:</span> Population inversion is the condition where more atoms are in higher energy state (E₂) than in lower energy state (E₁), i.e., N₂ > N₁.</div>
+        <div class="step"><span class="step-num">NORMAL CONDITION:</span> At thermal equilibrium, N₁ >> N₂ (Boltzmann distribution). Absorption dominates over stimulated emission.</div>
+        <div class="step"><span class="step-num">WHY NECESSARY:</span> For laser amplification, stimulated emission must exceed absorption. This requires N₂ > N₁. Without population inversion, incident photons are absorbed rather than causing stimulated emission.</div>
+        <div class="answer-box">Population inversion is the fundamental requirement for laser action — it ensures net light amplification rather than absorption.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Explain the role of metastable state in achieving population inversion.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">METASTABLE STATE:</span> An excited state with long lifetime (~10⁻³ s vs normal 10⁻⁸ s).</div>
+        <div class="step"><span class="step-num">ROLE:</span> Atoms pumped to higher energy quickly decay to metastable state. Due to long lifetime, atoms accumulate in metastable state. This makes N₂ > N₁ possible.</div>
+        <div class="answer-box">Without metastable state, atoms would decay too quickly for population inversion to build up.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 3 — LASER SYSTEMS
+════════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Laser Systems and Applications</h2>
+</div>
+
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Ruby Laser and He-Ne Laser <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 RUBY LASER (First Laser, 1960)</strong>
+    <p><strong>Active medium:</strong> Ruby crystal (Al₂O₃ doped with Cr³⁺ ions)<br>
+    <strong>Type:</strong> Three-level solid-state laser<br>
+    <strong>Wavelength:</strong> 694.3 nm (red light)<br>
+    <strong>Pumping:</strong> Optical (xenon flash lamp)<br>
+    <strong>Output:</strong> Pulsed (not continuous)</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 RUBY LASER WORKING</strong>
+    <ol>
+      <li>Flash lamp excites Cr³⁺ ions from ground state E₁ to broad band E₃</li>
+      <li>Rapid non-radiative decay to metastable state E₂ (lifetime 3 ms)</li>
+      <li>Population inversion builds between E₂ and E₁</li>
+      <li>Spontaneous emission triggers stimulated emission</li>
+      <li>Photons bounce between mirrored ends, amplifying</li>
+      <li>Intense red pulse emerges from partially silvered end</li>
+    </ol>
+  </div>
+
+  <div class="definition">
+    <strong>📖 He-Ne LASER (Gas Laser)</strong>
+    <p><strong>Active medium:</strong> Helium-Neon gas mixture (10:1 ratio)<br>
+    <strong>Type:</strong> Four-level gas laser<br>
+    <strong>Wavelength:</strong> 632.8 nm (red), also 1.15 μm, 3.39 μm<br>
+    <strong>Pumping:</strong> Electrical discharge<br>
+    <strong>Output:</strong> Continuous wave (CW)</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 He-Ne LASER WORKING</strong>
+    <ol>
+      <li>Electric discharge excites He atoms to metastable states</li>
+      <li>He collides with Ne, transfers energy (resonant transfer)</li>
+      <li>Ne atoms excited to upper laser level</li>
+      <li>Population inversion created in Ne (not He!)</li>
+      <li>Stimulated emission produces 632.8 nm light</li>
+      <li>Mirrors provide feedback for continuous output</li>
+    </ol>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Applications of Lasers <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 APPLICATIONS OF LASERS</strong>
+    <table>
+      <tr><th>Field</th><th>Applications</th></tr>
+      <tr><td><strong>Medicine</strong></td><td>Laser surgery, eye surgery (LASIK), tumor removal, kidney stone treatment</td></tr>
+      <tr><td><strong>Communication</strong></td><td>Fiber optic communication, optical data transmission</td></tr>
+      <tr><td><strong>Industry</strong></td><td>Cutting, welding, drilling, material processing, barcode scanners</td></tr>
+      <tr><td><strong>Military</strong></td><td>Range finding, target designation, missile guidance</td></tr>
+      <tr><td><strong>Science</strong></td><td>Spectroscopy, interferometry, holography, atomic clocks</td></tr>
+      <tr><td><strong>Consumer</strong></td><td>CD/DVD/Blu-ray players, laser printers, laser pointers</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s3">
+  <h3>3.3 PYQs — Laser Systems <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — LASER SYSTEMS</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Explain the construction and working of Ruby laser with energy level diagram.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Three-level laser system. Describe components + energy transitions.</div>
+        <div class="step"><span class="step-num">CONSTRUCTION:</span> Ruby rod (Al₂O₃ + 0.05% Cr³⁺), both ends polished and silvered (one fully, one partially). Xenon flash lamp for pumping.</div>
+        <div class="step"><span class="step-num">ENERGY LEVELS:</span> E₁ (ground), E₂ (metastable, 1.79 eV), E₃ (broad band, 3.0 eV)</div>
+        <div class="step"><span class="step-num">WORKING — Step 1:</span> Flash lamp excites Cr³⁺ from E₁ to E₃ (absorption band)</div>
+        <div class="step"><span class="step-num">Step 2:</span> Rapid non-radiative decay E₃ → E₂ (releases heat)</div>
+        <div class="step"><span class="step-num">Step 3:</span> Atoms accumulate in E₂ (metastable, 3 ms lifetime)</div>
+        <div class="step"><span class="step-num">Step 4:</span> Population inversion achieved between E₂ and E₁</div>
+        <div class="step"><span class="step-num">Step 5:</span> Spontaneous emission triggers chain reaction of stimulated emission</div>
+        <div class="step"><span class="step-num">Step 6:</span> Photons reflect between mirrors, amplifying</div>
+        <div class="answer-box">OUTPUT: 694.3 nm (red) pulsed laser beam from partially silvered end.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Describe the construction and working of He-Ne laser.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Four-level laser. He atoms assist, Ne atoms lase.</div>
+        <div class="step"><span class="step-num">CONSTRUCTION:</span> Discharge tube with He:Ne gas (10:1 ratio) at ~1 torr. Electrodes for electric discharge. Mirrors at ends (one partially transparent).</div>
+        <div class="step"><span class="step-num">ENERGY LEVELS:</span> He has metastable states at 20.61 eV and 19.82 eV. Ne has matching levels at 20.66 eV and 19.78 eV.</div>
+        <div class="step"><span class="step-num">WORKING — Step 1:</span> Electric discharge excites He atoms to metastable states</div>
+        <div class="step"><span class="step-num">Step 2:</span> Excited He collides with ground-state Ne, transfers energy (resonant energy transfer)</div>
+        <div class="step"><span class="step-num">Step 3:</span> Ne excited to upper laser level; He returns to ground state</div>
+        <div class="step"><span class="step-num">Step 4:</span> Population inversion in Ne (lower laser level is nearly empty)</div>
+        <div class="step"><span class="step-num">Step 5:</span> Stimulated emission at 632.8 nm (visible red)</div>
+        <div class="answer-box">OUTPUT: Continuous 632.8 nm red laser beam. Advantages: stable, coherent, low cost.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: List any four applications of lasers.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Simple</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="answer-box">
+        1. <strong>Medicine:</strong> Laser surgery, LASIK eye surgery, tumor removal<br>
+        2. <strong>Communication:</strong> Fiber optic data transmission<br>
+        3. <strong>Industry:</strong> Cutting, welding, drilling metals<br>
+        4. <strong>Consumer:</strong> CD/DVD players, laser printers, barcode scanners<br>
+        (Any 4 for full marks)
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     END OF MODULE 5 SUMMARY
+════════════════════════════════════════ -->
+<div id="eom5" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 5 — COMPLETE QUICK REVISION SUMMARY</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Concepts</h4>
+      <ul>
+        <li>LASER = Light Amplification by Stimulated Emission</li>
+        <li>Characteristics: Monochromatic, Coherent, Directional</li>
+        <li>Spontaneous vs Stimulated emission</li>
+        <li>Einstein coefficients: A₂₁/B₂₁ = 8πhν³/c³</li>
+        <li>Population inversion: N₂ > N₁ (essential!)</li>
+        <li>Metastable state: Long lifetime (10⁻³ s)</li>
+        <li>Ruby: 3-level, 694.3 nm, pulsed</li>
+        <li>He-Ne: 4-level, 632.8 nm, CW</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Priority PYQs</h4>
+      <ul>
+        <li>🔥 Spontaneous vs stimulated emission</li>
+        <li>🔥 Einstein A and B coefficients derivation</li>
+        <li>🔥 Population inversion + why necessary</li>
+        <li>🔥 Ruby laser construction + working</li>
+        <li>🔥 He-Ne laser construction + working</li>
+        <li>⭐ Metastable state role</li>
+        <li>⭐ Pumping methods</li>
+        <li>⭐ Applications of lasers</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 5 Complete ✓</strong> · GTU Engineering Physics Self-Study Book
+</div>
+
+</div>
+</body>
+</html>

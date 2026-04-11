@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Physics | Module 3: Optics</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root {
+    --primary: #006064;
+    --secondary: #00838f;
+    --accent: #00bcd4;
+    --gold: #f9a825;
+    --green: #2e7d32;
+    --light-bg: #e0f7fa;
+    --card-bg: #ffffff;
+    --border: #b2ebf2;
+    --text: #001f21;
+    --muted: #006064;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #e0f2f1;
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  .cover {
+    background: linear-gradient(135deg, #006064 0%, #00838f 50%, #0097a7 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 30px;
+    border-bottom: 6px solid var(--gold);
+  }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+  .toc { background: var(--card-bg); border: 1px solid var(--border); border-left: 5px solid var(--primary); border-radius: 8px; padding: 24px 28px; margin-bottom: 32px; }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  .topic-header { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; padding: 16px 24px; border-radius: 8px 8px 0 0; margin-top: 36px; }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+  .subtopic { background: var(--card-bg); border: 1px solid var(--border); border-top: none; padding: 26px 28px; margin-bottom: 2px; }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 { font-size: 1.1em; color: var(--secondary); border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .priority-tag { font-size: 0.85em; padding: 2px 10px; border-radius: 12px; font-weight: 600; margin-left: auto; }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .definition, .formula-box, .method-box, .intuition-box { border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .definition { background: #e0f7fa; border-left: 4px solid var(--primary); }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e8f5e9; border-left: 4px solid var(--green); }
+  .method-box strong { color: var(--green); display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 { background: var(--primary); color: white; padding: 8px 14px; border-radius: 6px 6px 0 0; font-size: 0.9em; letter-spacing: 1px; }
+  .pyq-card { border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; margin-bottom: 16px; overflow: hidden; }
+  .pyq-card + .pyq-card { border-top: 1px solid var(--border); border-radius: 6px; margin-top: 10px; }
+  .pyq-question { background: #f5f7ff; padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .pyq-body .concept-note { background: #fff8e1; border-left: 3px solid var(--gold); padding: 8px 12px; margin-bottom: 10px; font-size: 0.92em; color: #5d4037; }
+  .step { margin: 8px 0 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid var(--border); border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--green); }
+  .eot { background: linear-gradient(135deg, #006064 0%, #00838f 100%); color: white; border-radius: 8px; padding: 24px 28px; margin: 28px 0 40px 0; }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width: 600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Engineering Physics</h1>
+  <div class="module-title">MODULE 3: Optics</div>
+  <p style="opacity:0.85">Complete Self-Study Material · PYQ-Integrated · Exam-Focused</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step Solutions</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+  <h2>📋 MODULE 3 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Interference of Light</a>
+      <ol>
+        <li><a href="#t1s1">1.1 Young's Double Slit Experiment</a></li>
+        <li><a href="#t1s2">1.2 Thin Film Interference</a></li>
+        <li><a href="#t1s3">1.3 PYQs on Interference</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Diffraction of Light</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Fraunhofer Diffraction at Single Slit</a></li>
+        <li><a href="#t2s2">2.2 Diffraction Grating</a></li>
+        <li><a href="#t2s3">2.3 PYQs on Diffraction</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Polarization of Light</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Methods of Polarization</a></li>
+        <li><a href="#t3s2">3.2 Malus's Law and Brewster's Law</a></li>
+        <li><a href="#t3s3">3.3 PYQs on Polarization</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom3">End of Module 3: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 1 — INTERFERENCE
+════════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Interference of Light</h2>
+</div>
+
+<div class="subtopic" id="t1s1">
+  <h3>1.1 Young's Double Slit Experiment <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 INTERFERENCE</strong>
+    <p>When two coherent light waves superpose, the resultant intensity is redistributed. At some points intensity is maximum (constructive), at others minimum (destructive).</p>
+    <p><strong>Conditions for interference:</strong></p>
+    <ul>
+      <li>Sources must be coherent (constant phase difference)</li>
+      <li>Same frequency/wavelength</li>
+      <li>Same amplitude (for good contrast)</li>
+    </ul>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ YOUNG'S DOUBLE SLIT FORMULAS</strong>
+    <table>
+      <tr><th>Quantity</th><th>Formula</th></tr>
+      <tr><td><strong>Path difference</strong></td><td>Δ = d sin θ ≈ dy/D (for small θ)</td></tr>
+      <tr><td><strong>Constructive (bright)</strong></td><td>Δ = nλ, where n = 0, 1, 2, ...</td></tr>
+      <tr><td><strong>Destructive (dark)</strong></td><td>Δ = (2n+1)λ/2</td></tr>
+      <tr><td><strong>Fringe width</strong></td><td>β = λD/d</td></tr>
+    </table>
+    <p>where d = slit separation, D = screen distance, λ = wavelength</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Thin Film Interference <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="intuition-box">
+    <strong>💡 WHY FILMS SHOW COLORS</strong>
+    When light reflects from top and bottom surfaces of a thin film (soap bubble, oil on water), the two reflected waves interfere. Different wavelengths interfere constructively at different thicknesses, creating colorful patterns.
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ CONDITIONS FOR THIN FILM (Reflected Light)</strong>
+    <p>For film of thickness t and refractive index μ, with light incident at angle r:</p>
+    <table>
+      <tr><th>Condition</th><th>Formula</th></tr>
+      <tr><td><strong>Constructive (bright)</strong></td><td>2μt cos r = (2n+1)λ/2</td></tr>
+      <tr><td><strong>Destructive (dark)</strong></td><td>2μt cos r = nλ</td></tr>
+    </table>
+    <p><em>Note: Extra λ/2 path difference due to reflection from denser medium!</em></p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ NEWTON'S RINGS</strong>
+    <p>When a plano-convex lens is placed on a glass plate, circular interference fringes (Newton's rings) are formed.</p>
+    <p><strong>For reflected light:</strong></p>
+    <ul>
+      <li>Dark rings: D_n² = 4nλR (n = 0, 1, 2, ...)</li>
+      <li>Bright rings: D_n² = 4(n+½)λR</li>
+    </ul>
+    <p>where R = radius of curvature of lens</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s3">
+  <h3>1.3 PYQs — Interference <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — INTERFERENCE</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Explain Young's double slit experiment. Derive the expression for fringe width.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Standard derivation with diagram description.</div>
+        <div class="step"><span class="step-num">SETUP:</span> Two slits S₁, S₂ separated by distance d. Screen at distance D. Monochromatic light of wavelength λ.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Path difference at point P (distance y from center): Δ = S₂P - S₁P</div>
+        <div class="step"><span class="step-num">STEP 2:</span> From geometry: Δ = d sin θ ≈ dy/D (for small θ)</div>
+        <div class="step"><span class="step-num">STEP 3:</span> For bright fringes: Δ = nλ ⇒ dy/D = nλ ⇒ y_n = nλD/d</div>
+        <div class="step"><span class="step-num">STEP 4:</span> For dark fringes: Δ = (2n+1)λ/2 ⇒ y'_n = (2n+1)λD/(2d)</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Fringe width β = distance between consecutive bright fringes</div>
+        <div class="step"><span class="step-num">STEP 6:</span> β = y_{n+1} - y_n = (n+1)λD/d - nλD/d = λD/d</div>
+        <div class="answer-box">∴ Fringe width β = λD/d</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Derive the conditions for constructive and destructive interference in thin films (reflected light).</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Consider path difference between rays reflected from top and bottom surfaces.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Ray 1 reflects from top surface (air→film). Ray 2 reflects from bottom surface (film→air).</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Path difference due to travel in film = 2μt cos r</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Additional λ/2 path difference because Ray 1 reflects from denser medium</div>
+        <div class="step"><span class="step-num">STEP 4:</span> Total path difference: Δ = 2μt cos r + λ/2</div>
+        <div class="step"><span class="step-num">STEP 5:</span> For constructive: Δ = nλ ⇒ 2μt cos r = (2n-1)λ/2</div>
+        <div class="step"><span class="step-num">STEP 6:</span> For destructive: Δ = (2n+1)λ/2 ⇒ 2μt cos r = nλ</div>
+        <div class="answer-box">∴ Bright: 2μt cos r = (2n+1)λ/2; Dark: 2μt cos r = nλ</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: In Newton's rings experiment, prove that diameter of nth dark ring is proportional to √n.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">STEP 1:</span> For nth dark ring in reflected light: 2μt cos r = nλ</div>
+        <div class="step"><span class="step-num">STEP 2:</span> For air film (μ=1) and normal incidence (cos r = 1): 2t = nλ</div>
+        <div class="step"><span class="step-num">STEP 3:</span> From geometry of lens: t = r²/(2R) where r = radius of ring, R = lens curvature radius</div>
+        <div class="step"><span class="step-num">STEP 4:</span> Substituting: 2(r²/2R) = nλ ⇒ r² = nλR</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Diameter D_n = 2r, so D_n² = 4r² = 4nλR</div>
+        <div class="answer-box">∴ D_n = 2√(nλR) ∝ √n ✓ Proved</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 2 — DIFFRACTION
+════════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Diffraction of Light</h2>
+</div>
+
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Fraunhofer Diffraction at Single Slit <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 DIFFRACTION</strong>
+    <p>The bending of light around obstacles and spreading into the geometric shadow region is called diffraction.</p>
+    <p><strong>Types:</strong></p>
+    <ul>
+      <li><strong>Fraunhofer:</strong> Source and screen at infinity (parallel rays)</li>
+      <li><strong>Fresnel:</strong> Source or screen at finite distance</li>
+    </ul>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ SINGLE SLIT DIFFRACTION PATTERN</strong>
+    <p>For slit of width a, wavelength λ:</p>
+    <table>
+      <tr><th>Condition</th><th>Formula</th></tr>
+      <tr><td><strong>Minima (dark)</strong></td><td>a sin θ = nλ, n = ±1, ±2, ...</td></tr>
+      <tr><td><strong>Secondary maxima</strong></td><td>a sin θ = (2n+1)λ/2</td></tr>
+      <tr><td><strong>Central maximum width</strong></td><td>W = 2λD/a</td></tr>
+    </table>
+    <p><em>Note: Central maximum is twice as wide as secondary maxima!</em></p>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Diffraction Grating <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 DIFFRACTION GRATING</strong>
+    <p>A grating consists of a large number of parallel slits of equal width separated by equal opaque spaces.</p>
+    <p><strong>Grating element:</strong> d = a + b (slit width + opaque space)</p>
+    <p><strong>Grating constant:</strong> N = number of lines per unit length = 1/d</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ GRATING EQUATION</strong>
+    <p>For principal maxima:</p>
+    \[d \sin \theta = n\lambda\]
+    <p>where n = order of spectrum (0, ±1, ±2, ...)</p>
+    <p><strong>For normal incidence:</strong> (a+b) sin θ = nλ</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s3">
+  <h3>2.3 PYQs — Diffraction <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — DIFFRACTION</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Explain Fraunhofer diffraction at a single slit. Derive the condition for minima.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Use phasor method or path difference approach.</div>
+        <div class="step"><span class="step-num">SETUP:</span> Parallel beam of wavelength λ incident on slit of width a. Diffracted light focused on screen by lens.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Consider secondary wavelets from all points in slit. At angle θ, path difference between wavelets from top and bottom edges = a sin θ</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Divide slit into two halves. For first minimum, path difference between corresponding points in two halves = λ/2</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Total path difference = a sin θ = λ (for first minimum, n=1)</div>
+        <div class="step"><span class="step-num">STEP 4:</span> General condition: Path difference = nλ for nth minimum</div>
+        <div class="answer-box">∴ Condition for minima: a sin θ = nλ, where n = ±1, ±2, ...</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Derive the grating equation for a plane diffraction grating.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">STEP 1:</span> Consider grating with slit separation d (grating element)</div>
+        <div class="step"><span class="step-num">STEP 2:</span> For light diffracted at angle θ, path difference between adjacent slits = d sin θ</div>
+        <div class="step"><span class="step-num">STEP 3:</span> For constructive interference (principal maxima), path difference = nλ</div>
+        <div class="answer-box">∴ d sin θ = nλ ✓ where n = 0, ±1, ±2, ...</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 3 — POLARIZATION
+════════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Polarization of Light</h2>
+</div>
+
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Methods of Polarization <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 POLARIZATION</strong>
+    <p>The phenomenon of confining light vibrations to a particular direction perpendicular to propagation is called polarization.</p>
+    <p><strong>Evidence:</strong> Polarization proves light is a transverse wave (longitudinal waves cannot be polarized).</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 METHODS OF POLARIZATION</strong>
+    <table>
+      <tr><th>Method</th><th>Description</th></tr>
+      <tr><td><strong>Reflection</strong></td><td>Light reflected at Brewster's angle is completely polarized</td></tr>
+      <tr><td><strong>Refraction</strong></td><td>Multiple refractions through pile of plates</td></tr>
+      <tr><td><strong>Selective Absorption</strong></td><td>Polaroids absorb one component, transmit other</td></tr>
+      <tr><td><strong>Scattering</strong></td><td>Sky light is partially polarized due to scattering</td></tr>
+      <tr><td><strong>Double Refraction</strong></td><td>Birefringent crystals split light into O-ray and E-ray</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Malus's Law and Brewster's Law <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ MALUS'S LAW</strong>
+    <p>When polarized light passes through an analyzer, the transmitted intensity varies as:</p>
+    \[I = I_0 \cos^2\theta\]
+    <p>where I₀ = incident intensity, θ = angle between polarizer and analyzer axes</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ BREWSTER'S LAW</strong>
+    <p>When unpolarized light is incident at polarizing angle (Brewster's angle) i_p:</p>
+    \[\tan i_p = \mu\]
+    <p>where μ = refractive index of medium</p>
+    <p><strong>At Brewster's angle:</strong> Reflected and refracted rays are perpendicular (i_p + r = 90°)</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s3">
+  <h3>3.3 PYQs — Polarization <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — POLARIZATION</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: State and explain Malus's law of polarization.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Direct statement with formula.</div>
+        <div class="step"><span class="step-num">STATEMENT:</span> When a beam of completely plane-polarized light is passed through an analyzer, the intensity of transmitted light varies as the square of the cosine of the angle between the transmission axes of polarizer and analyzer.</div>
+        <div class="step"><span class="step-num">FORMULA:</span> I = I₀ cos²θ</div>
+        <div class="step"><span class="step-num">SPECIAL CASES:</span> θ = 0°: I = I₀ (max); θ = 90°: I = 0 (min)</div>
+        <div class="answer-box">Write statement + formula + special cases for full marks.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Derive Brewster's law and explain its significance.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Use geometry and Snell's law.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> At polarizing angle i_p, reflected light is completely polarized</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Reflected and refracted rays are perpendicular: i_p + r = 90°</div>
+        <div class="step"><span class="step-num">STEP 3:</span> From Snell's law: μ = sin i_p / sin r</div>
+        <div class="step"><span class="step-num">STEP 4:</span> Since r = 90° - i_p: sin r = sin(90° - i_p) = cos i_p</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Therefore: μ = sin i_p / cos i_p = tan i_p</div>
+        <div class="answer-box">∴ tan i_p = μ ✓ Brewster's law</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Two polaroids are placed with their axes at 60°. If unpolarized light of intensity I₀ is incident, find the transmitted intensity.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2024</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Numerical</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">STEP 1:</span> After first polaroid: I₁ = I₀/2 (unpolarized → polarized)</div>
+        <div class="step"><span class="step-num">STEP 2:</span> After second polaroid (analyzer): I₂ = I₁ cos²θ</div>
+        <div class="step"><span class="step-num">STEP 3:</span> θ = 60°, so cos 60° = 0.5, cos²60° = 0.25</div>
+        <div class="step"><span class="step-num">STEP 4:</span> I₂ = (I₀/2) × 0.25 = I₀/8</div>
+        <div class="answer-box">∴ Transmitted intensity = I₀/8</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     END OF MODULE 3 SUMMARY
+════════════════════════════════════════ -->
+<div id="eom3" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 3 — COMPLETE QUICK REVISION SUMMARY</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Formulas</h4>
+      <ul>
+        <li>Young's fringe width: β = λD/d</li>
+        <li>Thin film (reflected): 2μt cos r = nλ (dark)</li>
+        <li>Newton's rings: D_n² = 4nλR</li>
+        <li>Single slit minima: a sin θ = nλ</li>
+        <li>Grating equation: d sin θ = nλ</li>
+        <li>Malus's law: I = I₀ cos²θ</li>
+        <li>Brewster's law: tan i_p = μ</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Priority PYQs</h4>
+      <ul>
+        <li>🔥 Young's double slit + fringe width</li>
+        <li>🔥 Thin film interference conditions</li>
+        <li>🔥 Newton's rings diameter proof</li>
+        <li>🔥 Single slit diffraction minima</li>
+        <li>🔥 Malus's law statement</li>
+        <li>🔥 Brewster's law derivation</li>
+        <li>⭐ Grating equation</li>
+        <li>⭐ Polarization methods</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 3 Complete ✓</strong> · GTU Engineering Physics Self-Study Book
+</div>
+
+</div>
+</body>
+</html>

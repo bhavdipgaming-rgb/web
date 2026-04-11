@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTU Physics | Module 4: Quantum Physics</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root { --primary: #006064; --secondary: #00838f; --accent: #00bcd4; --gold: #f9a825; --green: #2e7d32; --light-bg: #e0f7fa; --card-bg: #ffffff; --border: #b2ebf2; --text: #001f21; --muted: #006064; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #e0f2f1; color: var(--text); line-height: 1.7; font-size: 15px; }
+  .cover { background: linear-gradient(135deg, #006064 0%, #00838f 50%, #0097a7 100%); color: white; text-align: center; padding: 60px 30px; border-bottom: 6px solid var(--gold); }
+  .cover .university { font-size: 13px; letter-spacing: 2px; opacity: 0.8; margin-bottom: 10px; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; margin-bottom: 8px; }
+  .cover .module-title { font-size: 1.6em; color: var(--gold); font-weight: 700; margin: 15px 0; }
+  .cover .badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .badge { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px; border-radius: 20px; font-size: 12px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 30px 20px; }
+  .toc { background: var(--card-bg); border: 1px solid var(--border); border-left: 5px solid var(--primary); border-radius: 8px; padding: 24px 28px; margin-bottom: 32px; }
+  .toc h2 { color: var(--primary); font-size: 1.1em; margin-bottom: 14px; letter-spacing: 1px; }
+  .toc ol { padding-left: 22px; }
+  .toc li { margin: 6px 0; }
+  .toc a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+  .toc a:hover { text-decoration: underline; }
+  .topic-header { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; padding: 16px 24px; border-radius: 8px 8px 0 0; margin-top: 36px; }
+  .topic-header h2 { font-size: 1.3em; font-weight: 700; }
+  .topic-header .topic-num { font-size: 0.85em; opacity: 0.8; margin-bottom: 4px; }
+  .subtopic { background: var(--card-bg); border: 1px solid var(--border); border-top: none; padding: 26px 28px; margin-bottom: 2px; }
+  .subtopic:last-child { border-radius: 0 0 8px 8px; margin-bottom: 32px; }
+  .subtopic h3 { font-size: 1.1em; color: var(--secondary); border-bottom: 2px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .priority-tag { font-size: 0.85em; padding: 2px 10px; border-radius: 12px; font-weight: 600; margin-left: auto; }
+  .fire { background: #ffebee; color: #c62828; }
+  .star { background: #fff8e1; color: #e65100; }
+  .definition, .formula-box, .method-box, .intuition-box { border-radius: 6px; padding: 14px 18px; margin: 14px 0; }
+  .definition { background: #e0f7fa; border-left: 4px solid var(--primary); }
+  .definition strong { color: var(--primary); display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .formula-box { background: #fff3e0; border: 1px solid #ffcc02; border-left: 4px solid var(--gold); }
+  .formula-box strong { color: #e65100; display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .method-box { background: #e8f5e9; border-left: 4px solid var(--green); }
+  .method-box strong { color: var(--green); display: block; margin-bottom: 6px; font-size: 0.85em; letter-spacing: 1px; }
+  .intuition-box { background: #fce4ec; border-left: 4px solid #c2185b; }
+  .intuition-box strong { color: #880e4f; display: block; margin-bottom: 4px; font-size: 0.85em; letter-spacing: 1px; }
+  .pyq-section { margin-top: 20px; }
+  .pyq-section > h4 { background: var(--primary); color: white; padding: 8px 14px; border-radius: 6px 6px 0 0; font-size: 0.9em; letter-spacing: 1px; }
+  .pyq-card { border: 1px solid var(--border); border-top: none; border-radius: 0 0 6px 6px; margin-bottom: 16px; overflow: hidden; }
+  .pyq-card + .pyq-card { border-top: 1px solid var(--border); border-radius: 6px; margin-top: 10px; }
+  .pyq-question { background: #f5f7ff; padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .pyq-meta { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; align-items: flex-start; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+  .tag-year { background: #e3f2fd; color: #0d47a1; }
+  .tag-marks { background: #f3e5f5; color: #6a1b9a; }
+  .tag-repeat { background: #ffebee; color: #b71c1c; }
+  .pyq-body { padding: 14px 16px; }
+  .pyq-body .concept-note { background: #fff8e1; border-left: 3px solid var(--gold); padding: 8px 12px; margin-bottom: 10px; font-size: 0.92em; color: #5d4037; }
+  .step { margin: 8px 0 8px 0; padding: 8px 12px; background: #fafafa; border-left: 3px solid var(--border); border-radius: 0 4px 4px 0; }
+  .step-num { color: var(--primary); font-weight: 700; font-size: 0.88em; }
+  .answer-box { background: #e8f5e9; border: 1px solid #a5d6a7; padding: 10px 14px; border-radius: 5px; margin-top: 10px; font-weight: 600; color: var(--green); }
+  .eot { background: linear-gradient(135deg, #006064 0%, #00838f 100%); color: white; border-radius: 8px; padding: 24px 28px; margin: 28px 0 40px 0; }
+  .eot h3 { font-size: 1.15em; color: var(--gold); margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 8px; }
+  .eot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media(max-width: 600px) { .eot-grid { grid-template-columns: 1fr; } }
+  .eot-card { background: rgba(255,255,255,0.1); padding: 14px; border-radius: 6px; }
+  .eot-card h4 { font-size: 0.9em; color: var(--gold); margin-bottom: 8px; }
+  .eot-card li { font-size: 0.9em; margin: 4px 0; list-style: none; }
+  .eot-card li::before { content: "▸ "; color: var(--gold); }
+  p { margin: 8px 0; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: var(--primary); color: white; padding: 8px 12px; text-align: left; font-size: 0.9em; }
+  td { padding: 8px 12px; border: 1px solid var(--border); font-size: 0.9em; }
+  tr:nth-child(even) td { background: var(--light-bg); }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="university">GUJARAT TECHNOLOGICAL UNIVERSITY · BE SEMESTER I/II</div>
+  <h1>Engineering Physics</h1>
+  <div class="module-title">MODULE 4: Quantum Physics</div>
+  <p style="opacity:0.85">Complete Self-Study Material · PYQ-Integrated · Exam-Focused</p>
+  <div class="badges">
+    <span class="badge">📚 Full Syllabus Coverage</span>
+    <span class="badge">🎯 All PYQs Solved</span>
+    <span class="badge">⭐ Priority Tagged</span>
+    <span class="badge">✅ Step-by-Step Solutions</span>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+  <h2>📋 MODULE 4 — CONTENTS</h2>
+  <ol>
+    <li><a href="#topic1">Topic 1: Wave-Particle Duality</a>
+      <ol>
+        <li><a href="#t1s1">1.1 de Broglie Hypothesis</a></li>
+        <li><a href="#t1s2">1.2 Davisson-Germer Experiment</a></li>
+        <li><a href="#t1s3">1.3 PYQs on Wave-Particle Duality</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic2">Topic 2: Heisenberg's Uncertainty Principle</a>
+      <ol>
+        <li><a href="#t2s1">2.1 Statement and Explanation</a></li>
+        <li><a href="#t2s2">2.2 Applications and Numericals</a></li>
+        <li><a href="#t2s3">2.3 PYQs on Uncertainty Principle</a></li>
+      </ol>
+    </li>
+    <li><a href="#topic3">Topic 3: Schrodinger Equation</a>
+      <ol>
+        <li><a href="#t3s1">3.1 Time-Independent Schrodinger Equation</a></li>
+        <li><a href="#t3s2">3.2 Particle in a Box</a></li>
+        <li><a href="#t3s3">3.3 PYQs on Schrodinger Equation</a></li>
+      </ol>
+    </li>
+    <li><a href="#eom4">End of Module 4: Quick Revision Summary</a></li>
+  </ol>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 1 — WAVE-PARTICLE DUALITY
+════════════════════════════════════════ -->
+<div id="topic1">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 1</div>
+  <h2>Wave-Particle Duality</h2>
+</div>
+
+<div class="subtopic" id="t1s1">
+  <h3>1.1 de Broglie Hypothesis <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 WAVE-PARTICLE DUALITY</strong>
+    <p>Light exhibits both wave properties (interference, diffraction) and particle properties (photoelectric effect, Compton effect). de Broglie proposed that matter also has dual nature.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ de BROGLIE WAVELENGTH</strong>
+    <p>Every moving particle has an associated wave with wavelength:</p>
+    \[\lambda = \frac{h}{p} = \frac{h}{mv}\]
+    <p>where h = Planck's constant (6.626×10⁻³⁴ J·s), p = momentum, m = mass, v = velocity</p>
+    <p><strong>For electron accelerated through V volts:</strong></p>
+    \[\lambda = \frac{12.27}{\sqrt{V}} \text{ Å}\]
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 WHY DON'T WE SEE WAVE NATURE IN DAILY LIFE?</strong>
+    For macroscopic objects (large m), λ is extremely small. For a 1g object moving at 1 m/s: λ ≈ 10⁻³¹ m (undetectable). Wave nature is only observable for microscopic particles like electrons.
+  </div>
+</div>
+
+<div class="subtopic" id="t1s2">
+  <h3>1.2 Davisson-Germer Experiment <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="definition">
+    <strong>📖 DAVISSON-GERMER EXPERIMENT (1927)</strong>
+    <p>First experimental verification of de Broglie's hypothesis. Electrons were diffracted by a nickel crystal, producing an interference pattern — proving electrons behave as waves.</p>
+  </div>
+
+  <div class="method-box">
+    <strong>🔧 EXPERIMENTAL SETUP</strong>
+    <ul>
+      <li>Electron gun produces beam of electrons (accelerated through V volts)</li>
+      <li>Electrons strike nickel crystal target</li>
+      <li>Scattered electrons detected at various angles</li>
+      <li>Maximum intensity at specific angle θ = 50° for V = 54V</li>
+      <li>Bragg's law satisfied: 2d sin θ = nλ</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t1s3">
+  <h3>1.3 PYQs — Wave-Particle Duality <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — WAVE-PARTICLE DUALITY</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: State de Broglie hypothesis. Derive the expression for de Broglie wavelength.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 de Broglie extended wave-particle duality from light to matter.</div>
+        <div class="step"><span class="step-num">HYPOTHESIS:</span> Just as light exhibits both wave and particle properties, matter (electrons, protons, atoms) also has dual nature — both particle and wave characteristics.</div>
+        <div class="step"><span class="step-num">DERIVATION:</span> From Planck: E = hν (particle nature). From Einstein: E = mc². For photon: p = E/c = hν/c = h/λ</div>
+        <div class="step"><span class="step-num">de Broglie's insight:</span> If light (wave) has momentum p = h/λ, then matter (particle) should have wavelength λ = h/p</div>
+        <div class="answer-box">∴ λ = h/p = h/(mv) ✓ de Broglie wavelength formula</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Calculate the de Broglie wavelength of an electron accelerated through 100 V.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Numerical</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Use the shortcut formula for electrons.</div>
+        <div class="step"><span class="step-num">FORMULA:</span> λ = 12.27/√V Å (for electron)</div>
+        <div class="step"><span class="step-num">GIVEN:</span> V = 100 volts</div>
+        <div class="step"><span class="step-num">CALCULATION:</span> λ = 12.27/√100 = 12.27/10 = 1.227 Å</div>
+        <div class="answer-box">∴ de Broglie wavelength = 1.227 Å = 0.1227 nm</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Describe Davisson-Germer experiment with neat diagram.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Describe setup, observation, and conclusion.</div>
+        <div class="step"><span class="step-num">SETUP:</span> Electron gun → Nickel crystal → Detector (rotatable)</div>
+        <div class="step"><span class="step-num">OBSERVATION:</span> Maximum intensity at θ = 50° when V = 54V</div>
+        <div class="step"><span class="step-num">CALCULATION:</span> Using Bragg's law: 2d sin θ = nλ. For nickel d = 0.91 Å, θ = 50°, n = 1: λ = 2(0.91)(sin 50°) = 1.65 Å</div>
+        <div class="step"><span class="step-num">VERIFICATION:</span> de Broglie formula: λ = 12.27/√54 = 1.67 Å (matches!)</div>
+        <div class="answer-box">CONCLUSION: Electrons exhibit wave nature — confirmed de Broglie hypothesis</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 2 — UNCERTAINTY PRINCIPLE
+════════════════════════════════════════ -->
+<div id="topic2">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 2</div>
+  <h2>Heisenberg's Uncertainty Principle</h2>
+</div>
+
+<div class="subtopic" id="t2s1">
+  <h3>2.1 Statement and Explanation <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 HEISENBERG'S UNCERTAINTY PRINCIPLE</strong>
+    <p>It is impossible to measure both position and momentum of a particle simultaneously with unlimited precision.</p>
+    <p><strong>Mathematical statement:</strong></p>
+    \[\Delta x \cdot \Delta p_x \geq \frac{h}{4\pi} = \frac{\hbar}{2}\]
+    <p>where Δx = uncertainty in position, Δpₓ = uncertainty in momentum, ℏ = h/2π</p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 WHY DOES UNCERTAINTY EXIST?</strong>
+    To measure position accurately, you need short-wavelength light (high energy photons). But high-energy photons disturb the particle's momentum. Better position measurement → worse momentum measurement, and vice versa.
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ OTHER UNCERTAINTY RELATIONS</strong>
+    <table>
+      <tr><th>Pair</th><th>Relation</th></tr>
+      <tr><td><strong>Energy-Time</strong></td><td>ΔE · Δt ≥ ℏ/2</td></tr>
+      <tr><td><strong>Angular momentum-Angle</strong></td><td>ΔL · Δθ ≥ ℏ/2</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s2">
+  <h3>2.2 Applications and Numericals <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="method-box">
+    <strong>🔧 WHY ELECTRON CANNOT EXIST IN NUCLEUS</strong>
+    <p>Nuclear size ≈ 10⁻¹⁴ m. If electron confined in nucleus, Δx ≈ 10⁻¹⁴ m.</p>
+    <p>From uncertainty principle: Δp ≥ ℏ/(2Δx) ≈ 5×10⁻²¹ kg·m/s</p>
+    <p>Corresponding energy E ≈ 100 MeV (much larger than observed beta decay energies ~3 MeV)</p>
+    <p>∴ Electron cannot be confined in nucleus!</p>
+  </div>
+</div>
+
+<div class="subtopic" id="t2s3">
+  <h3>2.3 PYQs — Uncertainty Principle <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — UNCERTAINTY PRINCIPLE</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: State and explain Heisenberg's uncertainty principle.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">🔥 Repeated</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 State principle, give formula, explain significance.</div>
+        <div class="step"><span class="step-num">STATEMENT:</span> It is impossible to determine simultaneously both the position and momentum of a particle with unlimited precision.</div>
+        <div class="step"><span class="step-num">MATHEMATICAL FORM:</span> Δx · Δp ≥ ℏ/2 where ℏ = h/2π = 1.055×10⁻³⁴ J·s</div>
+        <div class="step"><span class="step-num">EXPLANATION:</span> The more precisely we know position (small Δx), the less precisely we can know momentum (large Δp), and vice versa.</div>
+        <div class="answer-box">This is a fundamental property of nature, not a limitation of measurement instruments.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: An electron is confined to a nucleus of size 10⁻¹⁴ m. Calculate the minimum uncertainty in its velocity.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">⭐ Numerical</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Use Δx · Δp ≥ ℏ/2 and Δp = mΔv.</div>
+        <div class="step"><span class="step-num">GIVEN:</span> Δx = 10⁻¹⁴ m; m_e = 9.1×10⁻³¹ kg; ℏ = 1.055×10⁻³⁴ J·s</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Δx · Δp ≥ ℏ/2 ⇒ Δp ≥ ℏ/(2Δx)</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Δp = m·Δv, so Δv ≥ ℏ/(2mΔx)</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Δv ≥ (1.055×10⁻³⁴)/(2 × 9.1×10⁻³¹ × 10⁻¹⁴)</div>
+        <div class="step"><span class="step-num">STEP 4:</span> Δv ≥ 5.8×10⁹ m/s</div>
+        <div class="answer-box">∴ Minimum uncertainty in velocity ≈ 5.8×10⁹ m/s (greater than speed of light! Proves electron can't exist in nucleus)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TOPIC 3 — SCHRODINGER EQUATION
+════════════════════════════════════════ -->
+<div id="topic3">
+<div class="topic-header">
+  <div class="topic-num">TOPIC 3</div>
+  <h2>Schrodinger Equation</h2>
+</div>
+
+<div class="subtopic" id="t3s1">
+  <h3>3.1 Time-Independent Schrodinger Equation <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="definition">
+    <strong>📖 SCHRODINGER EQUATION</strong>
+    <p>The fundamental equation of quantum mechanics that describes how the quantum state of a physical system changes.</p>
+  </div>
+
+  <div class="formula-box">
+    <strong>⭐ TIME-INDEPENDENT SCHRODINGER EQUATION (1D)</strong>
+    \[-\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + V(x)\psi = E\psi\]
+    <p>where:<br>
+    ψ = wave function<br>
+    V(x) = potential energy<br>
+    E = total energy<br>
+    m = mass of particle</p>
+    <p><strong>Physical significance of |ψ|²:</strong> Probability density of finding particle at position x</p>
+  </div>
+
+  <div class="definition">
+    <strong>📖 CONDITIONS ON WAVE FUNCTION</strong>
+    <ul>
+      <li>ψ must be finite and single-valued</li>
+      <li>ψ must be continuous</li>
+      <li>dψ/dx must be continuous</li>
+      <li>∫|ψ|²dx = 1 (normalization condition)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s2">
+  <h3>3.2 Particle in a Box <span class="priority-tag star">⭐ High Priority</span></h3>
+
+  <div class="formula-box">
+    <strong>⭐ PARTICLE IN A 1D BOX (Infinite Potential Well)</strong>
+    <p>For particle of mass m in box of width L:</p>
+    <p><strong>Energy levels (quantized):</strong></p>
+    \[E_n = \frac{n^2h^2}{8mL^2} \quad n = 1, 2, 3, ...\]</p>
+    <p><strong>Wave functions:</strong></p>
+    \[\psi_n(x) = \sqrt{\frac{2}{L}}\sin\left(\frac{n\pi x}{L}\right)\]</p>
+    <p><em>Note: n = 0 is NOT allowed — ground state is n = 1 (zero-point energy)</em></p>
+  </div>
+
+  <div class="intuition-box">
+    <strong>💡 KEY CONCEPTS</strong>
+    <ul>
+      <li>Energy is quantized (only discrete values allowed)</li>
+      <li>Lowest energy E₁ = h²/(8mL²) ≠ 0 (zero-point energy)</li>
+      <li>Particle cannot be at rest (uncertainty principle)</li>
+      <li>Probability of finding particle varies with position</li>
+    </ul>
+  </div>
+</div>
+
+<div class="subtopic" id="t3s3">
+  <h3>3.3 PYQs — Schrodinger Equation <span class="priority-tag fire">🔥 Most Important</span></h3>
+
+  <div class="pyq-section">
+    <h4>🎯 ALL PREVIOUS YEAR QUESTIONS — SCHRODINGER EQUATION</h4>
+
+    <div class="pyq-card">
+      <div class="pyq-question">
+        <span>Q: Write the time-independent Schrodinger equation and explain the physical significance of wave function ψ.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2025 / Summer 2024</span>
+          <span class="tag tag-marks">4 Marks</span>
+          <span class="tag tag-repeat">🔥 Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Write equation + Born interpretation of ψ.</div>
+        <div class="step"><span class="step-num">SCHRODINGER EQUATION (1D):</span> -ℏ²/(2m) · d²ψ/dx² + V(x)ψ = Eψ</div>
+        <div class="step"><span class="step-num">PHYSICAL SIGNIFICANCE OF ψ:</span></p>
+        <ul>
+          <li>ψ itself has no direct physical meaning (can be complex)</li>
+          <li>|ψ|² represents probability density</li>
+          <li>Probability of finding particle between x and x+dx = |ψ|²dx</li>
+          <li>∫|ψ|²dx = 1 (total probability = 1, normalization)</li>
+        </ul></div>
+        <div class="answer-box">ψ contains all information about the quantum state of the particle.</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: Derive the expression for energy of a particle in a 1D box of width L.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Winter 2024</span>
+          <span class="tag tag-marks">7 Marks</span>
+          <span class="tag tag-repeat">🔥 Most Important</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="concept-note">💡 Solve Schrodinger equation with boundary conditions ψ(0) = ψ(L) = 0.</div>
+        <div class="step"><span class="step-num">STEP 1:</span> Inside box: V = 0. Schrodinger equation: -ℏ²/(2m) · d²ψ/dx² = Eψ</div>
+        <div class="step"><span class="step-num">STEP 2:</span> Rearrange: d²ψ/dx² + (2mE/ℏ²)ψ = 0</div>
+        <div class="step"><span class="step-num">STEP 3:</span> Let k² = 2mE/ℏ². General solution: ψ = A sin(kx) + B cos(kx)</div>
+        <div class="step"><span class="step-num">STEP 4:</span> Boundary condition ψ(0) = 0 ⇒ B = 0. So ψ = A sin(kx)</div>
+        <div class="step"><span class="step-num">STEP 5:</span> Boundary condition ψ(L) = 0 ⇒ sin(kL) = 0 ⇒ kL = nπ (n = 1,2,3...)</div>
+        <div class="step"><span class="step-num">STEP 6:</span> k = nπ/L. Substitute back: 2mE/ℏ² = n²π²/L²</div>
+        <div class="answer-box">∴ E_n = n²π²ℏ²/(2mL²) = n²h²/(8mL²) ✓</div>
+      </div>
+    </div>
+
+    <div class="pyq-card" style="margin-top:14px; border:1px solid var(--border); border-radius:6px;">
+      <div class="pyq-question">
+        <span>Q: An electron is confined in a 1D box of width 1 Å. Calculate its ground state energy.</span>
+        <div class="pyq-meta">
+          <span class="tag tag-year">Summer 2025</span>
+          <span class="tag tag-marks">3 Marks</span>
+          <span class="tag tag-repeat">⭐ Numerical</span>
+        </div>
+      </div>
+      <div class="pyq-body">
+        <div class="step"><span class="step-num">GIVEN:</span> L = 1 Å = 10⁻¹⁰ m; m = 9.1×10⁻³¹ kg; h = 6.626×10⁻³⁴ J·s; n = 1 (ground state)</div>
+        <div class="step"><span class="step-num">FORMULA:</span> E₁ = h²/(8mL²)</div>
+        <div class="step"><span class="step-num">CALCULATION:</span> E₁ = (6.626×10⁻³⁴)² / (8 × 9.1×10⁻³¹ × (10⁻¹⁰)²)</div>
+        <div class="step"><span class="step-num">RESULT:</span> E₁ = 6.02×10⁻¹⁸ J = 37.6 eV</div>
+        <div class="answer-box">∴ Ground state energy = 37.6 eV</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     END OF MODULE 4 SUMMARY
+════════════════════════════════════════ -->
+<div id="eom4" class="eot" style="margin-top:36px;">
+  <h3>🏁 END OF MODULE 4 — COMPLETE QUICK REVISION SUMMARY</h3>
+  <div class="eot-grid">
+    <div class="eot-card">
+      <h4>Key Formulas</h4>
+      <ul>
+        <li>de Broglie: λ = h/p = h/(mv)</li>
+        <li>For electron: λ = 12.27/√V Å</li>
+        <li>Uncertainty: Δx·Δp ≥ ℏ/2</li>
+        <li>Schrodinger: -ℏ²/(2m)·d²ψ/dx² + Vψ = Eψ</li>
+        <li>Particle in box: E_n = n²h²/(8mL²)</li>
+        <li>Wave function: ψ_n = √(2/L) sin(nπx/L)</li>
+      </ul>
+    </div>
+    <div class="eot-card">
+      <h4>Priority PYQs</h4>
+      <ul>
+        <li>🔥 de Broglie hypothesis + wavelength</li>
+        <li>🔥 Heisenberg uncertainty principle</li>
+        <li>🔥 Schrodinger equation + ψ significance</li>
+        <li>🔥 Particle in a box energy derivation</li>
+        <li>⭐ Davisson-Germer experiment</li>
+        <li>⭐ Numerical on λ = 12.27/√V</li>
+        <li>⭐ Why electron can't exist in nucleus</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding:30px; color:#666; font-size:0.9em;">
+  <strong>Module 4 Complete ✓</strong> · GTU Engineering Physics Self-Study Book
+</div>
+
+</div>
+</body>
+</html>
